@@ -1,0 +1,42 @@
+{
+  "name": "<%= slugify(appname) %>",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "~4.0.0-rc2",
+    "morgan": "~1.0.0",
+    "body-parser": "~1.0.0",
+    "compression": "1.0.1",
+    "static-favicon": "~1.0.1",
+    "method-override": "~1.0.0",
+    "errorhandler": "~1.0.0",
+    <% if (viewEngine === 'jade') { %>"jade": "~1.1.5",<% } %>
+    <% if (viewEngine === 'jade') { %>"express-hbs": "~0.7.9",<% } %>
+    <% if (viewEngine === 'ejs') { %>"ejs": "~1.0.0",<% } %>
+    "mongoose": "~3.8.7"
+  },
+  "devDependencies": {
+    <% if (buildTool === 'grunt') { %>
+    "grunt": "~0.4.4",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-concurrent": "~0.5.0",
+    "grunt-node-inspector": "~0.1.5",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "matchdep": "~0.3.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-<%= cssPreprocessor %>": "<%= cssPreprocessors[cssPreprocessor] %>",
+    <% } else { %>
+    "gulp": "~3.6.2",
+    "gulp-<%= cssPreprocessor %>": "<%= cssPreprocessors[cssPreprocessor] %>",
+    "gulp-concat": "~2.2.0",
+    "gulp-minify-css": "~0.3.4",
+    "gulp-rename": "~1.2.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-jshint": "~1.5.5",
+    "gulp-livereload": "~1.3.1",
+    "gulp-watch": "~0.6.4",
+    "jshint-stylish": "~0.2.0"
+    <% } %>
+  }
+}

@@ -20,4 +20,12 @@
     "type": "git",
     "url": "git://github.com/darlanmendonca/generator-bitch.git"
   },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "dependencies": {
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.20.1"
+  }
 }
