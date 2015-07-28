@@ -55,6 +55,7 @@ module.exports = generators.Base.extend({
     this.sourceRoot(path.join(__dirname,  'templates/assets'), this);
     this.directory('.', 'assets');
     mkdirp('assets/imgs');
+    mkdirp('assets/sprites');
     mkdirp('assets/scripts');
   },
   views: function() {
@@ -64,7 +65,7 @@ module.exports = generators.Base.extend({
   public: function() {
     this.sourceRoot(path.join(__dirname,  'templates/public'), this);
     this.directory('.', 'public');
-    mkdirp('public/imgs');
+    mkdirp('public/imgs/sprites');
     mkdirp('public/scripts');
   },
   install: function() {
