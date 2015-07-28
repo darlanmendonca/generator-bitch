@@ -35,7 +35,8 @@ mongoose.connect(config.database.url, function() {
 
     if (app.get('env') === 'development') {
       var open = require('open');
-      open('http://localhost:'+config.server.proxy, 'google chrome');
+      var port = process.env.browserSync ? config.server.proxy : config.server.port;
+      open('http://localhost:'+port, 'google chrome');
     }
   });
 });

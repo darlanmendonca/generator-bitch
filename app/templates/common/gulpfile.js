@@ -66,7 +66,8 @@ gulp.task('nodemon', function(cb) {
       'public/scripts/**/*.js'
     ],
     env: {
-      ENV: 'development'
+      ENV: 'development',
+      browserSync: true
     }
   };
 
