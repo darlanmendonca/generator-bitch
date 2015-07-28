@@ -67,7 +67,7 @@ gulp.task('nodemon', function(cb) {
     ],
     env: {
       ENV: 'development',
-      browserSync: true
+      open: argv.open
     }
   };
 
