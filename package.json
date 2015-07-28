@@ -2,6 +2,7 @@
   "name": "generator-bitch",
   "version": "0.0.0",
   "description": "Generator for web applications. Client and backend with Node.js",
+  "main": "app/index.js",
   "keywords": [
     "bitch",
     "jquery",
@@ -25,6 +26,7 @@
     "npm": ">=1.2.10"
   },
   "dependencies": {
+    "mkdirp": "^0.5.1",
     "underscore.string": "^3.0.3",
     "yeoman-generator": "^0.20.1"
   }

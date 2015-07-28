@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title Title
+    link(rel='stylesheet', href='/styles/vendor.css')
+    link(rel='stylesheet', href='/styles/app.css')
+  body
+    block content
+      p home #{name}
+
+    block scripts
+      include ../templates/scripts

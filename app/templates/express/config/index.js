@@ -7,14 +7,6 @@ var config = {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
     }
   },
-  testing: {
-    server: {
-      port: 3000
-    },
-    database: {
-      url: 'mongodb://localhost/<%= slugify(appname) %>'
-    }
-  },
   production: {
     server: {
       port: 3000
@@ -25,4 +17,5 @@ var config = {
   }
 };
 
-module.exports = config[process.env.NODE_ENV] || config.development;
+var shell = require('shell-arguments');
+module.exports = config[shell.env] || config.production;
