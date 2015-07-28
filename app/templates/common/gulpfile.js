@@ -5,6 +5,7 @@ var config = require('./config');
 var jade = require('gulp-jade');
 var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync').create();
+var open = require('open');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
@@ -54,31 +55,43 @@ var onError = function (err) {
 };
 
 
-gulp.task('serve', function() {
+gulp.task('nodemon', function(cb) {
   var options = {
     script: 'app.js',
     quiet: true,
     ext: 'js',
+    ignore: [
+      'gulpfile.js',
+      'assets/scripts/**/*.js',
+      'public/scripts/**/*.js'
+    ],
     env: {
-      env: 'development',
-      test: 'darlan'
+      ENV: 'development'
     }
   };
 
+  var started = false;
+
+
   nodemon(options)
-  .on('start', ['browser-sync']);
+  .on('start', function() {
+    if (!started){
+      cb();
+      started = true;
+    }
+  });
 });
 
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', ['nodemon'], function() {
   browserSync.init({
     // server: {
     //   baseDir: './public'
     // },
     proxy: 'localhost:'+config.server.port,
-    port: 5000,
+    port: config.server.proxy,
     notify: false,
     reloadDelay: 100,
-    open: true,
+    open: false,
     ignored: [
       'public/**/*.js',
       'assets/**/*.js'
@@ -149,6 +162,7 @@ gulp.task('dependencies', function() {
     .pipe(gulp.dest('./public/scripts'));
 });
 
+
 gulp.task('watch-gulpfile', function() {
   var process;
   gulp
@@ -180,10 +194,9 @@ gulp.task('watch', function() {
 gulp.task('default', [
   'dependencies',
   'compile-views',
-  'serve',
+  'browser-sync',
   'sprites',
   'styles',
   'scripts',
-  'watch-gulpfile',
   'watch'
 ]);

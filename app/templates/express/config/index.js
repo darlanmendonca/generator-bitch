@@ -2,6 +2,7 @@ var config = {
   development: {
     server: {
       port: 3000,
+      proxy: 5000
     },
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
@@ -9,7 +10,8 @@ var config = {
   },
   production: {
     server: {
-      port: 3000
+      port: 3000,
+      proxy: 5000
     },
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
@@ -18,4 +20,6 @@ var config = {
 };
 
 var shell = require('shell-arguments');
-module.exports = config[shell.env] || config.production;
+var env = shell.env || process.env.ENV || 'production';
+
+module.exports = config[env];

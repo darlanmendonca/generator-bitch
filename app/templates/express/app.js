@@ -11,9 +11,11 @@ var routes = require('./routes');
 var shell = require('shell-arguments');
 
 
+
 var app = express();
 var server = http.createServer(app);
 
+app.set('env', shell.env || process.env.ENV || 'production');
 app.set('port', config.server.port);
 app.set('views', path.join(__dirname, 'assets', 'views'));
 app.set('view engine', '<%= viewEngine %>');
@@ -30,6 +32,11 @@ app
 mongoose.connect(config.database.url, function() {
   server.listen(app.get('port'), function () {
     console.log('> localhost:' + app.get('port'));
+
+    if (app.get('env') === 'development') {
+      var open = require('open');
+      open('http://localhost:'+config.server.proxy, 'google chrome');
+    }
   });
 });
 
