@@ -32,12 +32,23 @@ module.exports = generators.Base.extend({
         message: 'Select view engine you would like to use',
         default: 'jade',
         choices: ['jade', 'ejs']
+      },
+      {
+        type: 'list',
+        name: 'preprocessor',
+        message: 'Select css preprocessor you would like to use',
+        default: 'sass',
+        choices: ['sass', 'less']
       }
     ];
 
     var answersCallback = (function (answers) {
       this.appname = answers.appname;
       this.viewEngine = answers.viewEngine;
+      this.preprocessor = answers.preprocessor;
+      if (answers.preprocessor) {
+        this.extPreprocessor = answers.preprocessor === 'sass' ? 'scss' : 'less';
+      }
       cb();
     }).bind(this);
 
@@ -52,15 +63,18 @@ module.exports = generators.Base.extend({
     this.directory('.', '.');
   },
   assets: function() {
-    this.sourceRoot(path.join(__dirname,  'templates/assets'), this);
-    this.directory('.', 'assets');
     mkdirp('assets/imgs');
+    mkdirp('assets/styles');
     mkdirp('assets/sprites');
     mkdirp('assets/scripts');
   },
   views: function() {
     this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
     this.directory('.', 'assets/views');
+  },
+  styles: function() {
+    this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
+    this.directory('.', 'assets/styles');
   },
   public: function() {
     this.sourceRoot(path.join(__dirname,  'templates/public'), this);

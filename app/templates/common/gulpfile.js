@@ -7,7 +7,12 @@ var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync').create();
 var open = require('open');
 var plumber = require('gulp-plumber');
+<% if (preprocessor === 'sass') { %>
 var sass = require('gulp-sass');
+<% } %>
+<% if (preprocessor === 'less') { %>
+var less = require('gulp-less');
+<% } %>
 var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
 var autoprefixer = require('gulp-autoprefixer');
@@ -25,7 +30,7 @@ var files = {
     dest: './public/'
   },
   styles: {
-    src: './assets/styles/*.scss',
+    src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
   },
   scripts: {
@@ -41,11 +46,19 @@ var files = {
 var onError = function (err) {
   var message;
   switch (err.plugin) {
+    <% if (preprocessor === 'sass') { %>
     case 'gulp-sass':
       var messageFormatted = err.messageFormatted;
       message = new gutil.PluginError('gulp-sass', messageFormatted).toString();
       process.stderr.write(message + '\n');
       break;
+      <% } %>
+    <% if (preprocessor === 'less') { %>
+    case 'gulp-less':
+      message = new gutil.PluginError('gulp-less', err.message).toString();
+      process.stderr.write(message + '\n');
+      break;
+      <% } %>
     case 'gulp-jade':
       message = new gutil.PluginError('gulp-jade', err.message).toString();
       process.stderr.write(message + '\n');
@@ -103,7 +116,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
 gulp.task('sprites', function() {
   var options = {
     imgName: 'sprites.png',
-    cssName: 'sprite-vars.scss',
+    cssName: 'sprite-vars.<%= extPreprocessor %>',
     imgPath: '../imgs/sprites/sprites.png',
     algorithm: 'binary-tree',
     engine: 'pngsmith',
@@ -120,14 +133,24 @@ gulp.task('sprites', function() {
 });
 
 gulp.task('styles', function() {
-  var options = {
-    outputStyle: 'compressed'
-  };
+  var options = {};
+
+  <% if (preprocessor === 'sass') { %>
+  options.outputStyle = 'compressed';
+  <% } %>
+  <% if (preprocessor === 'less') { %>
+  options.compress = true;
+  <% } %>
 
   gulp
     .src(files.styles.src)
     .pipe(sourcemaps.init())
+    <% if (preprocessor === 'sass') { %>
     .pipe(sass(options).on('error', onError))
+    <% } %>
+    <% if (preprocessor === 'less') { %>
+    .pipe(less(options).on('error', onError))
+    <% } %>
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(files.styles.dest))
@@ -185,7 +208,7 @@ gulp.task('watch', function() {
     ]);
 
   gulp
-    .watch('./assets/styles/**/*.scss', ['styles']);
+    .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp
     .watch('./assets/scripts/**/*.js', ['scripts', browserSync.reload]);
