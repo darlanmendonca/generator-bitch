@@ -1,7 +1,7 @@
 #![Alt text](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
 A simple generator to scaffolding web apps. Server, client, or both.
 
-## Usage
+### Install and use
 First install this module as global
 ```sh
 npm i -g generator-bitch
@@ -28,9 +28,9 @@ If you use client too, your can pass a flag to gulp, to open automatically on yo
 gulp --open
 ```
 
-This generator, offer as:
+### This generator, offer as:
 
-### Task runner:
+#### Task runner:
 Gulp (because it's fast! Thanks to the node streams.)
 - lint scripts (using jshint)
 - dependency injection
@@ -43,13 +43,13 @@ Gulp (because it's fast! Thanks to the node streams.)
 - restart automatically server (with nodemon)
 - watch files, to running all tasks automatically
 
-### Client
+#### Client
 
 Views
 - Jade
 - EJS
 
-- Styles
+Styles
   - Sass (using libsass from node-sass)
   - Less
 
@@ -65,18 +65,16 @@ Scripts
 - Foundation -->
 
 
-### Backend:
+#### Backend:
 
-Server:
+Server
 - Node.js
 - Express 4x
 - MVC
 - Config (with environments)
 - ORM's
-<!-- - Hapi.js
-- Restify -->
 
-Databases:
+Databases
 - MongoDB
 - Redis (soon)
 - MySQL (soon)
