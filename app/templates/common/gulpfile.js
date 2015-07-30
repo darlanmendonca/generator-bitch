@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var spawn = require('child_process').spawn;
+var jshint = require('gulp-jshint');
 var argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
 var config = require('./config');
 var nodemon = require('gulp-nodemon');<% } %><% if (appType === 'client' || appType === 'both') { %>
@@ -38,6 +39,15 @@ var files = {
     dest: './public/imgs/sprites/'
   }
 };
+
+var lintScripts = [
+  './gulpfile.js',<% if (appType === 'server' || appType === 'both') { %>
+  './app.js',
+  './models/**/*.js',
+  './controllers/**/*.js',
+  './routes/**/*.js',<% } %><% if (appType === 'client' || appType === 'both') { %>
+  './assets/scripts/*.js'<% } %>
+];
 
 
 var onError = function (err) {
@@ -79,7 +89,7 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
   var started = false;
 
 
-  nodemon(options)<% if (appType === 'server') { %>
+  nodemon(options);<% if (appType === 'server') { %>
   .on('start', function() {
     if (!started){
       cb();
@@ -156,7 +166,7 @@ gulp.task('views', function() {
     .src(files.views.src)
     .pipe(plumber({ errorHandler: onError }))
     .pipe(jade())<% if (appType === 'client') { %>
-    .pipe(gulp.dest(files.views.dest));<% } %>
+    .pipe(gulp.dest(files.views.dest))<% } %>;
 });
 
 gulp.task('dependencies', function() {
@@ -185,6 +195,13 @@ gulp.task('watch-gulpfile', function() {
     });
 });
 
+gulp.task('lint', function() {
+  gulp
+    .src(lintScripts)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
   gulp
     .watch('./assets/views/**/*.jade', [
@@ -197,7 +214,10 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
     .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp
-    .watch('./assets/scripts/**/*.js', ['scripts', browserSync.reload]);<% } %>
+    .watch('./assets/scripts/**/*.js', ['scripts', browserSync.reload]);<% } %><% if (appType === 'server' || appType === 'both')  { %>
+
+  gulp
+    .watch(lintScripts, ['lint']);<% } %>
 
 });
 
@@ -209,5 +229,6 @@ gulp.task('default', [<% if (appType === 'client' || appType === 'both')  { %>
   'styles',
   'scripts',<% } %><% if (appType === 'server')  { %>
   'nodemon',<% } %>
+  'lint',
   'watch'
 ]);
