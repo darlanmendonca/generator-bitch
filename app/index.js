@@ -2,6 +2,7 @@
 
 var generators = require('yeoman-generator');
 var path = require('path');
+var util = require('util');
 var slugify = require('underscore.string/slugify');
 var mkdirp = require('mkdirp');
 
@@ -17,74 +18,134 @@ module.exports = generators.Base.extend({
       defaults: path.basename(process.cwd())
     });
   },
-  prompts: function () {
-    var cb = this.async();
-    var prompts = [
-      {
-        type: 'input',
-        name: 'appname',
-        message: 'Application name',
-        default: this.appname
-      },
-      {
-        type: 'list',
-        name: 'viewEngine',
-        message: 'Select view engine you would like to use',
-        default: 'jade',
-        choices: ['jade', 'ejs']
-      },
-      {
-        type: 'list',
-        name: 'preprocessor',
-        message: 'Select css preprocessor you would like to use',
-        default: 'sass',
-        choices: ['sass', 'less']
-      }
-    ];
-
-    var answersCallback = (function (answers) {
-      this.appname = answers.appname;
-      this.viewEngine = answers.viewEngine;
-      this.preprocessor = answers.preprocessor;
-      if (answers.preprocessor) {
-        this.extPreprocessor = answers.preprocessor === 'sass' ? 'scss' : 'less';
-      }
-      cb();
-    }).bind(this);
-
-    this.prompt(prompts, answersCallback);
+  appname: function() {
+    var done = this.async();
+    var prompt = {
+      type: 'input',
+      name: 'appname',
+      message: 'application name',
+      default: this.appname
+    };
+    this.prompt(prompt, function(data) {
+      this.appname = data.appname;
+      done();
+    }.bind(this));
+  },
+  appType: function() {
+    var done = this.async();
+    var prompt = {
+      type: 'list',
+      name: 'appType',
+      message: 'application type',
+      default: 'both',
+      choices: ['server', 'client', 'both']
+    };
+    this.prompt(prompt, function(data) {
+      this.appType = data.appType;
+      this.isAppType = function (type) {
+        var is;
+        switch(type) {
+          case 'client':
+            is =  this.appType === 'client' || this.appType === 'both';
+            break;
+          case 'server':
+            is = this.appType === 'server' || this.appType === 'both';
+            break;
+        }
+        return is;
+      };
+      done();
+    }.bind(this));
+  },
+  viewEngine: function() {
+    var done = this.async();
+    var strView = this.isAppType('client') ? 'template view' : 'view engine';
+    var prompt = {
+      type: 'list',
+      name: 'viewEngine',
+      message: util.format('select %s you would like to use', strView),
+      default: 'jade',
+      choices: ['jade', 'ejs']
+    };
+    if (this.appType === 'server') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.viewEngine = data.viewEngine;
+        done();
+      }.bind(this));
+    }
+  },
+  preprocessor: function() {
+    var done = this.async();
+    var prompt = {
+      type: 'list',
+      name: 'preprocessor',
+      message: 'select css preprocessor you would like to use',
+      default: 'sass',
+      choices: ['sass', 'less']
+    };
+    if (this.appType === 'server') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.preprocessor = data.preprocessor;
+        var extname = {
+          sass: 'scss',
+          less: 'less'
+        }
+        this.extPreprocessor = extname[data.preprocessor];
+        done();
+      }.bind(this));
+    }
   },
   common: function() {
     this.sourceRoot(path.join(__dirname,  'templates/common'), this);
     this.directory('.', '.');
   },
+  bower: function() {
+    if (this.appType === 'client' || this.appType === 'both') {
+      this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
+      this.directory('.', '.');
+    }
+  },
   express: function() {
-    this.sourceRoot(path.join(__dirname,  'templates/express'), this);
-    this.directory('.', '.');
+    if (this.isAppType('server')) {
+      this.sourceRoot(path.join(__dirname,  'templates/express'), this);
+      this.directory('.', '.');
+    }
   },
   assets: function() {
-    mkdirp('assets/imgs');
-    mkdirp('assets/styles');
-    mkdirp('assets/sprites');
-    mkdirp('assets/scripts');
+    if (this.isAppType('client')) {
+      mkdirp('assets/imgs');
+      mkdirp('assets/styles/components');
+      mkdirp('assets/sprites');
+      mkdirp('assets/scripts');
+    }
   },
   views: function() {
-    this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
-    this.directory('.', 'assets/views');
+    if (this.isAppType('client')) {
+      this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
+      this.directory('.', 'assets/views');
+    }
   },
   styles: function() {
-    this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
-    this.directory('.', 'assets/styles');
+    if (this.isAppType('client')) {
+      this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
+      this.directory('.', 'assets/styles');
+    }
   },
   public: function() {
-    this.sourceRoot(path.join(__dirname,  'templates/public'), this);
-    this.directory('.', 'public');
-    mkdirp('public/imgs/sprites');
-    mkdirp('public/scripts');
+    if (this.isAppType('client')) {
+      this.sourceRoot(path.join(__dirname,  'templates/public'), this);
+      this.directory('.', 'public');
+      mkdirp('public/imgs/sprites');
+      mkdirp('public/scripts');
+    }
   },
   install: function() {
     this.installDependencies({
-      bower: true,
+      bower: this.isAppType('client'),
       npm: true,
       skipInstall: true
     });

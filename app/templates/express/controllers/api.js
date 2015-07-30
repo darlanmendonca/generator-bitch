@@ -2,6 +2,8 @@
 
 module.exports = {
   home: function(req, res) {
-    res.render('index');
+    res.json({
+      message: 'hello'
+    });
   }
 }

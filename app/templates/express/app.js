@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -11,32 +13,33 @@ var routes = require('./routes');
 var shell = require('shell-arguments');
 
 
-
 var app = express();
 var server = http.createServer(app);
 
 app.set('env', shell.env || process.env.ENV || 'production');
-app.set('port', config.server.port);
+app.set('port', config.server.port);<% if (appType === 'client' || appType === 'both') { %>
 app.set('views', path.join(__dirname, 'assets', 'views'));
-app.set('view engine', '<%= viewEngine %>');
+app.set('view engine', '<%= viewEngine %>');<% } %>
 
 app
   .use(compress())
   .use(favicon())
   .use(methodOverride())
   .use(bodyParser.urlencoded({extended: true}))
-  .use(bodyParser.json())
+  .use(bodyParser.json())<% if (appType === 'client' || appType === 'both') { %>
   .use(express.static(path.join(__dirname, 'public')))
-  .use(routes.pages);
+  .use('/', routes.pages);<% } else { %>
+  .use('/', routes.api);<% } %>
+
 
 mongoose.connect(config.database.url, function() {
   server.listen(app.get('port'), function () {
-    console.log('> localhost:' + app.get('port'));
+    console.log('> localhost:' + app.get('port'));<% if (appType === 'both') { %>
 
     if (app.get('env') === 'development' && process.env.open === 'true') {
       var open = require('open');
       open('http://localhost:'+config.server.proxy, 'google chrome');
-    }
+    }<% } %>
   });
 });
 

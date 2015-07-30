@@ -1,29 +1,25 @@
 'use strict';
 
 var gulp = require('gulp');
-var config = require('./config');
-var jade = require('gulp-jade');
-var nodemon = require('gulp-nodemon');
-var browserSync = require('browser-sync').create();
-var open = require('open');
-var plumber = require('gulp-plumber');
-<% if (preprocessor === 'sass') { %>
-var sass = require('gulp-sass');
-<% } %>
-<% if (preprocessor === 'less') { %>
-var less = require('gulp-less');
-<% } %>
-var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
+var spawn = require('child_process').spawn;
+var argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
+var config = require('./config');
+var nodemon = require('gulp-nodemon');<% } %><% if (appType === 'client' || appType === 'both') { %>
+var plumber = require('gulp-plumber');
+var browserSync = require('browser-sync').create();
+var jade = require('gulp-jade');<% if (preprocessor === 'sass') { %>
+var sass = require('gulp-sass');<% } %><% if (preprocessor === 'less') { %>
+var less = require('gulp-less');<% } %>
+var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
 var wiredep = require('wiredep').stream;
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var bower = require('bower-files')();
-var spawn = require('child_process').spawn;
-var argv = require('yargs').argv;
+var bower = require('bower-files')();<% } %>
 
+<% if (appType === 'client' || appType === 'both') { %>
 var files = {
   views: {
     src: './assets/views/*.jade',
@@ -43,73 +39,70 @@ var files = {
   }
 };
 
+
 var onError = function (err) {
   var message;
-  switch (err.plugin) {
-    <% if (preprocessor === 'sass') { %>
+  switch (err.plugin) {<% if (preprocessor === 'sass') { %>
     case 'gulp-sass':
       var messageFormatted = err.messageFormatted;
       message = new gutil.PluginError('gulp-sass', messageFormatted).toString();
       process.stderr.write(message + '\n');
-      break;
-      <% } %>
-    <% if (preprocessor === 'less') { %>
+      break;<% } %><% if (preprocessor === 'less') { %>
     case 'gulp-less':
       message = new gutil.PluginError('gulp-less', err.message).toString();
       process.stderr.write(message + '\n');
-      break;
-      <% } %>
+      break;<% } %>
     case 'gulp-jade':
       message = new gutil.PluginError('gulp-jade', err.message).toString();
       process.stderr.write(message + '\n');
       break;
+
   }
   gutil.beep();
-};
-
-
-gulp.task('nodemon', function(cb) {
+};<% } %><% if (appType === 'server' || appType === 'both') { %>
+gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
   var options = {
     script: 'app.js',
     quiet: true,
-    ext: 'js',
+    ext: 'js',<% if (appType === 'both') { %>
     ignore: [
       'gulpfile.js',
       'assets/scripts/**/*.js',
       'public/scripts/**/*.js'
-    ],
+    ],<% } %>
     env: {
-      ENV: 'development',
-      open: argv.open
+      ENV: 'development'<% if (appType === 'client' || appType === 'both') { %>,
+      open: argv.open<% } %>
     }
   };
 
   var started = false;
 
 
-  nodemon(options)
+  nodemon(options)<% if (appType === 'server') { %>
   .on('start', function() {
     if (!started){
       cb();
       started = true;
     }
-  });
-});
+  });<% } %>
+});<% } %>
 
-gulp.task('browser-sync', ['nodemon'], function() {
-  browserSync.init({
-    // server: {
-    //   baseDir: './public'
-    // },
+<% if (appType === 'client' || appType === 'both') { %>
+gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>function() {
+  browserSync.init({<% if (appType === 'client') { %>
+    server: {
+      baseDir: './public'
+    },<% } %><% if (appType === 'server' || appType === 'both') { %>
     proxy: 'localhost:'+config.server.port,
     port: config.server.proxy,
-    notify: false,
-    reloadDelay: 100,
-    open: false,
     ignored: [
       'public/**/*.js',
       'assets/**/*.js'
-    ]
+    ],<% } %>
+    notify: false,
+    reloadDelay: 100,
+    open: <% if (appType === 'client') { %>argv.open<% } %><% if (appType !== 'client') { %>false<% } %>
   });
 });
 
@@ -132,25 +125,19 @@ gulp.task('sprites', function() {
   sprite.css.pipe(gulp.dest('./assets/styles/components/'));
 });
 
-gulp.task('styles', function() {
-  var options = {};
-
-  <% if (preprocessor === 'sass') { %>
-  options.outputStyle = 'compressed';
-  <% } %>
-  <% if (preprocessor === 'less') { %>
-  options.compress = true;
-  <% } %>
+gulp.task('styles', function() {<% if (preprocessor === 'sass') { %>
+  var options = {
+    outputStyle: 'compressed'
+  };<% } %><% if (preprocessor === 'less') { %>
+  var options = {
+    compress: true
+  };<% } %>
 
   gulp
     .src(files.styles.src)
-    .pipe(sourcemaps.init())
-    <% if (preprocessor === 'sass') { %>
-    .pipe(sass(options).on('error', onError))
-    <% } %>
-    <% if (preprocessor === 'less') { %>
-    .pipe(less(options).on('error', onError))
-    <% } %>
+    .pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
+    .pipe(sass(options).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
+    .pipe(less(options).on('error', onError))<% } %>
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(files.styles.dest))
@@ -164,12 +151,12 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest(files.scripts.dest));
 });
 
-gulp.task('compile-views', function() {
+gulp.task('views', function() {
   gulp
     .src(files.views.src)
     .pipe(plumber({ errorHandler: onError }))
-    .pipe(jade())
-    .pipe(gulp.dest(files.views.dest));
+    .pipe(jade())<% if (appType === 'client') { %>
+    .pipe(gulp.dest(files.views.dest));<% } %>
 });
 
 gulp.task('dependencies', function() {
@@ -184,8 +171,7 @@ gulp.task('dependencies', function() {
     .pipe(concat('vendor.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./public/scripts'));
-});
-
+});<% } %>
 
 gulp.task('watch-gulpfile', function() {
   var process;
@@ -199,11 +185,11 @@ gulp.task('watch-gulpfile', function() {
     });
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
   gulp
     .watch('./assets/views/**/*.jade', [
       'dependencies',
-      'compile-views',
+      'views',
       browserSync.reload
     ]);
 
@@ -211,16 +197,17 @@ gulp.task('watch', function() {
     .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp
-    .watch('./assets/scripts/**/*.js', ['scripts', browserSync.reload]);
+    .watch('./assets/scripts/**/*.js', ['scripts', browserSync.reload]);<% } %>
 
 });
 
-gulp.task('default', [
+gulp.task('default', [<% if (appType === 'client' || appType === 'both')  { %>
   'dependencies',
-  'compile-views',
+  'views',
   'browser-sync',
   'sprites',
   'styles',
-  'scripts',
+  'scripts',<% } %><% if (appType === 'server')  { %>
+  'nodemon',<% } %>
   'watch'
 ]);

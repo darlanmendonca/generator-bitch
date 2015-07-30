@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('../controllers').pages;
+var controller = require('../controllers').api;
 
 var router = express.Router();
 
@@ -12,8 +12,8 @@ router
 
 router
   .use(function (req, res) {
-    res.status(404).render('404', {
-      title: 'Not Found :('
+    res.status(404).json({
+      message: 'resource not found :('
     });
   });
 

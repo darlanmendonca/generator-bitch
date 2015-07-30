@@ -1,0 +1,41 @@
+{
+  "name": "<%= appname %>",
+  "version": "0.0.0",
+  "scripts": {<% if (appType === 'server' || appType === 'both') { %>
+    "start": "nodemon --quiet app.js --env 'development'",<% } %>
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {<% if (appType === 'server' || appType === 'both') { %>
+    "express": "^4.13.1",
+    "body-parser": "^1.13.2",
+    "compression": "^1.5.1",
+    "static-favicon": "^1.0.2",
+    "method-override": "^2.3.4",
+    "mongoose": "^4.1.0",
+    "req-dir": "^0.0.5",<% if (viewEngine === 'jade') { %>
+    "jade": "^1.11.0",<% } %><% if (viewEngine === 'ejs') { %>
+    "ejs": "^2.3.3",<% } %>
+    "shell-arguments": "^1.0.4"<% } %>
+  },
+  "devDependencies": {<% if (appType === 'server' || appType === 'both') { %>
+    "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'both') { %>
+    "open": "^0.0.5",<% } %><% if (appType === 'client' || appType === 'both') { %>
+    "bower-files": "^3.7.2",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jade": "^1.0.1",
+    "browser-sync": "^2.8.0",
+    "gulp-plumber": "^1.0.1",<% if (preprocessor === 'sass') { %>
+    "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
+    "gulp-less": "^3.0.3",<% } %>
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp.spritesmith": "^3.8.2",
+    "pngsmith": "^0.1.3",
+    "spritesmith": "^1.3.2",
+    "wiredep": "^2.2.2",<% } %>
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "yargs": "^3.15.0"
+  }
+}
