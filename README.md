@@ -1,4 +1,4 @@
-A simple generator to scaffolding web apps. Server, client, or both.
+A simple generator (for Yeoman) to scaffolding web apps. Server, client, or both.
 
 #![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
 
