@@ -21,7 +21,7 @@ app.set 'view engine', '<%= viewEngine %>'<% } %>
 
 app
   .use compress()<% if (appType === 'both') { %>
-  .use favicon(__dirname + '/public/imgs/favicon.ico')<% } %>
+  .use favicon(__dirname + '/public/imgs/favicons/icon.ico')<% } %>
   .use methodOverride()
   .use bodyParser.urlencoded({extended: true})
   .use bodyParser.json()<% if (appType === 'both') { %>
