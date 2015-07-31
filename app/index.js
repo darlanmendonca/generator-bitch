@@ -57,6 +57,21 @@ module.exports = generators.Base.extend({
       done();
     }.bind(this));
   },
+  scriptType: function() {
+    var done = this.async();
+    var prompt = {
+      type: 'list',
+      name: 'scriptType',
+      message: 'scripts type',
+      default: 'javascript',
+      choices: ['javascript', 'coffeescript']
+    };
+    this.prompt(prompt, function(data) {
+      this.scriptType = data.scriptType;
+      this.extScript = this.scriptType === 'javascript' ? 'js' : 'coffee';
+      done();
+    }.bind(this));
+  },
   viewEngine: function() {
     var done = this.async();
     var strView = this.isAppType('client') ? 'template view' : 'view engine';
@@ -103,6 +118,10 @@ module.exports = generators.Base.extend({
     this.sourceRoot(path.join(__dirname,  'templates/common'), this);
     this.directory('.', '.');
   },
+  gulp: function() {
+    this.sourceRoot(path.join(__dirname,  'templates/gulp/'+this.scriptType), this);
+    this.directory('.', '.');
+  },
   bower: function() {
     if (this.appType === 'client' || this.appType === 'both') {
       this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
@@ -111,7 +130,7 @@ module.exports = generators.Base.extend({
   },
   express: function() {
     if (this.isAppType('server')) {
-      this.sourceRoot(path.join(__dirname,  'templates/express'), this);
+      this.sourceRoot(path.join(__dirname,  'templates/express/'+this.scriptType), this);
       this.directory('.', '.');
     }
   },

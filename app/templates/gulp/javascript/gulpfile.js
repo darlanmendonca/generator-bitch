@@ -31,7 +31,7 @@ var files = {
     dest: './public/styles/'
   },
   scripts: {
-    src: './assets/scripts/*.js',
+    src: './assets/scripts/**/*.js',
     dest: './public/scripts/'
   },
   sprites: {
@@ -69,7 +69,9 @@ var onError = function (err) {
 
   }
   gutil.beep();
-};<% } %><% if (appType === 'server' || appType === 'both') { %>
+};<% } %>
+
+<% if (appType === 'server' || appType === 'both') { %>
 gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
   var options = {
     script: 'app.js',
@@ -158,6 +160,7 @@ gulp.task('scripts', function() {
   gulp
     .src(files.scripts.src)
     .pipe(concat('app.js'))
+    .pipe(uglify())
     .pipe(gulp.dest(files.scripts.dest));
 });
 
@@ -214,7 +217,7 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
     .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp
-    .watch('./assets/scripts/**/*.js', ['scripts', browserSync.reload]);<% } %><% if (appType === 'server' || appType === 'both')  { %>
+    .watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (appType === 'server' || appType === 'both')  { %>
 
   gulp
     .watch(lintScripts, ['lint']);<% } %>

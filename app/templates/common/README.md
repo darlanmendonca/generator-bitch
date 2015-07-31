@@ -8,12 +8,12 @@ npm install && bower install
 To start application, running:
 
 ```sh
-gulp
+gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %>
 ```
 
 If you want open on browser automatically, use flag open, like below:
 ```sh
-gulp --open
+gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %> --open
 ```
 Browser is editable on gulpfile.
 
@@ -23,7 +23,17 @@ Scripts on package.json
 Start process with Nodemon:
 ```sh
 npm start
+```<% if (scriptType === 'coffeescript') { %>
+
+Start Gulp task default:
+```sh
+npm run gulp
 ```
+
+Gulp with flag open (require npm 3)
+```sh
+npm run gulp -- --open
+```<% } %>
 
 Running test specs:
 ```sh

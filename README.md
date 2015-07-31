@@ -56,7 +56,7 @@ Styles
 
 Scripts
 - Javascript
-- CoffeeScript (soon)
+- CoffeeScript
 
 
 <!-- Tools and frameworks:

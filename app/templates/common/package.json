@@ -2,14 +2,15 @@
   "name": "<%= appname %>",
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
-    "start": "nodemon --quiet app.js --env 'development'",<% } %>
+    "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %>
+    "gulp": "gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %>",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {<% if (appType === 'server' || appType === 'both') { %>
     "express": "^4.13.1",
     "body-parser": "^1.13.2",
     "compression": "^1.5.1",
-    "static-favicon": "^1.0.2",
+    "serve-favicon": "^2.3.0",
     "method-override": "^2.3.4",
     "mongoose": "^4.1.0",
     "req-dir": "^0.0.5",<% if (viewEngine === 'jade') { %>
@@ -33,7 +34,9 @@
     "gulp.spritesmith": "^3.8.2",
     "pngsmith": "^0.1.3",
     "spritesmith": "^1.3.2",
-    "wiredep": "^2.2.2",<% } %>
+    "wiredep": "^2.2.2",<% } %><% if (scriptType === 'coffeescript') { %>
+    "coffee-script": "^1.9.3",
+    "gulp-coffee": "^2.3.1",<% } %>
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
     "gulp-jshint": "^1.11.2",

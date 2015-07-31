@@ -10,7 +10,7 @@ var methodOverride = require('method-override');
 var config = require('./config');
 var routes = require('./routes');
 var shell = require('shell-arguments');<% if (appType === 'both') { %>
-var favicon = require('static-favicon');<% } %>
+var favicon = require('serve-favicon');<% } %>
 
 
 var app = express();
