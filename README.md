@@ -36,8 +36,9 @@ Gulp (because it's fast! Thanks to the node streams.)
 - lint scripts (using jshint)
 - dependency injection
 - compile (and/or validate) template views
+- autoprefixer css properties
 - compile preprocessors
-- sourcemaps to preprocessors
+- sourcemaps to preprocessors and scripts
 - livereload (with Browsersync)
 - sprite images from png's (with spritesmith and pngsmith)
 - concatenation and minification (styles and scripts)
