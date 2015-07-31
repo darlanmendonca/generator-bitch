@@ -31,7 +31,7 @@ gulp --open
 
 ### This generator, offer as:
 
-#### Task runner:
+#### Task runner
 Gulp (because it's fast! Thanks to the node streams.)
 - lint scripts (using jshint)
 - dependency injection
@@ -66,7 +66,7 @@ Scripts
 - Foundation -->
 
 
-#### Backend:
+#### Backend
 
 Server
 - Node.js
