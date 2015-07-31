@@ -23,7 +23,7 @@ After install node dependencies (and bower, if you use client too), running your
 gulp
 ```
 
-If you use client too, your can pass a flag to gulp, to open automatically on your Google Chrome (editable on gulpfile), running:
+If you use client too, you can pass a flag to gulp, to open automatically on your Google Chrome (editable on gulpfile), running:
 
 ```sh
 gulp --open
