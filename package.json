@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generator for web applications. Client and backend with Node.js",
   "main": "app/index.js",
   "keywords": [
@@ -12,7 +12,8 @@
     "jade",
     "ejs",
     "node",
-    "express"
+    "express",
+    "yeoman-generator"
   ],
   "homepage": "https://github.com/darlanmendonca/generator-bitch",
   "bugs": "https://github.com/darlanmendonca/generator-bitch/issues",
