@@ -2,6 +2,7 @@ gulp = require 'gulp'
 gutil = require 'gulp-util'
 spawn = require('child_process').spawn;
 jshint = require 'gulp-jshint'
+stylish = require 'jshint-stylish'
 argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
 config = require './config'
 nodemon = require 'gulp-nodemon'<% } %><% if (appType === 'client' || appType === 'both') { %>
@@ -15,7 +16,6 @@ ngAnnotate = require 'gulp-ng-annotate'<% } %>
 sourcemaps = require 'gulp-sourcemaps'
 autoprefixer = require 'gulp-autoprefixer'
 spritesmith = require 'gulp.spritesmith'
-wiredep = require('wiredep').stream;
 concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
 bower = require('bower-files')()<% } %>
@@ -26,10 +26,10 @@ files =
   views:
     src: './assets/views/*.<%= viewEngine %>',
     dest: './public/'
-  partials:
+  partials:<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
     src: './assets/views/partials/*.<%= viewEngine %>'
     dest: './public/partials/'
-  styles:
+  styles:<% } %>
     src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
   scripts:
@@ -82,9 +82,9 @@ gulp.task 'nodemon', <% if (appType === 'server') { %>(cb)<% } %>->
     ]<% } %>
     env:
       ENV: 'development'<% if (appType === 'client' || appType === 'both') { %>
-      open: argv.open<% } %>
+      open: argv.open<% } %><% if (appType === 'server') { %>
 
-  started = false
+  started = false<% } %>
 
 
   nodemon options<% if (appType === 'server') { %>
@@ -160,7 +160,7 @@ gulp.task 'views', ->
     .pipe plumber({ errorHandler: onError })<% if (viewEngine === 'jade') { %>
     .pipe jade()<% } %><% if (viewEngine === 'ejs') { %>
     .pipe ejs()<% } %><% if (appType === 'client') { %>
-    .pipe gulp.dest(files.views.dest)<% } %><% if (appType === 'client' || appType === 'both') { %>
+    .pipe gulp.dest(files.views.dest)<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 
   gulp
     .src files.partials.src
@@ -189,7 +189,7 @@ gulp.task 'watch-gulpfile', ->
       if process
         process.kill()
 
-      task = if argv.task then argv.task else 'default'
+      # task = if argv.task then argv.task else 'default'
       process = spawn('gulp', [], {stdio: 'inherit'})
 
 <% if (scriptType === 'javascript') { %>
@@ -197,7 +197,7 @@ gulp.task 'lint', ->
   gulp
     .src lintScripts
     .pipe jshint()
-    .pipe jshint.reporter('default')<% } %>
+    .pipe jshint.reporter(stylish)<% } %>
 
 gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>
   gulp

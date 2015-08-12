@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var spawn = require('child_process').spawn;
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
 var config = require('./config');
 var nodemon = require('gulp-nodemon');<% } %><% if (appType === 'client' || appType === 'both') { %>
@@ -17,7 +18,6 @@ var ngAnnotate = require('gulp-ng-annotate');<% } %>
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
-var wiredep = require('wiredep').stream;
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var bower = require('bower-files')();<% } %>
@@ -92,9 +92,9 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
       ENV: 'development'<% if (appType === 'client' || appType === 'both') { %>,
       open: argv.open<% } %>
     }
-  };
+  };<% if (appType === 'server') { %>
 
-  var started = false;
+  var started = false;<% } %>
 
 
   nodemon(options);<% if (appType === 'server') { %>
@@ -208,7 +208,7 @@ gulp.task('watch-gulpfile', function() {
       if (process) {
         process.kill();
       }
-      var task = argv.task ? argv.task : 'default';
+      // var task = argv.task ? argv.task : 'default';
       process = spawn('gulp', [], {stdio: 'inherit'});
     });
 });
@@ -217,7 +217,7 @@ gulp.task('lint', function() {
   gulp
     .src(lintScripts)
     .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>

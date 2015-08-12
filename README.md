@@ -17,7 +17,7 @@ or
 yo bitch nameProject
 ```
 
-After install node dependencies (and bower, if you use client too), running your project using default task on Gulp, running:
+After install dependencies (with npm and/or bower), running your project using default task on Gulp, running:
 
 ```sh
 gulp
