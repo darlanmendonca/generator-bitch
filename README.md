@@ -51,6 +51,9 @@ Views
 - Jade
 - EJS
 
+Frontend Frameworks
+- Angular.js
+
 Styles
   - Sass (using libsass from node-sass)
   - Less
