@@ -7,7 +7,7 @@ var router = express.Router();
 
 
 router
-  .route('/')
+  .route(<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>'*'<% } else {%>'/'<% } %>)
   .get(controller.home);
 
 router

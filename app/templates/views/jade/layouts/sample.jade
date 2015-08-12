@@ -1,7 +1,9 @@
 doctype html
-html
+html<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>(ng-app='<%= slugify(appname) %>')<% } %>
   head
     title Title
+    base(href="/")
+
     //- meta
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, user-scalable=no')

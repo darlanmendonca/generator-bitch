@@ -1,5 +1,13 @@
 {
   "name": "<%= slugify(appname) %>",
   "version": "0.0.0",
-  "dependencies": {}
+  "dependencies": {<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %><% if (ngAnimate) { %>
+    "angular-animate": "^1.4.3",<% } %><% if (ngCookies) { %>
+    "angular-cookies": "^1.4.3",<% } %><% if (ngResource) { %>
+    "angular-resource": "^1.4.3",<% } %><% if (ngSanitize) { %>
+    "angular-sanitize": "^1.4.3",<% } %><% if (ngTouch) { %>
+    "angular-touch": "^1.4.3",<% } %><% } %>
+    "angular": "^1.4.3",
+    "angular-ui-router": "^0.2.15"
+  }
 }

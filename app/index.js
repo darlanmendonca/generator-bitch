@@ -114,6 +114,76 @@ module.exports = generators.Base.extend({
       }.bind(this));
     }
   },
+  appFramework: function() {
+    var done = this.async();
+    var prompt = {
+      type: 'list',
+      name: 'appFramework',
+      message: 'select the javascript framework you would like to use',
+      default: 'angular',
+      choices: ['angular', 'none']
+    };
+    if (this.appType === 'server') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.appFramework = data.appFramework;
+        done();
+      }.bind(this));
+    }
+  },
+  frameworkModules: function() {
+    var done = this.async();
+    this.ngAnimate = false;
+    this.ngCookies = false;
+    this.ngResource = false;
+    this.ngSanitize = false;
+    this.ngTouch = false;
+
+    var prompt = {
+      type: 'checkbox',
+      name: 'frameworkModules',
+      message: 'chich modules would you like to include',
+      choices: [
+        {
+          value: 'ngAnimate',
+          name: 'ngAnimate',
+          checked: true
+        },
+        {
+          value: 'ngCookies',
+          name: 'ngCookies',
+          checked: true
+        },
+        {
+          value: 'ngResource',
+          name: 'ngResource',
+          checked: true
+        },
+        {
+          value: 'ngSanitize',
+          name: 'ngSanitize',
+          checked: true
+        },
+        {
+          value: 'ngTouch',
+          name: 'ngTouch',
+          checked: true
+        }
+      ]
+    };
+    if (this.appType === 'server' || this.appFramework !== 'angular') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.frameworkModules = data.frameworkModules;
+        for (var key in this.frameworkModules) {
+          this[this.frameworkModules[key]] = true;
+        }
+        done();
+      }.bind(this));
+    }
+  },
   common: function() {
     this.sourceRoot(path.join(__dirname,  'templates/common'), this);
     this.directory('.', '.');
@@ -152,6 +222,15 @@ module.exports = generators.Base.extend({
     if (this.isAppType('client')) {
       this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
       this.directory('.', 'assets/styles');
+    }
+  },
+  angular: function() {
+    if (this.isAppType('client') && this.appFramework === 'angular') {
+      this.sourceRoot(path.join(__dirname,  'templates/angular/'+this.scriptType), this);
+      this.directory('.', 'assets/scripts');
+
+      this.sourceRoot(path.join(__dirname,  'templates/angular/partials/'+this.viewEngine), this);
+      this.directory('.', 'assets/views/partials');
     }
   },
   public: function() {

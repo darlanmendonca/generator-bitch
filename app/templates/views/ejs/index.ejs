@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>(ng-app='<%= slugify(appname) %>')<% } %>>
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <%%- include partials/meta %%>
-  <%%- include partials/favicons %%>
+  <base href="/">
+  <%%- include includes/meta %%>
+  <%%- include includes/favicons %%>
 
 
-  <%%- include partials/styles %%>
+  <%%- include includes/styles %%>
 </head>
-<body>
-  <p>Hello</p>
-  <%%- include partials/scripts %%>
+<body><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+  <div ui-view></div><% } else { %>
+  <p>hello</p><% } %>
+
+  <%%- include includes/scripts %%>
 </body>
 </html>

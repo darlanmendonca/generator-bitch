@@ -8,10 +8,12 @@ var argv = require('yargs').argv;<% if (appType === 'server' || appType === 'bot
 var config = require('./config');
 var nodemon = require('gulp-nodemon');<% } %><% if (appType === 'client' || appType === 'both') { %>
 var plumber = require('gulp-plumber');
-var browserSync = require('browser-sync').create();
-var jade = require('gulp-jade');<% if (preprocessor === 'sass') { %>
+var browserSync = require('browser-sync').create();<% if (viewEngine === 'jade') { %>
+var jade = require('gulp-jade');<% } %><% if (viewEngine === 'ejs') { %>
+var ejs = require('gulp-ejs');<% } %><% if (preprocessor === 'sass') { %>
 var sass = require('gulp-sass');<% } %><% if (preprocessor === 'less') { %>
-var less = require('gulp-less');<% } %>
+var less = require('gulp-less');<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+var ngAnnotate = require('gulp-ng-annotate');<% } %>
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
@@ -23,9 +25,13 @@ var bower = require('bower-files')();<% } %>
 <% if (appType === 'client' || appType === 'both') { %>
 var files = {
   views: {
-    src: './assets/views/*.jade',
+    src: './assets/views/*.<%= viewEngine %>',
     dest: './public/'
-  },
+  },<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+  partials: {
+    src: './assets/views/partials/*.<%= viewEngine %>',
+    dest: './public/partials/'
+  },<% } %>
   styles: {
     src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
@@ -61,11 +67,11 @@ var onError = function (err) {
     case 'gulp-less':
       message = new gutil.PluginError('gulp-less', err.message).toString();
       process.stderr.write(message + '\n');
-      break;<% } %>
+      break;<% } %><% if (viewEngine === 'jade') { %>
     case 'gulp-jade':
       message = new gutil.PluginError('gulp-jade', err.message).toString();
       process.stderr.write(message + '\n');
-      break;
+      break;<% } %>
 
   }
   gutil.beep();
@@ -158,7 +164,8 @@ gulp.task('styles', function() {<% if (preprocessor === 'sass') { %>
 
 gulp.task('scripts', function() {
   gulp
-    .src(files.scripts.src)
+    .src(files.scripts.src)<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    .pipe(ngAnnotate())<% } %>
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(gulp.dest(files.scripts.dest));
@@ -167,9 +174,17 @@ gulp.task('scripts', function() {
 gulp.task('views', function() {
   gulp
     .src(files.views.src)
-    .pipe(plumber({ errorHandler: onError }))
-    .pipe(jade())<% if (appType === 'client') { %>
-    .pipe(gulp.dest(files.views.dest))<% } %>;
+    .pipe(plumber({ errorHandler: onError }))<% if (viewEngine === 'jade') { %>
+    .pipe(jade())<% } %><% if (viewEngine === 'ejs') { %>
+    .pipe(ejs())<% } %><% if (appType === 'client') { %>
+    .pipe(gulp.dest(files.views.dest))<% } %>;<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+
+  gulp
+    .src(files.partials.src)
+    .pipe(plumber({ errorHandler: onError }))<% if (viewEngine === 'jade') { %>
+    .pipe(jade())<% } %><% if (viewEngine === 'ejs') { %>
+    .pipe(ejs())<% } %>
+    .pipe(gulp.dest(files.partials.dest));<% } %>
 });
 
 gulp.task('dependencies', function() {
@@ -207,8 +222,7 @@ gulp.task('lint', function() {
 
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
   gulp
-    .watch('./assets/views/**/*.jade', [
-      'dependencies',
+    .watch('./assets/views/**/*.<%= viewEngine %>', [
       'views',
       browserSync.reload
     ]);

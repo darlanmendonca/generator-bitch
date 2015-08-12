@@ -1,4 +1,5 @@
 extends layouts/sample
 
-block content
-  p hello
+block content<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+  div(ui-view)<% } else { %>
+  p hello<% } %>

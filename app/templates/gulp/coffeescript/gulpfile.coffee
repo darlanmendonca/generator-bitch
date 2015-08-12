@@ -6,10 +6,12 @@ argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') 
 config = require './config'
 nodemon = require 'gulp-nodemon'<% } %><% if (appType === 'client' || appType === 'both') { %>
 plumber = require 'gulp-plumber'
-browserSync = require('browser-sync').create();
-jade = require 'gulp-jade'<% if (preprocessor === 'sass') { %>
+browserSync = require('browser-sync').create();<% if (viewEngine === 'jade') { %>
+jade = require 'gulp-jade'<% } %><% if (viewEngine === 'ejs') { %>
+ejs = require 'gulp-ejs'<% } %><% if (preprocessor === 'sass') { %>
 sass = require 'gulp-sass'<% } %><% if (preprocessor === 'less') { %>
-less = require 'gulp-less'<% } %>
+less = require 'gulp-less'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+ngAnnotate = require 'gulp-ng-annotate'<% } %>
 sourcemaps = require 'gulp-sourcemaps'
 autoprefixer = require 'gulp-autoprefixer'
 spritesmith = require 'gulp.spritesmith'
@@ -22,8 +24,11 @@ coffee = require 'gulp-coffee'
 <% if (appType === 'client' || appType === 'both') { %>
 files =
   views:
-    src: './assets/views/*.jade',
+    src: './assets/views/*.<%= viewEngine %>',
     dest: './public/'
+  partials:
+    src: './assets/views/partials/*.<%= viewEngine %>'
+    dest: './public/partials/'
   styles:
     src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
@@ -53,10 +58,10 @@ onError = (err)->
       process.stderr.write(message + '\n');<% } %><% if (preprocessor === 'less') { %>
     when 'gulp-less'
       message = new gutil.PluginError('gulp-less', err.message).toString();
-      process.stderr.write(message + '\n');<% } %>
+      process.stderr.write(message + '\n');<% } %><% if (viewEngine === 'jade') { %>
     when 'gulp-jade'
       message = new gutil.PluginError('gulp-jade', err.message).toString();
-      process.stderr.write(message + '\n');
+      process.stderr.write(message + '\n');<% } %>
     when 'gulp-coffee'
       message = new gutil.PluginError('gulp-coffee', err).toString();
       process.stderr.write(message + '\n');
@@ -143,7 +148,8 @@ gulp.task 'scripts', ->
     .pipe plumber()
     .pipe sourcemaps.init()
     .pipe coffee({bare: true}).on('error', onError)
-    .pipe sourcemaps.write()
+    .pipe sourcemaps.write()<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    .pipe ngAnnotate()<% } %>
     .pipe concat('app.js')
     .pipe uglify()
     .pipe gulp.dest(files.scripts.dest)
@@ -151,9 +157,17 @@ gulp.task 'scripts', ->
 gulp.task 'views', ->
   gulp
     .src files.views.src
-    .pipe plumber({ errorHandler: onError })
-    .pipe jade()<% if (appType === 'client') { %>
-    .pipe gulp.dest(files.views.dest)<% } %>
+    .pipe plumber({ errorHandler: onError })<% if (viewEngine === 'jade') { %>
+    .pipe jade()<% } %><% if (viewEngine === 'ejs') { %>
+    .pipe ejs()<% } %><% if (appType === 'client') { %>
+    .pipe gulp.dest(files.views.dest)<% } %><% if (appType === 'client' || appType === 'both') { %>
+
+  gulp
+    .src files.partials.src
+    .pipe plumber({ errorHandler: onError })<% if (viewEngine === 'jade') { %>
+    .pipe jade()<% } %><% if (viewEngine === 'ejs') { %>
+    .pipe ejs()<% } %>
+    .pipe gulp.dest(files.partials.dest)<% } %>
 
 gulp.task 'dependencies', ->
   gulp
@@ -187,8 +201,7 @@ gulp.task 'lint', ->
 
 gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>
   gulp
-    .watch './assets/views/**/*.jade', [
-      'dependencies'
+    .watch './assets/views/**/*.<%= viewEngine %>', [
       'views'
       browserSync.reload
     ]
