@@ -1,7 +1,7 @@
 {
   "name": "generator-bitch",
-  "version": "0.0.4",
-  "description": "Generator for web applications. Client and backend with Node.js",
+  "version": "0.0.5",
+  "description": "Scaffolding MEAN applications. Server, client, or both.",
   "main": "app/index.js",
   "keywords": [
     "bitch",
