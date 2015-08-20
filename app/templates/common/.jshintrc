@@ -13,5 +13,9 @@
   "funcscope": true,
   "node": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "asi": false,
+  "globals": {
+    "angular": true
+  }
 }
