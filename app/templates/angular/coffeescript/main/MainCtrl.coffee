@@ -1,5 +1,3 @@
-'use strict';
-
 angular
   .module '<%= slugify(appname) %>'
   .controller 'MainCtrl', ($scope)->

@@ -1,5 +1,3 @@
-# global angular
-
 angular
   .module '<%= slugify(appname) %>', [<% if (ngAnimate) { %>
     'ngAnimate'<% } %><% if (ngCookies) { %>

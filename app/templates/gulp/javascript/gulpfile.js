@@ -45,7 +45,7 @@ var files = {
     src: './assets/sprites/*.png',
     dest: './public/imgs/sprites/'
   }
-};
+};<% if (scriptType === 'javascript') { %>
 
 var lintScripts = [
   './gulpfile.js',<% if (appType === 'server' || appType === 'both') { %>
@@ -53,8 +53,8 @@ var lintScripts = [
   './models/**/*.js',
   './controllers/**/*.js',
   './routes/**/*.js',<% } %><% if (appType === 'client' || appType === 'both') { %>
-  './assets/scripts/*.js'<% } %>
-];
+  './assets/scripts/**/*.js'<% } %>
+];<% } %>
 
 
 var onError = function (err) {
@@ -177,10 +177,12 @@ gulp.task('styles', function() {<% if (preprocessor === 'sass') { %>
 
 gulp.task('scripts', function() {
   gulp
-    .src(files.scripts.src)<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    .src(files.scripts.src)
+    .pipe(sourcemaps.init())<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
     .pipe(ngAnnotate())<% } %>
     .pipe(concat('app.js'))
     .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(files.scripts.dest));
 });
 
@@ -224,14 +226,14 @@ gulp.task('watch-gulpfile', function() {
       // var task = argv.task ? argv.task : 'default';
       process = spawn('gulp', [], {stdio: 'inherit'});
     });
-});
+});<% if (scriptType === 'javascript')  { %>
 
 gulp.task('lint', function() {
   gulp
     .src(lintScripts)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
-});
+});<% } %>
 
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
   gulp
@@ -240,11 +242,9 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
       browserSync.reload
     ]);
 
-  gulp
-    .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp
-    .watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (appType === 'server' || appType === 'both')  { %>
+    .watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType === 'javascript')  { %>
 
   gulp
     .watch(lintScripts, ['lint']);<% } %>
