@@ -13,7 +13,8 @@ var browserSync = require('browser-sync').create();<% if (viewEngine === 'jade')
 var jade = require('gulp-jade');<% } %><% if (viewEngine === 'ejs') { %>
 var ejs = require('gulp-ejs');<% } %><% if (preprocessor === 'sass') { %>
 var sass = require('gulp-sass');<% } %><% if (preprocessor === 'less') { %>
-var less = require('gulp-less');<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+var less = require('gulp-less');<% } %><% if (preprocessor === 'stylus') { %>
+var stylus = require('gulp-stylus');<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 var ngAnnotate = require('gulp-ng-annotate');<% } %>
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
@@ -67,11 +68,18 @@ var onError = function (err) {
     case 'gulp-less':
       message = new gutil.PluginError('gulp-less', err.message).toString();
       process.stderr.write(message + '\n');
+      break;<% } %><% if (preprocessor === 'stylus') { %>
+    case 'gulp-stylus':
+      message = new gutil.PluginError('gulp-stylus', err.message).toString();
+      process.stderr.write(message + '\n');
       break;<% } %><% if (viewEngine === 'jade') { %>
     case 'gulp-jade':
       message = new gutil.PluginError('gulp-jade', err.message).toString();
       process.stderr.write(message + '\n');
       break;<% } %>
+    default:
+      message = new gutil.PluginError(err.plugin, err.message).toString();
+      process.stderr.write(message + '\n');
 
   }
   gutil.beep();
@@ -149,13 +157,18 @@ gulp.task('styles', function() {<% if (preprocessor === 'sass') { %>
   };<% } %><% if (preprocessor === 'less') { %>
   var options = {
     compress: true
+  };<% } %><% if (preprocessor === 'stylus') { %>
+  var options = {
+    compress: true
   };<% } %>
 
   gulp
-    .src(files.styles.src)
+    .src(files.styles.src)<% if (preprocessor === 'stylus') { %>
+    .pipe(plumber({ errorHandler: onError }))<% } %>
     .pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
     .pipe(sass(options).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
-    .pipe(less(options).on('error', onError))<% } %>
+    .pipe(less(options).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
+    .pipe(stylus(options))<% } %>
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(files.styles.dest))

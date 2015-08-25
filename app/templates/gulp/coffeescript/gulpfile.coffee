@@ -11,7 +11,8 @@ browserSync = require('browser-sync').create();<% if (viewEngine === 'jade') { %
 jade = require 'gulp-jade'<% } %><% if (viewEngine === 'ejs') { %>
 ejs = require 'gulp-ejs'<% } %><% if (preprocessor === 'sass') { %>
 sass = require 'gulp-sass'<% } %><% if (preprocessor === 'less') { %>
-less = require 'gulp-less'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+less = require 'gulp-less'<% } %><% if (preprocessor === 'stylus') { %>
+stylus = require('gulp-stylus');<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 ngAnnotate = require 'gulp-ng-annotate'<% } %>
 sourcemaps = require 'gulp-sourcemaps'
 autoprefixer = require 'gulp-autoprefixer'
@@ -55,16 +56,22 @@ onError = (err)->
     when 'gulp-sass'
       messageFormatted = err.messageFormatted
       message = new gutil.PluginError('gulp-sass', messageFormatted).toString()
-      process.stderr.write(message + '\n');<% } %><% if (preprocessor === 'less') { %>
+      process.stderr.write "#{message}\n"<% } %><% if (preprocessor === 'less') { %>
     when 'gulp-less'
       message = new gutil.PluginError('gulp-less', err.message).toString();
-      process.stderr.write(message + '\n');<% } %><% if (viewEngine === 'jade') { %>
+      process.stderr.write "#{message}\n"<% } %><% if (preprocessor === 'stylus') { %>
+    when 'gulp-stylus'
+      message = new gutil.PluginError('gulp-stylus', err.message).toString();
+      process.stderr.write "#{message}\n"<% } %><% if (viewEngine === 'jade') { %>
     when 'gulp-jade'
       message = new gutil.PluginError('gulp-jade', err.message).toString();
-      process.stderr.write(message + '\n');<% } %>
+      process.stderr.write "#{message}\n"<% } %>
     when 'gulp-coffee'
       message = new gutil.PluginError('gulp-coffee', err).toString();
-      process.stderr.write(message + '\n');
+      process.stderr.write "#{message}\n"
+    else
+      message = new gutil.PluginError(err.plugin, err).toString();
+      process.stderr.write "#{message}\n"
 
 
   gutil.beep()<% } %>
@@ -130,13 +137,17 @@ gulp.task 'styles', -><% if (preprocessor === 'sass') { %>
     outputStyle: 'compressed'
   <% } %><% if (preprocessor === 'less') { %>
   options =
+    compress: true<% } %><% if (preprocessor === 'stylus') { %>
+  options =
     compress: true<% } %>
 
   gulp
-    .src files.styles.src
+    .src files.styles.src<% if (preprocessor === 'stylus') { %>
+    .pipe plumber({ errorHandler: onError })<% } %>
     .pipe sourcemaps.init()<% if (preprocessor === 'sass') { %>
     .pipe sass(options).on('error', onError)<% } %><% if (preprocessor === 'less') { %>
-    .pipe less(options).on('error', onError)<% } %>
+    .pipe less(options).on('error', onError)<% } %><% if (preprocessor === 'stylus') { %>
+    .pipe stylus options<% } %>
     .pipe autoprefixer()
     .pipe sourcemaps.write('./')
     .pipe gulp.dest(files.styles.dest)

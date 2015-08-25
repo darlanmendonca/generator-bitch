@@ -98,7 +98,7 @@ module.exports = generators.Base.extend({
       name: 'preprocessor',
       message: 'select css preprocessor you would like to use',
       default: 'sass',
-      choices: ['sass', 'less']
+      choices: ['sass', 'less', 'stylus']
     };
     if (this.appType === 'server') {
       done();
@@ -107,8 +107,9 @@ module.exports = generators.Base.extend({
         this.preprocessor = data.preprocessor;
         var extname = {
           sass: 'scss',
-          less: 'less'
-        }
+          less: 'less',
+          stylus: 'styl'
+        };
         this.extPreprocessor = extname[data.preprocessor];
         done();
       }.bind(this));

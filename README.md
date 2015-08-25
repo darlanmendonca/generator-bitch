@@ -57,6 +57,7 @@ Frontend Frameworks
 Styles
   - Sass (using libsass from node-sass)
   - Less
+  - Stylus
 
 Scripts
 - Javascript
