@@ -32,37 +32,37 @@ gulp --open
 ### This generator, offer as:
 
 #### Task runner
-[Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) (because it's fast! Thanks to the node streams.)
-- lint scripts (using [jshint](http://jshint.com/about))
+[Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md){:target="_blank"} (because it's fast! Thanks to the node streams.)
+- lint scripts (using [jshint](http://jshint.com/about){:target="_blank"})
 - dependency injection
 - compile (and/or validate) template views
-- [autoprefixer](https://github.com/postcss/autoprefixer-core) css properties
+- [autoprefixer](https://github.com/postcss/autoprefixer-core){:target="_blank"} css properties
 - compile preprocessors
-- [sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps) to preprocessors and scripts
-- livereload (with [Browsersync](http://www.browsersync.io))
-- sprite images from png's (with [spritesmith](https://github.com/Ensighten/spritesmith) and pngsmith)
+- [sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps){:target="_blank"} to preprocessors and scripts
+- livereload (with [Browsersync](http://www.browsersync.io){:target="_blank"})
+- sprite images from png's (with [spritesmith](https://github.com/Ensighten/spritesmith){:target="_blank"} and pngsmith)
 - concatenation and minification (styles and scripts)
-- restart automatically server (with [nodemon](http://nodemon.io))
+- restart automatically server (with [nodemon](http://nodemon.io){:target="_blank"})
 - watch files, to running all tasks automatically
-- [ngAnnotate](https://github.com/olov/ng-annotate) (to Angular)
+- [ngAnnotate](https://github.com/olov/ng-annotate){:target="_blank"} (to Angular)
 
 #### Client
 
 Views
-- [Jade](https://github.com/jadejs/jade)
-- [EJS](https://github.com/tj/ejs)
+- [Jade](https://github.com/jadejs/jade){:target="_blank"}
+- [EJS](https://github.com/tj/ejs){:target="_blank"}
 
 Frontend Frameworks
-- [Angular.js](https://angularjs.org)
+- [Angular.js](https://angularjs.org){:target="_blank"}
 
 Styles
-  - [Sass](http://sass-lang.com/guide) (using libsass from node-sass)
-  - [Less](http://lesscss.org/features/)
-  - [Stylus](https://learnboost.github.io/stylus/)
+  - [Sass](http://sass-lang.com/guide){:target="_blank"} (using libsass from node-sass)
+  - [Less](http://lesscss.org/features/){:target="_blank"}
+  - [Stylus](https://learnboost.github.io/stylus/){:target="_blank"}
 
 Scripts
 - Javascript
-- [CoffeeScript](http://coffeescript.org/)
+- [CoffeeScript](http://coffeescript.org/){:target="_blank"}
 
 
 <!-- Tools and frameworks:
@@ -75,14 +75,14 @@ Scripts
 #### Backend
 
 Server
-- [Node.js](https://nodejs.org/)
-- [Express](http://expressjs.com/4x/api.html) 4x
+- [Node.js](https://nodejs.org/){:target="_blank"}
+- [Express 4x](http://expressjs.com/4x/api.html){:target="_blank"}
 - MVC
 - Config (with environments)
 - ORM's
 
 Databases
-- [MongoDB](https://www.mongodb.org/) (with [Mongoose](http://mongoosejs.com/))
+- [MongoDB](https://www.mongodb.org/){:target="_blank"} (with [Mongoose](http://mongoosejs.com/){:target="_blank"})
 - Redis (soon)
 - MySQL (soon)
 
