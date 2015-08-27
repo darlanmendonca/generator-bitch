@@ -83,6 +83,6 @@ Server
 
 Databases
 - [MongoDB](https://www.mongodb.org/) (with [Mongoose](http://mongoosejs.com/))
-- Redis (soon)
-- MySQL (soon)
+- [Redis](http://redis.io/) (soon)
+- [MySQL](https://www.mysql.com/) (soon)
 
