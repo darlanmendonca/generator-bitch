@@ -1,6 +1,6 @@
 A simple generator (for Yeoman) to scaffolding web apps. Server, client, or both.
 
-#![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
+# ![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
 
 ### Install and use
 First install this module as global
@@ -32,37 +32,37 @@ gulp --open
 ### This generator, offer as:
 
 #### Task runner
-Gulp (because it's fast! Thanks to the node streams.)
-- lint scripts (using jshint)
+[Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) (because it's fast! Thanks to the node streams.)
+- lint scripts (using [jshint](http://jshint.com/about))
 - dependency injection
 - compile (and/or validate) template views
-- autoprefixer css properties
+- [autoprefixer](https://github.com/postcss/autoprefixer-core) css properties
 - compile preprocessors
-- sourcemaps to preprocessors and scripts
-- livereload (with Browsersync)
-- sprite images from png's (with spritesmith and pngsmith)
+- [sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps) to preprocessors and scripts
+- livereload (with [Browsersync](http://www.browsersync.io))
+- sprite images from png's (with [spritesmith](https://github.com/Ensighten/spritesmith) and pngsmith)
 - concatenation and minification (styles and scripts)
-- restart automatically server (with nodemon)
+- restart automatically server (with [nodemon](http://nodemon.io))
 - watch files, to running all tasks automatically
-- ngAnnotate (to Angular)
+- [ngAnnotate](https://github.com/olov/ng-annotate) (to Angular)
 
 #### Client
 
 Views
-- Jade
-- EJS
+- [Jade](https://github.com/jadejs/jade)
+- [EJS](https://github.com/tj/ejs)
 
 Frontend Frameworks
-- Angular.js
+- [Angular.js](https://angularjs.org)
 
 Styles
-  - Sass (using libsass from node-sass)
-  - Less
-  - Stylus
+  - [Sass](http://sass-lang.com/guide) (using libsass from node-sass)
+  - [Less](http://lesscss.org/features/)
+  - [Stylus](https://learnboost.github.io/stylus/)
 
 Scripts
 - Javascript
-- CoffeeScript
+- [CoffeeScript](http://coffeescript.org/)
 
 
 <!-- Tools and frameworks:
@@ -75,14 +75,14 @@ Scripts
 #### Backend
 
 Server
-- Node.js
-- Express 4x
+- [Node.js](https://nodejs.org/)
+- [Express](http://expressjs.com/4x/api.html) 4x
 - MVC
 - Config (with environments)
 - ORM's
 
 Databases
-- MongoDB
+- [MongoDB](https://www.mongodb.org/) (with [Mongoose](http://mongoosejs.com/))
 - Redis (soon)
 - MySQL (soon)
 
