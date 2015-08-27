@@ -44,6 +44,7 @@ Gulp (because it's fast! Thanks to the node streams.)
 - concatenation and minification (styles and scripts)
 - restart automatically server (with nodemon)
 - watch files, to running all tasks automatically
+- ngAnnotate (to Angular)
 
 #### Client
 
