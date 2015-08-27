@@ -18,8 +18,7 @@ sourcemaps = require 'gulp-sourcemaps'
 autoprefixer = require 'gulp-autoprefixer'
 spritesmith = require 'gulp.spritesmith'
 concat = require 'gulp-concat'
-uglify = require 'gulp-uglify'
-bower = require('bower-files')()<% } %>
+uglify = require 'gulp-uglify'<% } %>
 coffee = require 'gulp-coffee'
 
 <% if (appType === 'client' || appType === 'both') { %>
@@ -181,17 +180,19 @@ gulp.task 'views', ->
     .pipe gulp.dest(files.partials.dest)<% } %>
 
 gulp.task 'dependencies', ->
+  bower = require('bower-files')()
+
   gulp
-    .src(bower.ext('css').files)
-    .pipe(concat('vendor.css'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./public/styles'));
+    .src bower.ext('css').files
+    .pipe concat('vendor.css')
+    .pipe uglify()
+    .pipe gulp.dest('./public/styles')
 
   gulp
     .src bower.ext('js').files
     .pipe concat('vendor.js')
     .pipe uglify()
-    .pipe gulp.dest('./public/scripts') <% } %>
+    .pipe gulp.dest('./public/scripts')<% } %>
 
 gulp.task 'watch-gulpfile', ->
   process = null
@@ -224,7 +225,10 @@ gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>
     .watch files.scripts.src, ['scripts', browserSync.reload]<% } %><% if (appType === 'server' || appType === 'both')  { %><% if (scriptType === 'javascript') { %>
 
   gulp
-    .watch lintScripts, ['lint']<% } %><% } %>
+    .watch lintScripts, ['lint']<% } %><% } %><% if (appType === 'client' || appType === 'both')  { %>
+
+  gulp
+    .watch './bower.json', ['dependencies']<% } %>
 
 
 gulp.task 'default', [<% if (appType === 'client' || appType === 'both')  { %>

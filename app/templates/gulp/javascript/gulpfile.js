@@ -20,8 +20,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var bower = require('bower-files')();<% } %>
+var uglify = require('gulp-uglify');<% } %>
 
 <% if (appType === 'client' || appType === 'both') { %>
 var files = {
@@ -203,6 +202,8 @@ gulp.task('views', function() {
 });
 
 gulp.task('dependencies', function() {
+  var bower = require('bower-files')();
+
   gulp
     .src(bower.ext('css').files)
     .pipe(concat('vendor.css'))
@@ -247,7 +248,10 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
     .watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType === 'javascript')  { %>
 
   gulp
-    .watch(lintScripts, ['lint']);<% } %>
+    .watch(lintScripts, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
+
+  gulp
+    .watch('./bower.json', ['dependencies']);<% } %>
 
 });
 
