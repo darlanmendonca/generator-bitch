@@ -56,7 +56,7 @@ Frontend Frameworks
 - [Angular.js](https://angularjs.org)
 
 Styles
-  - [Sass](http://sass-lang.com/guide) (using libsass from node-sass)
+  - [Sass](http://sass-lang.com/guide) (using [libsass](https://github.com/sass/libsass) from [node-sass](https://www.npmjs.com/package/node-sass))
   - [Less](http://lesscss.org/features/)
   - [Stylus](https://learnboost.github.io/stylus/)
 
