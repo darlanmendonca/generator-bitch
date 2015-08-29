@@ -1,5 +1,6 @@
 gulp = require 'gulp'
 gutil = require 'gulp-util'
+util = require 'util'
 spawn = require('child_process').spawn;
 jshint = require 'gulp-jshint'
 stylish = require 'jshint-stylish'
@@ -18,7 +19,8 @@ sourcemaps = require 'gulp-sourcemaps'
 autoprefixer = require 'gulp-autoprefixer'
 spritesmith = require 'gulp.spritesmith'
 concat = require 'gulp-concat'
-uglify = require 'gulp-uglify'<% } %>
+uglify = require 'gulp-uglify'
+inject = require 'gulp-inject'<% } %>
 coffee = require 'gulp-coffee'
 
 <% if (appType === 'client' || appType === 'both') { %>
@@ -131,17 +133,29 @@ gulp.task 'sprites', ->
   sprite.img.pipe gulp.dest files.sprites.dest
   sprite.css.pipe gulp.dest './assets/styles/components/'
 
-gulp.task 'styles', -><% if (preprocessor === 'sass') { %>
+gulp.task 'styles', ->
+  bower = require('bower-files')()
+  dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files
+  injectTransform =
+    starttag: '/* inject:imports */'
+    endtag: '/* endinject */'
+    transform: (filepath)->
+      util.format('@import \'../..%s\';', filepath)
+
+  injectConfig =
+    read: false
+    relative: false
+
+  <% if (preprocessor === 'sass') { %>
   options =
     outputStyle: 'compressed'
-  <% } %><% if (preprocessor === 'less') { %>
-  options =
-    compress: true<% } %><% if (preprocessor === 'stylus') { %>
+  <% } %><% if (preprocessor === 'less' || preprocessor === 'stylus') { %>
   options =
     compress: true<% } %>
 
   gulp
-    .src files.styles.src<% if (preprocessor === 'stylus') { %>
+    .src files.styles.src
+    .pipe inject(gulp.src(dependencies, injectConfig), injectTransform)<% if (preprocessor === 'stylus') { %>
     .pipe plumber({ errorHandler: onError })<% } %>
     .pipe sourcemaps.init()<% if (preprocessor === 'sass') { %>
     .pipe sass(options).on('error', onError)<% } %><% if (preprocessor === 'less') { %>
@@ -228,7 +242,7 @@ gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>
     .watch lintScripts, ['lint']<% } %><% } %><% if (appType === 'client' || appType === 'both')  { %>
 
   gulp
-    .watch './bower.json', ['dependencies']<% } %>
+    .watch './bower.json', ['dependencies', 'styles']<% } %>
 
 
 gulp.task 'default', [<% if (appType === 'client' || appType === 'both')  { %>

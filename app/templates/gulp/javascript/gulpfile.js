@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var util = require('util');
 var spawn = require('child_process').spawn;
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
@@ -20,7 +21,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');<% } %>
+var uglify = require('gulp-uglify');
+var inject = require('gulp-inject');<% } %>
 
 <% if (appType === 'client' || appType === 'both') { %>
 var files = {
@@ -150,24 +152,37 @@ gulp.task('sprites', function() {
   sprite.css.pipe(gulp.dest('./assets/styles/components/'));
 });
 
-gulp.task('styles', function() {<% if (preprocessor === 'sass') { %>
-  var options = {
+gulp.task('styles', function() {
+  var bower = require('bower-files')();
+  var dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files;
+  var injectTransform = {
+    starttag: '/* inject:imports */',
+    endtag: '/* endinject */',
+    transform: function (filepath) {
+      return util.format('@import \'../..%s\';', filepath);
+    }
+  };
+
+  var injectConfig = {
+    read: false,
+    relative: false
+  };
+  <% if (preprocessor === 'sass') { %>
+  var configPreprocessor = {
     outputStyle: 'compressed'
-  };<% } %><% if (preprocessor === 'less') { %>
-  var options = {
-    compress: true
-  };<% } %><% if (preprocessor === 'stylus') { %>
-  var options = {
+  };<% } %><% if (preprocessor === 'less' || preprocessor === 'stylus') { %>
+  var configPreprocessor = {
     compress: true
   };<% } %>
 
   gulp
-    .src(files.styles.src)<% if (preprocessor === 'stylus') { %>
+    .src(files.styles.src)
+    .pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))<% if (preprocessor === 'stylus') { %>
     .pipe(plumber({ errorHandler: onError }))<% } %>
     .pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
-    .pipe(sass(options).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
-    .pipe(less(options).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
-    .pipe(stylus(options))<% } %>
+    .pipe(sass(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
+    .pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
+    .pipe(stylus(configPreprocessor))<% } %>
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(files.styles.dest))
@@ -238,11 +253,10 @@ gulp.task('lint', function() {
 
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
   gulp
-    .watch('./assets/views/**/*.<%= viewEngine %>', [
-      'views',
-      browserSync.reload
-    ]);
+    .watch('./assets/views/**/*.<%= viewEngine %>', ['views', browserSync.reload]);
 
+  gulp
+    .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp
     .watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType === 'javascript')  { %>
@@ -251,7 +265,7 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
     .watch(lintScripts, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
 
   gulp
-    .watch('./bower.json', ['dependencies']);<% } %>
+    .watch('./bower.json', ['dependencies', 'styles']);<% } %>
 
 });
 
