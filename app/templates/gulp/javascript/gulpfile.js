@@ -245,9 +245,14 @@ gulp.task('watch-gulpfile', function() {
 });<% if (scriptType === 'javascript')  { %>
 
 gulp.task('lint', function() {
+  var beep = function() {
+    gutil.beep();
+  };
+
   gulp
     .src(lintScripts)
     .pipe(jshint())
+    .pipe(jshint.reporter(beep))
     .pipe(jshint.reporter(stylish));
 });<% } %>
 

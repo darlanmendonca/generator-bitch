@@ -1,8 +1,8 @@
 gulp = require 'gulp'
 gutil = require 'gulp-util'
 util = require 'util'
-spawn = require('child_process').spawn;
-jshint = require 'gulp-jshint'
+spawn = require('child_process').spawn;<% if (scriptType === 'javascript') { %>
+jshint = require 'gulp-jshint'<% } %>
 stylish = require 'jshint-stylish'
 argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
 config = require './config'
@@ -220,9 +220,12 @@ gulp.task 'watch-gulpfile', ->
 
 <% if (scriptType === 'javascript') { %>
 gulp.task 'lint', ->
+  beep = -> gutil.beep()
+
   gulp
     .src lintScripts
     .pipe jshint()
+    .pipe jshint.reporter beep()
     .pipe jshint.reporter(stylish)<% } %>
 
 gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>

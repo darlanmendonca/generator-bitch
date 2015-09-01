@@ -1,14 +1,5 @@
 angular
   .module '<%= slugify(appname) %>'
-  .config ($stateProvider, $urlRouterProvider, $locationProvider)->
-    $locationProvider.html5Mode true
-    $urlRouterProvider.otherwise '/404'
+  .config config
 
-    $stateProvider
-      .state 'home',
-        url: '/'
-        templateUrl: 'partials/home.html'
-
-      .state 'about',
-        url: '/about'
-        templateUrl: 'partials/about.html'
+config = ->
