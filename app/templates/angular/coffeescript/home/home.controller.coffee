@@ -1,6 +1,6 @@
 angular
   .module '<%= slugify(appname) %>'
-  .controller 'MainCtrl', HomeController
+  .controller 'HomeController', HomeController
 
 HomeController = ->
   console.log 'running HomeController'

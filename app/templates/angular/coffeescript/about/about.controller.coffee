@@ -1,6 +1,6 @@
 angular
   .module '<%= slugify(appname) %>'
-  .controller 'MainCtrl', AboutController
+  .controller 'AboutController', AboutController
 
 AboutController = ->
   console.log 'running AboutController'

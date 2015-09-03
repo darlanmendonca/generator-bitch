@@ -5,5 +5,5 @@ angular
   .controller('HomeController', HomeController);
 
 function HomeController () {
-  console.log('running home controller');
+  console.log('running HomeController');
 }
