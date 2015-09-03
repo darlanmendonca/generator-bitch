@@ -11,10 +11,12 @@ function routes ($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'partials/home.html'
+      templateUrl: 'partials/home.html',
+      controller: 'HomeController'
     })
     .state('about', {
       url: '/about',
-      templateUrl: 'partials/about.html'
+      templateUrl: 'partials/about.html',
+      controller: 'AboutController'
     });
 }
