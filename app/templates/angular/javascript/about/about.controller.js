@@ -4,6 +4,7 @@ angular
   .module('<%= slugify(appname) %>')
   .controller('AboutController', AboutController);
 
-function AboutController () {
+function AboutController ($scope) {
+  $scope.viewName = 'About';
   console.log('running AboutController');
 }
