@@ -6,6 +6,7 @@ angular
     'ngCookies',<% } %><% if (ngResource) { %>
     'ngResource',<% } %><% if (ngSanitize) { %>
     'ngSanitize',<% } %><% if (ngTouch) { %>
-    'ngTouch',<% } %>
-    'ui.router'
+    'ngTouch',<% } %><% if (angularRoute === 'uiRouter') { %>
+    'ui.router'<% } %><% if (angularRoute === 'ngRoute') { %>
+    'ngRoute'<% } %>
   ]);

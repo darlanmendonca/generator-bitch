@@ -1,6 +1,5 @@
 angular
   .module '<%= slugify(appname) %>'
-  .controller 'HomeController', HomeController
-
-HomeController = ->
-  console.log 'running HomeController'
+  .controller 'HomeController', ($scope)->
+    $scope.viewName = 'Home';
+    console.log 'running HomeController'

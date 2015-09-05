@@ -185,6 +185,28 @@ module.exports = generators.Base.extend({
       }.bind(this));
     }
   },
+  angularRoute: function() {
+    var done = this.async();
+
+    var prompt = {
+      type: 'list',
+      name: 'angularRoute',
+      message: 'select how you want route angular',
+      default: 'uiRouter',
+      choices: ['uiRouter', 'ngRoute', 'none']
+    };
+    if (this.appType === 'server' || this.appFramework !== 'angular') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.angularRoute = data.angularRoute;
+        this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
+          'ui-view' : 'ng-view';
+        console.log(this.angularRoute);
+        done();
+      }.bind(this));
+    }
+  },
   common: function() {
     this.sourceRoot(path.join(__dirname,  'templates/common'), this);
     this.directory('.', '.');
@@ -232,6 +254,11 @@ module.exports = generators.Base.extend({
 
       this.sourceRoot(path.join(__dirname,  'templates/angular/partials/'+this.viewEngine), this);
       this.directory('.', 'assets/views/partials');
+
+      if (this.angularRoute === 'uiRouter' || this.angularRoute === 'ngRoute') {
+        this.sourceRoot(path.join(__dirname,  'templates/angular/route/'+this.scriptType), this);
+        this.directory('.', 'assets/scripts');
+      }
     }
   },
   public: function() {

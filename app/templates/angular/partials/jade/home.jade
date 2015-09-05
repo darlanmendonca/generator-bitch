@@ -1,6 +1,7 @@
 ul
   li
-    a(ui-sref='home') home
-    a(ui-sref='about') about
+    <% if (angularRoute === 'uiRouter') { %>a(ui-sref='home') home
+    a(ui-sref='about') about<% } %><% if (angularRoute === 'ngRoute') { %>a(href='/') home
+    a(href='/about') about<% } %>
 
 p {{viewName}} view

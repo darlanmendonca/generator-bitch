@@ -1,5 +1,5 @@
 extends layouts/sample
 
-block content<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
-  div(ui-view)<% } else { %>
+block content<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular' && angularRoute !== 'none') { %>
+  div(<%= angularRouteDirective %>)<% } else { %>
   p hello<% } %>
