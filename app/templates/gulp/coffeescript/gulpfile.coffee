@@ -35,21 +35,11 @@ files =
     src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
   scripts:
-    src: './assets/scripts/**/*.coffee',
+    src: './assets/<%= appFramework %>/**/*.coffee',
     dest: './public/scripts/'
   sprites:
     src: './assets/sprites/*.png'
     dest: './public/imgs/sprites/'
-
-<% if (scriptType === 'javascript') { %>
-lintScripts = [
-  './gulpfile.js'<% if (appType === 'server' || appType === 'both') { %>
-  './app.js'
-  './models/**/*.js'
-  './controllers/**/*.js'
-  './routes/**/*.js'<% } %><% if (appType === 'client' || appType === 'both') { %>
-  './assets/scripts/*.js'<% } %>
-]<% } %>
 
 onError = (err)->
   message = null
@@ -84,8 +74,8 @@ gulp.task 'nodemon', <% if (appType === 'server') { %>(cb)<% } %>->
     quiet: true
     ext: 'coffee'<% if (appType === 'both') { %>
     ignore: [
-      'gulpfile.coffee'
-      'assets/scripts/**/*.coffee'
+      'gulpfile.coffee'<% if (appFramework !== 'none') { %>
+      'assets/<%= appFramework %>/**/*.coffee'<% } %>
       'public/scripts/**/*.js'
     ]<% } %>
     env:

@@ -232,7 +232,9 @@ module.exports = generators.Base.extend({
       mkdirp('assets/imgs');
       mkdirp('assets/styles/components');
       mkdirp('assets/sprites');
-      mkdirp('assets/scripts');
+      if (this.appFramework !== 'none') {
+        mkdirp('assets/'+this.appFramework);
+      }
     }
   },
   views: function() {
@@ -250,14 +252,14 @@ module.exports = generators.Base.extend({
   angular: function() {
     if (this.isAppType('client') && this.appFramework === 'angular') {
       this.sourceRoot(path.join(__dirname,  'templates/angular/'+this.scriptType), this);
-      this.directory('.', 'assets/scripts');
+      this.directory('.', 'assets/angular');
 
       this.sourceRoot(path.join(__dirname,  'templates/angular/partials/'+this.viewEngine), this);
       this.directory('.', 'assets/views/partials');
 
       if (this.angularRoute === 'uiRouter' || this.angularRoute === 'ngRoute') {
         this.sourceRoot(path.join(__dirname,  'templates/angular/route/'+this.scriptType), this);
-        this.directory('.', 'assets/scripts');
+        this.directory('.', 'assets/angular');
       }
     }
   },

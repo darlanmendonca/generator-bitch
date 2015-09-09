@@ -39,7 +39,7 @@ var files = {
     dest: './public/styles/'
   },
   scripts: {
-    src: './assets/scripts/**/*.js',
+    src: './assets/<%= appFramework %>/**/*.js',
     dest: './public/scripts/'
   },
   sprites: {
@@ -53,8 +53,8 @@ var lintScripts = [
   './app.js',
   './models/**/*.js',
   './controllers/**/*.js',
-  './routes/**/*.js',<% } %><% if (appType === 'client' || appType === 'both') { %>
-  './assets/scripts/**/*.js'<% } %>
+  './routes/**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
+  './assets/<%= appFramework %>/**/*.js'<% } %>
 ];<% } %>
 
 
@@ -94,7 +94,7 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
     ext: 'js',<% if (appType === 'both') { %>
     ignore: [
       'gulpfile.js',
-      'assets/scripts/**/*.js',
+      'assets/<%= appFramework %>/**/*.js',
       'public/scripts/**/*.js'
     ],<% } %>
     env: {
@@ -184,7 +184,7 @@ gulp.task('styles', function() {
     .pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
     .pipe(stylus(configPreprocessor))<% } %>
     .pipe(autoprefixer())
-    .pipe(sourcemaps.write('./'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(files.styles.dest))
     .pipe(browserSync.stream());
 });
@@ -196,7 +196,7 @@ gulp.task('scripts', function() {
     .pipe(ngAnnotate())<% } %>
     .pipe(concat('app.js'))
     .pipe(uglify())
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(files.scripts.dest));
 });
 
