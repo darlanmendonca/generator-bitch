@@ -20,7 +20,8 @@ autoprefixer = require 'gulp-autoprefixer'
 spritesmith = require 'gulp.spritesmith'
 concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
-inject = require 'gulp-inject'<% } %>
+inject = require 'gulp-inject'
+flatten = require 'gulp-flatten'<% } %>
 coffee = require 'gulp-coffee'
 
 <% if (appType === 'client' || appType === 'both') { %>
@@ -28,9 +29,9 @@ files =
   views:
     src: './assets/views/*.<%= viewEngine %>',
     dest: './public/'
-  partials:<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
-    src: './assets/views/partials/*.<%= viewEngine %>'
-    dest: './public/partials/'
+  templates:<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    src: './assets/<%= appFramework %>/**/*.<%= viewEngine %>'
+    dest: './public/templates/'
   styles:<% } %>
     src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
@@ -177,11 +178,12 @@ gulp.task 'views', ->
     .pipe gulp.dest(files.views.dest)<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 
   gulp
-    .src files.partials.src
+    .src files.templates.src
     .pipe plumber({ errorHandler: onError })<% if (viewEngine === 'jade') { %>
     .pipe jade()<% } %><% if (viewEngine === 'ejs') { %>
     .pipe ejs()<% } %>
-    .pipe gulp.dest(files.partials.dest)<% } %>
+    .pipe(flatten())
+    .pipe gulp.dest(files.templates.dest)<% } %>
 
 gulp.task 'dependencies', ->
   bower = require('bower-files')()
@@ -219,23 +221,21 @@ gulp.task 'lint', ->
     .pipe jshint.reporter(stylish)<% } %>
 
 gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>
-  gulp
-    .watch './assets/views/**/*.<%= viewEngine %>', [
+  gulp.watch files.templates.src, [
       'views'
       browserSync.reload
     ]
 
-  gulp
-    .watch './assets/styles/**/*.<%= extPreprocessor %>', ['styles']
+  gulp.watch './assets/styles/**/*.<%= extPreprocessor %>', ['styles']
 
-  gulp
-    .watch files.scripts.src, ['scripts', browserSync.reload]<% } %><% if (appType === 'server' || appType === 'both')  { %><% if (scriptType === 'javascript') { %>
+  gulp.watch files.scripts.src, ['scripts', browserSync.reload]<% } %><% if (appType === 'server' || appType === 'both')  { %><% if (scriptType === 'javascript') { %>
 
-  gulp
-    .watch lintScripts, ['lint']<% } %><% } %><% if (appType === 'client' || appType === 'both')  { %>
+  gulp.watch lintScripts, ['lint']<% } %><% } %><% if (appType === 'client' || appType === 'both')  { %>
 
-  gulp
-    .watch './bower.json', ['dependencies', 'styles']<% } %>
+  gulp.watch './bower.json', [
+    'dependencies'
+    'styles'
+  ]<% } %>
 
 
 gulp.task 'default', [<% if (appType === 'client' || appType === 'both')  { %>

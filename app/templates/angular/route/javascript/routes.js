@@ -11,12 +11,12 @@ angular
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'partials/home.html',
+      templateUrl: 'templates/home.html',
       controller: 'HomeController'
     })
     .state('about', {
       url: '/about',
-      templateUrl: 'partials/about.html',
+      templateUrl: 'templates/about.html',
       controller: 'AboutController'
     });
 }<% } %><% if (angularRoute === 'ngRoute') { %>function routes($locationProvider, $routeProvider) {
@@ -25,11 +25,11 @@ angular
 
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/home.html',
+      templateUrl: 'templates/home.html',
       controller: 'HomeController'
     })
     .when('/about', {
-      templateUrl: 'partials/about.html',
+      templateUrl: 'templates/about.html',
       controller: 'AboutController'
     });
 }<% } %>

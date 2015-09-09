@@ -22,7 +22,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var inject = require('gulp-inject');<% } %>
+var inject = require('gulp-inject');
+var flatten = require('gulp-flatten');<% } %>
 
 <% if (appType === 'client' || appType === 'both') { %>
 var files = {
@@ -30,9 +31,9 @@ var files = {
     src: './assets/views/*.<%= viewEngine %>',
     dest: './public/'
   },<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
-  partials: {
-    src: './assets/views/partials/*.<%= viewEngine %>',
-    dest: './public/partials/'
+  templates: {
+    src: './assets/<%= appFramework %>/**/*.<%= viewEngine %>',
+    dest: './public/templates/'
   },<% } %>
   styles: {
     src: './assets/styles/*.<%= extPreprocessor %>',
@@ -209,11 +210,12 @@ gulp.task('views', function() {
     .pipe(gulp.dest(files.views.dest))<% } %>;<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 
   gulp
-    .src(files.partials.src)
+    .src(files.templates.src)
     .pipe(plumber({ errorHandler: onError }))<% if (viewEngine === 'jade') { %>
     .pipe(jade())<% } %><% if (viewEngine === 'ejs') { %>
     .pipe(ejs())<% } %>
-    .pipe(gulp.dest(files.partials.dest));<% } %>
+    .pipe(flatten())
+    .pipe(gulp.dest(files.templates.dest));<% } %>
 });
 
 gulp.task('dependencies', function() {
@@ -257,20 +259,21 @@ gulp.task('lint', function() {
 });<% } %>
 
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
-  gulp
-    .watch('./assets/views/**/*.<%= viewEngine %>', ['views', browserSync.reload]);
+  gulp.watch(files.templates.src, [
+    'views',
+    browserSync.reload
+  ]);
 
-  gulp
-    .watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
+  gulp.watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
-  gulp
-    .watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType === 'javascript')  { %>
+  gulp.watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType === 'javascript')  { %>
 
-  gulp
-    .watch(lintScripts, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
+  gulp.watch(lintScripts, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
 
-  gulp
-    .watch('./bower.json', ['dependencies', 'styles']);<% } %>
+  gulp.watch('./bower.json', [
+    'dependencies',
+    'styles'
+  ]);<% } %>
 
 });
 

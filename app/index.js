@@ -254,8 +254,8 @@ module.exports = generators.Base.extend({
       this.sourceRoot(path.join(__dirname,  'templates/angular/'+this.scriptType), this);
       this.directory('.', 'assets/angular');
 
-      this.sourceRoot(path.join(__dirname,  'templates/angular/partials/'+this.viewEngine), this);
-      this.directory('.', 'assets/views/partials');
+      this.sourceRoot(path.join(__dirname,  'templates/angular/templates/'+this.viewEngine), this);
+      this.directory('.', 'assets/angular');
 
       if (this.angularRoute === 'uiRouter' || this.angularRoute === 'ngRoute') {
         this.sourceRoot(path.join(__dirname,  'templates/angular/route/'+this.scriptType), this);
