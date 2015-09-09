@@ -93,8 +93,8 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
     quiet: true,
     ext: 'js',<% if (appType === 'both') { %>
     ignore: [
-      'gulpfile.js',
-      'assets/<%= appFramework %>/**/*.js',
+      'gulpfile.js',<% if (appFramework !== 'none') { %>
+      'assets/<%= appFramework %>/**/*.js',<% } %>
       'public/scripts/**/*.js'
     ],<% } %>
     env: {
