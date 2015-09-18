@@ -220,11 +220,11 @@ gulp.task 'lint', ->
     .pipe jshint.reporter beep()
     .pipe jshint.reporter(stylish)<% } %>
 
-gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %>
+gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %><% if (appFramework === 'angular') %>
   gulp.watch files.templates.src, [
       'views'
       browserSync.reload
-    ]
+    ]<% } %>
 
   gulp.watch './assets/styles/**/*.<%= extPreprocessor %>', ['styles']
 
