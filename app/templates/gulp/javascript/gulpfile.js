@@ -186,7 +186,8 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
   gulp
     .src(files.scripts.src)
-    .pipe(sourcemaps.init())<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    .pipe(sourcemaps.init())
+    .pipe(plumber({ errorHandler: onError }))<% if (appFramework === 'angular') { %>
     .pipe(ngAnnotate())<% } %>
     .pipe(concat('app.js'))
     .pipe(uglify())

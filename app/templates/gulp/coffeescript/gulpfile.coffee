@@ -156,7 +156,7 @@ gulp.task 'scripts', ->
     .src files.scripts.src
     .pipe plumber()
     .pipe sourcemaps.init()
-    .pipe coffee({bare: true}).on('error', onError)<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    .pipe coffee({bare: true}).on('error', onError)<% if (appFramework === 'angular') { %>
     .pipe ngAnnotate()<% } %>
     .pipe concat('app.js')
     .pipe uglify()
