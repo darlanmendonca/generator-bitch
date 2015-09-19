@@ -25,11 +25,11 @@ coffee = require 'gulp-coffee'
 files =
   views:
     src: './assets/views/*.<%= viewEngine %>',
-    dest: './public/'
-  templates:<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    dest: './public/'<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+  templates:
     src: './assets/<%= appFramework %>/**/*.<%= viewEngine %>'
-    dest: './public/templates/'
-  styles:<% } %>
+    dest: './public/templates/'<% } %>
+  styles:
     src: './assets/styles/*.<%= extPreprocessor %>',
     dest: './public/styles/'
   scripts:
