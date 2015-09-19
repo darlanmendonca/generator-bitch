@@ -2,12 +2,10 @@
 
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var util = require('util');
 var spawn = require('child_process').spawn;
 var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
-var config = require('./config');
+var stylish = require('jshint-stylish');<% if (appType === 'client' || appType === 'both') { %>
+var argv = require('yargs').argv;<% } %><% if (appType === 'server' || appType === 'both') { %>
 var nodemon = require('gulp-nodemon');<% } %><% if (appType === 'client' || appType === 'both') { %>
 var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync').create();<% if (viewEngine === 'jade') { %>
@@ -22,9 +20,17 @@ var autoprefixer = require('gulp-autoprefixer');
 var spritesmith = require('gulp.spritesmith');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var inject = require('gulp-inject');
-var flatten = require('gulp-flatten');<% } %>
+var inject = require('gulp-inject');<% if (appFramework === 'angular') { %>
+var flatten = require('gulp-flatten');<% } %><% } %>
 
+var lintScripts = [
+  './gulpfile.js',<% if (appType === 'server' || appType === 'both') { %>
+  './app.js',
+  './models/**/*.js',
+  './controllers/**/*.js',
+  './routes/**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
+  './assets/<%= appFramework %>/**/*.js'<% } %>
+];
 <% if (appType === 'client' || appType === 'both') { %>
 var files = {
   views: {
@@ -47,17 +53,7 @@ var files = {
     src: './assets/sprites/*.png',
     dest: './public/imgs/sprites/'
   }
-};<% if (scriptType === 'javascript') { %>
-
-var lintScripts = [
-  './gulpfile.js',<% if (appType === 'server' || appType === 'both') { %>
-  './app.js',
-  './models/**/*.js',
-  './controllers/**/*.js',
-  './routes/**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
-  './assets/<%= appFramework %>/**/*.js'<% } %>
-];<% } %>
-
+};
 
 var onError = function (err) {
   var message;
@@ -85,9 +81,7 @@ var onError = function (err) {
 
   }
   gutil.beep();
-};<% } %>
-
-<% if (appType === 'server' || appType === 'both') { %>
+};<% } %><% if (appType === 'server' || appType === 'both') { %>
 gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
   var options = {
     script: 'app.js',
@@ -106,18 +100,16 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 
   var started = false;<% } %>
 
-
-  nodemon(options);<% if (appType === 'server') { %>
+  nodemon(options)<% if (appType === 'server') { %>
   .on('start', function() {
     if (!started){
       cb();
       started = true;
     }
-  });<% } %>
-});<% } %>
-
-<% if (appType === 'client' || appType === 'both') { %>
+  })<% } %>;
+});<% } %><% if (appType === 'client' || appType === 'both') { %>
 gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>function() {
+  <% if (appType === 'server' || appType === 'both') { %>var config = require('./config');<% } %>
   browserSync.init({<% if (appType === 'client') { %>
     server: {
       baseDir: './public'
@@ -156,6 +148,7 @@ gulp.task('sprites', function() {
 gulp.task('styles', function() {
   var bower = require('bower-files')();
   var dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files;
+  var util = require('util');
   var injectTransform = {
     starttag: '/* inject:imports */',
     endtag: '/* endinject */',
@@ -244,7 +237,7 @@ gulp.task('watch-gulpfile', function() {
       // var task = argv.task ? argv.task : 'default';
       process = spawn('gulp', [], {stdio: 'inherit'});
     });
-});<% if (scriptType === 'javascript')  { %>
+});
 
 gulp.task('lint', function() {
   var beep = function() {
@@ -256,25 +249,23 @@ gulp.task('lint', function() {
     .pipe(jshint())
     .pipe(jshint.reporter(beep))
     .pipe(jshint.reporter(stylish));
-});<% } %>
+});
 
-gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %><% if (appFramework === 'angular') %>
-  gulp.watch(files.templates.src, [
+gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
+  gulp.watch(<% if (appFramework === 'angular') { %>files.templates.src<% } else {%>files.views.src<% } %>, [
     'views',
     browserSync.reload
-  ]);<% } %>
+  ]);
 
   gulp.watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
-  gulp.watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType === 'javascript')  { %>
-
-  gulp.watch(lintScripts, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
+  gulp.watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %>
+  gulp.watch(lintScripts, ['lint']);<% if (appType === 'client' || appType === 'both')  { %>
 
   gulp.watch('./bower.json', [
     'dependencies',
     'styles'
   ]);<% } %>
-
 });
 
 gulp.task('default', [<% if (appType === 'client' || appType === 'both')  { %>

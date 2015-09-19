@@ -1,8 +1,8 @@
 'use strict';
 
 var express = require('express');
-var http = require('http');
-var path = require('path');
+var http = require('http');<% if (appType === 'both') { %>
+var path = require('path');<% } %>
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var compress = require('compression');

@@ -1,11 +1,9 @@
 gulp = require 'gulp'
 gutil = require 'gulp-util'
-util = require 'util'
 spawn = require('child_process').spawn;<% if (scriptType === 'javascript') { %>
 jshint = require 'gulp-jshint'<% } %>
-stylish = require 'jshint-stylish'
-argv = require('yargs').argv;<% if (appType === 'server' || appType === 'both') { %>
-config = require './config'
+stylish = require 'jshint-stylish'<% if (appType === 'client' || appType === 'both') { %>
+argv = require('yargs').argv;<% } %><% if (appType === 'server' || appType === 'both') { %>
 nodemon = require 'gulp-nodemon'<% } %><% if (appType === 'client' || appType === 'both') { %>
 plumber = require 'gulp-plumber'
 browserSync = require('browser-sync').create();<% if (viewEngine === 'jade') { %>
@@ -20,10 +18,9 @@ autoprefixer = require 'gulp-autoprefixer'
 spritesmith = require 'gulp.spritesmith'
 concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
-inject = require 'gulp-inject'
-flatten = require 'gulp-flatten'<% } %>
+inject = require 'gulp-inject'<% if (appFramework === 'angular') { %>
+flatten = require 'gulp-flatten'<% } %><% } %>
 coffee = require 'gulp-coffee'
-
 <% if (appType === 'client' || appType === 'both') { %>
 files =
   views:
@@ -66,9 +63,7 @@ onError = (err)->
       process.stderr.write "#{message}\n"
 
 
-  gutil.beep()<% } %>
-
-<% if (appType === 'server' || appType === 'both') { %>
+  gutil.beep()<% } %><% if (appType === 'server' || appType === 'both') { %>
 gulp.task 'nodemon', <% if (appType === 'server') { %>(cb)<% } %>->
   options =
     script: 'app.coffee'
@@ -85,15 +80,13 @@ gulp.task 'nodemon', <% if (appType === 'server') { %>(cb)<% } %>->
 
   started = false<% } %>
 
-
   nodemon options<% if (appType === 'server') { %>
   .on 'start', ->
     unless started
       cb()
-      started = true<% } %><% } %>
-
-<% if (appType === 'client' || appType === 'both') { %>
+      started = true<% } %><% } %><% if (appType === 'client' || appType === 'both') { %>
 gulp.task 'browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>->
+  <% if (appType === 'server' || appType === 'both') { %>config = require './config'<% } %>
   browserSync.init<% if (appType === 'client') { %>
     server:
       baseDir: './public'<% } %><% if (appType === 'server' || appType === 'both') { %>
@@ -127,6 +120,7 @@ gulp.task 'sprites', ->
 gulp.task 'styles', ->
   bower = require('bower-files')()
   dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files
+  util = require 'util'
   injectTransform =
     starttag: '/* inject:imports */'
     endtag: '/* endinject */'
@@ -210,18 +204,8 @@ gulp.task 'watch-gulpfile', ->
       # task = if argv.task then argv.task else 'default'
       process = spawn('gulp', [], {stdio: 'inherit'})
 
-<% if (scriptType === 'javascript') { %>
-gulp.task 'lint', ->
-  beep = -> gutil.beep()
-
-  gulp
-    .src lintScripts
-    .pipe jshint()
-    .pipe jshint.reporter beep()
-    .pipe jshint.reporter(stylish)<% } %>
-
-gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %><% if (appFramework === 'angular') %>
-  gulp.watch files.templates.src, [
+gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %><% if (appFramework === 'angular') { %>
+  gulp.watch <% if (appFramework === 'angular') { %>files.templates.src<% } else {%>files.views.src<% } %>, [
       'views'
       browserSync.reload
     ]<% } %>
@@ -236,7 +220,6 @@ gulp.task 'watch', -><% if (appType === 'client' || appType === 'both')  { %><% 
     'dependencies'
     'styles'
   ]<% } %>
-
 
 gulp.task 'default', [<% if (appType === 'client' || appType === 'both')  { %>
   'dependencies'

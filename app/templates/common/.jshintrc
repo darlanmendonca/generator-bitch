@@ -14,8 +14,8 @@
   "node": true,
   "undef": true,
   "unused": true,
-  "asi": false,
+  "asi": false<% if (appFramework === 'angular') { %>,
   "globals": {
     "angular": true
-  }
+  }<% } %>
 }
