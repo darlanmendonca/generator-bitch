@@ -13,6 +13,7 @@
     "serve-favicon": "^2.3.0",
     "method-override": "^2.3.4",
     "mongoose": "^4.1.0",
+    "morgan": "^1.6.1",
     "req-dir": "^0.0.5",<% if (viewEngine === 'jade') { %>
     "jade": "^1.11.0",<% } %><% if (viewEngine === 'ejs') { %>
     "ejs": "^2.3.3",<% } %>

@@ -4,6 +4,7 @@ var express = require('express');
 var http = require('http');<% if (appType === 'both') { %>
 var path = require('path');<% } %>
 var mongoose = require('mongoose');
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
@@ -21,6 +22,10 @@ app.set('port', config.server.port);<% if (appType === 'both') { %>
 app.set('views', path.join(__dirname, 'assets', 'views'));
 app.set('view engine', '<%= viewEngine %>');<% } %>
 
+if (app.get('env') === 'development') {
+  app.use(morgan('dev'));
+}
+
 app
   .use(compress())<% if (appType === 'both') { %>
   .use(favicon(__dirname + '/public/imgs/favicons/icon.ico'))<% } %>
@@ -30,6 +35,7 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .use('/', routes.pages);<% } else { %>
   .use('/api', routes.api);<% } %>
+
 
 
 mongoose.connect(config.database.url, function() {

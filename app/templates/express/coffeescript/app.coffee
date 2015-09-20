@@ -2,6 +2,7 @@ express = require 'express'
 http = require 'http'
 path = require 'path'
 mongoose = require 'mongoose'
+morgan = require 'morgan'
 bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
@@ -18,6 +19,8 @@ app.set 'env', shell.env or process.env.ENV or 'production'
 app.set 'port', config.server.port<% if (appType === 'both') { %>
 app.set 'views', path.join(__dirname, 'assets', 'views')
 app.set 'view engine', '<%= viewEngine %>'<% } %>
+
+app.use(morgan('dev')) if app.get('env') is 'development'
 
 app
   .use compress()<% if (appType === 'both') { %>
