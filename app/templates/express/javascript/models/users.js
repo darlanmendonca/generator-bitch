@@ -1,13 +1,12 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var encode = require('../helpers/encode.js');
 
-var Schema = mongoose.Schema;
-var userSchema = new Schema({
-  email: String,
-  username: String,
-  password: String,
-  createdAt: {type: Date, default: Date.now},
+var schema = new mongoose.Schema({
+  email: {type: String, required: true},
+  password: {type: String, required: true, set: encode},
+  createdAt: {type: Date, default: Date.now}
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('users', schema);

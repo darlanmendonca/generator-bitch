@@ -13,7 +13,6 @@ var routes = require('./routes');
 var shell = require('shell-arguments');<% if (appType === 'both') { %>
 var favicon = require('serve-favicon');<% } %>
 
-
 var app = express();
 var server = http.createServer(app);
 
@@ -35,8 +34,6 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .use('/', routes.pages);<% } else { %>
   .use('/api', routes.api);<% } %>
-
-
 
 mongoose.connect(config.database.url, function() {
   server.listen(app.get('port'), function () {

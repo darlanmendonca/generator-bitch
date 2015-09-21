@@ -8,6 +8,10 @@ var config = {
     },
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
+    },
+    secret: '<%= appSecret %>',
+    token: {
+      expiresInMinutes: 1440 // 24 hours
     }
   },
   production: {
@@ -17,6 +21,10 @@ var config = {
     },
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
+    },
+    secret: '<%= appSecret %>',
+    token: {
+      expiresInMinutes: 1440 // 24 hours
     }
   }
 };

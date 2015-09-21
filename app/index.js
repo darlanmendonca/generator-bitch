@@ -57,6 +57,22 @@ module.exports = generators.Base.extend({
       done();
     }.bind(this));
   },
+  appSecret: function() {
+    var done = this.async();
+    var prompt = {
+      type: 'input',
+      name: 'appSecret',
+      message: 'type secret to use in json web token'
+    };
+    if (this.appType === 'client') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.appSecret = data.appSecret ? data.appSecret : '';
+        done();
+      }.bind(this));
+    }
+  },
   scriptType: function() {
     var done = this.async();
     var prompt = {

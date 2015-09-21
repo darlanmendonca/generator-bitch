@@ -1,11 +1,12 @@
 mongoose = require('mongoose');
 
-Schema = mongoose.Schema;
-userSchema = new Schema
-  email: String
-  username: String
-  password: String
+encode = (str)->
+  crypto = require('crypto');
+  hash = crypto.createHash('md5').update(str).digest('hex')
+
+schema = new mongoose.Schema
+  email: {type: String, required: true}
+  password: {type: String, required: true, set: encode}
   createdAt: {type: Date, default: Date.now}
 
-
-module.exports = mongoose.model 'users', userSchema
+module.exports = mongoose.model 'users', schema
