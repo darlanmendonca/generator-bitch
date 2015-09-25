@@ -35,7 +35,7 @@ Gulp with flag open (require npm 3)
 npm run gulp -- --open
 ```<% } %>
 
-Running test specs:
+Running test specs (start application before, then):
 ```sh
 npm test
 ```

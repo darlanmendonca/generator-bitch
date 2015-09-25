@@ -86,3 +86,12 @@ Databases
 - [Redis](http://redis.io/) (soon)
 - [MySQL](https://www.mysql.com/) (soon)
 
+
+#### Tests
+At moment, I added test specs to controllers, using:
+
+- mocha as test framework
+- supertest (to make requests http)
+- should (to maker assertions)
+
+And soon, I will add unit tests, and e2e. I want cover the entire application with tests.
