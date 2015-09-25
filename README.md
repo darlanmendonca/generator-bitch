@@ -88,10 +88,10 @@ Databases
 
 
 #### Tests
-At moment, I added test specs to controllers, using:
+At moment, I added test specs to api controllers (express), using:
 
-- mocha as test framework
-- supertest (to make requests http)
-- should (to maker assertions)
+- [Mocha](http://mochajs.org/) as test framework
+- [Supertest](https://github.com/visionmedia/supertest) (to make requests http)
+- [should](https://github.com/shouldjs/should.js) (to maker assertions)
 
 And soon, I will add unit tests, and e2e. I want cover the entire application with tests.
