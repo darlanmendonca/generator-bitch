@@ -6,6 +6,7 @@ morgan = require 'morgan'
 bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
+multer = require('multer')()
 config = require './config'
 routes = require './routes'
 shell = require 'shell-arguments'<% if (appType === 'both') { %>
@@ -25,11 +26,12 @@ app
   .use compress()<% if (appType === 'both') { %>
   .use favicon(__dirname + '/public/imgs/favicons/icon.ico')<% } %>
   .use methodOverride()
+  .use multer.array()
   .use bodyParser.urlencoded({extended: true})
   .use bodyParser.json()<% if (appType === 'both') { %>
-  .use express.static(path.join(__dirname, 'public'))
-  .use '/', routes.pages<% } else { %>
-  .use '/api', routes.api<% } %>
+  .use express.static(path.join(__dirname, 'public'))<% } %><% if (appType === 'server' || appType === 'both') { %>
+  .use '/api', routes.api<% } %><% if (appType === 'client' || appType === 'both') { %>
+  .use '/', routes.pages<% } %>;
 
 mongoose.connect config.database.url, ->
   server.listen app.get('port'), ->

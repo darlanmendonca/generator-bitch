@@ -11,7 +11,7 @@ AuthController.local = (req, res)->
     .then (user)->
       unless user
         res.status(400).json
-          message: 'authentication failed.'
+          message: 'authentication failed'
         return
 
       res.json

@@ -8,6 +8,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
+var multer = require('multer')();
 var config = require('./config');
 var routes = require('./routes');
 var shell = require('shell-arguments');<% if (appType === 'both') { %>
@@ -29,11 +30,12 @@ app
   .use(compress())<% if (appType === 'both') { %>
   .use(favicon(__dirname + '/public/imgs/favicons/icon.ico'))<% } %>
   .use(methodOverride())
+  .use(multer.array())
   .use(bodyParser.urlencoded({extended: true}))
   .use(bodyParser.json())<% if (appType === 'both') { %>
-  .use(express.static(path.join(__dirname, 'public')))
-  .use('/', routes.pages);<% } else { %>
-  .use('/api', routes.api);<% } %>
+  .use(express.static(path.join(__dirname, 'public')))<% } %><% if (appType === 'server' || appType === 'both') { %>
+  .use('/api', routes.api)<% } %><% if (appType === 'client' || appType === 'both') { %>
+  .use('/', routes.pages)<% } %>;
 
 mongoose.connect(config.database.url, function() {
   server.listen(app.get('port'), function () {

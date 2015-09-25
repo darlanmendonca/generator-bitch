@@ -243,6 +243,13 @@ module.exports = generators.Base.extend({
       this.directory('.', '.');
     }
   },
+  integration: function() {
+    if (this.isAppType('server') || this.isAppType('both')) {
+      mkdirp('test/integration');
+      this.sourceRoot(path.join(__dirname,  'templates/test/integration/'+this.scriptType), this);
+      this.directory('.', './test/integration');
+    }
+  },
   assets: function() {
     if (this.isAppType('client')) {
       mkdirp('assets/imgs');

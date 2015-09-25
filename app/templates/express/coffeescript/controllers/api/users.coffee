@@ -10,7 +10,7 @@ UsersController.list = (req, res)->
 
 UsersController.get = (req, res)->
   Users
-    .findOne({_id: new ObjectId(req.param.id)}, publicFields)
+    .findOne({_id: new ObjectId(req.params.id)}, publicFields)
     .then (user)-> res.json(user)
 
 UsersController.create = (req, res)->

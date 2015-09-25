@@ -17,20 +17,17 @@ router
   .route '/auth'
   .post api.auth.local
 
-router.use (req, res, next)->
-  token = req.body.token || req.query.token || req.headers.token
-  unless token
-    res.status(403).json
-      message: 'no token provided'
-    return
-
-  jwt.verify token, config.secret, (err, decoded)->
+router.use (req, res, next) ->
+  token = req.body.token or req.query.token or req.headers.token
+  if !token
+    return res.status(403).json(message: 'no token provided')
+  jwt.verify token, config.secret, (err, decoded) ->
     if err
-      res.json
-        message: 'invalid token'
-
+      return res.status(403).json(message: 'invalid token')
     req.decoded = decoded
     next()
+    return
+  return
 
 router
   .route '/users'
@@ -39,7 +36,7 @@ router
 
 router
   .route '/users/:id'
-  .get api.users.list
+  .get api.users.get
 
 router
   .use (req, res)->

@@ -31,7 +31,7 @@ router.use(function(req, res, next) {
 
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err) {
-      return res.json({
+      return res.status(403).json({
         message: 'invalid token'
       });
     }

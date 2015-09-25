@@ -28,6 +28,7 @@ var lintScripts = [
   './app.js',
   './models/**/*.js',
   './controllers/**/*.js',
+  './test/**/*.js',
   './routes/**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
   './assets/<%= appFramework %>/**/*.js'<% } %>
 ];
@@ -88,9 +89,10 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
     quiet: true,
     ext: 'js',<% if (appType === 'both') { %>
     ignore: [
-      'gulpfile.js',<% if (appFramework !== 'none') { %>
+      'gulpfile.js',
+      'test/**/*.js',<% if (appFramework !== 'none') { %>
       'assets/<%= appFramework %>/**/*.js',<% } %>
-      'public/scripts/**/*.js'
+      'public/scripts/**/*.js',
     ],<% } %>
     env: {
       ENV: 'development'<% if (appType === 'client' || appType === 'both') { %>,

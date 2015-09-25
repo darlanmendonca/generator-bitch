@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
     "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %>
-    "gulp": "gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %>",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %>",<% if (appType === 'server' || appType === 'both') { %>
+    "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %>"<% } else { %>
+    "test": "echo \"Error: no test specified\" && exit 1"<% } %>
   },
   "dependencies": {<% if (appType === 'server' || appType === 'both') { %>
     "express": "^4.13.1",
@@ -14,6 +15,7 @@
     "method-override": "^2.3.4",
     "mongoose": "^4.1.0",
     "morgan": "^1.6.1",
+    "multer": "^1.0.5",
     "jsonwebtoken": "^5.0.5",
     "req-dir": "^0.0.5",<% if (viewEngine === 'jade') { %>
     "jade": "^1.11.0",<% } %><% if (viewEngine === 'ejs') { %>
@@ -21,6 +23,10 @@
     "shell-arguments": "^1.0.4"<% } %>
   },
   "devDependencies": {<% if (appType === 'server' || appType === 'both') { %>
+    "supertest": "^1.1.0",
+    "should": "^7.1.0",
+    "faker": "^3.0.1",
+    "mocha": "^2.3.3",
     "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'both') { %>
     "open": "^0.0.5",<% } %><% if (appType === 'client' || appType === 'both') { %>
     "bower-files": "^3.7.2",
