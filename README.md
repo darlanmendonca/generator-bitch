@@ -1,4 +1,5 @@
 A simple generator (for Yeoman) to scaffolding web apps. Server, client, or both.
+
 Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6, ecma 5, or coffeescript).
 
 
