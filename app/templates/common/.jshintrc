@@ -7,12 +7,13 @@
   "newcap": true,
   "quotmark": "single",
   "maxdepth": 3,
-  "maxstatements": 15,
+  "maxstatements": 15,<% if (scriptType === 'ecma6') { %>
   "maxlen": 80,
+  "esnext": true,<% } %>
   "eqnull": true,
   "funcscope": true,
   "node": true,
-  "undef": true,
+  "undef": false,
   "unused": true,
   "asi": false,
   "globals": {

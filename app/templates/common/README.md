@@ -23,17 +23,7 @@ Scripts on package.json
 Start process with Nodemon:
 ```sh
 npm start
-```<% if (scriptType === 'coffeescript') { %>
-
-Start Gulp task default:
-```sh
-npm run gulp
 ```
-
-Gulp with flag open (require npm 3)
-```sh
-npm run gulp -- --open
-```<% } %>
 
 Running test specs (start application before, then):
 ```sh

@@ -6,6 +6,12 @@ var util = require('util');
 var slugify = require('underscore.string/slugify');
 var mkdirp = require('mkdirp');
 
+var babel = require('gulp-babel');
+var gulpif = require('gulp-if');
+var gulpIgnore = require('gulp-ignore');
+var js2coffee = require('gulp-js2coffee');
+
+
 module.exports = generators.Base.extend({
   constructor: function () {
     generators.Base.apply(this, arguments);
@@ -78,13 +84,28 @@ module.exports = generators.Base.extend({
     var prompt = {
       type: 'list',
       name: 'scriptType',
-      message: 'scripts type',
-      default: 'javascript',
-      choices: ['javascript', 'coffeescript']
+      message: 'javascript is write in',
+      default: 'es6',
+      choices: ['es6', 'es5', 'coffeescript']
     };
     this.prompt(prompt, function(data) {
       this.scriptType = data.scriptType;
-      this.extScript = this.scriptType === 'javascript' ? 'js' : 'coffee';
+      this.extScript = this.scriptType === 'coffeescript' ? 'coffee' : 'js';
+      var condition;
+
+      if (this.scriptType === 'es5') {
+        condition = function (file) {
+          return path.extname(file.path) === '.js';
+        };
+        this.registerTransformStream(gulpif(condition, babel()));
+      } else if (this.scriptType === 'coffeescript') {
+        condition = function (file) {
+          return path.extname(file.path) === '.js';
+        };
+        this.registerTransformStream(gulpif(condition, babel()));
+        this.registerTransformStream(gulpif(condition, js2coffee()));
+      }
+
       done();
     }.bind(this));
   },
@@ -228,7 +249,7 @@ module.exports = generators.Base.extend({
     this.directory('.', '.');
   },
   gulp: function() {
-    this.sourceRoot(path.join(__dirname,  'templates/gulp/'+this.scriptType), this);
+    this.sourceRoot(path.join(__dirname,  'templates/gulp'), this);
     this.directory('.', '.');
   },
   bower: function() {
@@ -239,14 +260,14 @@ module.exports = generators.Base.extend({
   },
   express: function() {
     if (this.isAppType('server')) {
-      this.sourceRoot(path.join(__dirname,  'templates/express/'+this.scriptType), this);
+      this.sourceRoot(path.join(__dirname,  'templates/express'), this);
       this.directory('.', '.');
     }
   },
   integration: function() {
     if (this.isAppType('server') || this.isAppType('both')) {
       mkdirp('test/integration');
-      this.sourceRoot(path.join(__dirname,  'templates/test/integration/'+this.scriptType), this);
+      this.sourceRoot(path.join(__dirname,  'templates/test/integration'), this);
       this.directory('.', './test/integration');
     }
   },
@@ -274,14 +295,14 @@ module.exports = generators.Base.extend({
   },
   angular: function() {
     if (this.isAppType('client') && this.appFramework === 'angular') {
-      this.sourceRoot(path.join(__dirname,  'templates/angular/'+this.scriptType), this);
+      this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
       this.directory('.', 'assets/angular');
 
       this.sourceRoot(path.join(__dirname,  'templates/angular/templates/'+this.viewEngine), this);
       this.directory('.', 'assets/angular');
 
       if (this.angularRoute === 'uiRouter' || this.angularRoute === 'ngRoute') {
-        this.sourceRoot(path.join(__dirname,  'templates/angular/route/'+this.scriptType), this);
+        this.sourceRoot(path.join(__dirname,  'templates/angular/route'), this);
         this.directory('.', 'assets/angular');
       }
     }

@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Scaffolding MEAN applications. Server, client, or both.",
   "main": "app/index.js",
   "keywords": [
@@ -29,6 +29,15 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "underscore.string": "^3.0.3",
-    "yeoman-generator": "^0.20.1"
+    "yeoman-generator": "^0.20.1",
+    "gulp-babel": "^5.2.1",
+    "gulp-if": "^1.2.5",
+    "gulp-js2coffee": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-ejs": "^1.2.0",
+    "gulp-jshint": "^1.11.2",
+    "jshint-stylish": "^2.0.1"
   }
 }

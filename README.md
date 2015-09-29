@@ -62,6 +62,8 @@ Styles
 
 Scripts
 - Javascript
+  - Ecma 6
+  - Ecma 5
 - [CoffeeScript](http://coffeescript.org/)
 
 

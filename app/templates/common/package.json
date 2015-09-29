@@ -2,8 +2,7 @@
   "name": "<%= appname %>",
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
-    "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %>
-    "gulp": "gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %>",<% if (appType === 'server' || appType === 'both') { %>
+    "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %><% if (appType === 'server' || appType === 'both') { %>
     "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %>"<% } else { %>
     "test": "echo \"Error: no test specified\" && exit 1"<% } %>
   },
