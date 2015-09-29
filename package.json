@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Scaffolding MEAN applications. Server, client, or both.",
   "main": "app/index.js",
   "keywords": [
@@ -13,7 +13,10 @@
     "ejs",
     "node",
     "express",
-    "yeoman-generator"
+    "yeoman-generator",
+    "ecma6",
+    "coffeescript",
+    "ecma2015"
   ],
   "homepage": "https://github.com/darlanmendonca/generator-bitch",
   "bugs": "https://github.com/darlanmendonca/generator-bitch/issues",
