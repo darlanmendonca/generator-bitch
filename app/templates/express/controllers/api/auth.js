@@ -8,6 +8,16 @@ let encode = require('../../helpers/encode.<%= extScript %>');
 let publicFields = '-__v -password';
 
 AuthController.local = function(req, res) {
+	/**
+    * @api {POST} /auth local
+    * @apiDescription Authentication user with local strategy
+    * @apiName local
+    * @apiGroup Auth
+    * @apiPermission Public
+    *
+    * @apiParam {String} email email of user
+    * @apiParam {String} password password of user
+    */
   let password = encode(req.body.password);
   Users
     .findOne({email: req.body.email, password: password}, publicFields)

@@ -7,7 +7,7 @@
   "newcap": true,
   "quotmark": "single",
   "maxdepth": 3,
-  "maxstatements": 15,<% if (scriptType === 'ecma6') { %>
+  "maxstatements": 15,<% if (scriptType === 'es6') { %>
   "maxlen": 80,
   "esnext": true,<% } %>
   "eqnull": true,
