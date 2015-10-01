@@ -5,7 +5,16 @@
     "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %><% if (appType === 'server' || appType === 'both') { %>
     "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %>"<% } else { %>
     "test": "echo \"Error: no test specified\" && exit 1"<% } %>
-  },
+  },<% if (appType === 'server' || appType === 'both') { %>
+  "apidoc": {
+    "title": "Title API",
+    "url": "http://api.com",
+    "template": {
+      "forceLanguage": "en",
+      "withCompare": false,
+      "withGenerator": false
+    }
+  },<% } %>
   "dependencies": {<% if (appType === 'server' || appType === 'both') { %>
     "express": "^4.13.1",
     "body-parser": "^1.13.2",
@@ -26,6 +35,7 @@
     "should": "^7.1.0",
     "faker": "^3.0.1",
     "mocha": "^2.3.3",
+    "gulp-apidoc": "^0.2.0",
     "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'both') { %>
     "open": "^0.0.5",<% } %><% if (appType === 'client' || appType === 'both') { %>
     "bower-files": "^3.7.2",

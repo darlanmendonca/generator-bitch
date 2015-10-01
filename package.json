@@ -1,6 +1,6 @@
 {
 	"name": "generator-bitch",
-	"version": "0.2.7",
+	"version": "0.2.8",
 	"description": "Scaffolding MEAN applications. Server, client, or both.",
 	"main": "app/index.js",
 	"keywords": [

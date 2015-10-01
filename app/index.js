@@ -223,79 +223,83 @@ module.exports = generators.Base.extend({
 	},
 	angularRoute: function() {
 		var done = this.async();
-
-		var prompt = {
-			type: 'list',
-			name: 'angularRoute',
-			message: 'select how you want route angular',
-			default: 'uiRouter',
-			choices: ['uiRouter', 'ngRoute', 'none']
-		};
-		if (this.appType === 'server' || this.appFramework !== 'angular') {
-			done();
-		} else {
-			this.prompt(prompt, function(data) {
-				this.angularRoute = data.angularRoute;
-				this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
-					'ui-view' : 'ng-view';
-				console.log(this.angularRoute);
-				done();
-			}.bind(this));
-		}
-	},
-	common: function() {
-		this.sourceRoot(path.join(__dirname,  'templates/common'), this);
-		this.directory('.', '.');
-	},
-	gulp: function() {
-		this.sourceRoot(path.join(__dirname,  'templates/gulp'), this);
-		this.directory('.', '.');
-	},
-	bower: function() {
-		if (this.appType === 'client' || this.appType === 'both') {
-			this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
-			this.directory('.', '.');
-		}
-	},
-	express: function() {
-		if (this.isAppType('server')) {
-			this.sourceRoot(path.join(__dirname,  'templates/express'), this);
-			this.directory('.', '.');
-		}
-	},
-	integration: function() {
-		if (this.isAppType('server') || this.isAppType('both')) {
-			mkdirp('test/integration');
-			this.sourceRoot(path.join(__dirname,  'templates/test/integration'), this);
-			this.directory('.', './test/integration');
-		}
-	},
-	assets: function() {
-		if (this.isAppType('client')) {
-			mkdirp('assets/imgs');
-			mkdirp('assets/styles/components');
-			mkdirp('assets/sprites');
-			if (this.appFramework !== 'none') {
-				mkdirp('assets/'+this.appFramework);
-			}
-		}
-	},
-	views: function() {
-		if (this.isAppType('client')) {
-			this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
-			this.directory('.', 'assets/views');
-		}
-	},
-	styles: function() {
-		if (this.isAppType('client')) {
-			this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
-			this.directory('.', 'assets/styles');
-		}
-	},
-	angular: function() {
-		if (this.isAppType('client') && this.appFramework === 'angular') {
-			this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
-			this.directory('.', 'assets/angular');
+    var prompt = {
+      type: 'list',
+      name: 'angularRoute',
+      message: 'select how you want route angular',
+      default: 'uiRouter',
+      choices: ['uiRouter', 'ngRoute', 'none']
+    };
+    if (this.appType === 'server' || this.appFramework !== 'angular') {
+      done();
+    } else {
+      this.prompt(prompt, function(data) {
+        this.angularRoute = data.angularRoute;
+        this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
+          'ui-view' : 'ng-view';
+        console.log(this.angularRoute);
+        done();
+      }.bind(this));
+    }
+  },
+  common: function() {
+    this.sourceRoot(path.join(__dirname,  'templates/common'), this);
+    this.directory('.', '.');
+  },
+  gulp: function() {
+    this.sourceRoot(path.join(__dirname,  'templates/gulp'), this);
+    this.directory('.', '.');
+  },
+  bower: function() {
+    if (this.appType === 'client' || this.appType === 'both') {
+      this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
+      this.directory('.', '.');
+    }
+  },
+  express: function() {
+    if (this.isAppType('server')) {
+      this.sourceRoot(path.join(__dirname,  'templates/express'), this);
+      this.directory('.', '.');
+    }
+  },
+  integration: function() {
+    if (this.isAppType('server') || this.isAppType('both')) {
+      mkdirp('test/integration');
+      this.sourceRoot(path.join(__dirname,  'templates/test/integration'), this);
+      this.directory('.', './test/integration');
+    }
+  },
+  docs: function() {
+    if (this.isAppType('server') || this.isAppType('both')) {
+      mkdirp('docs');
+    }
+  },
+  assets: function() {
+    if (this.isAppType('client')) {
+      mkdirp('assets/imgs');
+      mkdirp('assets/styles/components');
+      mkdirp('assets/sprites');
+      if (this.appFramework !== 'none') {
+        mkdirp('assets/'+this.appFramework);
+      }
+    }
+  },
+  views: function() {
+    if (this.isAppType('client')) {
+      this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
+      this.directory('.', 'assets/views');
+    }
+  },
+  styles: function() {
+    if (this.isAppType('client')) {
+      this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
+      this.directory('.', 'assets/styles');
+    }
+  },
+  angular: function() {
+    if (this.isAppType('client') && this.appFramework === 'angular') {
+      this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
+      this.directory('.', 'assets/angular');
 
 			this.sourceRoot(path.join(__dirname,  'templates/angular/templates/'+this.viewEngine), this);
 			this.directory('.', 'assets/angular');
