@@ -85,6 +85,7 @@ Server
 - MVC
 - Config (with environments)
 - ORM's
+- [apiDocs](http://apidocjs.com/) to autogenerate documentation views
 
 Databases
 - [MongoDB](https://www.mongodb.org/) (with [Mongoose](http://mongoosejs.com/))
