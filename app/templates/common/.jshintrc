@@ -8,7 +8,7 @@
   "quotmark": "single",
   "maxdepth": 3,
   "maxstatements": 15,<% if (scriptType === 'es6') { %>
-  "maxlen": 80,
+  "maxlen": 120,
   "esnext": true,<% } %>
   "eqnull": true,
   "funcscope": true,

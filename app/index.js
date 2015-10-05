@@ -262,11 +262,11 @@ module.exports = generators.Base.extend({
       this.directory('.', '.');
     }
   },
-  integration: function() {
+  test: function() {
     if (this.isAppType('server') || this.isAppType('both')) {
-      mkdirp('test/integration');
-      this.sourceRoot(path.join(__dirname,  'templates/test/integration'), this);
-      this.directory('.', './test/integration');
+      mkdirp('test');
+      this.sourceRoot(path.join(__dirname,  'templates/test'), this);
+      this.directory('.', './test');
     }
   },
   docs: function() {

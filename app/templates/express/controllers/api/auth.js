@@ -23,7 +23,7 @@ AuthController.local = function(req, res) {
     .findOne({email: req.body.email, password: password}, publicFields)
     .then(function(user) {
       if (!user) {
-        return res.status(400).json({
+        return res.status(401).json({
           message: 'authentication failed'
         });
       }
