@@ -29,6 +29,7 @@ let lintScripts = [
 	'./app.<%= extScript %>',
 	'./models/**/*.<%= extScript %>',
 	'./controllers/**/*.<%= extScript %>',
+	'./middlewares/**/*.<%= extScript %>',
 	'./test/**/*.<%= extScript %>',
 	'./routes/**/*.<%= extScript %>',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
 	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %>
