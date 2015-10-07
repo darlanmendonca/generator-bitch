@@ -297,7 +297,7 @@ module.exports = generators.Base.extend({
     }
   },
   angular: function() {
-    if (this.isAppType('client') && this.appFramework === 'angular') {
+    if ((this.isAppType('client') || this.isAppType('both')) && this.appFramework === 'angular') {
       this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
       this.directory('.', 'assets/angular');
 
@@ -309,6 +309,12 @@ module.exports = generators.Base.extend({
 				this.directory('.', 'assets/angular');
 			}
 		}
+	},
+	scripts: function() {
+		if ((this.isAppType('client') || this.isAppType('both')) && this.appFramework === 'none') {
+			this.sourceRoot(path.join(__dirname,  'templates/scripts'), this);
+      this.directory('.', 'assets/scripts');
+    }
 	},
 	public: function() {
 		if (this.isAppType('client')) {

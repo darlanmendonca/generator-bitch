@@ -31,7 +31,8 @@ let lintScripts = [
 	'./controllers/**/*.<%= extScript %>',
 	'./test/**/*.<%= extScript %>',
 	'./routes/**/*.<%= extScript %>',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
-	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %>
+	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
+	'./assets/scripts/**/*.<%= extScript %>'<% } %>
 ];<% } %>
 <% if (appType === 'client' || appType === 'both') { %>
 let files = {
@@ -48,7 +49,7 @@ let files = {
 		dest: './public/styles/'
 	},
 	scripts: {
-		src: './assets/<%= appFramework %>/**/*.<%= extScript %>',
+		src: <% if (appFramework === 'angular') { %>'./assets/angular/**/*.<%= extScript %>'<% } %><% if (appFramework === 'none') { %>'./assets/scripts/**/*.<%= extScript %>'<% } %>,
 		dest: './public/scripts/'
 	},
 	sprites: {
