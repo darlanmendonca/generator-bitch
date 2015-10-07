@@ -1,8 +1,11 @@
 {
 	"name": "generator-bitch",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "Scaffolding MEAN applications. Server, client, or both.",
 	"main": "app/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec test/*.js"
+  },
 	"keywords": [
 		"bitch",
 		"jquery",
@@ -39,10 +42,11 @@
 		"gulp-if": "^1.2.5",
 		"gulp-js2coffee": "^1.0.0"
 	},
-	"devDependencies": {
-		"gulp": "^3.9.0",
-		"gulp-ejs": "^1.2.0",
-		"gulp-jshint": "^1.11.2",
-		"jshint-stylish": "^2.0.1"
-	}
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-ejs": "^1.2.0",
+    "gulp-jshint": "^1.11.2",
+    "jshint-stylish": "^2.0.1",
+    "mocha": "^2.3.3"
+  }
 }
