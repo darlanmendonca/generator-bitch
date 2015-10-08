@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Scaffolding MEAN applications. Server, client, or both.",
   "main": "app/index.js",
   "scripts": {
@@ -47,8 +47,6 @@
     "gulp-ejs": "^1.2.0",
     "gulp-jshint": "^1.11.2",
     "jshint-stylish": "^2.0.1",
-    "karma-chrome-launcher": "^0.2.1",
-    "karma-mocha": "^0.2.0",
     "mocha": "^2.3.3"
   }
 }

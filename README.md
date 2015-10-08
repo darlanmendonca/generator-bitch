@@ -94,7 +94,7 @@ Databases
 
 
 #### Tests
-At moment, I added test specs to api controllers (express), using:
+At moment, I added test specs to api controllers (integration tests), using:
 
 - [Mocha](http://mochajs.org/) as test framework
 - [Supertest](https://github.com/visionmedia/supertest) (to make requests http)
