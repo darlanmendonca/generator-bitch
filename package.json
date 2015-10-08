@@ -1,52 +1,54 @@
 {
-	"name": "generator-bitch",
-	"version": "0.3.3",
-	"description": "Scaffolding MEAN applications. Server, client, or both.",
-	"main": "app/index.js",
+  "name": "generator-bitch",
+  "version": "0.3.3",
+  "description": "Scaffolding MEAN applications. Server, client, or both.",
+  "main": "app/index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec test/*.js"
+    "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec test/unit/*.js"
   },
-	"keywords": [
-		"bitch",
-		"jquery",
-		"angular",
-		"sass",
-		"less",
-		"jade",
-		"ejs",
-		"node",
-		"express",
-		"yeoman-generator",
-		"ecma6",
-		"es6",
-		"es5",
-		"coffeescript",
-		"ecma2015"
-	],
-	"homepage": "https://github.com/darlanmendonca/generator-bitch",
-	"bugs": "https://github.com/darlanmendonca/generator-bitch/issues",
-	"author": "Darlan Mendonça <darlanmendonca@gmail.com> (https://github.com/darlanmendonca)",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/darlanmendonca/generator-bitch.git"
-	},
-	"engines": {
-		"node": ">=0.8.0",
-		"npm": ">=1.2.10"
-	},
-	"dependencies": {
-		"mkdirp": "^0.5.1",
-		"underscore.string": "^3.0.3",
-		"yeoman-generator": "^0.20.1",
-		"gulp-babel": "^5.2.1",
-		"gulp-if": "^1.2.5",
-		"gulp-js2coffee": "^1.0.0"
-	},
+  "keywords": [
+    "bitch",
+    "jquery",
+    "angular",
+    "sass",
+    "less",
+    "jade",
+    "ejs",
+    "node",
+    "express",
+    "yeoman-generator",
+    "ecma6",
+    "es6",
+    "es5",
+    "coffeescript",
+    "ecma2015"
+  ],
+  "homepage": "https://github.com/darlanmendonca/generator-bitch",
+  "bugs": "https://github.com/darlanmendonca/generator-bitch/issues",
+  "author": "Darlan Mendonça <darlanmendonca@gmail.com> (https://github.com/darlanmendonca)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/darlanmendonca/generator-bitch.git"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.20.1",
+    "gulp-babel": "^5.2.1",
+    "gulp-if": "^1.2.5",
+    "gulp-js2coffee": "^1.0.0"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-ejs": "^1.2.0",
     "gulp-jshint": "^1.11.2",
     "jshint-stylish": "^2.0.1",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-mocha": "^0.2.0",
     "mocha": "^2.3.3"
   }
 }

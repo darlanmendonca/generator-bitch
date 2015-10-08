@@ -2,7 +2,7 @@
 
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
-var path = require('path');
+var generator = process.env.PWD + '/app';
 
 describe('server application', function() {
 	describe('scriptType:es6', function() {
@@ -13,7 +13,7 @@ describe('server application', function() {
 				appSecret: 'lorem',
 				scriptType: 'es6'
 			};
-		  helpers.run(path.join( __dirname, '../app'))
+		  helpers.run(generator)
 		    .withPrompts(prompts)
 		    .on('end', done);
 		});
@@ -53,7 +53,7 @@ describe('server application', function() {
 				appSecret: 'lorem',
 				scriptType: 'es5'
 			};
-		  helpers.run(path.join( __dirname, '../app'))
+		  helpers.run(generator)
 		    .withPrompts(prompts)
 		    .on('end', done);
 		});
@@ -93,7 +93,7 @@ describe('server application', function() {
 				appSecret: 'lorem',
 				scriptType: 'coffeescript'
 			};
-		  helpers.run(path.join( __dirname, '../app'))
+		  helpers.run(generator)
 		    .withPrompts(prompts)
 		    .on('end', done);
 		});
@@ -137,7 +137,7 @@ describe('client application', function() {
 				preprocessor: 'sass',
 				appFramework: 'none'
 			};
-		  helpers.run(path.join( __dirname, '../app'))
+		  helpers.run(generator)
 		    .withPrompts(prompts)
 		    .on('end', done);
 		});
@@ -181,7 +181,7 @@ describe('client application', function() {
 				preprocessor: 'sass',
 				appFramework: 'none'
 			};
-		  helpers.run(path.join( __dirname, '../app'))
+		  helpers.run(generator)
 		    .withPrompts(prompts)
 		    .on('end', done);
 		});
@@ -225,7 +225,7 @@ describe('client application', function() {
 				preprocessor: 'sass',
 				appFramework: 'none'
 			};
-		  helpers.run(path.join( __dirname, '../app'))
+		  helpers.run(generator)
 		    .withPrompts(prompts)
 		    .on('end', done);
 		});
@@ -255,6 +255,131 @@ describe('client application', function() {
 				'middlewares',
 				'models',
 				'routes',
+			]);
+		});
+	});
+});
+
+describe('fullstack application', function() {
+	describe('scriptType:es6', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'both',
+				scriptType: 'es6',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'none'
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.js',
+				'package.json',
+				'public',
+				'test',
+				'app.js',
+				'config',
+				'controllers',
+				'docs',
+				'helpers',
+				'middlewares',
+				'models',
+				'routes',
+			]);
+		});
+	});
+
+	describe('scriptType:es5', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'both',
+				scriptType: 'es5',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'none'
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.js',
+				'package.json',
+				'public',
+				'test',
+				'app.js',
+				'config',
+				'controllers',
+				'docs',
+				'helpers',
+				'middlewares',
+				'models',
+				'routes'
+			]);
+		});
+	});
+
+	describe('scriptType:coffeescript', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'both',
+				scriptType: 'coffeescript',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'none'
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.coffee',
+				'package.json',
+				'public',
+				'test',
+				'app.coffee',
+				'config',
+				'controllers',
+				'docs',
+				'helpers',
+				'middlewares',
+				'models',
+				'routes'
 			]);
 		});
 	});
