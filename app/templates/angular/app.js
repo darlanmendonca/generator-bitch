@@ -1,3 +1,5 @@
+'use strict';
+
 angular
   .module('<%= slugify(appname) %>', [<% if (ngAnimate) { %>
     'ngAnimate',<% } %><% if (ngCookies) { %>
