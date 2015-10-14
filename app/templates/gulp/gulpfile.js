@@ -50,7 +50,10 @@ let files = {
 		dest: './public/styles/'
 	},
 	scripts: {
-		src: <% if (appFramework === 'angular') { %>'./assets/angular/**/*.<%= extScript %>'<% } %><% if (appFramework === 'none') { %>'./assets/scripts/**/*.<%= extScript %>'<% } %>,
+		src: <% if (appFramework === 'angular') { %>[
+			'./assets/angular/**/*.<%= extScript %>',
+			'!./assets/angular/**/*.spec.<%= extScript %>'
+		]<% } %><% if (appFramework === 'none') { %>'./assets/scripts/**/*.<%= extScript %>'<% } %>,
 		dest: './public/scripts/'
 	},
 	sprites: {
@@ -227,7 +230,7 @@ gulp.task('dependencies', function() {
 	gulp
 		.src(bower.ext('css').files)
 		.pipe(concat('vendor.css'))
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(gulp.dest('./public/styles'));
 
 	gulp

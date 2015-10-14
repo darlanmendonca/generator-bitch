@@ -6,5 +6,4 @@ angular
 
 function AboutController ($scope) {
   $scope.viewName = 'About';
-  console.log('running AboutController');
 }

@@ -6,5 +6,4 @@ angular
 
 function HomeController ($scope) {
   $scope.viewName = 'Home';
-  console.log('running HomeController');
 }

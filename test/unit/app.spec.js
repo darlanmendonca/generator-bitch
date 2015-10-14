@@ -41,6 +41,7 @@ describe('server application', function() {
 				'bower.json',
 				'assets',
 				'public',
+				'karma.js'
 			]);
 		});
 	});
@@ -81,6 +82,7 @@ describe('server application', function() {
 				'bower.json',
 				'assets',
 				'public',
+				'karma.js'
 			]);
 		});
 	});
@@ -121,6 +123,7 @@ describe('server application', function() {
 				'bower.json',
 				'assets',
 				'public',
+				'karma.coffee'
 			]);
 		});
 	});
@@ -167,6 +170,7 @@ describe('client application', function() {
 				'middlewares',
 				'models',
 				'routes',
+				'karma.js'
 			]);
 		});
 	});
@@ -211,6 +215,7 @@ describe('client application', function() {
 				'middlewares',
 				'models',
 				'routes',
+				'karma.js'
 			]);
 		});
 	});
@@ -255,6 +260,7 @@ describe('client application', function() {
 				'middlewares',
 				'models',
 				'routes',
+				'karma.coffee'
 			]);
 		});
 	});
@@ -299,6 +305,10 @@ describe('fullstack application', function() {
 				'models',
 				'routes',
 			]);
+
+			assert.noFile([
+				'karma.js'
+			]);
 		});
 	});
 
@@ -338,7 +348,11 @@ describe('fullstack application', function() {
 				'helpers',
 				'middlewares',
 				'models',
-				'routes'
+				'routes',
+			]);
+
+			assert.noFile([
+				'karma.js'
 			]);
 		});
 	});
@@ -379,7 +393,11 @@ describe('fullstack application', function() {
 				'helpers',
 				'middlewares',
 				'models',
-				'routes'
+				'routes',
+			]);
+
+			assert.noFile([
+				'karma.coffee'
 			]);
 		});
 	});

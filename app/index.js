@@ -242,6 +242,12 @@ module.exports = generators.Base.extend({
       }.bind(this));
     }
   },
+  angularTest: function() {
+  	if ((this.appType === 'client' || this.appType === 'both') && this.appFramework === 'angular') {
+    	this.sourceRoot(path.join(__dirname,  'templates/karma'), this);
+		    this.directory('.', '.');
+    }
+  },
   common: function() {
     this.sourceRoot(path.join(__dirname,  'templates/common'), this);
     this.directory('.', '.');

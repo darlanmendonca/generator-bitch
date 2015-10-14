@@ -2,9 +2,8 @@
   "name": "<%= appname %>",
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
-    "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %><% if (appType === 'server' || appType === 'both') { %>
-    "test": "./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %>"<% } else { %>
-    "test": "echo \"Error: no test specified\" && exit 1"<% } %>
+    "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %>
+    "test": "<% if (appType === 'server' || appType === 'both') { %>./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %><% } if (appType === 'both') { %> && <% } %><% if (appType === 'client' || appType === 'both') { %>./node_modules/karma/bin/karma start karma.js<% } %>"
   },<% if (appType === 'server' || appType === 'both') { %>
   "apidoc": {
     "title": "Title API",
@@ -49,7 +48,13 @@
     "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
     "gulp-stylus": "^2.0.6",<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
-    "gulp-ng-annotate": "^1.1.0",<% } %>
+    "gulp-ng-annotate": "^1.1.0",
+    "jasmine": "^2.3.2",
+    "karma": "^0.13.10",
+    "karma-jasmine": "^0.3.6",
+    "karma-mocha-reporter": "^1.1.1",
+    "phantomjs": "^1.9.18",
+    "karma-phantomjs-launcher": "^0.2.1",<% } %>
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp.spritesmith": "^3.8.2",

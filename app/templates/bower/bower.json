@@ -10,5 +10,8 @@
     "angular-touch": "^1.4.5"<% } %><% if (angularRoute === 'uiRouter') { %>,
     "angular-ui-router": "^0.2.15"<% } %><% if (angularRoute === 'ngRoute') { %>,
     "angular-route": "^1.4.5"<% } %><% } %>
-  }
+  }<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>,
+  "devDependencies": {
+    "angular-mocks": "~1.4.7"
+  }<% } %>
 }
