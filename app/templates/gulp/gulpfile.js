@@ -189,7 +189,7 @@ gulp.task('styles', function() {
 		.pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
 		.pipe(stylus(configPreprocessor))<% } %>
 		.pipe(autoprefixer())
-		.pipe(sourcemaps.write('.'))
+		.pipe(sourcemaps.write({sourceRoot: '/assets/styles'}))
 		.pipe(gulp.dest(files.styles.dest))
 		.pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -203,7 +203,7 @@ gulp.task('scripts', function() {
 		.pipe(ngAnnotate())<% } %>
 		.pipe(concat('app.js'))
 		.pipe(uglify({mangle: false}))
-		.pipe(sourcemaps.write('.'))
+		.pipe(sourcemaps.write({sourceRoot: '/assets/angular'}))
 		.pipe(gulp.dest(files.scripts.dest));
 });
 
