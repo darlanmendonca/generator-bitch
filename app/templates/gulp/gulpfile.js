@@ -191,7 +191,7 @@ gulp.task('styles', function() {
 		.pipe(autoprefixer())
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(files.styles.dest))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('scripts', function() {
