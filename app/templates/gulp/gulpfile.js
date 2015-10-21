@@ -195,12 +195,14 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
+	let babel = require('gulp-babel');
 	gulp
 		.src(files.scripts.src)
 		.pipe(plumber(<% if (scriptType !== 'coffeescript') { %>{ errorHandler: onError }<% } %>))
 		.pipe(sourcemaps.init())<% if (scriptType === 'coffeescript') { %>
 		.pipe(coffee({bare: true}).on('error', onError))<% } %><% if (appFramework === 'angular') { %>
 		.pipe(ngAnnotate())<% } %>
+		.pipe(babel())
 		.pipe(concat('app.js'))
 		.pipe(uglify({mangle: false}))
 		.pipe(sourcemaps.write({sourceRoot: '/assets/angular'}))
