@@ -49,7 +49,8 @@
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
     "gulp-stylus": "^2.0.6",<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
     "gulp-ng-annotate": "^1.1.0",<% if (scriptType === 'es6') { %>
-    "gulp-babel": "^5.2.1",<% } %>
+    "gulp-babel": "^5.2.1",<% } %><% if (appType === 'client' && appFramework === 'angular') { %>
+    "connect-history-api-fallback": "^1.1.0",<% } %>
     "jasmine": "^2.3.2",
     "karma": "^0.13.10",
     "karma-jasmine": "^0.3.6",

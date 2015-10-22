@@ -118,8 +118,11 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 			started = true;
 		}
 	})<% } %>;
-});<% } %><% if (appType === 'client' || appType === 'both') { %>
-gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>function() {
+});<% } %>
+<% if (appType === 'client' || appType === 'both') { %>
+gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>function() {<% if (appType === 'client' && appFramework === 'angular') { %>
+	let historyApiFallback = require('connect-history-api-fallback');<% } %>
+
 	<% if (appType === 'server' || appType === 'both') { %>let config = require('./config');<% } %>
 	browserSync.init({<% if (appType === 'client') { %>
 		server: {
@@ -131,7 +134,8 @@ gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>fun
 			'public/**/*.<%= extScript %>',
 			'assets/**/*.<%= extScript %>'
 		],<% } %>
-		notify: false,
+		notify: false,<% if (appType === 'client' && appFramework === 'angular') { %>
+		middleware: [ historyApiFallback() ],<% } %>
 		reloadDelay: 100,
 		open: <% if (appType === 'client') { %>argv.open<% } %><% if (appType !== 'client') { %>false<% } %>
 	});
