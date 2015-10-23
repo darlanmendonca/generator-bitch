@@ -232,11 +232,12 @@ gulp.task('views', function() {
 
 gulp.task('dependencies', function() {
 	let bower = require('bower-files')();
+	let minifyCss = require('gulp-minify-css');
 
 	gulp
 		.src(bower.ext('css').files)
 		.pipe(concat('vendor.css'))
-		// .pipe(uglify())
+		.pipe(minifyCss({keepSpecialComments: 0}))
 		.pipe(gulp.dest('./public/styles'));
 
 	gulp

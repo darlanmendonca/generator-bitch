@@ -47,6 +47,7 @@ gulp --open
 - concatenation and minification (styles and scripts)
 - restart automatically server (with [nodemon](http://nodemon.io))
 - watch files, to running all tasks automatically
+- compile es6 client scripts to es5  with [Babel](https://babeljs.io/) (if you choose es5 has script type)
 - [ngAnnotate](https://github.com/olov/ng-annotate) (to Angular)
 
 #### Client
