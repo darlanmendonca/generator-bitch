@@ -1,3 +1,5 @@
+'use strict';
+
 describe('AboutController', function() {
 	beforeEach(module('<%= slugify(appname) %>'));
 
