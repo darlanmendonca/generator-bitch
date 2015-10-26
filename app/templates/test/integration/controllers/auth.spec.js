@@ -3,12 +3,13 @@
 let request = require('supertest');
 let should = require('should'); /* jshint ignore:line */
 let helper = require('../../helper.js');
+let app = require('../../../app');
 
-describe('api/auth', function() {
-  describe('401 (Not authorized) authentication failed', function() {
-    it('POST /api/auth', function(done) {
-      request(helper.API)
-        .post('/auth')
+describe('Auth', function() {
+	describe('.local - POST /api/auth', function() {
+		it('authentication failed', function(done) {
+      request(app)
+        .post('/api/auth')
         .set('token', helper.user.token)
         .field('email', helper.user.email)
         .field('password', helper.user.invalidPassword)
@@ -18,11 +19,10 @@ describe('api/auth', function() {
           done();
         });
     });
-  });
-  describe('200 (Success) user id, token', function() {
-    it('POST /auth', function(done) {
-      request(helper.API)
-        .post('/auth')
+
+    it('authentication success', function(done) {
+      request(app)
+        .post('/api/auth')
         .set('token', helper.user.token)
         .field('email', helper.user.email)
         .field('password', helper.user.password)
@@ -33,6 +33,6 @@ describe('api/auth', function() {
           done();
         });
     });
-  });
+	});
 });
 

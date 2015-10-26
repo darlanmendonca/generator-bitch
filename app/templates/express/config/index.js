@@ -24,7 +24,7 @@ let config = {
     },
     secret: '<%= appSecret %>',
     token: {
-      expiresInMinutes: 1440 // 24 hours
+      expiresIn: 1440 // 24 hours
     }
   },
   test: {
@@ -37,7 +37,7 @@ let config = {
     },
     secret: '<%= appSecret %>',
     token: {
-      expiresInMinutes: 1440 // 24 hours
+      expiresIn: 1440 // 24 hours
     }
   }
 };
