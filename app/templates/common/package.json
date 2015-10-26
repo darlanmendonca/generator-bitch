@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
     "start": "nodemon --quiet app.<%= extScript %> --env 'development'",<% } %>
-    "test": "<% if (appType === 'server' || appType === 'both') { %>NODE_ENV=test ./node_modules/mocha/bin/_mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %><% } if (appType === 'both') { %> && <% } %><% if (appType === 'client' || appType === 'both') { %>./node_modules/karma/bin/karma start karma.js<% } %>"
+    "test": "<% if (appType === 'server' || appType === 'both') { %>NODE_ENV=test mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %><% } if (appType === 'both') { %> && <% } %><% if (appType === 'client' || appType === 'both') { %>karma start karma.js<% } %>"
   },<% if (appType === 'server' || appType === 'both') { %>
   "apidoc": {
     "title": "Title API",
