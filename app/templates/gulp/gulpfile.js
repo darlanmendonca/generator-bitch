@@ -1,37 +1,16 @@
 'use strict';
 
 let gulp = require('gulp');
-let gutil = require('gulp-util');
-let spawn = require('child_process').spawn;<% if (scriptType !== 'coffeescript') { %>
-let jshint = require('gulp-jshint');<% } %>
-let stylish = require('jshint-stylish');<% if (appType === 'client' || appType === 'both') { %>
-let argv = require('yargs').argv;<% } %><% if (appType === 'server' || appType === 'both') { %>
-let nodemon = require('gulp-nodemon');<% } %><% if (appType === 'client' || appType === 'both') { %>
+let gutil = require('gulp-util');<% if (appType === 'client' || appType === 'both') { %>
+let argv = require('yargs').argv;<% } %><% if (appType === 'client' || appType === 'both') { %>
 let plumber = require('gulp-plumber');
-let browserSync = require('browser-sync').create();<% if (viewEngine === 'jade') { %>
-let jade = require('gulp-jade');<% } %><% if (viewEngine === 'ejs') { %>
-let ejs = require('gulp-ejs');<% } %><% if (preprocessor === 'sass') { %>
-let sass = require('gulp-sass');<% } %><% if (preprocessor === 'less') { %>
-let less = require('gulp-less');<% } %><% if (preprocessor === 'stylus') { %>
-let stylus = require('gulp-stylus');<% } %><% if (appType === 'client' || appType === 'both') { %>
+let browserSync = require('browser-sync').create();<% if (appType === 'client' || appType === 'both') { %>
 let sourcemaps = require('gulp-sourcemaps');
-let autoprefixer = require('gulp-autoprefixer');
-let spritesmith = require('gulp.spritesmith');
 let concat = require('gulp-concat');
-let uglify = require('gulp-uglify');
-let inject = require('gulp-inject');<% } %><% if (appFramework === 'angular') { %>
-let ngAnnotate = require('gulp-ng-annotate');
-let flatten = require('gulp-flatten');<% } %><% } %><% if (scriptType === 'coffeescript') { %>
-let coffee = require('gulp-coffee');<% } %>
+let uglify = require('gulp-uglify');<% } %><% } %>
 <% if (scriptType !== 'coffeescript') { %>
 let lintScripts = [
-	'./gulpfile.<%= extScript %>',<% if (appType === 'server' || appType === 'both') { %>
-	'./app.<%= extScript %>',
-	'./models/**/*.<%= extScript %>',
-	'./controllers/**/*.<%= extScript %>',
-	'./middlewares/**/*.<%= extScript %>',
-	'./test/**/*.<%= extScript %>',
-	'./routes/**/*.<%= extScript %>',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
+	'./gulpfile.<%= extScript %>',<% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
 	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
 	'./assets/scripts/**/*.<%= extScript %>'<% } %>
 ];<% } %>
@@ -94,6 +73,8 @@ let onError = function (err) {
 };<% } %>
 <% if (appType === 'server' || appType === 'both') { %>
 gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
+	let nodemon = require('gulp-nodemon');
+
 	let options = {
 		script: 'app.<%= extScript %>',
 		quiet: true,
@@ -143,6 +124,8 @@ gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>fun
 });
 
 gulp.task('sprites', function() {
+	let spritesmith = require('gulp.spritesmith');
+
 	let options = {
 		imgName: 'sprites.png',
 		cssName: 'sprite-vars.<%= extPreprocessor %>',
@@ -165,7 +148,10 @@ gulp.task('sprites', function() {
 gulp.task('styles', function() {
 	let bower = require('bower-files')();
 	let dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files;
+	let inject = require('gulp-inject');
 	let util = require('util');
+	let <%= preprocessor %> = require('gulp-<%= preprocessor %>');
+	let autoprefixer = require('gulp-autoprefixer');
 
 	let injectTransform = {
 		starttag: '/* inject:imports */',
@@ -202,7 +188,9 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-	let babel = require('gulp-babel');
+	let babel = require('gulp-babel');<% if (appFramework === 'angular') { %>
+	let ngAnnotate = require('gulp-ng-annotate');<% } %><% if (scriptType === 'coffeescript') { %>
+	let coffee = require('gulp-coffee');<% } %>
 
 	gulp
 		.src(files.scripts.src)
@@ -218,18 +206,19 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('views', function() {
-	gulp
-		.src(files.views.src)
-		.pipe(plumber({ errorHandler: onError }))<% if (viewEngine === 'jade') { %>
-		.pipe(jade())<% } %><% if (viewEngine === 'ejs') { %>
-		.pipe(ejs())<% } %><% if (appType === 'client') { %>
-		.pipe(gulp.dest(files.views.dest))<% } %>;<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+	let <%= viewEngine %> = require('gulp-<%= viewEngine %>');
 
 	gulp
+		.src(files.views.src)
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(<%= viewEngine %>())<% if (appType === 'client') { %>
+		.pipe(gulp.dest(files.views.dest))<% } %>;<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+
+	let flatten = require('gulp-flatten');
+	gulp
 		.src(files.templates.src)
-		.pipe(plumber({ errorHandler: onError }))<% if (viewEngine === 'jade') { %>
-		.pipe(jade())<% } %><% if (viewEngine === 'ejs') { %>
-		.pipe(ejs())<% } %>
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(<%= viewEngine %>())
 		.pipe(flatten())
 		.pipe(gulp.dest(files.templates.dest));<% } %>
 });
@@ -252,7 +241,9 @@ gulp.task('dependencies', function() {
 });<% } %>
 
 gulp.task('watch-gulpfile', function() {
-	var process;
+	let spawn = require('child_process').spawn;
+	let process;
+
 	gulp
 		.watch('gulpfile.<%= extScript %>', function() {
 			if (process) {
@@ -264,6 +255,9 @@ gulp.task('watch-gulpfile', function() {
 });<% if (scriptType !== 'coffeescript') { %>
 
 gulp.task('lint', function() {
+	let jshint = require('gulp-jshint');
+	let stylish = require('jshint-stylish');
+
 	let beep = function() {
 		gutil.beep();
 	};

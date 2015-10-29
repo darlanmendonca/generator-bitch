@@ -21,6 +21,9 @@
     "after": true,
     "describe": true,
     "it": true<% if (appFramework === 'angular') { %>,
-    "angular": true<% } %>
+    "angular": true,
+  	"beforeEach": true,
+  	"inject": true,
+  	"expect": true<% } %>
   }
 }
