@@ -91,7 +91,8 @@ let onError = function (err) {
 
 	}
 	gutil.beep();
-};<% } %><% if (appType === 'server' || appType === 'both') { %>
+};<% } %>
+<% if (appType === 'server' || appType === 'both') { %>
 gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 	let options = {
 		script: 'app.<%= extScript %>',
@@ -121,9 +122,9 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 });<% } %>
 <% if (appType === 'client' || appType === 'both') { %>
 gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>function() {<% if (appType === 'client' && appFramework === 'angular') { %>
-	let historyApiFallback = require('connect-history-api-fallback');<% } %>
+	let historyApiFallback = require('connect-history-api-fallback');<% } %><% if (appType === 'server' || appType === 'both') { %>
+	let config = require('./config');<% } %>
 
-	<% if (appType === 'server' || appType === 'both') { %>let config = require('./config');<% } %>
 	browserSync.init({<% if (appType === 'client') { %>
 		server: {
 			baseDir: './public'
@@ -152,6 +153,7 @@ gulp.task('sprites', function() {
 			sprite.name = 'sprite-'+sprite.name;
 		}
 	};
+
 	let sprite = gulp.src(files.sprites.src)
 		.pipe(plumber())
 		.pipe(spritesmith(options));
@@ -164,6 +166,7 @@ gulp.task('styles', function() {
 	let bower = require('bower-files')();
 	let dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files;
 	let util = require('util');
+
 	let injectTransform = {
 		starttag: '/* inject:imports */',
 		endtag: '/* endinject */',
@@ -200,6 +203,7 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
 	let babel = require('gulp-babel');
+
 	gulp
 		.src(files.scripts.src)
 		.pipe(plumber(<% if (scriptType !== 'coffeescript') { %>{ errorHandler: onError }<% } %>))
@@ -274,6 +278,7 @@ gulp.task('lint', function() {
 <% if (appType === 'server' || appType === 'both') { %>
 gulp.task('apiDocs', function(done) {
 	var apiDoc = require('gulp-apidoc');
+
 	apiDoc({
 		src: 'controllers/api',
 		dest: 'docs',
@@ -293,7 +298,10 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
 
 	gulp.watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
-	gulp.watch(files.scripts.src, ['scripts', browserSync.reload]);<% } %><% if (scriptType !== 'coffeescript') { %>
+	gulp.watch(files.scripts.src, [
+		'scripts',
+		browserSync.reload
+	]);<% } %><% if (scriptType !== 'coffeescript') { %>
 	gulp.watch(lintScripts, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
 
 	gulp.watch('./bower.json', [
