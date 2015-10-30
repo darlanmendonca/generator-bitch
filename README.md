@@ -99,6 +99,6 @@ At moment, I added test specs to api controllers (integration tests), using:
 
 - [Mocha](http://mochajs.org/) as test framework
 - [Supertest](https://github.com/visionmedia/supertest) (to make requests http)
-- [should](https://github.com/shouldjs/should.js) (to maker assertions)
+- [Chai](http://chaijs.com) (to make assertions)
 
 And soon, I will add unit tests, and e2e. I want cover the entire application with tests.

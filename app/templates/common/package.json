@@ -31,7 +31,7 @@
   },
   "devDependencies": {<% if (appType === 'server' || appType === 'both') { %>
     "supertest": "^1.1.0",
-    "should": "^7.1.0",
+    "chai": "^3.4.0",
     "faker": "^3.0.1",
     "mocha": "^2.3.3",
     "gulp-apidoc": "^0.2.0",
@@ -54,7 +54,8 @@
     "connect-history-api-fallback": "^1.1.0",<% } %>
     "jasmine": "^2.3.2",
     "karma": "^0.13.10",
-    "karma-jasmine": "^0.3.6",
+    "karma-mocha": "^0.2.0",
+    "karma-chai": "^0.1.0",
     "karma-mocha-reporter": "^1.1.1",
     "phantomjs": "^1.9.18",
     "karma-phantomjs-launcher": "^0.2.1",<% } %>

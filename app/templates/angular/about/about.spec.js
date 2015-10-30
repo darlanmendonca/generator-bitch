@@ -13,7 +13,7 @@ describe('AboutController', function() {
 		it('viewName should be "About"', function() {
 			var $scope = {};
 			$controller('AboutController', { $scope: $scope });
-			expect($scope.viewName).toEqual('About');
+			expect($scope.viewName).to.equal('About');
 		});
 	});
 });

@@ -17,7 +17,7 @@ let favicon = require('serve-favicon');<% } %>
 let app = express();
 let server = http.createServer(app);
 
-app.set('env', shell.env || process.env.ENV || 'production');
+app.set('env', shell.env || process.env.NODE_ENV || 'production');
 app.set('port', config.server.port);<% if (appType === 'both') { %>
 app.set('views', path.join(__dirname, 'assets', 'views'));
 app.set('view engine', '<%= viewEngine %>');<% } %>
@@ -39,7 +39,9 @@ app
 
 mongoose.connect(config.database.url, function() {
   server.listen(app.get('port'), function () {
-    console.log('> localhost:' + app.get('port'));<% if (appType === 'both') { %>
+  	if (app.get('env') !== 'test') {
+	    console.log('> localhost:' + app.get('port'));
+  	}<% if (appType === 'both') { %>
 
     if (app.get('env') === 'development' && process.env.open === 'true') {
       var open = require('open');

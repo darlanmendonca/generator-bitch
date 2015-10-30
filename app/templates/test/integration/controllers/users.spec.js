@@ -1,7 +1,7 @@
 'use strict';
 
 let request = require('supertest');
-let should = require('should'); /* jshint ignore:line */
+let expect = require('chai').expect;
 let helper = require('../../helper.js');
 let faker = require('faker');
 let app = require('../../../app');
@@ -12,8 +12,8 @@ describe('Users', function() {
       request(app)
         .get('/api/users')
         .end(function(err, res) {
-          res.statusCode.should.equal(401);
-          res.body.should.have.property('message', 'no token provided');
+          expect(res.statusCode).to.equal(401);
+          expect(res.body).to.have.property('message', 'no token provided');
           done();
         });
     });
@@ -30,8 +30,8 @@ describe('Users', function() {
         .get('/api/users')
         .set('token', helper.user.token)
         .end(function(err, res) {
-          res.statusCode.should.equal(200);
-          res.body.should.be.instanceOf(Array);
+          expect(res.statusCode).to.equal(200);
+          expect(res.body).to.be.instanceOf(Array);
           done();
         });
     });
@@ -42,8 +42,8 @@ describe('Users', function() {
       request(app)
         .post('/api/users')
         .end(function(err, res) {
-          res.statusCode.should.equal(401);
-          res.body.should.have.property('message', 'no token provided');
+          expect(res.statusCode).to.equal(401);
+          expect(res.body).to.have.property('message', 'no token provided');
           done();
         });
     });
@@ -63,8 +63,8 @@ describe('Users', function() {
         .field('email', faker.internet.email())
         .field('password', faker.internet.password())
         .end(function(err, res) {
-          res.statusCode.should.equal(201);
-          res.body.should.have.property('id');
+          expect(res.statusCode).to.equal(201);
+          expect(res.body).to.have.property('id');
           done();
         });
     });
@@ -75,8 +75,8 @@ describe('Users', function() {
       request(app)
         .get('/api/users/'+helper.user._id)
         .end(function(err, res) {
-          res.statusCode.should.equal(401);
-          res.body.should.have.property('message', 'no token provided');
+          expect(res.statusCode).to.equal(401);
+          expect(res.body).to.have.property('message', 'no token provided');
           done();
         });
     });
@@ -92,8 +92,8 @@ describe('Users', function() {
         .get('/api/users/'+helper.user._id.toString().replace(/^.{2}/, 'dd'))
         .set('token', helper.user.token)
         .end(function(err, res) {
-          res.statusCode.should.equal(200);
-          should.equal(res.body, null);
+          expect(res.statusCode).to.equal(200);
+          expect(res.body).to.equal(null);
           done();
         });
     });
@@ -103,12 +103,12 @@ describe('Users', function() {
         .get('/api/users/'+helper.user._id.toString())
         .set('token', helper.user.token)
         .end(function(err, res) {
-          res.statusCode.should.equal(200);
-          res.body.should.have.property('_id', helper.user._id.toString());
-          res.body.should.have.property('email', helper.user.email);
-          res.body.should.have.property('createdAt');
-          res.body.should.not.have.property('password');
-          res.body.should.not.have.property('__v');
+          expect(res.statusCode).to.equal(200);
+          expect(res.body).to.have.property('_id', helper.user._id.toString());
+          expect(res.body).to.have.property('email', helper.user.email);
+          expect(res.body).to.have.property('createdAt');
+          expect(res.body).to.not.have.property('password');
+          expect(res.body).to.not.have.property('__v');
           done();
         });
     });

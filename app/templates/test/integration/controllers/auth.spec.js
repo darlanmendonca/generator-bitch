@@ -1,7 +1,7 @@
 'use strict';
 
 let request = require('supertest');
-let should = require('should'); /* jshint ignore:line */
+let expect = require('chai').expect;
 let helper = require('../../helper.js');
 let app = require('../../../app');
 
@@ -14,8 +14,8 @@ describe('Auth', function() {
         .field('email', helper.user.email)
         .field('password', helper.user.invalidPassword)
         .end(function(err, res) {
-          res.statusCode.should.equal(401);
-          res.body.should.have.property('message', 'authentication failed');
+          expect(res.statusCode).to.equal(401);
+          expect(res.body).to.have.property('message', 'authentication failed');
           done();
         });
     });
@@ -27,9 +27,9 @@ describe('Auth', function() {
         .field('email', helper.user.email)
         .field('password', helper.user.password)
         .end(function(err, res) {
-          res.statusCode.should.equal(200);
-          res.body.should.have.property('id', helper.user._id.toString());
-          res.body.should.have.property('token');
+          expect(res.statusCode).to.equal(200);
+          expect(res.body).to.have.property('id', helper.user._id.toString());
+          expect(res.body).to.have.property('token');
           done();
         });
     });
