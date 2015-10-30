@@ -95,10 +95,11 @@ Databases
 
 
 #### Tests
-At moment, I added test specs to api controllers (integration tests), using:
+At moment, I added test specs to api controllers (integration tests), and Angular controllers (unit tests):
 
 - [Mocha](http://mochajs.org/) as test framework
 - [Supertest](https://github.com/visionmedia/supertest) (to make requests http)
+- [Karma](http://karma-runner.github.io/) Angular Unit Tests
 - [Chai](http://chaijs.com) (to make assertions)
 
-And soon, I will add unit tests, and e2e. I want cover the entire application with tests.
+And soon, I will add e2e with Protractor. I want cover the entire application with tests.
