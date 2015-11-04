@@ -10,9 +10,9 @@ describe('HomeController', function() {
 	}));
 
 	describe('test $scope properties', function() {
-		var controller = $controller('HomeController');
 
 		it('viewName should be "Home"', function() {
+			var controller = $controller('HomeController');
 			expect(controller.viewName).to.equal('Home');
 		});
 	});
