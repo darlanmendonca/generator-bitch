@@ -12,12 +12,14 @@ angular
     .state('home', {
       url: '/',
       templateUrl: 'templates/home.html',
-      controller: 'HomeController'
+      controller: 'HomeController',
+      controllerAs: 'home'
     })
     .state('about', {
       url: '/about',
       templateUrl: 'templates/about.html',
-      controller: 'AboutController'
+      controller: 'AboutController',
+      controllerAs: 'about'
     });
 }<% } %><% if (angularRoute === 'ngRoute') { %>function routes($locationProvider, $routeProvider) {
   $locationProvider.html5Mode(true);

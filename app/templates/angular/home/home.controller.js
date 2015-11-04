@@ -4,6 +4,6 @@ angular
   .module('<%= slugify(appname) %>')
   .controller('HomeController', HomeController);
 
-function HomeController ($scope) {
-  $scope.viewName = 'Home';
+function HomeController () {
+  this.viewName = 'Home';
 }

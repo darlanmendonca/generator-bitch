@@ -10,10 +10,10 @@ describe('AboutController', function() {
 	}));
 
 	describe('test $scope properties', function() {
+		var controller = $controller('AboutController');
+
 		it('viewName should be "About"', function() {
-			var $scope = {};
-			$controller('AboutController', { $scope: $scope });
-			expect($scope.viewName).to.equal('About');
+			expect(controller.viewName).to.equal('About');
 		});
 	});
 });

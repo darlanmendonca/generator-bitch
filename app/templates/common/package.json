@@ -29,11 +29,11 @@
     "ejs": "^2.3.3",<% } %>
     "shell-arguments": "^1.0.4"<% } %>
   },
-  "devDependencies": {<% if (appType === 'server' || appType === 'both') { %>
-    "supertest": "^1.1.0",
-    "chai": "^3.4.0",
-    "faker": "^3.0.1",
+  "devDependencies": {
     "mocha": "^2.3.3",
+    "chai": "^3.4.0",<% if (appType === 'server' || appType === 'both') { %>
+    "supertest": "^1.1.0",
+    "faker": "^3.0.1",
     "gulp-apidoc": "^0.2.0",
     "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'both') { %>
     "open": "^0.0.5",<% } %><% if (appType === 'client' || appType === 'both') { %>
