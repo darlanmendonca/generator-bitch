@@ -4,7 +4,7 @@ let request = require('supertest');
 let expect = require('chai').expect;
 let helper = require('../../helper.js');
 let faker = require('faker');
-let app = require('../../../app');
+let app = require('../../../server/app');
 
 describe('Users', function() {
 	describe('.list - GET /api/users', function() {

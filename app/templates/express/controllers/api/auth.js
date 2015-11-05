@@ -2,7 +2,7 @@
 
 let AuthController = {};
 let Users = require('../../models').users;
-let config = require('../../config');
+let config = require('../../../config');
 let jwt = require('jsonwebtoken');
 let encode = require('../../helpers/encode.<%= extScript %>');
 let publicFields = '-__v -password';

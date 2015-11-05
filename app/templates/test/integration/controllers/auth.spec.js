@@ -3,7 +3,7 @@
 let request = require('supertest');
 let expect = require('chai').expect;
 let helper = require('../../helper.js');
-let app = require('../../../app');
+let app = require('../../../server/app');
 
 describe('Auth', function() {
 	describe('.local - POST /api/auth', function() {

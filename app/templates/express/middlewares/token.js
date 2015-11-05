@@ -1,7 +1,7 @@
 'use strict';
 
 let jwt = require('jsonwebtoken');
-let config = require('../config');
+let config = require('../../config');
 
 module.exports = function(req, res, next) {
   let token = req.body.token || req.query.token || req.headers.token;

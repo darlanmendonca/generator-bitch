@@ -264,8 +264,9 @@ module.exports = generators.Base.extend({
   },
   express: function() {
     if (this.isAppType('server')) {
+    	mkdirp('server');
       this.sourceRoot(path.join(__dirname,  'templates/express'), this);
-      this.directory('.', '.');
+      this.directory('.', './server');
     }
   },
   test: function() {

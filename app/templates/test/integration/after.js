@@ -1,6 +1,6 @@
 'use strict';
 
-let Users = require('../../models').users;
+let Users = require('../../server/models').users;
 
 after(function(done) {
 	Users
