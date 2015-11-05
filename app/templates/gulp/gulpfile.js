@@ -276,8 +276,8 @@ gulp.task('apiDocs', function(done) {
 	var apiDoc = require('gulp-apidoc');
 
 	apiDoc({
-		src: 'controllers/api',
-		dest: 'docs',
+		src: 'server/controllers/api',
+		dest: 'server/docs',
 		debug: true,
 		// parse: true,
 		silent: true,

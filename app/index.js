@@ -278,7 +278,7 @@ module.exports = generators.Base.extend({
   },
   docs: function() {
     if (this.isAppType('server') || this.isAppType('both')) {
-      mkdirp('docs');
+      mkdirp('server/docs');
     }
   },
   assets: function() {
