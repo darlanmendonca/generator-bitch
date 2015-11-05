@@ -10,7 +10,13 @@ let concat = require('gulp-concat');
 let uglify = require('gulp-uglify');<% } %><% } %>
 <% if (scriptType !== 'coffeescript') { %>
 let lintScripts = [
-	'./gulpfile.<%= extScript %>',<% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
+	'./gulpfile.<%= extScript %>',<% if (appType === 'server' || appType === 'both') { %>
+	'./controllers/**/*.js',
+	'./helpers/**/*.js',
+	'./middlewares/**/*.js',
+	'./models/**/*.js',
+	'./routes/**/*.js',
+	'./test/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
 	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
 	'./assets/scripts/**/*.<%= extScript %>'<% } %>
 ];<% } %>
