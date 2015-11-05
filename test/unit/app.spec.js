@@ -24,16 +24,16 @@ describe('server application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'app.js',
-				'config',
-				'controllers',
-				'docs',
+				'server',
+				'config.js',
+				'server/controllers',
+				'server/docs',
 				'gulpfile.js',
-				'helpers',
-				'middlewares',
-				'models',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
 				'package.json',
-				'routes',
+				'server/routes',
 				'test'
 			]);
 
@@ -65,16 +65,16 @@ describe('server application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'app.js',
-				'config',
-				'controllers',
-				'docs',
+				'server',
+				'config.js',
+				'server/controllers',
+				'server/docs',
 				'gulpfile.js',
-				'helpers',
-				'middlewares',
-				'models',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
 				'package.json',
-				'routes',
+				'server/routes',
 				'test'
 			]);
 
@@ -106,16 +106,16 @@ describe('server application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'app.coffee',
-				'config',
-				'controllers',
-				'docs',
+				'server/app.coffee',
+				'config.coffee',
+				'server/controllers',
+				'server/docs',
 				'gulpfile.coffee',
-				'helpers',
-				'middlewares',
-				'models',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
 				'package.json',
-				'routes',
+				'server/routes',
 				'test'
 			]);
 
@@ -162,14 +162,13 @@ describe('client application', function() {
 			]);
 
 			assert.noFile([
-				'app.js',
-				'config',
-				'controllers',
-				'docs',
-				'helpers',
-				'middlewares',
-				'models',
-				'routes',
+				'server',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 				'karma.js'
 			]);
 		});
@@ -207,14 +206,13 @@ describe('client application', function() {
 			]);
 
 			assert.noFile([
-				'app.js',
-				'config',
-				'controllers',
-				'docs',
-				'helpers',
-				'middlewares',
-				'models',
-				'routes',
+				'server',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 				'karma.js'
 			]);
 		});
@@ -240,6 +238,7 @@ describe('client application', function() {
 				'README.md',
 				'.bowerrc',
 				'.editorconfig',
+				'config.coffee',
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
@@ -253,13 +252,13 @@ describe('client application', function() {
 
 			assert.noFile([
 				'app.coffee',
-				'config',
-				'controllers',
-				'docs',
-				'helpers',
-				'middlewares',
-				'models',
-				'routes',
+				'config.js',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 				'karma.coffee'
 			]);
 		});
@@ -296,14 +295,14 @@ describe('fullstack application', function() {
 				'package.json',
 				'public',
 				'test',
-				'app.js',
-				'config',
-				'controllers',
-				'docs',
-				'helpers',
-				'middlewares',
-				'models',
-				'routes',
+				'server',
+				'config.js',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 			]);
 
 			assert.noFile([
@@ -341,14 +340,14 @@ describe('fullstack application', function() {
 				'package.json',
 				'public',
 				'test',
-				'app.js',
-				'config',
-				'controllers',
-				'docs',
-				'helpers',
-				'middlewares',
-				'models',
-				'routes',
+				'server',
+				'config.js',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 			]);
 
 			assert.noFile([
@@ -386,14 +385,14 @@ describe('fullstack application', function() {
 				'package.json',
 				'public',
 				'test',
-				'app.coffee',
-				'config',
-				'controllers',
-				'docs',
-				'helpers',
-				'middlewares',
-				'models',
-				'routes',
+				'server/app.coffee',
+				'config.coffee',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 			]);
 
 			assert.noFile([
