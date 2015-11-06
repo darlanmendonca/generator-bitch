@@ -12,7 +12,8 @@ let uglify = require('gulp-uglify');<% } %><% } %>
 let lintScripts = [
 	'./gulpfile.<%= extScript %>',
 	'./test/**/*.js',<% if (appType === 'server' || appType === 'both') { %>
-	'./server/**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
+	'./server/**/*.js',
+	'!./server/docs/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
 	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
 	'./assets/scripts/**/*.<%= extScript %>'<% } %>
 ];<% } %>
@@ -286,8 +287,14 @@ gulp.task('apiDocs', function(done) {
 });
 <% } %>
 
-gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %>
-	gulp.watch(<% if (appFramework === 'angular') { %>files.templates.src<% } else {%>files.views.src<% } %>, [
+gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %><% if (appFramework === 'angular') { %>
+	let views = [];
+	views = views.concat(files.templates.src);
+	views = views.concat(files.views.src);
+
+	gulp.watch(views, [<% } else { %>
+	gulp.watch(files.views.src, [
+	<% } %>
 		'views',
 		browserSync.reload
 	]);
