@@ -48,9 +48,9 @@
     "gulp-plumber": "^1.0.1",<% if (preprocessor === 'sass') { %>
     "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
-    "gulp-stylus": "^2.0.6",<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
-    "gulp-ng-annotate": "^1.1.0",<% if (scriptType === 'es6') { %>
-    "gulp-babel": "^5.2.1",<% } %><% if (appType === 'client' && appFramework === 'angular') { %>
+    "gulp-stylus": "^2.0.6",<% } %><% if ((appType === 'client' || appType === 'both') && scriptType === 'es6') { %>
+    "gulp-babel": "^5.2.1",<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    "gulp-ng-annotate": "^1.1.0",<% if (appType === 'client' && appFramework === 'angular') { %>
     "connect-history-api-fallback": "^1.1.0",<% } %>
     "jasmine": "^2.3.2",
     "karma": "^0.13.10",

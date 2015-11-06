@@ -293,8 +293,7 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
 	views = views.concat(files.views.src);
 
 	gulp.watch(views, [<% } else { %>
-	gulp.watch(files.views.src, [
-	<% } %>
+	gulp.watch(files.views.src, [<% } %>
 		'views',
 		browserSync.reload
 	]);
