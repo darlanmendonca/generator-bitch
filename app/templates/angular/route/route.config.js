@@ -2,9 +2,9 @@
 
 angular
   .module('<%= slugify(appname) %>')
-  .config(routes);
+  .config(routeConfig);
 
-<% if (angularRoute === 'uiRouter') { %>function routes($locationProvider, $urlRouterProvider, $stateProvider) {
+<% if (angularRoute === 'uiRouter') { %>function routeConfig($locationProvider, $urlRouterProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/404');
 
@@ -21,7 +21,7 @@ angular
       controller: 'AboutController',
       controllerAs: 'about'
     });
-}<% } %><% if (angularRoute === 'ngRoute') { %>function routes($locationProvider, $routeProvider) {
+}<% } %><% if (angularRoute === 'ngRoute') { %>function routeConfig($locationProvider, $routeProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider.otherwise('/404');
 
