@@ -5,7 +5,20 @@ Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6
 
 # ![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
 
+### Requires
+This generator, is a yeoman generator, and require following modules:
+
+- yo
+- gulp
+- bower
+
+To install these:
+```sh
+npm i -g yo gulp bower
+```
+
 ### Install and use
+
 First install this module as global
 ```sh
 npm i -g generator-bitch
