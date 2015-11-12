@@ -237,7 +237,6 @@ module.exports = generators.Base.extend({
         this.angularRoute = data.angularRoute;
         this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
           'ui-view' : 'ng-view';
-        console.log(this.angularRoute);
         done();
       }.bind(this));
     }
@@ -310,11 +309,6 @@ module.exports = generators.Base.extend({
 
 			this.sourceRoot(path.join(__dirname,  'templates/angular-templates/'+this.viewEngine), this);
 			this.directory('.', 'assets/angular');
-
-			if (this.angularRoute === 'uiRouter' || this.angularRoute === 'ngRoute') {
-				this.sourceRoot(path.join(__dirname,  'templates/angular/route'), this);
-				this.directory('.', 'assets/angular');
-			}
 		}
 	},
 	scripts: function() {

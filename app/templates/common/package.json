@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
     "start": "nodemon --quiet server/app.<%= extScript %> --env 'development'",<% } %>
-    "test": "<% if (appType === 'server' || appType === 'both') { %>NODE_ENV=test mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %><% } if (appType === 'both') { %> && <% } %><% if (appType === 'client' || appType === 'both') { %>karma start karma.js<% } %>",
-    "posttest": "istanbul cover _mocha -- -R spec"
+    "test": "<% if (appType === 'server' || appType === 'both') { %>NODE_ENV=test mocha --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/integration/*.<%= extScript %> test/integration/controllers/*.<%= extScript %><% } if (appType === 'both') { %> && <% } %><% if (appType === 'client' || appType === 'both') { %>karma start karma.js<% } %>"<% if (appType === 'server' || appType === 'both') { %>,
+    "posttest": "istanbul cover _mocha -- -R spec"<% } %>
   },<% if (appType === 'server' || appType === 'both') { %>
   "apidoc": {
     "title": "Title API",
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "mocha": "^2.3.3",
-    "istanbul": "^0.4.0",
     "chai": "^3.4.0",<% if (appType === 'server' || appType === 'both') { %>
+    "istanbul": "^0.4.0",
     "supertest": "^1.1.0",
     "faker": "^3.0.1",
     "gulp-apidoc": "^0.2.0",
