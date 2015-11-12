@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "description": "Scaffolding MEAN applications. Server, client, or both.",
   "main": "app/index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "coffeescript",
     "ecma2015"
   ],
+  "license": "MIT",
   "homepage": "https://github.com/darlanmendonca/generator-bitch",
   "bugs": "https://github.com/darlanmendonca/generator-bitch/issues",
   "author": "Darlan Mendonça <darlanmendonca@gmail.com> (https://github.com/darlanmendonca)",
