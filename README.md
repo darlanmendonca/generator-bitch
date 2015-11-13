@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/darlanmendonca/generator-bitch.svg)](https://travis-ci.org/thebergamo/parsick) [![Coverage Status](https://coveralls.io/repos/darlanmendonca/generator-bitch/badge.svg?branch=master)](https://coveralls.io/r/darlanmendonca/generator-bitch?branch=master)
+[![Build Status](https://travis-ci.org/darlanmendonca/generator-bitch.svg)](https://travis-ci.org/thebergamo/parsick) [![Coverage Status](https://coveralls.io/repos/darlanmendonca/generator-bitch/badge.svg?branch=master&service=github)](https://coveralls.io/github/darlanmendonca/generator-bitch?branch=master)
 
 
 A simple generator (for Yeoman) to scaffolding web apps. Server, client, or both.
