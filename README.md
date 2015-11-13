@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/darlanmendonca/generator-bitch.svg)](https://travis-ci.org/thebergamo/parsick) [![Coverage Status](https://coveralls.io/repos/darlanmendonca/generator-bitch/badge.svg?branch=master)](https://coveralls.io/r/darlanmendonca/generator-bitch?branch=master)
+
+
 A simple generator (for Yeoman) to scaffolding web apps. Server, client, or both.
 
 Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6, ecma 5, or coffeescript).

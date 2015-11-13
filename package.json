@@ -1,10 +1,10 @@
 {
   "name": "generator-bitch",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Scaffolding MEAN applications. Server, client, or both.",
   "main": "app/index.js",
   "scripts": {
-    "test": "mocha --recursive --bail --reporter spec test/unit/*.js"
+    "test": "istanbul cover _mocha -- --bail --reporter spec test/unit"
   },
   "keywords": [
     "bitch",
