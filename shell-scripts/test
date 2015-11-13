@@ -2,7 +2,7 @@
 
 set -e
 
-node node_modules/.bin/istanbul cover _mocha -- -R spec --recursive
+node node_modules/.bin/istanbul cover _mocha -- --bail spec test/unit
 
 if [ ! -z "$EXPORT_COVERAGE" ]; then
 	cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
