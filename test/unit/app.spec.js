@@ -159,6 +159,7 @@ describe('client application', function() {
 				'package.json',
 				'public',
 				// 'test'
+				'assets/scripts'
 			]);
 
 			assert.noFile([
@@ -169,7 +170,60 @@ describe('client application', function() {
 				'server/middlewares',
 				'server/models',
 				'server/routes',
+				'assets/angular',
 				'karma.js'
+			]);
+		});
+	});
+
+	describe('scriptType:es6:angular', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'client',
+				scriptType: 'es6',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'angular',
+				frameworkModules: [
+					'ngAnimate',
+					'ngCookies',
+					'ngResource',
+					'ngSanitize',
+					'ngTouch'
+				]
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.js',
+				'package.json',
+				'public',
+				// 'test',
+				'assets/angular',
+				'karma.js'
+			]);
+
+			assert.noFile([
+				'server',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes'
 			]);
 		});
 	});
@@ -203,6 +257,7 @@ describe('client application', function() {
 				'package.json',
 				'public',
 				// 'test'
+				'assets/scripts'
 			]);
 
 			assert.noFile([
@@ -213,7 +268,60 @@ describe('client application', function() {
 				'server/middlewares',
 				'server/models',
 				'server/routes',
+				'karma.js',
+				'assets/angular'
+			]);
+		});
+	});
+
+	describe('scriptType:es5:angular', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'client',
+				scriptType: 'es5',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'angular',
+				frameworkModules: [
+					'ngAnimate',
+					'ngCookies',
+					'ngResource',
+					'ngSanitize',
+					'ngTouch'
+				]
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.js',
+				'package.json',
+				'public',
+				// 'test'
+				'assets/angular',
 				'karma.js'
+			]);
+
+			assert.noFile([
+				'server',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes'
 			]);
 		});
 	});
@@ -248,6 +356,7 @@ describe('client application', function() {
 				'package.json',
 				'public',
 				// 'test'
+				'assets/scripts'
 			]);
 
 			assert.noFile([
@@ -259,7 +368,62 @@ describe('client application', function() {
 				'server/middlewares',
 				'server/models',
 				'server/routes',
+				'karma.coffee',
+				'assets/angular'
+			]);
+		});
+	});
+
+	describe('scriptType:coffeescript:angular', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'client',
+				scriptType: 'coffeescript',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'angular',
+				frameworkModules: [
+					'ngAnimate',
+					'ngCookies',
+					'ngResource',
+					'ngSanitize',
+					'ngTouch'
+				]
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'config.coffee',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.coffee',
+				'package.json',
+				'public',
+				// 'test',
+				'assets/angular',
 				'karma.coffee'
+			]);
+
+			assert.noFile([
+				'app.coffee',
+				'config.js',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
 			]);
 		});
 	});
