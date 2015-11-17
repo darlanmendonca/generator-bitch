@@ -125,4 +125,4 @@ And soon, I will add e2e with Protractor. I want cover the entire application wi
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Darlan Mendonça de Almeida
+Copyright (c) 2015 Darlan Mendonça
