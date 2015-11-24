@@ -28,7 +28,7 @@ if (app.get('env') === 'development') {
 
 app
   .use(compress())<% if (appType === 'both') { %>
-  .use(favicon(__dirname + '/public/imgs/favicons/icon.ico'))<% } %>
+  .use(favicon('./public/imgs/favicons/icon.ico'))<% } %>
   .use(methodOverride())
   .use(multer.array())
   .use(bodyParser.urlencoded({extended: true}))

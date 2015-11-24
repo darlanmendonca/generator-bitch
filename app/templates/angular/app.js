@@ -1,4 +1,5 @@
 'use strict';
+/* globals angular */
 
 angular
   .module('<%= slugify(appname) %>', [<% if (ngAnimate) { %>

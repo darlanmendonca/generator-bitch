@@ -15,15 +15,5 @@
   "node": true,
   "undef": false,
   "unused": true,
-  "asi": false,
-  "globals": {
-    "before": true,
-    "after": true,
-    "describe": true,
-    "it": true<% if (appFramework === 'angular') { %>,
-    "angular": true,
-  	"beforeEach": true,
-  	"inject": true,
-  	"expect": true<% } %>
-  }
+  "asi": false
 }
