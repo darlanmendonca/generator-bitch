@@ -1,5 +1,5 @@
-'use strict';
 /* globals describe, it */
+'use strict';
 
 let request = require('supertest');
 let expect = require('chai').expect;

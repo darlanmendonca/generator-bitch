@@ -1,5 +1,5 @@
-'use strict';
 /* globals before */
+'use strict';
 
 let mongoose = require('mongoose');
 let config = require('../../config');

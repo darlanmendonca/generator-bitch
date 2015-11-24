@@ -1,5 +1,5 @@
-'use strict';
 /* globals beforeEach, module, inject, expect, describe, it */
+'use strict';
 
 describe('AboutController', function() {
 	beforeEach(module('<%= slugify(appname) %>'));

@@ -1,5 +1,5 @@
-'use strict';
 /* globals after */
+'use strict';
 
 let Users = require('../../server/models').users;
 
