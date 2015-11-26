@@ -3,3 +3,4 @@ bower_components/
 temp/
 *.log
 .DS_Store
+coverage/

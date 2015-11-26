@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+<% if (appType === 'server' || appType === 'both') { %>NODE_ENV=test node_modules/.bin/istanbul cover _mocha -- --recursive --bail --reporter spec <% if (scriptType === 'coffeescript') { %>--compilers coffee:coffee-script/register <% } %>test/e2e/*.<%= extScript %> test/e2e/controllers/*.<%= extScript %><% } if (appType === 'both') { %> && <% } %><% if (appType === 'client' || appType === 'both') { %>karma start karma.js<% } %>
+
+if [ ! -z "$EXPORT_COVERAGE" ]; then
+	cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+	rm -rf ./coverage
+fi
+
