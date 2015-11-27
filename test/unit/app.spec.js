@@ -176,7 +176,7 @@ describe('client application', function() {
 		});
 	});
 
-	describe('scriptType:es6:angular', function() {
+	describe('scriptType:es6:angular:uiRouter', function() {
 		before(function (done) {
 			var prompts = {
 				appname: 'lorem',
@@ -191,7 +191,61 @@ describe('client application', function() {
 					'ngResource',
 					'ngSanitize',
 					'ngTouch'
-				]
+				],
+				angularRoute: 'uiRouter'
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.js',
+				'package.json',
+				'public',
+				// 'test',
+				'assets/angular',
+				'karma.js'
+			]);
+
+			assert.noFile([
+				'server',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes'
+			]);
+		});
+	});
+
+	describe('scriptType:es6:angular:ngRoute', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'client',
+				scriptType: 'es6',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'angular',
+				frameworkModules: [
+					'ngAnimate',
+					'ngCookies',
+					'ngResource',
+					'ngSanitize',
+					'ngTouch'
+				],
+				angularRoute: 'ngRoute'
 			};
 		  helpers.run(generator)
 		    .withPrompts(prompts)
@@ -274,7 +328,7 @@ describe('client application', function() {
 		});
 	});
 
-	describe('scriptType:es5:angular', function() {
+	describe('scriptType:es5:angular:uiRouter', function() {
 		before(function (done) {
 			var prompts = {
 				appname: 'lorem',
@@ -289,7 +343,61 @@ describe('client application', function() {
 					'ngResource',
 					'ngSanitize',
 					'ngTouch'
-				]
+				],
+				angularRoute: 'uiRouter'
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.js',
+				'package.json',
+				'public',
+				// 'test'
+				'assets/angular',
+				'karma.js'
+			]);
+
+			assert.noFile([
+				'server',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes'
+			]);
+		});
+	});
+
+	describe('scriptType:es5:angular:ngRoute', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'client',
+				scriptType: 'es5',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'angular',
+				frameworkModules: [
+					'ngAnimate',
+					'ngCookies',
+					'ngResource',
+					'ngSanitize',
+					'ngTouch'
+				],
+				angularRoute: 'ngRoute'
 			};
 		  helpers.run(generator)
 		    .withPrompts(prompts)
@@ -374,7 +482,7 @@ describe('client application', function() {
 		});
 	});
 
-	describe('scriptType:coffeescript:angular', function() {
+	describe('scriptType:coffeescript:angular:uiRouter', function() {
 		before(function (done) {
 			var prompts = {
 				appname: 'lorem',
@@ -389,7 +497,63 @@ describe('client application', function() {
 					'ngResource',
 					'ngSanitize',
 					'ngTouch'
-				]
+				],
+				angularRoute: 'uiRouter'
+			};
+		  helpers.run(generator)
+		    .withPrompts(prompts)
+		    .on('end', done);
+		});
+
+		it('generate scaffolding', function () {
+			assert.file([
+				'README.md',
+				'.bowerrc',
+				'.editorconfig',
+				'config.coffee',
+				'.gitignore',
+				'.jshintrc',
+				'README.md',
+				'assets',
+				'bower.json',
+				'gulpfile.coffee',
+				'package.json',
+				'public',
+				// 'test',
+				'assets/angular',
+				'karma.coffee'
+			]);
+
+			assert.noFile([
+				'app.coffee',
+				'config.js',
+				'server/controllers',
+				'server/docs',
+				'server/helpers',
+				'server/middlewares',
+				'server/models',
+				'server/routes',
+			]);
+		});
+	});
+
+	describe('scriptType:coffeescript:angular:ngRoute', function() {
+		before(function (done) {
+			var prompts = {
+				appname: 'lorem',
+				appType: 'client',
+				scriptType: 'coffeescript',
+				viewEngine:'jade',
+				preprocessor: 'sass',
+				appFramework: 'angular',
+				frameworkModules: [
+					'ngAnimate',
+					'ngCookies',
+					'ngResource',
+					'ngSanitize',
+					'ngTouch'
+				],
+				angularRoute: 'ngRoute'
 			};
 		  helpers.run(generator)
 		    .withPrompts(prompts)
