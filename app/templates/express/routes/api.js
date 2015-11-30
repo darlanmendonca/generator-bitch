@@ -21,7 +21,9 @@ router
 
 router
   .route('/users/:id')
-  .get(api.users.get);
+  .get(api.users.get)
+  .put(api.users.update)
+  .delete(api.users.delete);
 
 router
   .use(function (req, res) {

@@ -58,7 +58,7 @@ describe('Users', function() {
 
     it('create', function(done) {
       request(app)
-        .post('/api//users')
+        .post('/api/users')
         .set('token', helper.user.token)
         .field('test', 'true')
         .field('email', faker.internet.email())
@@ -110,6 +110,67 @@ describe('Users', function() {
           expect(res.body).to.have.property('createdAt');
           expect(res.body).to.not.have.property('password');
           expect(res.body).to.not.have.property('__v');
+          done();
+        });
+    });
+	});
+
+	describe('.update - PUT /api/users/:id', function() {
+		it('no token provided', function(done) {
+      request(app)
+        .put('/api/users/'+helper.user._id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(401);
+          expect(res.body).to.have.property('message', 'no token provided');
+          done();
+        });
+    });
+
+    it('invalid token', function(done) {
+      request(app)
+        .put('/api/users/'+helper.user._id)
+        .field('token', helper.user.invalidToken)
+        .expect(401, {message: 'invalid token'}, done);
+    });
+
+    it('update', function(done) {
+      request(app)
+        .put('/api/users/'+helper.user._id)
+        .set('token', helper.user.token)
+        .field('email', 'darlanmendonca@gmail.com')
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(204);
+          expect(res.body).to.be.empty;
+          done();
+        });
+    });
+	});
+
+	describe('.delete - DELETE /api/users/:id', function() {
+		it('no token provided', function(done) {
+      request(app)
+        .delete('/api/users/'+helper.user._id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(401);
+          expect(res.body).to.have.property('message', 'no token provided');
+          done();
+        });
+    });
+
+    it('invalid token', function(done) {
+      request(app)
+        .delete('/api/users/'+helper.user._id)
+        .field('token', helper.user.invalidToken)
+        .expect(401, {message: 'invalid token'}, done);
+    });
+
+    it('delete', function(done) {
+      request(app)
+        .delete('/api/users/'+helper.user._id)
+        .set('token', helper.user.token)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(204);
+          expect(res.body).to.be.empty;
           done();
         });
     });
