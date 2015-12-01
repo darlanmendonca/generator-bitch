@@ -56,6 +56,19 @@ describe('Users', function() {
         .expect(401, {message: 'invalid token'}, done);
     });
 
+    it('invalid fields', function(done) {
+      request(app)
+        .post('/api/users')
+        .set('token', helper.user.token)
+        .field('test', 'true')
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(400);
+          expect(res.body).to.have.property('password');
+          expect(res.body).to.have.property('email');
+          done();
+        });
+    });
+
     it('create', function(done) {
       request(app)
         .post('/api/users')
@@ -95,6 +108,17 @@ describe('Users', function() {
         .end(function(err, res) {
           expect(res.statusCode).to.equal(200);
           expect(res.body).to.equal(null);
+          done();
+        });
+    });
+
+    it('invalid id', function(done) {
+      request(app)
+        .get('/api/users/:id'.replace(':id', '123'))
+        .set('token', helper.user.token)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(400);
+          expect(res.body).to.have.property('message', 'invalid id')
           done();
         });
     });

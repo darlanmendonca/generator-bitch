@@ -23,8 +23,7 @@
     "mongoose": "^4.1.0",
     "morgan": "^1.6.1",
     "multer": "^1.0.5",
-    "jsonwebtoken": "^5.0.5",
-    "req-dir": "^0.0.5",<% if (viewEngine === 'jade') { %>
+    "jsonwebtoken": "^5.0.5",<% if (viewEngine === 'jade') { %>
     "jade": "^1.11.0",<% } %><% if (viewEngine === 'ejs') { %>
     "ejs": "^2.3.3",<% } %>
     "shell-arguments": "^1.0.4"<% } %>

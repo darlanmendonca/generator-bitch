@@ -54,5 +54,4 @@ mongoose.connection.on('error', function () {
   console.log('mongodb connection error');
 });
 
-
 module.exports = app;

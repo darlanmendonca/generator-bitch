@@ -1,5 +1,6 @@
 'use strict';
 
-let reqDir = require('req-dir');
-
-module.exports = reqDir('.');
+module.exports = {
+	api: require('./api')<% if (appType === 'client' || appType === 'both') { %>,
+	pages: require('./pages')<% } %>
+};

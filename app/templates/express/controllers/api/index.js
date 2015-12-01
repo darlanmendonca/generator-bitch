@@ -1,5 +1,6 @@
 'use strict';
 
-let reqDir = require('req-dir');
-
-module.exports = reqDir('.');
+module.exports = {
+	auth: require('./auth'),
+	users: require('./users')
+};
