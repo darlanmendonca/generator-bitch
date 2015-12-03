@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
     "start": "nodemon --quiet server/app.<%= extScript %> --env 'development'",<% } %>
-    "test": "shell-scripts/test"
+    "test": "scripts/test"
   },<% if (appType === 'server' || appType === 'both') { %>
   "apidoc": {
     "title": "Title API",

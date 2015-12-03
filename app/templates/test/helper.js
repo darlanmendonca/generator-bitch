@@ -1,9 +1,11 @@
 'use strict';
+
 let faker = require('faker');
 let config = require('../config');
 
 module.exports = {
 	API: `http://localhost:${config.server.port}/api`,
+
 	user: {
 		test: true,
 		firstname: faker.name.firstName(),

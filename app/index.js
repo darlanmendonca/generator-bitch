@@ -10,7 +10,6 @@ var babel = require('gulp-babel');
 var gulpif = require('gulp-if');
 var js2coffee = require('gulp-js2coffee');
 
-
 module.exports = generators.Base.extend({
 	constructor: function () {
 		generators.Base.apply(this, arguments);
