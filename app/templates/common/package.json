@@ -1,6 +1,7 @@
 {
   "name": "<%= appname %>",
   "version": "0.0.0",
+  "private": true,
   "scripts": {<% if (appType === 'server' || appType === 'both') { %>
     "start": "nodemon --quiet server/app.<%= extScript %> --env 'development'",<% } %>
     "test": "scripts/test"
