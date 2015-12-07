@@ -10,7 +10,7 @@ let compress = require('compression');
 let methodOverride = require('method-override');
 let multer = require('multer')();
 let config = require('../config');
-let routes = require('./routes');
+let routes = require('./routes/routes.js');
 let shell = require('shell-arguments');<% if (appType === 'both') { %>
 let favicon = require('serve-favicon');<% } %>
 

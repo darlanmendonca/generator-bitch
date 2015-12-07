@@ -1,7 +1,7 @@
 'use strict';
 
 let mongoose = require('mongoose');
-let encode = require('../helpers/encode.<%= extScript %>');
+let encode = require('../encode/encode.helper.js');
 
 let schema = new mongoose.Schema({
   email: {type: String, required: true},

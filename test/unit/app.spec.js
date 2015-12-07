@@ -29,9 +29,7 @@ describe('server application', function() {
 				'server/controllers',
 				'server/docs',
 				'gulpfile.js',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'package.json',
 				'server/routes',
 				'test'
@@ -70,9 +68,7 @@ describe('server application', function() {
 				'server/controllers',
 				'server/docs',
 				'gulpfile.js',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'package.json',
 				'server/routes',
 				'test'
@@ -111,9 +107,7 @@ describe('server application', function() {
 				'server/controllers',
 				'server/docs',
 				'gulpfile.coffee',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'package.json',
 				'server/routes',
 				'test'
@@ -166,9 +160,7 @@ describe('client application', function() {
 				'server',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 				'assets/angular',
 				'karma.js'
@@ -221,9 +213,7 @@ describe('client application', function() {
 				'server',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes'
 			]);
 		});
@@ -274,9 +264,7 @@ describe('client application', function() {
 				'server',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes'
 			]);
 		});
@@ -318,9 +306,7 @@ describe('client application', function() {
 				'server',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 				'karma.js',
 				'assets/angular'
@@ -373,9 +359,7 @@ describe('client application', function() {
 				'server',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes'
 			]);
 		});
@@ -426,9 +410,7 @@ describe('client application', function() {
 				'server',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes'
 			]);
 		});
@@ -472,9 +454,7 @@ describe('client application', function() {
 				'config.js',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 				'karma.coffee',
 				'assets/angular'
@@ -529,9 +509,7 @@ describe('client application', function() {
 				'config.js',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 			]);
 		});
@@ -584,9 +562,7 @@ describe('client application', function() {
 				'config.js',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 			]);
 		});
@@ -627,9 +603,7 @@ describe('fullstack application', function() {
 				'config.js',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 			]);
 
@@ -672,9 +646,7 @@ describe('fullstack application', function() {
 				'config.js',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 			]);
 
@@ -717,9 +689,7 @@ describe('fullstack application', function() {
 				'config.coffee',
 				'server/controllers',
 				'server/docs',
-				'server/helpers',
 				'server/middlewares',
-				'server/models',
 				'server/routes',
 			]);
 

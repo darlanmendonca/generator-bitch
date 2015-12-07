@@ -3,7 +3,7 @@
 
 let mongoose = require('mongoose');
 let config = require('../../config');
-let Users = require('../../server/models').users;
+let Users = require('../../server/users/users.model.js');
 let helper = require('../helper.js');
 let jwt = require('jsonwebtoken');
 
