@@ -265,6 +265,12 @@ module.exports = generators.Base.extend({
     	mkdirp('server');
       this.sourceRoot(path.join(__dirname,  'templates/express'), this);
       this.directory('.', './server');
+
+      if (this.appType === 'both') {
+      	this.sourceRoot(path.join(__dirname,  'templates/express-pages'), this);
+	      this.directory('.', './server/pages');
+      }
+
     }
   },
   test: function() {

@@ -26,10 +26,10 @@ describe('server application', function() {
 				'README.md',
 				'server',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
 				'gulpfile.js',
-				'server/middlewares',
+				'server/middlewares.js',
 				'package.json',
 				'server/routes',
 				'test'
@@ -65,10 +65,10 @@ describe('server application', function() {
 				'README.md',
 				'server',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
 				'gulpfile.js',
-				'server/middlewares',
+				'server/middlewares.js',
 				'package.json',
 				'server/routes',
 				'test'
@@ -104,10 +104,10 @@ describe('server application', function() {
 				'README.md',
 				'server/app.coffee',
 				'config.coffee',
-				'server/controllers',
+				'server/controllers.coffee',
 				'server/docs',
 				'gulpfile.coffee',
-				'server/middlewares',
+				'server/middlewares.coffee',
 				'package.json',
 				'server/routes',
 				'test'
@@ -158,9 +158,9 @@ describe('client application', function() {
 
 			assert.noFile([
 				'server',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 				'assets/angular',
 				'karma.js'
@@ -211,9 +211,9 @@ describe('client application', function() {
 
 			assert.noFile([
 				'server',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes'
 			]);
 		});
@@ -262,9 +262,9 @@ describe('client application', function() {
 
 			assert.noFile([
 				'server',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes'
 			]);
 		});
@@ -304,9 +304,9 @@ describe('client application', function() {
 
 			assert.noFile([
 				'server',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 				'karma.js',
 				'assets/angular'
@@ -357,9 +357,9 @@ describe('client application', function() {
 
 			assert.noFile([
 				'server',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes'
 			]);
 		});
@@ -408,9 +408,9 @@ describe('client application', function() {
 
 			assert.noFile([
 				'server',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes'
 			]);
 		});
@@ -452,9 +452,9 @@ describe('client application', function() {
 			assert.noFile([
 				'app.coffee',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 				'karma.coffee',
 				'assets/angular'
@@ -507,9 +507,9 @@ describe('client application', function() {
 			assert.noFile([
 				'app.coffee',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 			]);
 		});
@@ -560,9 +560,9 @@ describe('client application', function() {
 			assert.noFile([
 				'app.coffee',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 			]);
 		});
@@ -601,9 +601,9 @@ describe('fullstack application', function() {
 				'test',
 				'server',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 			]);
 
@@ -644,9 +644,9 @@ describe('fullstack application', function() {
 				'test',
 				'server',
 				'config.js',
-				'server/controllers',
+				'server/controllers.js',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.js',
 				'server/routes',
 			]);
 
@@ -687,9 +687,9 @@ describe('fullstack application', function() {
 				'test',
 				'server/app.coffee',
 				'config.coffee',
-				'server/controllers',
+				'server/controllers.coffee',
 				'server/docs',
-				'server/middlewares',
+				'server/middlewares.coffee',
 				'server/routes',
 			]);
 

@@ -15,5 +15,6 @@
   "node": true,
   "undef": false,
   "unused": true,
-  "asi": false
+  "asi": false,
+  "expr": true
 }

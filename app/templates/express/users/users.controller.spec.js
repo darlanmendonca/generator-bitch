@@ -164,7 +164,7 @@ describe('Users', function() {
 				.field('email', 'darlanmendonca@gmail.com')
 				.end(function(err, res) {
 					expect(res.statusCode).to.equal(204);
-					expect(res.body).to.be.empty; /*jshint -W030 */
+					expect(res.body).to.be.empty;
 					done();
 				});
 		});
@@ -194,7 +194,7 @@ describe('Users', function() {
 				.set('token', helper.user.token)
 				.end(function(err, res) {
 					expect(res.statusCode).to.equal(204);
-					expect(res.body).to.be.empty; /*jshint -W030 */
+					expect(res.body).to.be.empty;
 					done();
 				});
 		});

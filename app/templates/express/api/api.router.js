@@ -1,7 +1,7 @@
 'use strict';
 
-let api = require('../controllers/controllers.js').api;
-let middlewares = require('../middlewares/middlewares.js');
+let api = require('../controllers.js').api;
+let middlewares = require('../middlewares.js');
 let express = require('express');
 let router = express.Router();
 
