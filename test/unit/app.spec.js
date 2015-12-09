@@ -37,7 +37,7 @@ describe('server application', function() {
 
 			assert.noFile([
 				'bower.json',
-				'assets',
+				'client',
 				'public',
 				'karma.js'
 			]);
@@ -76,7 +76,7 @@ describe('server application', function() {
 
 			assert.noFile([
 				'bower.json',
-				'assets',
+				'client',
 				'public',
 				'karma.js'
 			]);
@@ -115,7 +115,7 @@ describe('server application', function() {
 
 			assert.noFile([
 				'bower.json',
-				'assets',
+				'client',
 				'public',
 				'karma.coffee'
 			]);
@@ -147,13 +147,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
 				'public',
 				// 'test'
-				'assets/scripts'
+				'client/scripts'
 			]);
 
 			assert.noFile([
@@ -162,7 +162,7 @@ describe('client application', function() {
 				'server/docs',
 				'server/middlewares.js',
 				'server/routes',
-				'assets/angular',
+				'client/angular',
 				'karma.js'
 			]);
 		});
@@ -199,13 +199,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
 				'public',
 				// 'test',
-				'assets/angular',
+				'client/angular',
 				'karma.js'
 			]);
 
@@ -250,13 +250,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
 				'public',
 				// 'test',
-				'assets/angular',
+				'client/angular',
 				'karma.js'
 			]);
 
@@ -293,13 +293,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
 				'public',
 				// 'test'
-				'assets/scripts'
+				'client/scripts'
 			]);
 
 			assert.noFile([
@@ -309,7 +309,7 @@ describe('client application', function() {
 				'server/middlewares.js',
 				'server/routes',
 				'karma.js',
-				'assets/angular'
+				'client/angular'
 			]);
 		});
 	});
@@ -345,13 +345,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
 				'public',
 				// 'test'
-				'assets/angular',
+				'client/angular',
 				'karma.js'
 			]);
 
@@ -396,13 +396,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
 				'public',
 				// 'test'
-				'assets/angular',
+				'client/angular',
 				'karma.js'
 			]);
 
@@ -440,13 +440,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.coffee',
 				'package.json',
 				'public',
 				// 'test'
-				'assets/scripts'
+				'client/scripts'
 			]);
 
 			assert.noFile([
@@ -457,7 +457,7 @@ describe('client application', function() {
 				'server/middlewares.js',
 				'server/routes',
 				'karma.coffee',
-				'assets/angular'
+				'client/angular'
 			]);
 		});
 	});
@@ -494,13 +494,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.coffee',
 				'package.json',
 				'public',
 				// 'test',
-				'assets/angular',
+				'client/angular',
 				'karma.coffee'
 			]);
 
@@ -547,13 +547,13 @@ describe('client application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.coffee',
 				'package.json',
 				'public',
 				// 'test',
-				'assets/angular',
+				'client/angular',
 				'karma.coffee'
 			]);
 
@@ -593,7 +593,7 @@ describe('fullstack application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
@@ -636,7 +636,7 @@ describe('fullstack application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.js',
 				'package.json',
@@ -679,7 +679,7 @@ describe('fullstack application', function() {
 				'.gitignore',
 				'.jshintrc',
 				'README.md',
-				'assets',
+				'client',
 				'bower.json',
 				'gulpfile.coffee',
 				'package.json',

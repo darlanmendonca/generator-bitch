@@ -19,7 +19,7 @@ let server = http.createServer(app);
 
 app.set('env', shell.env || process.env.NODE_ENV || 'production');
 app.set('port', config.server.port);<% if (appType === 'both') { %>
-app.set('views', path.join(__dirname, '..', 'assets', 'views'));
+app.set('views', path.join(__dirname, '..', 'client', 'views'));
 app.set('view engine', '<%= viewEngine %>');<% } %>
 
 if (app.get('env') === 'development') {

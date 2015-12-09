@@ -14,32 +14,32 @@ let lintScripts = [
 	'./test/**/*.js',<% if (appType === 'server' || appType === 'both') { %>
 	'./server/**/*.js',
 	'!./server/docs/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
-	'./assets/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
-	'./assets/scripts/**/*.<%= extScript %>'<% } %>
+	'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
+	'./client/scripts/**/*.<%= extScript %>'<% } %>
 ];<% } %>
 <% if (appType === 'client' || appType === 'both') { %>
 let files = {
 	views: {
-		src: './assets/views/*.<%= viewEngine %>',
+		src: './client/views/*.<%= viewEngine %>',
 		dest: './public/'
 	},<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 	templates: {
-		src: './assets/<%= appFramework %>/**/*.<%= viewEngine %>',
+		src: './client/<%= appFramework %>/**/*.<%= viewEngine %>',
 		dest: './public/templates/'
 	},<% } %>
 	styles: {
-		src: './assets/styles/*.<%= extPreprocessor %>',
+		src: './client/styles/*.<%= extPreprocessor %>',
 		dest: './public/styles/'
 	},
 	scripts: {
 		src: <% if (appFramework === 'angular') { %>[
-			'./assets/angular/**/*.<%= extScript %>',
-			'!./assets/angular/**/*.spec.<%= extScript %>'
-		]<% } %><% if (appFramework === 'none') { %>'./assets/scripts/**/*.<%= extScript %>'<% } %>,
+			'./client/angular/**/*.<%= extScript %>',
+			'!./client/angular/**/*.spec.<%= extScript %>'
+		]<% } %><% if (appFramework === 'none') { %>'./client/scripts/**/*.<%= extScript %>'<% } %>,
 		dest: './public/scripts/'
 	},
 	sprites: {
-		src: './assets/sprites/*.png',
+		src: './client/sprites/*.png',
 		dest: './public/imgs/sprites/'
 	}
 };
@@ -85,7 +85,7 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 		ignore: [
 			'gulpfile.<%= extScript %>',
 			'test/**/*.<%= extScript %>',<% if (appFramework !== 'none') { %>
-			'assets/**/*.<%= extScript %>',<% } %>
+			'client/**/*.<%= extScript %>',<% } %>
 			'public/scripts/**/*.<%= extScript %>',
 		],<% } %>
 		env: {
@@ -117,7 +117,7 @@ gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>fun
 		port: config.server.proxy,
 		ignored: [
 			'public/**/*.<%= extScript %>',
-			'assets/**/*.<%= extScript %>'
+			'client/**/*.<%= extScript %>'
 		],<% } %>
 		notify: false,<% if (appType === 'client' && appFramework === 'angular') { %>
 		middleware: [ historyApiFallback() ],<% } %>
@@ -145,7 +145,7 @@ gulp.task('sprites', function() {
 		.pipe(spritesmith(options));
 
 	sprite.img.pipe(gulp.dest(files.sprites.dest));
-	sprite.css.pipe(gulp.dest('./assets/styles/components/'));
+	sprite.css.pipe(gulp.dest('./client/styles/components/'));
 });
 
 gulp.task('styles', function() {
@@ -185,7 +185,7 @@ gulp.task('styles', function() {
 		.pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
 		.pipe(stylus(configPreprocessor))<% } %>
 		.pipe(autoprefixer())
-		.pipe(sourcemaps.write({sourceRoot: '/assets/styles'}))
+		.pipe(sourcemaps.write({sourceRoot: '/client/styles'}))
 		.pipe(gulp.dest(files.styles.dest))
 		.pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -204,7 +204,7 @@ gulp.task('scripts', function() {
 		.pipe(babel())
 		.pipe(concat('app.js'))
 		.pipe(uglify({mangle: false}))
-		.pipe(sourcemaps.write({sourceRoot: '/assets/angular'}))
+		.pipe(sourcemaps.write({sourceRoot: '/client/angular'}))
 		.pipe(gulp.dest(files.scripts.dest));
 });
 
@@ -298,7 +298,7 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
 		browserSync.reload
 	]);
 
-	gulp.watch('./assets/styles/**/*.<%= extPreprocessor %>', ['styles']);
+	gulp.watch('./client/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
 	gulp.watch(files.scripts.src, [
 		'scripts',

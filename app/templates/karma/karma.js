@@ -15,8 +15,8 @@ module.exports = function(config) {
 
 	// list of files / patterns to load in the browser
 	files: bower.dev().relative(__dirname).ext('js').files.concat([
-		'assets/angular/app.js',
-		'assets/angular/**/*.js'
+		'client/angular/app.js',
+		'client/angular/**/*.js'
 	]),
 
 

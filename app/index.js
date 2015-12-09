@@ -285,41 +285,41 @@ module.exports = generators.Base.extend({
       mkdirp('server/docs');
     }
   },
-  assets: function() {
+  client: function() {
     if (this.isAppType('client')) {
-      mkdirp('assets/imgs');
-      mkdirp('assets/styles/components');
-      mkdirp('assets/sprites');
+      mkdirp('client/imgs');
+      mkdirp('client/styles/components');
+      mkdirp('client/sprites');
       if (this.appFramework !== 'none') {
-        mkdirp('assets/'+this.appFramework);
+        mkdirp('client/'+this.appFramework);
       }
     }
   },
   views: function() {
     if (this.isAppType('client')) {
       this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
-      this.directory('.', 'assets/views');
+      this.directory('.', 'client/views');
     }
   },
   styles: function() {
     if (this.isAppType('client')) {
       this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
-      this.directory('.', 'assets/styles');
+      this.directory('.', 'client/styles');
     }
   },
   angular: function() {
     if ((this.isAppType('client') || this.isAppType('both')) && this.appFramework === 'angular') {
       this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
-      this.directory('.', 'assets/angular');
+      this.directory('.', 'client/angular');
 
 			this.sourceRoot(path.join(__dirname,  'templates/angular-templates/'+this.viewEngine), this);
-			this.directory('.', 'assets/angular');
+			this.directory('.', 'client/angular');
 		}
 	},
 	scripts: function() {
 		if ((this.isAppType('client') || this.isAppType('both')) && this.appFramework === 'none') {
 			this.sourceRoot(path.join(__dirname,  'templates/scripts'), this);
-      this.directory('.', 'assets/scripts');
+      this.directory('.', 'client/scripts');
     }
 	},
 	public: function() {
