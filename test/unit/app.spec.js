@@ -31,7 +31,7 @@ describe('server application', function() {
 				'gulpfile.js',
 				'server/middlewares.js',
 				'package.json',
-				'server/routes',
+				'server/routers.js',
 				'test'
 			]);
 
@@ -70,7 +70,7 @@ describe('server application', function() {
 				'gulpfile.js',
 				'server/middlewares.js',
 				'package.json',
-				'server/routes',
+				'server/routers.js',
 				'test'
 			]);
 
@@ -109,7 +109,7 @@ describe('server application', function() {
 				'gulpfile.coffee',
 				'server/middlewares.coffee',
 				'package.json',
-				'server/routes',
+				'server/routers.coffee',
 				'test'
 			]);
 
@@ -161,7 +161,7 @@ describe('client application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes',
+				'server/routers.js',
 				'client/angular',
 				'karma.js'
 			]);
@@ -214,7 +214,7 @@ describe('client application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes'
+				'server/routers.js'
 			]);
 		});
 	});
@@ -265,7 +265,7 @@ describe('client application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes'
+				'server/routers.js'
 			]);
 		});
 	});
@@ -307,7 +307,7 @@ describe('client application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes',
+				'server/routers.js',
 				'karma.js',
 				'client/angular'
 			]);
@@ -360,7 +360,7 @@ describe('client application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes'
+				'server/routers.js'
 			]);
 		});
 	});
@@ -411,7 +411,7 @@ describe('client application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes'
+				'server/routers.js'
 			]);
 		});
 	});
@@ -452,10 +452,7 @@ describe('client application', function() {
 			assert.noFile([
 				'app.coffee',
 				'config.js',
-				'server/controllers.js',
-				'server/docs',
-				'server/middlewares.js',
-				'server/routes',
+				'server',
 				'karma.coffee',
 				'client/angular'
 			]);
@@ -507,10 +504,7 @@ describe('client application', function() {
 			assert.noFile([
 				'app.coffee',
 				'config.js',
-				'server/controllers.js',
-				'server/docs',
-				'server/middlewares.js',
-				'server/routes',
+				'server'
 			]);
 		});
 	});
@@ -560,10 +554,7 @@ describe('client application', function() {
 			assert.noFile([
 				'app.coffee',
 				'config.js',
-				'server/controllers.js',
-				'server/docs',
-				'server/middlewares.js',
-				'server/routes',
+				'server'
 			]);
 		});
 	});
@@ -604,7 +595,7 @@ describe('fullstack application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes',
+				'server/routers.js',
 			]);
 
 			assert.noFile([
@@ -647,7 +638,7 @@ describe('fullstack application', function() {
 				'server/controllers.js',
 				'server/docs',
 				'server/middlewares.js',
-				'server/routes',
+				'server/routers.js',
 			]);
 
 			assert.noFile([
@@ -690,7 +681,7 @@ describe('fullstack application', function() {
 				'server/controllers.coffee',
 				'server/docs',
 				'server/middlewares.coffee',
-				'server/routes',
+				'server/routers.coffee',
 			]);
 
 			assert.noFile([
