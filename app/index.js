@@ -253,6 +253,87 @@ module.exports = generators.Base.extend({
   gulp: function() {
     this.sourceRoot(path.join(__dirname,  'templates/gulp'), this);
     this.directory('.', '.');
+
+  	this.sourceRoot(path.join(__dirname,  'templates/tasks'), this);
+  	var config;
+
+  	config = {
+  		template: this.templatePath('config.js'),
+  		dest: this.destinationPath('tasks/config.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
+
+  	config = {
+  		template: this.templatePath('watch.js'),
+  		dest: this.destinationPath('tasks/watch.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
+
+  	config = {
+  		template: this.templatePath('default.js'),
+  		dest: this.destinationPath('tasks/default.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
+
+  	if (this.scriptType !== 'coffeescript') {
+	  	config = {
+	  		template: this.templatePath('lint.js'),
+	  		dest: this.destinationPath('tasks/lint.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+	  }
+
+  	if (this.appType === 'server' || this.appType === 'both') {
+  		config = {
+	  		template: this.templatePath('server.js'),
+	  		dest: this.destinationPath('tasks/server.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+
+	  	config = {
+	  		template: this.templatePath('docs.js'),
+	  		dest: this.destinationPath('tasks/docs.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+  	}
+
+  	if (this.appType === 'client' || this.appType === 'both') {
+  		config = {
+	  		template: this.templatePath('livereload.js'),
+	  		dest: this.destinationPath('tasks/livereload.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+
+	  	config = {
+	  		template: this.templatePath('sprite-images.js'),
+	  		dest: this.destinationPath('tasks/sprite-images.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+
+	  	config = {
+	  		template: this.templatePath('styles.js'),
+	  		dest: this.destinationPath('tasks/styles.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+
+	  	config = {
+	  		template: this.templatePath('scripts.js'),
+	  		dest: this.destinationPath('tasks/scripts.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+
+	  	config = {
+	  		template: this.templatePath('views.js'),
+	  		dest: this.destinationPath('tasks/views.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+
+	  	config = {
+	  		template: this.templatePath('dependencies.js'),
+	  		dest: this.destinationPath('tasks/dependencies.js')
+	  	};
+	  	this.fs.copyTpl(config.template, config.dest, this);
+  	}
   },
   bower: function() {
     if (this.appType === 'client' || this.appType === 'both') {
