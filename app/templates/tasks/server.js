@@ -8,13 +8,14 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 	let options = {
 		script: 'server/app.<%= extScript %>',
 		quiet: true,
-		ext: '<%= extScript %>',<% if (appType === 'both') { %>
+		ext: '<%= extScript %>',
 		ignore: [
+			'server/docs',<% if (appType === 'both') { %>
 			'gulpfile.<%= extScript %>',
 			'test/**/*.<%= extScript %>',<% if (appFramework !== 'none') { %>
 			'client/**/*.<%= extScript %>',<% } %>
-			'public/scripts/**/*.<%= extScript %>',
-		],<% } %>
+			'public/scripts/**/*.<%= extScript %>'<% } %>
+		],
 		env: {
 			ENV: 'development'<% if (appType === 'client' || appType === 'both') { %>,
 			open: argv.open<% } %>

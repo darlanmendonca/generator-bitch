@@ -10,6 +10,7 @@ let tasks = [<% if (appType === 'client' || appType === 'both')  { %>
 	'sprites',
 	'styles',
 	'scripts',<% } %><% if (appType === 'server')  { %>
+	'apiDocs',
 	'nodemon',<% } %><% if (scriptType !== 'coffeescript') { %>
 	'lint',<% } %>
 	'watch'

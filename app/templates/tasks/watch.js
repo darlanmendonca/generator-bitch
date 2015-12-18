@@ -25,5 +25,7 @@ gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both'
 	gulp.watch('./bower.json', [
 		'dependencies',
 		'styles'
-	]);<% } %>
+	]);<% } %><% if (appType === 'server' || appType === 'both')  { %>
+
+	gulp.watch('./server/**/*.controller.js', ['apiDocs']);<% } %>
 });

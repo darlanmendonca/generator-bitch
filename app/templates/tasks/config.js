@@ -4,8 +4,7 @@ module.exports = {<% if (scriptType !== 'coffeescript') { %>
 	lint: [
 		'./gulpfile.<%= extScript %>',
 		'./test/**/*.js',<% if (appType === 'server' || appType === 'both') { %>
-		'./server/**/*.js',
-		'!./server/docs/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
+		'./server/!(docs)**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
 		'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
 		'./client/scripts/**/*.<%= extScript %>'<% } %>
 	],<% } %><% if (appType === 'client' || appType === 'both') { %>

@@ -4,7 +4,7 @@ let gulp = require('gulp');
 let apiDoc = require('gulp-apidoc');
 
 let options = {
-	src: 'server/controllers/api',
+	src: 'server/',
 	dest: 'server/docs',
 	debug: true,
 	// parse: true,
