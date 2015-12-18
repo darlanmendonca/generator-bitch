@@ -34,7 +34,7 @@
     "chai": "^3.4.0",<% if (appType === 'server' || appType === 'both') { %>
     "istanbul": "^0.4.0",
     "coveralls": "^2.11.4",
-    "supertest": "^1.1.0",
+    "chai-http": "^1.0.0",
     "faker": "^3.0.1",
     "gulp-apidoc": "^0.2.0",
     "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'both') { %>

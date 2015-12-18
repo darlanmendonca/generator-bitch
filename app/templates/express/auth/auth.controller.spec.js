@@ -1,10 +1,13 @@
 /* globals describe, it */
 'use strict';
 
-let request = require('supertest');
-let expect = require('chai').expect;
 let helper = require('../../test/helper.js');
 let app = require('../app.js');
+
+let chai = require('chai');
+chai.use(require('chai-http'));
+let request = chai.request;
+let expect = chai.expect;
 
 describe('Auth', function() {
 	describe('.local - POST /api/auth', function() {
@@ -14,7 +17,7 @@ describe('Auth', function() {
 				.set('token', helper.user.token)
 				.field('email', helper.user.email)
 				.field('password', helper.user.invalidPassword)
-				.end(function(err, res) {
+				.then(function(res) {
 					expect(res.statusCode).to.equal(401);
 					expect(res.body).to.have.property('message', 'authentication failed');
 					done();
@@ -27,7 +30,7 @@ describe('Auth', function() {
 				.set('token', helper.user.token)
 				.field('email', helper.user.email)
 				.field('password', helper.user.password)
-				.end(function(err, res) {
+				.then(function(res) {
 					expect(res.statusCode).to.equal(200);
 					expect(res.body).to.have.property('id', helper.user._id.toString());
 					expect(res.body).to.have.property('token');

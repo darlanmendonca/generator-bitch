@@ -1,17 +1,20 @@
 /* globals describe, it */
 'use strict';
 
-let request = require('supertest');
-let expect = require('chai').expect;
 let helper = require('../../test/helper.js');
 let app = require('../app.js');
+
+let chai = require('chai');
+chai.use(require('chai-http'));
+let request = chai.request;
+let expect = chai.expect;
 
 describe('API', function() {
 	describe('not found - GET /api/chiforimfola', function() {
 		it('no token provided', function(done) {
 			request(app)
 				.get('/api/chiforimfola')
-				.end(function(err, res) {
+				.then(function(res) {
 					expect(res.statusCode).to.equal(401);
 					expect(res.body).to.have.property('message', 'no token provided');
 					done();
@@ -22,14 +25,18 @@ describe('API', function() {
 			request(app)
 				.get('/api/chiforimfola')
 				.set('token', helper.user.invalidToken)
-				.expect(401, {message: 'invalid token'}, done);
+				.then(function(res) {
+					expect(res.statusCode).to.be.equal(401);
+					expect(res.body).to.have.property('message', 'invalid token');
+					done();
+				});
 		});
 
 		it('404 not found', function(done) {
 			request(app)
 				.get('/api/chiforimfola')
 				.set('token', helper.user.token)
-				.end(function(err, res) {
+				.then(function(res) {
 					expect(res.statusCode).to.equal(404);
 					expect(res.body).to.have.property('message', 'resource not found :(');
 					done();

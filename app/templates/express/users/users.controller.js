@@ -31,7 +31,10 @@ UsersController.get = function(req, res) {
   Users
 	.findOne({_id: new ObjectId(req.params.id)}, publicFields)
 	.then(function(user) {
-	  res.json(user);
+		let status = user ? 200 : 204;
+	  res
+	  	.status(status)
+	  	.json(user);
 	});
 };
 
@@ -51,7 +54,7 @@ UsersController.create = function(req, res) {
 	.save()
 	.then(function(user) {
 	  res.status(201).json({
-		id: user._id
+			id: user._id
 	  });
 	}, function(err) {
 	  res.status(400).json(err.errors);
