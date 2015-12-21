@@ -1,6 +1,7 @@
 'use strict';
 
 let gulp = require('gulp');
+let gutil = require('gulp-util');
 let bower = require('bower-files')();
 let dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files;
 let inject = require('gulp-inject');

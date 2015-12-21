@@ -1,6 +1,7 @@
 'use strict';
 
 let gulp = require('gulp');
+let gutil = require('gulp-util');
 let <%= viewEngine %> = require('gulp-<%= viewEngine %>');
 let flatten = require('gulp-flatten');
 let config = require('./config.js');

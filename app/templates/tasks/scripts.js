@@ -1,6 +1,7 @@
 'use strict';
 
-let gulp = require('gulp');<% if (scriptType === 'es6') { %>
+let gulp = require('gulp');
+let gutil = require('gulp-util');<% if (scriptType === 'es6') { %>
 let babel = require('gulp-babel');<% } %><% if (appFramework === 'angular') { %>
 let ngAnnotate = require('gulp-ng-annotate');<% } %><% if (scriptType === 'coffeescript') { %>
 let coffee = require('gulp-coffee');<% } %>
