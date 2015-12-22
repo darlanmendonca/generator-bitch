@@ -6,14 +6,14 @@ let babel = require('gulp-babel');<% } %><% if (appFramework === 'angular') { %>
 let ngAnnotate = require('gulp-ng-annotate');<% } %><% if (scriptType === 'coffeescript') { %>
 let coffee = require('gulp-coffee');<% } %>
 let sourcemaps = require('gulp-sourcemaps');
-let config = require('./config.js');
+let gulpConfig = require('./gulp.config.js');
 let plumber = require('gulp-plumber');
 let concat = require('gulp-concat');
 let uglify = require('gulp-uglify');
 
 gulp.task('scripts', function() {
 	gulp
-		.src(config.scripts.src)
+		.src(gulpConfig.scripts.src)
 		.pipe(plumber(<% if (scriptType !== 'coffeescript') { %>{ errorHandler: onError }<% } %>))
 		.pipe(sourcemaps.init())<% if (scriptType === 'coffeescript') { %>
 		.pipe(coffee({bare: true}).on('error', onError))<% } %><% if (appFramework === 'angular') { %>
@@ -22,7 +22,7 @@ gulp.task('scripts', function() {
 		.pipe(concat('app.js'))
 		.pipe(uglify({mangle: false}))
 		.pipe(sourcemaps.write({sourceRoot: '/client/angular'}))
-		.pipe(gulp.dest(config.scripts.dest));
+		.pipe(gulp.dest(gulpConfig.scripts.dest));
 });
 
 function onError(err) {

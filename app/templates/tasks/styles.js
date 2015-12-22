@@ -9,7 +9,7 @@ let util = require('util');
 let <%= preprocessor %> = require('gulp-<%= preprocessor %>');
 let autoprefixer = require('gulp-autoprefixer');
 let sourcemaps = require('gulp-sourcemaps');
-let config = require('./config.js');
+let gulpConfig = require('./gulp.config.js');
 
 let injectTransform = {
 	starttag: '/* inject:imports */',
@@ -33,7 +33,7 @@ let configPreprocessor = {
 
 gulp.task('styles', function() {
 	gulp
-		.src(config.styles.src)
+		.src(gulpConfig.styles.src)
 		.pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))<% if (preprocessor === 'stylus') { %>
 		.pipe(plumber({ errorHandler: onError }))<% } %>
 		.pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
@@ -42,8 +42,8 @@ gulp.task('styles', function() {
 		.pipe(stylus(configPreprocessor))<% } %>
 		.pipe(autoprefixer())
 		.pipe(sourcemaps.write({sourceRoot: '/client/styles'}))
-		.pipe(gulp.dest(config.styles.dest))
-		.pipe(config.browserSync.stream({match: '**/*.css'}));
+		.pipe(gulp.dest(gulpConfig.styles.dest))
+		.pipe(gulpConfig.browserSync.stream({match: '**/*.css'}));
 });
 
 function onError(err) {

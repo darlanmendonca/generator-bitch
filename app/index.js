@@ -258,8 +258,8 @@ module.exports = generators.Base.extend({
   	var config;
 
   	config = {
-  		template: this.templatePath('config.js'),
-  		dest: this.destinationPath('tasks/config.js')
+  		template: this.templatePath('gulp.config.js'),
+  		dest: this.destinationPath('tasks/gulp.config.js')
   	};
   	this.fs.copyTpl(config.template, config.dest, this);
 

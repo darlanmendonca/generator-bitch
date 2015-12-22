@@ -4,22 +4,22 @@ let gulp = require('gulp');
 let gutil = require('gulp-util');
 let <%= viewEngine %> = require('gulp-<%= viewEngine %>');
 let flatten = require('gulp-flatten');
-let config = require('./config.js');
+let gulpConfig = require('./gulp.config.js');
 let plumber = require('gulp-plumber');
 
 gulp.task('views', function() {
 	gulp
-		.src(config.views.src)
+		.src(gulpConfig.views.src)
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(<%= viewEngine %>())<% if (appType === 'client') { %>
-		.pipe(gulp.dest(config.views.dest))<% } %>;<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+		.pipe(gulp.dest(gulpConfig.views.dest))<% } %>;<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
 
 	gulp
-		.src(config.templates.src)
+		.src(gulpConfig.templates.src)
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(<%= viewEngine %>())
 		.pipe(flatten())
-		.pipe(gulp.dest(config.templates.dest));<% } %>
+		.pipe(gulp.dest(gulpConfig.templates.dest));<% } %>
 });
 
 function onError(err) {

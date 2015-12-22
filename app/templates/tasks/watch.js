@@ -1,26 +1,26 @@
 'use strict';
 
 let gulp = require('gulp');
-let config = require('./config.js');
+let gulpConfig = require('./gulp.config.js');
 
 gulp.task('watch', function() {<% if (appType === 'client' || appType === 'both')  { %><% if (appFramework === 'angular') { %>
 	let views = [];
-	views = views.concat(config.templates.src);
-	views = views.concat(config.views.src);
+	views = views.concat(gulpConfig.templates.src);
+	views = views.concat(gulpConfig.views.src);
 
 	gulp.watch(views, [<% } else { %>
-	gulp.watch(config.views.src, [<% } %>
+	gulp.watch(gulpConfig.views.src, [<% } %>
 		'views',
-		config.browserSync.reload
+		gulpConfig.browserSync.reload
 	]);
 
 	gulp.watch('./client/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
-	gulp.watch(config.scripts.src, [
+	gulp.watch(gulpConfig.scripts.src, [
 		'scripts',
-		config.browserSync.reload
+		gulpConfig.browserSync.reload
 	]);<% } %><% if (scriptType !== 'coffeescript') { %>
-	gulp.watch(config.lint, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
+	gulp.watch(gulpConfig.lint, ['lint']);<% } %><% if (appType === 'client' || appType === 'both')  { %>
 
 	gulp.watch('./bower.json', [
 		'dependencies',
