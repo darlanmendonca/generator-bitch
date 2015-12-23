@@ -4,7 +4,7 @@ let gulp = require('gulp');<% if (appType === 'client' || appType === 'both') { 
 let argv = require('yargs').argv;<% } %><% if (appType === 'client' || appType === 'both' && appFramework === 'angular') { %>
 let historyApiFallback = require('connect-history-api-fallback');<% } %><% if (appType === 'server' || appType === 'both') { %>
 let config = require('../config.js');<% } %>
-let gulpConfig = require('./config.js');
+let gulpConfig = require('./gulp.config.js');
 
 let options = {<% if (appType === 'client') { %>
 	server: {
