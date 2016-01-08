@@ -1,16 +1,16 @@
 language: node_js
 node_js:
-  - "0.12.9"
-  - "4.2.1"
-  - "5.1.0"
+	- "0.12.9"
+	- "4.2.1"
+	- "5.4.0"
 env:
-  - EXPORT_COVERAGE=1 CXX=g++-4.8
+	- EXPORT_COVERAGE=1 CXX=g++-4.8
 addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
+	apt:
+		sources:
+		- ubuntu-toolchain-r-test
+		packages:
+		- g++-4.8
 branches:
-  only:
-    - master
+	only:
+		- master
