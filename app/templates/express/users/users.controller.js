@@ -56,7 +56,8 @@ UsersController.create = function(req, res) {
 	  res.status(201).json({
 			id: user._id
 	  });
-	}, function(err) {
+	})
+	.catch(function(err) {
 	  res.status(400).json(err.errors);
 	});
 };

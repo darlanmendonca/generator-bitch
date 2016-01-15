@@ -37,6 +37,7 @@ app
   .use('/api', routes.api)<% } %><% if (appType === 'client' || appType === 'both') { %>
   .use('/', routes.pages)<% } %>;
 
+mongoose.Promise = require('bluebird');
 mongoose.connect(config.database.url, function() {
   server.listen(app.get('port'), function () {
   	if (app.get('env') !== 'test') {
