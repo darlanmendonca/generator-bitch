@@ -3,11 +3,11 @@
 module.exports = {<% if (scriptType !== 'coffeescript') { %>
 	lint: [
 		'./gulpfile.<%= extScript %>',
-		'./test/**/*.js',<% if (appType === 'server' || appType === 'both') { %>
-		'./server/!(docs)**/*.js',<% } %><% if ((appType === 'client' || appType === 'both') && appFramework !== 'none') { %>
-		'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'none') { %>
+		'./test/**/*.js',<% if (appType === 'server') { %>
+		'./server/!(docs)**/*.js',<% } %><% if ((appType === 'client') && appFramework !== 'none') { %>
+		'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if (appType === 'client' && appFramework === 'none') { %>
 		'./client/scripts/**/*.<%= extScript %>'<% } %>
-	],<% } %><% if (appType === 'client' || appType === 'both') { %>
+	],<% } %><% if (appType === 'client') { %>
 	views: {
 		src: './client/views/*.<%= viewEngine %>',
 		dest: './public/'

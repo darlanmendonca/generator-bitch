@@ -1,15 +1,15 @@
 'use strict';
 
-let gulp = require('gulp');<% if (appType === 'client' || appType === 'both') { %>
-let argv = require('yargs').argv;<% } %><% if (appType === 'client' || appType === 'both' && appFramework === 'angular') { %>
-let historyApiFallback = require('connect-history-api-fallback');<% } %><% if (appType === 'server' || appType === 'both') { %>
+let gulp = require('gulp');<% if (appType === 'client') { %>
+let argv = require('yargs').argv;<% } %><% if (appType === 'client' && appFramework === 'angular') { %>
+let historyApiFallback = require('connect-history-api-fallback');<% } %><% if (appType === 'server') { %>
 let config = require('../config.js');<% } %>
 let gulpConfig = require('./gulp.config.js');
 
 let options = {<% if (appType === 'client') { %>
 	server: {
 		baseDir: './public'
-	},<% } %><% if (appType === 'server' || appType === 'both') { %>
+	},<% } %><% if (appType === 'server') { %>
 	proxy: 'localhost:'+config.server.port,
 	port: config.server.proxy,
 	ignored: [
@@ -22,6 +22,6 @@ let options = {<% if (appType === 'client') { %>
 	open: <% if (appType === 'client') { %>argv.open<% } %><% if (appType !== 'client') { %>false<% } %>
 };
 
-gulp.task('browser-sync', <% if (appType === 'both') { %>['nodemon'], <% } %>function() {
+gulp.task('browser-sync', function() {
 	gulpConfig.browserSync.init(options);
 });

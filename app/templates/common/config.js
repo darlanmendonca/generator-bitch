@@ -5,7 +5,7 @@ let config = {
     server: {
       port: 3000,
       proxy: 5000
-    }<% if (appType === 'server' || appType === 'both') { %>,
+    }<% if (appType === 'server') { %>,
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
     },
@@ -18,7 +18,7 @@ let config = {
     server: {
       port: 3000,
       proxy: 5000
-    }<% if (appType === 'server' || appType === 'both') { %>,
+    }<% if (appType === 'server') { %>,
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
     },
@@ -31,7 +31,7 @@ let config = {
     server: {
       port: 3005,
       proxy: 5005
-    }<% if (appType === 'server' || appType === 'both') { %>,
+    }<% if (appType === 'server') { %>,
     database: {
       url: 'mongodb://localhost/<%= slugify(appname) %>'
     },

@@ -1,5 +1,5 @@
 doctype html
-html<% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>(ng-app='<%= slugify(appname) %>')<% } %>
+html<% if ((appType === 'client') && appFramework === 'angular') { %>(ng-app='<%= slugify(appname) %>')<% } %>
   head
     title Title
     base(href="/")

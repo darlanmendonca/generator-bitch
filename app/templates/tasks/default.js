@@ -1,9 +1,9 @@
 'use strict';
 
-let gulp = require('gulp');<% if (appType === 'client' || appType === 'both')  { %>
+let gulp = require('gulp');<% if (appType === 'client')  { %>
 let gutil = require('gulp-util');<% } %>
 
-let tasks = [<% if (appType === 'client' || appType === 'both')  { %>
+let tasks = [<% if (appType === 'client')  { %>
 	'dependencies',
 	'views',
 	'browser-sync',

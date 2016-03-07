@@ -2,10 +2,10 @@
   "name": "<%= appname %>",
   "version": "1.0.0",
   "private": true,
-  "scripts": {<% if (appType === 'server' || appType === 'both') { %>
+  "scripts": {<% if (appType === 'server') { %>
     "start": "nodemon --quiet server/app.<%= extScript %> --env 'development'",<% } %>
     "test": "scripts/test"
-  },<% if (appType === 'server' || appType === 'both') { %>
+  },<% if (appType === 'server') { %>
   "apidoc": {
     "title": "Title API",
     "url": "http://api.com",
@@ -15,7 +15,7 @@
       "withGenerator": false
     }
   },<% } %>
-  "dependencies": {<% if (appType === 'server' || appType === 'both') { %>
+  "dependencies": {<% if (appType === 'server') { %>
     "express": "^4.13.1",
     "body-parser": "^1.13.2",
     "compression": "^1.5.1",
@@ -32,14 +32,13 @@
   },
   "devDependencies": {
     "mocha": "^2.3.3",
-    "chai": "^3.4.0",<% if (appType === 'server' || appType === 'both') { %>
+    "chai": "^3.4.0",<% if (appType === 'server') { %>
     "istanbul": "^0.4.0",
     "coveralls": "^2.11.4",
     "chai-http": "^1.0.0",
     "faker": "^3.0.1",
     "gulp-apidoc": "^0.2.0",
-    "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'both') { %>
-    "open": "^0.0.5",<% } %><% if (appType === 'client' || appType === 'both') { %>
+    "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'client') { %>
     "bower-files": "^3.7.2",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-minify-css": "1.2.1",
@@ -51,8 +50,8 @@
     "gulp-plumber": "^1.0.1",<% if (preprocessor === 'sass') { %>
     "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
-    "gulp-stylus": "^2.0.6",<% } %><% if ((appType === 'client' || appType === 'both') && scriptType === 'es6') { %>
-    "gulp-babel": "^5.2.1",<% } %><% if ((appType === 'client' || appType === 'both') && appFramework === 'angular') { %>
+    "gulp-stylus": "^2.0.6",<% } %><% if (appType === 'client' && scriptType === 'es6') { %>
+    "gulp-babel": "^5.2.1",<% } %><% if (appType === 'client'&& appFramework === 'angular') { %>
     "gulp-ng-annotate": "^1.1.0",<% if (appType === 'client' && appFramework === 'angular') { %>
     "connect-history-api-fallback": "^1.1.0",<% } %>
     "jasmine": "^2.3.2",

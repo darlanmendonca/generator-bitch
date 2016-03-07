@@ -41,8 +41,8 @@ module.exports = generators.Base.extend({
 			type: 'list',
 			name: 'appType',
 			message: 'application type',
-			default: 'both',
-			choices: ['server', 'client', 'both']
+			default: 'client',
+			choices: ['server', 'client']
 		};
 		this.prompt(prompt, function(data) {
 			this.appType = data.appType;
@@ -50,10 +50,10 @@ module.exports = generators.Base.extend({
 				var is;
 				switch(type) {
 				case 'client':
-						is =  this.appType === 'client' || this.appType === 'both';
+						is =  this.appType === 'client';
 						break;
 					case 'server':
-						is = this.appType === 'server' || this.appType === 'both';
+						is = this.appType === 'server';
 						break;
 				}
 				return is;
@@ -241,7 +241,7 @@ module.exports = generators.Base.extend({
     }
   },
   angularTest: function() {
-  	if ((this.appType === 'client' || this.appType === 'both') && this.appFramework === 'angular') {
+  	if (this.appType === 'client' && this.appFramework === 'angular') {
     	this.sourceRoot(path.join(__dirname,  'templates/karma'), this);
 		    this.directory('.', '.');
     }
@@ -283,7 +283,7 @@ module.exports = generators.Base.extend({
 	  	this.fs.copyTpl(config.template, config.dest, this);
 	  }
 
-  	if (this.appType === 'server' || this.appType === 'both') {
+  	if (this.appType === 'server') {
   		config = {
 	  		template: this.templatePath('server.js'),
 	  		dest: this.destinationPath('tasks/server.js')
@@ -297,7 +297,7 @@ module.exports = generators.Base.extend({
 	  	this.fs.copyTpl(config.template, config.dest, this);
   	}
 
-  	if (this.appType === 'client' || this.appType === 'both') {
+  	if (this.appType === 'client') {
   		config = {
 	  		template: this.templatePath('livereload.js'),
 	  		dest: this.destinationPath('tasks/livereload.js')
@@ -336,7 +336,7 @@ module.exports = generators.Base.extend({
   	}
   },
   bower: function() {
-    if (this.appType === 'client' || this.appType === 'both') {
+    if (this.appType === 'client') {
       this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
       this.directory('.', '.');
     }
@@ -346,23 +346,17 @@ module.exports = generators.Base.extend({
     	mkdirp('server');
       this.sourceRoot(path.join(__dirname,  'templates/express'), this);
       this.directory('.', './server');
-
-      if (this.appType === 'both') {
-      	this.sourceRoot(path.join(__dirname,  'templates/express-pages'), this);
-	      this.directory('.', './server/pages');
-      }
-
     }
   },
   test: function() {
-    if (this.isAppType('server') || this.isAppType('both')) {
+    if (this.isAppType('server')) {
       mkdirp('test');
       this.sourceRoot(path.join(__dirname,  'templates/test'), this);
       this.directory('.', './test');
     }
   },
   docs: function() {
-    if (this.isAppType('server') || this.isAppType('both')) {
+    if (this.isAppType('server')) {
       mkdirp('server/docs');
     }
   },
@@ -389,7 +383,7 @@ module.exports = generators.Base.extend({
     }
   },
   angular: function() {
-    if ((this.isAppType('client') || this.isAppType('both')) && this.appFramework === 'angular') {
+    if (this.isAppType('client') && this.appFramework === 'angular') {
       this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
       this.directory('.', 'client/angular');
 
@@ -398,7 +392,7 @@ module.exports = generators.Base.extend({
 		}
 	},
 	scripts: function() {
-		if ((this.isAppType('client') || this.isAppType('both')) && this.appFramework === 'none') {
+		if (this.isAppType('client') && this.appFramework === 'none') {
 			this.sourceRoot(path.join(__dirname,  'templates/scripts'), this);
       this.directory('.', 'client/scripts');
     }

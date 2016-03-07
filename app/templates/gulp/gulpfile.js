@@ -1,8 +1,8 @@
 'use strict';
 
-require('./tasks/lint.js');<% if (appType === 'server' || appType === 'both') { %>
+require('./tasks/lint.js');<% if (appType === 'server') { %>
 require('./tasks/docs.js');
-require('./tasks/server.js');<% } %><% if (appType === 'client' || appType === 'both') { %>
+require('./tasks/server.js');<% } %><% if (appType === 'client') { %>
 require('./tasks/livereload.js');
 require('./tasks/sprite-images.js');
 require('./tasks/styles.js');

@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/darlanmendonca/generator-bitch/badge.svg?branch=master&service=github)](https://coveralls.io/github/darlanmendonca/generator-bitch?branch=master)
 [![npm version](https://badge.fury.io/js/generator-bitch.svg)](https://badge.fury.io/js/generator-bitch)
 
-A simple generator (for Yeoman) to scaffolding web apps. Server, client, or both.
+A simple generator (for Yeoman) to scaffolding MEAN applications, API server, or just frontend.
 
 Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6, ecma 5, or coffeescript).
 

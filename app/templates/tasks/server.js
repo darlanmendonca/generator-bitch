@@ -10,14 +10,10 @@ gulp.task('nodemon', function(<% if (appType === 'server') { %>cb<% } %>) {
 		quiet: true,
 		ext: '<%= extScript %>',
 		ignore: [
-			'server/docs',<% if (appType === 'both') { %>
-			'gulpfile.<%= extScript %>',
-			'test/**/*.<%= extScript %>',<% if (appFramework !== 'none') { %>
-			'client/**/*.<%= extScript %>',<% } %>
-			'public/scripts/**/*.<%= extScript %>'<% } %>
+			'server/docs'
 		],
 		env: {
-			ENV: 'development'<% if (appType === 'client' || appType === 'both') { %>,
+			ENV: 'development'<% if (appType === 'client') { %>,
 			open: argv.open<% } %>
 		}
 	};<% if (appType === 'server') { %>
