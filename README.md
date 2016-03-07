@@ -59,7 +59,7 @@ At moment, I added test specs to api controllers (integration tests), and Angula
 
 And soon, I will add e2e with Protractor. I want cover the entire application with tests.
 
-### Requires
+### Requirements
 This generator, is a yeoman generator, and require following modules:
 
 - yo
