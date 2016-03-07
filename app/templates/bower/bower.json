@@ -1,7 +1,7 @@
 {
   "name": "<%= slugify(appname) %>",
   "version": "0.0.0",
-  "dependencies": {<% if (appType === 'client' && appFramework === 'angular') { %>
+  "dependencies": {<% if (appFramework === 'angular') { %>
     "angular": "^1.4.5",<% if (ngAnimate) { %>
     "angular-animate": "^1.4.5",<% } %><% if (ngCookies) { %>
     "angular-cookies": "^1.4.5",<% } %><% if (ngResource) { %>
@@ -10,7 +10,7 @@
     "angular-touch": "^1.4.5"<% } %><% if (angularRoute === 'uiRouter') { %>,
     "angular-ui-router": "^0.2.15"<% } %><% if (angularRoute === 'ngRoute') { %>,
     "angular-route": "^1.4.5"<% } %><% } %>
-  }<% if (appType === 'client' && appFramework === 'angular') { %>,
+  }<% if (appFramework === 'angular') { %>,
   "devDependencies": {
     "angular-mocks": "~1.4.7"
   }<% } %>

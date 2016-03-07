@@ -8,7 +8,6 @@ var mkdirp = require('mkdirp');
 
 var babel = require('gulp-babel');
 var gulpif = require('gulp-if');
-var js2coffee = require('gulp-js2coffee');
 
 module.exports = generators.Base.extend({
 	constructor: function () {
@@ -35,60 +34,18 @@ module.exports = generators.Base.extend({
 			done();
 		}.bind(this));
 	},
-	appType: function() {
-		var done = this.async();
-		var prompt = {
-			type: 'list',
-			name: 'appType',
-			message: 'application type',
-			default: 'client',
-			choices: ['server', 'client']
-		};
-		this.prompt(prompt, function(data) {
-			this.appType = data.appType;
-			this.isAppType = function (type) {
-				var is;
-				switch(type) {
-				case 'client':
-						is =  this.appType === 'client';
-						break;
-					case 'server':
-						is = this.appType === 'server';
-						break;
-				}
-				return is;
-			};
-			done();
-		}.bind(this));
-	},
-	appSecret: function() {
-		var done = this.async();
-		var prompt = {
-			type: 'input',
-			name: 'appSecret',
-			message: 'type secret to use in json web token'
-		};
-		if (this.appType === 'client') {
-			done();
-		} else {
-			this.prompt(prompt, function(data) {
-				this.appSecret = data.appSecret ? data.appSecret : '';
-				done();
-			}.bind(this));
-		}
-	},
-	scriptType: function() {
+  scriptType: function() {
 		var done = this.async();
 		var prompt = {
 			type: 'list',
 			name: 'scriptType',
 			message: 'javascript is write in',
 			default: 'es6',
-			choices: ['es6', 'es5', 'coffeescript']
+			choices: ['es6', 'es5']
 		};
 		this.prompt(prompt, function(data) {
 			this.scriptType = data.scriptType;
-			this.extScript = this.scriptType === 'coffeescript' ? 'coffee' : 'js';
+			this.extScript = 'js';
 			var condition;
 
 			if (this.scriptType === 'es5') {
@@ -96,12 +53,6 @@ module.exports = generators.Base.extend({
 					return path.extname(file.path) === '.js';
 				};
 				this.registerTransformStream(gulpif(condition, babel()));
-			} else if (this.scriptType === 'coffeescript') {
-				condition = function (file) {
-					return path.extname(file.path) === '.js';
-				};
-				this.registerTransformStream(gulpif(condition, babel()));
-				this.registerTransformStream(gulpif(condition, js2coffee()));
 			}
 
 			done();
@@ -109,22 +60,18 @@ module.exports = generators.Base.extend({
 	},
 	viewEngine: function() {
 		var done = this.async();
-		var strView = this.isAppType('client') ? 'template view' : 'view engine';
 		var prompt = {
 			type: 'list',
 			name: 'viewEngine',
-			message: util.format('select %s you would like to use', strView),
+			message: 'select template view you would like to use',
 			default: 'jade',
 			choices: ['jade', 'ejs']
 		};
-		if (this.appType === 'server') {
-			done();
-		} else {
-			this.prompt(prompt, function(data) {
-				this.viewEngine = data.viewEngine;
-				done();
-			}.bind(this));
-		}
+		this
+      .prompt(prompt, function(data) {
+        this.viewEngine = data.viewEngine;
+        done();
+      }.bind(this));
 	},
 	preprocessor: function() {
 		var done = this.async();
@@ -135,20 +82,17 @@ module.exports = generators.Base.extend({
 			default: 'sass',
 			choices: ['sass', 'less', 'stylus']
 		};
-		if (this.appType === 'server') {
+
+		this.prompt(prompt, function(data) {
+			this.preprocessor = data.preprocessor;
+			var extname = {
+				sass: 'scss',
+				less: 'less',
+				stylus: 'styl'
+			};
+			this.extPreprocessor = extname[data.preprocessor];
 			done();
-		} else {
-			this.prompt(prompt, function(data) {
-				this.preprocessor = data.preprocessor;
-				var extname = {
-					sass: 'scss',
-					less: 'less',
-					stylus: 'styl'
-				};
-				this.extPreprocessor = extname[data.preprocessor];
-				done();
-			}.bind(this));
-		}
+		}.bind(this));
 	},
 	appFramework: function() {
 		var done = this.async();
@@ -159,14 +103,11 @@ module.exports = generators.Base.extend({
 			default: 'angular',
 			choices: ['angular', 'none']
 		};
-		if (this.appType === 'server') {
+
+		this.prompt(prompt, function(data) {
+			this.appFramework = data.appFramework;
 			done();
-		} else {
-			this.prompt(prompt, function(data) {
-				this.appFramework = data.appFramework;
-				done();
-			}.bind(this));
-		}
+		}.bind(this));
 	},
 	frameworkModules: function() {
 		var done = this.async();
@@ -208,17 +149,14 @@ module.exports = generators.Base.extend({
 				}
 			]
 		};
-		if (this.appType === 'server' || this.appFramework !== 'angular') {
+
+		this.prompt(prompt, function(data) {
+			this.frameworkModules = data.frameworkModules;
+			for (var key in this.frameworkModules) {
+				this[this.frameworkModules[key]] = true;
+			}
 			done();
-		} else {
-			this.prompt(prompt, function(data) {
-				this.frameworkModules = data.frameworkModules;
-				for (var key in this.frameworkModules) {
-					this[this.frameworkModules[key]] = true;
-				}
-				done();
-			}.bind(this));
-		}
+		}.bind(this));
 	},
 	angularRoute: function() {
 		var done = this.async();
@@ -229,19 +167,16 @@ module.exports = generators.Base.extend({
       default: 'uiRouter',
       choices: ['uiRouter', 'ngRoute', 'none']
     };
-    if (this.appType === 'server' || this.appFramework !== 'angular') {
+
+    this.prompt(prompt, function(data) {
+      this.angularRoute = data.angularRoute;
+      this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
+        'ui-view' : 'ng-view';
       done();
-    } else {
-      this.prompt(prompt, function(data) {
-        this.angularRoute = data.angularRoute;
-        this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
-          'ui-view' : 'ng-view';
-        done();
-      }.bind(this));
-    }
+    }.bind(this));
   },
   angularTest: function() {
-  	if (this.appType === 'client' && this.appFramework === 'angular') {
+  	if (this.appFramework === 'angular') {
     	this.sourceRoot(path.join(__dirname,  'templates/karma'), this);
 		    this.directory('.', '.');
     }
@@ -275,115 +210,70 @@ module.exports = generators.Base.extend({
   	};
   	this.fs.copyTpl(config.template, config.dest, this);
 
-  	if (this.scriptType !== 'coffeescript') {
-	  	config = {
-	  		template: this.templatePath('lint.js'),
-	  		dest: this.destinationPath('tasks/lint.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
-	  }
+  	config = {
+  		template: this.templatePath('lint.js'),
+  		dest: this.destinationPath('tasks/lint.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
 
-  	if (this.appType === 'server') {
-  		config = {
-	  		template: this.templatePath('server.js'),
-	  		dest: this.destinationPath('tasks/server.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
+		config = {
+  		template: this.templatePath('livereload.js'),
+  		dest: this.destinationPath('tasks/livereload.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
 
-	  	config = {
-	  		template: this.templatePath('docs.js'),
-	  		dest: this.destinationPath('tasks/docs.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
-  	}
+  	config = {
+  		template: this.templatePath('sprite-images.js'),
+  		dest: this.destinationPath('tasks/sprite-images.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
 
-  	if (this.appType === 'client') {
-  		config = {
-	  		template: this.templatePath('livereload.js'),
-	  		dest: this.destinationPath('tasks/livereload.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
+  	config = {
+  		template: this.templatePath('styles.js'),
+  		dest: this.destinationPath('tasks/styles.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
 
-	  	config = {
-	  		template: this.templatePath('sprite-images.js'),
-	  		dest: this.destinationPath('tasks/sprite-images.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
+  	config = {
+  		template: this.templatePath('scripts.js'),
+  		dest: this.destinationPath('tasks/scripts.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
 
-	  	config = {
-	  		template: this.templatePath('styles.js'),
-	  		dest: this.destinationPath('tasks/styles.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
+  	config = {
+  		template: this.templatePath('views.js'),
+  		dest: this.destinationPath('tasks/views.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
 
-	  	config = {
-	  		template: this.templatePath('scripts.js'),
-	  		dest: this.destinationPath('tasks/scripts.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
-
-	  	config = {
-	  		template: this.templatePath('views.js'),
-	  		dest: this.destinationPath('tasks/views.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
-
-	  	config = {
-	  		template: this.templatePath('dependencies.js'),
-	  		dest: this.destinationPath('tasks/dependencies.js')
-	  	};
-	  	this.fs.copyTpl(config.template, config.dest, this);
-  	}
+  	config = {
+  		template: this.templatePath('dependencies.js'),
+  		dest: this.destinationPath('tasks/dependencies.js')
+  	};
+  	this.fs.copyTpl(config.template, config.dest, this);
   },
   bower: function() {
-    if (this.appType === 'client') {
-      this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
-      this.directory('.', '.');
-    }
-  },
-  express: function() {
-    if (this.isAppType('server')) {
-    	mkdirp('server');
-      this.sourceRoot(path.join(__dirname,  'templates/express'), this);
-      this.directory('.', './server');
-    }
-  },
-  test: function() {
-    if (this.isAppType('server')) {
-      mkdirp('test');
-      this.sourceRoot(path.join(__dirname,  'templates/test'), this);
-      this.directory('.', './test');
-    }
-  },
-  docs: function() {
-    if (this.isAppType('server')) {
-      mkdirp('server/docs');
-    }
+    this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
+    this.directory('.', '.');
   },
   client: function() {
-    if (this.isAppType('client')) {
-      mkdirp('client/imgs');
-      mkdirp('client/styles/components');
-      mkdirp('client/sprites');
-      if (this.appFramework !== 'none') {
-        mkdirp('client/'+this.appFramework);
-      }
+    mkdirp('client/imgs');
+    mkdirp('client/styles/components');
+    mkdirp('client/sprites');
+    if (this.appFramework !== 'none') {
+      mkdirp('client/'+this.appFramework);
     }
   },
   views: function() {
-    if (this.isAppType('client')) {
-      this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
-      this.directory('.', 'client/views');
-    }
+    this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
+    this.directory('.', 'client/views');
   },
   styles: function() {
-    if (this.isAppType('client')) {
-      this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
-      this.directory('.', 'client/styles');
-    }
+    this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
+    this.directory('.', 'client/styles');
   },
   angular: function() {
-    if (this.isAppType('client') && this.appFramework === 'angular') {
+    if (this.appFramework === 'angular') {
       this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
       this.directory('.', 'client/angular');
 
@@ -392,22 +282,20 @@ module.exports = generators.Base.extend({
 		}
 	},
 	scripts: function() {
-		if (this.isAppType('client') && this.appFramework === 'none') {
+		if (this.appFramework === 'none') {
 			this.sourceRoot(path.join(__dirname,  'templates/scripts'), this);
       this.directory('.', 'client/scripts');
     }
 	},
 	public: function() {
-		if (this.isAppType('client')) {
-			this.sourceRoot(path.join(__dirname,  'templates/public'), this);
-			this.directory('.', 'public');
-			mkdirp('public/imgs/sprites');
-			mkdirp('public/scripts');
-		}
+		this.sourceRoot(path.join(__dirname,  'templates/public'), this);
+		this.directory('.', 'public');
+		mkdirp('public/imgs/sprites');
+		mkdirp('public/scripts');
 	},
 	install: function() {
 		this.installDependencies({
-			bower: this.isAppType('client'),
+			bower: true,
 			npm: true,
 			skipInstall: true
 		});

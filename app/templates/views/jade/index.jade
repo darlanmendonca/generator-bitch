@@ -1,5 +1,5 @@
 extends layouts/sample
 
-block content<% if ((appType === 'client') && appFramework === 'angular' && angularRoute !== 'none') { %>
+block content<% if (appFramework === 'angular' && angularRoute !== 'none') { %>
   div(<%= angularRouteDirective %>)<% } else { %>
   p hello<% } %>

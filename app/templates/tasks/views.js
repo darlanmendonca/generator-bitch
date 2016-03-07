@@ -11,8 +11,8 @@ gulp.task('views', function() {
 	gulp
 		.src(gulpConfig.views.src)
 		.pipe(plumber({ errorHandler: onError }))
-		.pipe(<%= viewEngine %>())<% if (appType === 'client') { %>
-		.pipe(gulp.dest(gulpConfig.views.dest))<% } %>;<% if ((appType === 'client') && appFramework === 'angular') { %>
+		.pipe(<%= viewEngine %>())
+		.pipe(gulp.dest(gulpConfig.views.dest));<% if (appFramework === 'angular') { %>
 
 	gulp
 		.src(gulpConfig.templates.src)

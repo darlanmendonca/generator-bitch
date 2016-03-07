@@ -2,43 +2,13 @@
   "name": "<%= appname %>",
   "version": "1.0.0",
   "private": true,
-  "scripts": {<% if (appType === 'server') { %>
-    "start": "nodemon --quiet server/app.<%= extScript %> --env 'development'",<% } %>
+  "scripts": {
     "test": "scripts/test"
-  },<% if (appType === 'server') { %>
-  "apidoc": {
-    "title": "Title API",
-    "url": "http://api.com",
-    "template": {
-      "forceLanguage": "en",
-      "withCompare": false,
-      "withGenerator": false
-    }
-  },<% } %>
-  "dependencies": {<% if (appType === 'server') { %>
-    "express": "^4.13.1",
-    "body-parser": "^1.13.2",
-    "compression": "^1.5.1",
-    "serve-favicon": "^2.3.0",
-    "method-override": "^2.3.4",
-    "mongoose": "^4.1.0",
-    "bluebird": "^3.1.1",
-    "morgan": "^1.6.1",
-    "multer": "^1.0.5",
-    "jsonwebtoken": "^5.0.5",<% if (viewEngine === 'jade') { %>
-    "jade": "^1.11.0",<% } %><% if (viewEngine === 'ejs') { %>
-    "ejs": "^2.3.3",<% } %>
-    "shell-arguments": "^1.0.4"<% } %>
   },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "^2.3.3",
-    "chai": "^3.4.0",<% if (appType === 'server') { %>
-    "istanbul": "^0.4.0",
-    "coveralls": "^2.11.4",
-    "chai-http": "^1.0.0",
-    "faker": "^3.0.1",
-    "gulp-apidoc": "^0.2.0",
-    "gulp-nodemon": "^2.0.3",<% } %><% if (appType === 'client') { %>
+    "chai": "^3.4.0",
     "bower-files": "^3.7.2",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-minify-css": "1.2.1",
@@ -50,9 +20,9 @@
     "gulp-plumber": "^1.0.1",<% if (preprocessor === 'sass') { %>
     "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
-    "gulp-stylus": "^2.0.6",<% } %><% if (appType === 'client' && scriptType === 'es6') { %>
-    "gulp-babel": "^5.2.1",<% } %><% if (appType === 'client'&& appFramework === 'angular') { %>
-    "gulp-ng-annotate": "^1.1.0",<% if (appType === 'client' && appFramework === 'angular') { %>
+    "gulp-stylus": "^2.0.6",<% } %><% if (scriptType === 'es6') { %>
+    "gulp-babel": "^5.2.1",<% } %><% if (appFramework === 'angular') { %>
+    "gulp-ng-annotate": "^1.1.0",<% if (appFramework === 'angular') { %>
     "connect-history-api-fallback": "^1.1.0",<% } %>
     "jasmine": "^2.3.2",
     "karma": "^0.13.10",
@@ -60,15 +30,13 @@
     "karma-chai": "^0.1.0",
     "karma-mocha-reporter": "^1.1.1",
     "phantomjs": "^1.9.18",
-    "karma-phantomjs-launcher": "^0.2.1",<% } %>
+    "karma-phantomjs-launcher": "^0.2.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp.spritesmith": "^3.8.2",
     "pngsmith": "^0.1.3",
     "gulp-flatten": "^0.2.0",
-    "spritesmith": "^1.3.2",<% } %><% if (scriptType === 'coffeescript') { %>
-    "coffee-script": "^1.9.3",
-    "gulp-coffee": "^2.3.1",<% } %>
+    "spritesmith": "^1.3.2",<% } %>
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
     "gulp-jshint": "^1.11.2",

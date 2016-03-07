@@ -2,11 +2,9 @@
 [![Coverage Status](https://coveralls.io/repos/darlanmendonca/generator-bitch/badge.svg?branch=master&service=github)](https://coveralls.io/github/darlanmendonca/generator-bitch?branch=master)
 [![npm version](https://badge.fury.io/js/generator-bitch.svg)](https://badge.fury.io/js/generator-bitch)
 
-A simple generator (for Yeoman) to scaffolding MEAN applications, API server, or just frontend.
+A simple generator (for Yeoman) to scaffolding web applications, just frontend stack.
 
-Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6, ecma 5, or coffeescript).
-
-If you like this, give us a github star, or make a issue, or pull request, is very welcome!
+Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6, or ecma 5).
 
 # ![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
 
@@ -63,12 +61,11 @@ gulp --open
 - livereload (with [Browsersync](http://www.browsersync.io))
 - sprite images from png's (with [spritesmith](https://github.com/Ensighten/spritesmith) and pngsmith)
 - concatenation and minification (styles and scripts)
-- restart automatically server (with [nodemon](http://nodemon.io))
 - watch files, to running all tasks automatically
 - compile es6 client scripts to es5  with [Babel](https://babeljs.io/) (if you choose es5 has script type)
 - [ngAnnotate](https://github.com/olov/ng-annotate) (to Angular)
 
-#### Client
+#### More infos
 
 Views
 - [Jade](https://github.com/jadejs/jade)
@@ -86,7 +83,6 @@ Scripts
 - Javascript
   - Ecma 6
   - Ecma 5
-- [CoffeeScript](http://coffeescript.org/)
 
 
 <!-- Tools and frameworks:
@@ -96,27 +92,10 @@ Scripts
 - Foundation -->
 
 
-#### Backend
-
-Server
-- [Node.js](https://nodejs.org/)
-- [Express](http://expressjs.com/4x/api.html) 4x
-- MVC
-- Config (with environments)
-- ORM's
-- [apiDocs](http://apidocjs.com/) to autogenerate documentation views
-
-Databases
-- [MongoDB](https://www.mongodb.org/) (with [Mongoose](http://mongoosejs.com/))
-- [Redis](http://redis.io/) (soon)
-- [MySQL](https://www.mysql.com/) (soon)
-
-
 #### Tests
 At moment, I added test specs to api controllers (integration tests), and Angular controllers (unit tests):
 
 - [Mocha](http://mochajs.org/) as test framework
-- [Supertest](https://github.com/visionmedia/supertest) (to make requests http)
 - [Karma](http://karma-runner.github.io/) Angular Unit Tests
 - [Chai](http://chaijs.com) (to make assertions)
 
@@ -127,4 +106,4 @@ And soon, I will add e2e with Protractor. I want cover the entire application wi
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Darlan Mendonça
+Copyright (c) 2016 Darlan Mendonça

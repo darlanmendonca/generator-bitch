@@ -2,20 +2,20 @@
 
 First, make sure you have all the dependencies installed:
 ```sh
-npm install<% if (isAppType('client')) { %> && bower install<% } %>
+npm install && bower install
 ```
 
 To start application, running:
 
 ```sh
-gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %>
-```<% if (isAppType('client')) { %>
+gulp
+```
 
 If you want open on browser automatically, use flag open, like below:
 ```sh
-gulp<% if (scriptType === 'coffeescript') { %> --require coffee-script/register<% } %> --open
+gulp --open
 ```
-Browser is editable on gulpfile.<% } %>
+Browser is editable on gulpfile.
 
 
 Scripts on package.json

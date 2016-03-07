@@ -1,13 +1,12 @@
 'use strict';
 
-module.exports = {<% if (scriptType !== 'coffeescript') { %>
+module.exports = {
 	lint: [
 		'./gulpfile.<%= extScript %>',
-		'./test/**/*.js',<% if (appType === 'server') { %>
-		'./server/!(docs)**/*.js',<% } %><% if ((appType === 'client') && appFramework !== 'none') { %>
-		'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if (appType === 'client' && appFramework === 'none') { %>
+		'./test/**/*.js',<% if (appFramework !== 'none') { %>
+		'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if (appFramework === 'none') { %>
 		'./client/scripts/**/*.<%= extScript %>'<% } %>
-	],<% } %><% if (appType === 'client') { %>
+	],
 	views: {
 		src: './client/views/*.<%= viewEngine %>',
 		dest: './public/'
@@ -31,5 +30,5 @@ module.exports = {<% if (scriptType !== 'coffeescript') { %>
 		src: './client/sprites/*.png',
 		dest: './public/imgs/sprites/'
 	},
-	browserSync: require('browser-sync').create()<% } %>
+	browserSync: require('browser-sync').create()
 };

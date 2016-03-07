@@ -3,8 +3,7 @@
 let gulp = require('gulp');
 let gutil = require('gulp-util');<% if (scriptType === 'es6') { %>
 let babel = require('gulp-babel');<% } %><% if (appFramework === 'angular') { %>
-let ngAnnotate = require('gulp-ng-annotate');<% } %><% if (scriptType === 'coffeescript') { %>
-let coffee = require('gulp-coffee');<% } %>
+let ngAnnotate = require('gulp-ng-annotate');<% } %>
 let sourcemaps = require('gulp-sourcemaps');
 let gulpConfig = require('./gulp.config.js');
 let plumber = require('gulp-plumber');
@@ -14,9 +13,8 @@ let uglify = require('gulp-uglify');
 gulp.task('scripts', function() {
 	gulp
 		.src(gulpConfig.scripts.src)
-		.pipe(plumber(<% if (scriptType !== 'coffeescript') { %>{ errorHandler: onError }<% } %>))
-		.pipe(sourcemaps.init())<% if (scriptType === 'coffeescript') { %>
-		.pipe(coffee({bare: true}).on('error', onError))<% } %><% if (appFramework === 'angular') { %>
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(sourcemaps.init())<% if (appFramework === 'angular') { %>
 		.pipe(ngAnnotate())<% } %><% if (scriptType === 'es6') { %>
 		.pipe(babel())<% } %>
 		.pipe(concat('app.js'))

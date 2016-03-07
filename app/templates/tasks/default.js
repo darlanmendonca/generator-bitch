@@ -1,18 +1,16 @@
 'use strict';
 
-let gulp = require('gulp');<% if (appType === 'client')  { %>
-let gutil = require('gulp-util');<% } %>
+let gulp = require('gulp');
+let gutil = require('gulp-util');
 
-let tasks = [<% if (appType === 'client')  { %>
+let tasks = [
 	'dependencies',
 	'views',
 	'browser-sync',
 	'sprites',
 	'styles',
-	'scripts',<% } %><% if (appType === 'server')  { %>
-	'apiDocs',
-	'nodemon',<% } %><% if (scriptType !== 'coffeescript') { %>
-	'lint',<% } %>
+	'scripts',
+	'lint',
 	'watch'
 ];
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html<% if (appType === 'client' && appFramework === 'angular') { %>(ng-app='<%= slugify(appname) %>')<% } %>>
+<html<% if (appFramework === 'angular') { %>(ng-app='<%= slugify(appname) %>')<% } %>>
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
@@ -10,7 +10,7 @@
 
   <%%- include includes/styles %%>
 </head>
-<body><% if (appType === 'client' && appFramework === 'angular') { %>
+<body><% if (appFramework === 'angular') { %>
   <div ui-view></div><% } else { %>
   <p>hello</p><% } %>
 

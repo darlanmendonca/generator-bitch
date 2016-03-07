@@ -5,40 +5,19 @@ let config = {
     server: {
       port: 3000,
       proxy: 5000
-    }<% if (appType === 'server') { %>,
-    database: {
-      url: 'mongodb://localhost/<%= slugify(appname) %>'
-    },
-    secret: '<%= appSecret %>',
-    token: {
-      expiresIn: 1440 // 24 hours
-    }<% } %>
+    }
   },
   production: {
     server: {
       port: 3000,
       proxy: 5000
-    }<% if (appType === 'server') { %>,
-    database: {
-      url: 'mongodb://localhost/<%= slugify(appname) %>'
-    },
-    secret: '<%= appSecret %>',
-    token: {
-      expiresIn: 1440 // 24 hours
-    }<% } %>
+    }
   },
   test: {
     server: {
       port: 3005,
       proxy: 5005
-    }<% if (appType === 'server') { %>,
-    database: {
-      url: 'mongodb://localhost/<%= slugify(appname) %>'
-    },
-    secret: '<%= appSecret %>',
-    token: {
-      expiresIn: 1440 // 24 hours
-    }<% } %>
+    }
   }
 };
 
