@@ -4,49 +4,9 @@
 
 A simple generator (for Yeoman) to scaffolding web applications, just frontend stack.
 
-Writed in Ecma Script 6 (but you choose how you want your application, in ecma 6, or ecma 5).
+Writed in Ecma Script 6 (but you choose how you want your application, in Ecma Scrit 6, or 5).
 
 # ![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
-
-### Requires
-This generator, is a yeoman generator, and require following modules:
-
-- yo
-- gulp
-- bower
-
-To install these:
-```sh
-npm i -g yo gulp bower
-```
-
-### Install and use
-
-First install this module as global
-```sh
-npm i -g generator-bitch
-```
-
-And to use, run:
-```sh
-yo bitch
-```
-or
-```sh
-yo bitch nameProject
-```
-
-After install dependencies (with npm and/or bower), running your project using default task on Gulp, running:
-
-```sh
-gulp
-```
-
-If you use client too, you can pass a flag to gulp, to open automatically on your Google Chrome (editable on gulpfile), running:
-
-```sh
-gulp --open
-```
 
 ### This generator, offer as:
 
@@ -64,8 +24,6 @@ gulp --open
 - watch files, to running all tasks automatically
 - compile es6 client scripts to es5  with [Babel](https://babeljs.io/) (if you choose es5 has script type)
 - [ngAnnotate](https://github.com/olov/ng-annotate) (to Angular)
-
-#### More infos
 
 Views
 - [Jade](https://github.com/jadejs/jade)
@@ -100,6 +58,46 @@ At moment, I added test specs to api controllers (integration tests), and Angula
 - [Chai](http://chaijs.com) (to make assertions)
 
 And soon, I will add e2e with Protractor. I want cover the entire application with tests.
+
+### Requires
+This generator, is a yeoman generator, and require following modules:
+
+- yo
+- gulp
+- bower
+
+To install these:
+```sh
+npm i -g yo gulp bower
+```
+
+### Install and use
+
+First install this module as global
+```sh
+npm i -g generator-bitch
+```
+
+And to use, go to a empty folder, where you want generate project, and run:
+```sh
+yo bitch
+```
+or
+```sh
+yo bitch nameProject
+```
+
+After install dependencies (with npm and/or bower), running your project using default task on Gulp, running:
+
+```sh
+gulp
+```
+
+If you use client too, you can pass a flag to gulp, to open automatically on your Google Chrome (editable on gulpfile), running:
+
+```sh
+gulp --open
+```
 
 
 #### License
