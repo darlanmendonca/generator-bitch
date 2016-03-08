@@ -1,7 +1,7 @@
 {
   "name": "generator-bitch",
-  "version": "0.10.0",
-  "description": "Scaffolding MEAN applications. API server, or just frontend",
+  "version": "0.10.1",
+  "description": "A simple generator (for Yeoman) to scaffolding web applications, just frontend stack",
   "main": "app/index.js",
   "scripts": {
     "test": "scripts/test"
