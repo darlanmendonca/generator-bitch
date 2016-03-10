@@ -8,7 +8,7 @@ Writed in Ecma Script 6 (but you choose how you want your application, in Ecma S
 
 If you use old versions of this module, maybe you want create an Node.js Api. This stack is migrated to a new module called [generator-nude](https://github.com/darlanmendonca/generator-nude).
 
-# ![yo bitch](https://s-media-cache-ak0.pinimg.com/736x/8e/92/49/8e92494fa649c20fea2cd27de1f4d254.jpg)
+# ![yo bitch](https://d13yacurqjgara.cloudfront.net/users/776185/screenshots/2344191/drib.gif)
 
 ### This generator, offer as:
 
