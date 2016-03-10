@@ -2,8 +2,8 @@
 
 let gulp = require('gulp');
 let gutil = require('gulp-util');
-let <%= viewEngine %> = require('gulp-<%= viewEngine %>');
-let flatten = require('gulp-flatten');
+let <%= viewEngine %> = require('gulp-<%= viewEngine %>');<% if (appFramework === 'angular') { %>
+let flatten = require('gulp-flatten');<% } %>
 let gulpConfig = require('./gulp.config.js');
 let plumber = require('gulp-plumber');
 

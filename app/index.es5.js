@@ -135,64 +135,76 @@ function appFramework() {
 }
 
 function frameworkModules() {
-  var done = this.async();
-  this.ngAnimate = false;
-  this.ngCookies = false;
-  this.ngResource = false;
-  this.ngSanitize = false;
-  this.ngTouch = false;
+  var _this = this;
 
-  var prompt = {
-    type: 'checkbox',
-    name: 'frameworkModules',
-    message: 'chich modules would you like to include',
-    choices: [{
-      value: 'ngAnimate',
-      name: 'ngAnimate',
-      checked: true
-    }, {
-      value: 'ngCookies',
-      name: 'ngCookies',
-      checked: true
-    }, {
-      value: 'ngResource',
-      name: 'ngResource',
-      checked: true
-    }, {
-      value: 'ngSanitize',
-      name: 'ngSanitize',
-      checked: true
-    }, {
-      value: 'ngTouch',
-      name: 'ngTouch',
-      checked: true
-    }]
-  };
+  if (this.appFramework === 'angular') {
+    (function () {
+      var done = _this.async();
+      _this.ngAnimate = false;
+      _this.ngCookies = false;
+      _this.ngResource = false;
+      _this.ngSanitize = false;
+      _this.ngTouch = false;
 
-  this.prompt(prompt, function (data) {
-    this.frameworkModules = data.frameworkModules;
-    for (var key in this.frameworkModules) {
-      this[this.frameworkModules[key]] = true;
-    }
-    done();
-  }.bind(this));
+      var prompt = {
+        type: 'checkbox',
+        name: 'frameworkModules',
+        message: 'chich modules would you like to include',
+        choices: [{
+          value: 'ngAnimate',
+          name: 'ngAnimate',
+          checked: true
+        }, {
+          value: 'ngCookies',
+          name: 'ngCookies',
+          checked: true
+        }, {
+          value: 'ngResource',
+          name: 'ngResource',
+          checked: true
+        }, {
+          value: 'ngSanitize',
+          name: 'ngSanitize',
+          checked: true
+        }, {
+          value: 'ngTouch',
+          name: 'ngTouch',
+          checked: true
+        }]
+      };
+
+      _this.prompt(prompt, function (data) {
+        this.frameworkModules = data.frameworkModules;
+        for (var key in this.frameworkModules) {
+          this[this.frameworkModules[key]] = true;
+        }
+        done();
+      }.bind(_this));
+    })();
+  }
 }
 
 function angularRoute() {
-  var done = this.async();
-  var prompt = {
-    type: 'list',
-    name: 'angularRoute',
-    message: 'select how you want route angular',
-    default: 'uiRouter',
-    choices: ['uiRouter', 'ngRoute', 'none']
-  };
+  var _this2 = this;
 
-  this.prompt(prompt, function (data) {
-    this.angularRoute = data.angularRoute;
-    this.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
-    done();
-  }.bind(this));
+  if (this.appFramework === 'angular') {
+    (function () {
+      var done = _this2.async();
+      var prompt = {
+        type: 'list',
+        name: 'angularRoute',
+        message: 'select how you want route angular',
+        default: 'uiRouter',
+        choices: ['uiRouter', 'ngRoute', 'none']
+      };
+
+      _this2.prompt(prompt, function (data) {
+        this.angularRoute = data.angularRoute;
+        this.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
+        done();
+      }.bind(_this2));
+    })();
+  }
 }
 
 function angularTest() {

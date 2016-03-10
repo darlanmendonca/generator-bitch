@@ -1,16 +1,21 @@
 'use strict';
 
 let gulp = require('gulp');
-let gutil = require('gulp-util');
-let jshint = require('gulp-jshint');
-let stylish = require('jshint-stylish');
-let beep = ()=>	gutil.beep();
-let gulpConfig = require('./gulp.config.js');
+let config = require('./gulp.config.js');
+let eslint = require('gulp-eslint');
 
-gulp.task('lint', function() {
-	gulp
-		.src(gulpConfig.lint)
-		.pipe(jshint())
-		.pipe(jshint.reporter(beep))
-		.pipe(jshint.reporter(stylish));
-});
+gulp.task('lint', lintTask);
+
+function lintTask() {
+  return gulp
+    .src(config.lint)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+    .on('error', beep);
+}
+
+function beep() {
+  let gutil = require('gulp-util');
+  gutil.beep();
+}

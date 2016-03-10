@@ -14,7 +14,7 @@ If you use old versions of this module, maybe you want create an Node.js Api. Th
 
 #### Task runner
 [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) (because it's fast! Thanks to the node streams.)
-- lint scripts (using [jshint](http://jshint.com/about))
+- lint scripts (using [eslint](http://eslint.org/))
 - dependency injection
 - compile (and/or validate) template views
 - [autoprefixer](https://github.com/postcss/autoprefixer-core) css properties

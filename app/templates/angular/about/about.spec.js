@@ -4,7 +4,7 @@
 describe('AboutController', function() {
 	beforeEach(module('<%= slugify(appname) %>'));
 
-	var $controller;
+	let $controller;
 
 	beforeEach(inject(function(_$controller_){
 		$controller = _$controller_;
@@ -12,7 +12,7 @@ describe('AboutController', function() {
 
 	describe('test $scope properties', function() {
 		it('viewName should be "About"', function() {
-			var controller = $controller('AboutController');
+			let controller = $controller('AboutController');
 			expect(controller.viewName).to.be.equal('About');
 		});
 	});
