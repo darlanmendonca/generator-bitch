@@ -1,8 +1,8 @@
 'use strict';
 
-var helpers = require('yeoman-generator').test;
-var assert = require('yeoman-generator').assert;
-var generator = process.env.PWD + '/app';
+let helpers = require('yeoman-generator').test;
+let assert = require('yeoman-generator').assert;
+let generator = process.env.PWD + '/app/index.es5.js';
 
 describe('client application', function() {
 	describe('scriptType:es6', function() {
