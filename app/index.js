@@ -224,73 +224,7 @@ function gulp() {
   this.directory('.', '.');
 
   this.sourceRoot(path.join(__dirname,  'templates/tasks'), this);
-  let config;
-
-  config = {
-    template: this.templatePath('gulp.config.js'),
-    dest: this.destinationPath('tasks/gulp.config.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('watch.js'),
-    dest: this.destinationPath('tasks/watch.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('default.js'),
-    dest: this.destinationPath('tasks/default.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('lint.js'),
-    dest: this.destinationPath('tasks/lint.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('livereload.js'),
-    dest: this.destinationPath('tasks/livereload.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('sprite-images.js'),
-    dest: this.destinationPath('tasks/sprite-images.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('styles.js'),
-    dest: this.destinationPath('tasks/styles.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('scripts.js'),
-    dest: this.destinationPath('tasks/scripts.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('views.js'),
-    dest: this.destinationPath('tasks/views.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('vendorCSS.js'),
-    dest: this.destinationPath('tasks/vendorCSS.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
-
-  config = {
-    template: this.templatePath('vendorJS.js'),
-    dest: this.destinationPath('tasks/vendorJS.js')
-  };
-  this.fs.copyTpl(config.template, config.dest, this);
+  this.directory('.', './tasks');
 }
 
 function bower() {
