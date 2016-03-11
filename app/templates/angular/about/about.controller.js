@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('<%= slugify(appname) %>')
+  .module('<%= slugify(appName) %>')
   .controller('AboutController', AboutController);
 
 function AboutController () {

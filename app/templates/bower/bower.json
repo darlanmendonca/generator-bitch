@@ -1,5 +1,5 @@
 {
-  "name": "<%= slugify(appname) %>",
+  "name": "<%= slugify(appName) %>",
   "version": "0.0.0",
   "dependencies": {<% if (appFramework === 'angular') { %>
     "angular": "^1.4.5",<% if (ngAnimate) { %>

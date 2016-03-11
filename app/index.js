@@ -2,21 +2,17 @@
 
 let generators = require('yeoman-generator');
 let path = require('path');
-let slugify = require('underscore.string/slugify');
 let mkdirp = require('mkdirp');
-
-let babel = require('gulp-babel');
-let gulpif = require('gulp-if');
 
 module.exports = generators.Base.extend({
 	constructor,
-	appname,
-  scriptType,
-	viewEngine,
-	preprocessor,
-	appFramework,
-	frameworkModules,
-	angularRoute,
+	appNameParam,
+  scriptTypeParam,
+	viewEngineParam,
+	preprocessorParam,
+	appFrameworkParam,
+	frameworkModulesParam,
+	angularRouteParam,
   angularTest,
   common,
   gulp,
@@ -32,31 +28,25 @@ module.exports = generators.Base.extend({
 
 function constructor() {
   generators.Base.apply(this, arguments);
-  this.slugify = slugify;
-
-  this.argument('appname', {
-    desc: 'create an app with name [appname]',
-    type: Boolean,
-    required: false,
-    defaults: path.basename(process.cwd())
-  });
+  this.slugify = require('underscore.string/slugify');
 }
 
-function appname() {
+function appNameParam() {
   let done = this.async();
   let prompt = {
     type: 'input',
-    name: 'appname',
+    name: 'appName',
     message: 'application name',
-    default: this.appname
+    default: path.basename(process.cwd())
   };
-  this.prompt(prompt, function(data) {
-    this.appname = data.appname;
+
+  this.prompt(prompt, data => {
+    this.appName = data.appName;
     done();
-  }.bind(this));
+  });
 }
 
-function scriptType() {
+function scriptTypeParam() {
   let done = this.async();
   let prompt = {
     type: 'list',
@@ -65,23 +55,23 @@ function scriptType() {
     default: 'es6',
     choices: ['es6', 'es5']
   };
-  this.prompt(prompt, function(data) {
+
+  this.prompt(prompt, data => {
     this.scriptType = data.scriptType;
     this.extScript = 'js';
-    let condition;
 
     if (this.scriptType === 'es5') {
-      condition = function (file) {
-        return path.extname(file.path) === '.js';
-      };
+      let babel = require('gulp-babel');
+      let gulpif = require('gulp-if');
+      let condition = file => path.extname(file.path) === '.js';
       this.registerTransformStream(gulpif(condition, babel()));
     }
 
     done();
-  }.bind(this));
+  });
 }
 
-function viewEngine() {
+function viewEngineParam() {
   let done = this.async();
   let prompt = {
     type: 'list',
@@ -90,14 +80,15 @@ function viewEngine() {
     default: 'jade',
     choices: ['jade', 'ejs']
   };
+
   this
-    .prompt(prompt, function(data) {
+    .prompt(prompt, data => {
       this.viewEngine = data.viewEngine;
       done();
-    }.bind(this));
+    });
 }
 
-function preprocessor() {
+function preprocessorParam() {
   let done = this.async();
   let prompt = {
     type: 'list',
@@ -107,19 +98,20 @@ function preprocessor() {
     choices: ['sass', 'less', 'stylus']
   };
 
-  this.prompt(prompt, function(data) {
+  this.prompt(prompt, data => {
     this.preprocessor = data.preprocessor;
     let extname = {
       sass: 'scss',
       less: 'less',
       stylus: 'styl'
     };
+
     this.extPreprocessor = extname[data.preprocessor];
     done();
-  }.bind(this));
+  });
 }
 
-function appFramework() {
+function appFrameworkParam() {
   let done = this.async();
   let prompt = {
     type: 'list',
@@ -129,13 +121,13 @@ function appFramework() {
     choices: ['angular', 'none']
   };
 
-  this.prompt(prompt, function(data) {
+  this.prompt(prompt, data => {
     this.appFramework = data.appFramework;
     done();
-  }.bind(this));
+  });
 }
 
-function frameworkModules() {
+function frameworkModulesParam() {
   if (this.appFramework === 'angular') {
     let done = this.async();
     this.ngAnimate = false;
@@ -177,17 +169,17 @@ function frameworkModules() {
       ]
     };
 
-    this.prompt(prompt, function(data) {
+    this.prompt(prompt, data => {
       this.frameworkModules = data.frameworkModules;
       for (let key in this.frameworkModules) {
         this[this.frameworkModules[key]] = true;
       }
       done();
-    }.bind(this));
+    });
   }
 }
 
-function angularRoute() {
+function angularRouteParam() {
   if (this.appFramework === 'angular') {
     let done = this.async();
     let prompt = {
@@ -198,12 +190,12 @@ function angularRoute() {
       choices: ['uiRouter', 'ngRoute', 'none']
     };
 
-    this.prompt(prompt, function(data) {
+    this.prompt(prompt, data => {
       this.angularRoute = data.angularRoute;
       this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
         'ui-view' : 'ng-view';
       done();
-    }.bind(this));
+    });
   }
 }
 

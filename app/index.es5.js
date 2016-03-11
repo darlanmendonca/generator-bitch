@@ -2,21 +2,17 @@
 
 var generators = require('yeoman-generator');
 var path = require('path');
-var slugify = require('underscore.string/slugify');
 var mkdirp = require('mkdirp');
-
-var babel = require('gulp-babel');
-var gulpif = require('gulp-if');
 
 module.exports = generators.Base.extend({
   constructor: constructor,
-  appname: appname,
-  scriptType: scriptType,
-  viewEngine: viewEngine,
-  preprocessor: preprocessor,
-  appFramework: appFramework,
-  frameworkModules: frameworkModules,
-  angularRoute: angularRoute,
+  appNameParam: appNameParam,
+  scriptTypeParam: scriptTypeParam,
+  viewEngineParam: viewEngineParam,
+  preprocessorParam: preprocessorParam,
+  appFrameworkParam: appFrameworkParam,
+  frameworkModulesParam: frameworkModulesParam,
+  angularRouteParam: angularRouteParam,
   angularTest: angularTest,
   common: common,
   gulp: gulp,
@@ -32,31 +28,29 @@ module.exports = generators.Base.extend({
 
 function constructor() {
   generators.Base.apply(this, arguments);
-  this.slugify = slugify;
-
-  this.argument('appname', {
-    desc: 'create an app with name [appname]',
-    type: Boolean,
-    required: false,
-    defaults: path.basename(process.cwd())
-  });
+  this.slugify = require('underscore.string/slugify');
 }
 
-function appname() {
+function appNameParam() {
+  var _this = this;
+
   var done = this.async();
   var prompt = {
     type: 'input',
-    name: 'appname',
+    name: 'appName',
     message: 'application name',
-    default: this.appname
+    default: path.basename(process.cwd())
   };
+
   this.prompt(prompt, function (data) {
-    this.appname = data.appname;
+    _this.appName = data.appName;
     done();
-  }.bind(this));
+  });
 }
 
-function scriptType() {
+function scriptTypeParam() {
+  var _this2 = this;
+
   var done = this.async();
   var prompt = {
     type: 'list',
@@ -65,23 +59,27 @@ function scriptType() {
     default: 'es6',
     choices: ['es6', 'es5']
   };
-  this.prompt(prompt, function (data) {
-    this.scriptType = data.scriptType;
-    this.extScript = 'js';
-    var condition = void 0;
 
-    if (this.scriptType === 'es5') {
-      condition = function condition(file) {
+  this.prompt(prompt, function (data) {
+    _this2.scriptType = data.scriptType;
+    _this2.extScript = 'js';
+
+    if (_this2.scriptType === 'es5') {
+      var babel = require('gulp-babel');
+      var gulpif = require('gulp-if');
+      var condition = function condition(file) {
         return path.extname(file.path) === '.js';
       };
-      this.registerTransformStream(gulpif(condition, babel()));
+      _this2.registerTransformStream(gulpif(condition, babel()));
     }
 
     done();
-  }.bind(this));
+  });
 }
 
-function viewEngine() {
+function viewEngineParam() {
+  var _this3 = this;
+
   var done = this.async();
   var prompt = {
     type: 'list',
@@ -90,13 +88,16 @@ function viewEngine() {
     default: 'jade',
     choices: ['jade', 'ejs']
   };
+
   this.prompt(prompt, function (data) {
-    this.viewEngine = data.viewEngine;
+    _this3.viewEngine = data.viewEngine;
     done();
-  }.bind(this));
+  });
 }
 
-function preprocessor() {
+function preprocessorParam() {
+  var _this4 = this;
+
   var done = this.async();
   var prompt = {
     type: 'list',
@@ -107,18 +108,21 @@ function preprocessor() {
   };
 
   this.prompt(prompt, function (data) {
-    this.preprocessor = data.preprocessor;
+    _this4.preprocessor = data.preprocessor;
     var extname = {
       sass: 'scss',
       less: 'less',
       stylus: 'styl'
     };
-    this.extPreprocessor = extname[data.preprocessor];
+
+    _this4.extPreprocessor = extname[data.preprocessor];
     done();
-  }.bind(this));
+  });
 }
 
-function appFramework() {
+function appFrameworkParam() {
+  var _this5 = this;
+
   var done = this.async();
   var prompt = {
     type: 'list',
@@ -129,22 +133,22 @@ function appFramework() {
   };
 
   this.prompt(prompt, function (data) {
-    this.appFramework = data.appFramework;
+    _this5.appFramework = data.appFramework;
     done();
-  }.bind(this));
+  });
 }
 
-function frameworkModules() {
-  var _this = this;
+function frameworkModulesParam() {
+  var _this6 = this;
 
   if (this.appFramework === 'angular') {
     (function () {
-      var done = _this.async();
-      _this.ngAnimate = false;
-      _this.ngCookies = false;
-      _this.ngResource = false;
-      _this.ngSanitize = false;
-      _this.ngTouch = false;
+      var done = _this6.async();
+      _this6.ngAnimate = false;
+      _this6.ngCookies = false;
+      _this6.ngResource = false;
+      _this6.ngSanitize = false;
+      _this6.ngTouch = false;
 
       var prompt = {
         type: 'checkbox',
@@ -173,23 +177,23 @@ function frameworkModules() {
         }]
       };
 
-      _this.prompt(prompt, function (data) {
-        this.frameworkModules = data.frameworkModules;
-        for (var key in this.frameworkModules) {
-          this[this.frameworkModules[key]] = true;
+      _this6.prompt(prompt, function (data) {
+        _this6.frameworkModules = data.frameworkModules;
+        for (var key in _this6.frameworkModules) {
+          _this6[_this6.frameworkModules[key]] = true;
         }
         done();
-      }.bind(_this));
+      });
     })();
   }
 }
 
-function angularRoute() {
-  var _this2 = this;
+function angularRouteParam() {
+  var _this7 = this;
 
   if (this.appFramework === 'angular') {
     (function () {
-      var done = _this2.async();
+      var done = _this7.async();
       var prompt = {
         type: 'list',
         name: 'angularRoute',
@@ -198,11 +202,11 @@ function angularRoute() {
         choices: ['uiRouter', 'ngRoute', 'none']
       };
 
-      _this2.prompt(prompt, function (data) {
-        this.angularRoute = data.angularRoute;
-        this.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
+      _this7.prompt(prompt, function (data) {
+        _this7.angularRoute = data.angularRoute;
+        _this7.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
         done();
-      }.bind(_this2));
+      });
     })();
   }
 }

@@ -2,7 +2,7 @@
 
 set -e
 
-node node_modules/.bin/istanbul cover _mocha -- --bail --reporter spec test/unit
+node node_modules/.bin/istanbul cover _mocha -- --bail --slow 2000 test/unit/generator.spec.es5.js
 
 if [ ! -z "$EXPORT_COVERAGE" ]; then
 	cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
