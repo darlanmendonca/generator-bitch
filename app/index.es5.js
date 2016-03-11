@@ -281,8 +281,14 @@ function gulp() {
   this.fs.copyTpl(config.template, config.dest, this);
 
   config = {
-    template: this.templatePath('dependencies.js'),
-    dest: this.destinationPath('tasks/dependencies.js')
+    template: this.templatePath('vendorCSS.js'),
+    dest: this.destinationPath('tasks/vendorCSS.js')
+  };
+  this.fs.copyTpl(config.template, config.dest, this);
+
+  config = {
+    template: this.templatePath('vendorJS.js'),
+    dest: this.destinationPath('tasks/vendorJS.js')
   };
   this.fs.copyTpl(config.template, config.dest, this);
 }

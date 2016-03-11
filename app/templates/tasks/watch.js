@@ -3,27 +3,30 @@
 let gulp = require('gulp');
 let gulpConfig = require('./gulp.config.js');
 
-gulp.task('watch', function() {<% if (appFramework === 'angular') { %>
-	let views = [];
-	views = views.concat(gulpConfig.templates.src);
-	views = views.concat(gulpConfig.views.src);
+gulp.task('watch', watchTask);
 
-	gulp.watch(views, [<% } else { %>
-	gulp.watch(gulpConfig.views.src, [<% } %>
-		'views',
-		gulpConfig.browserSync.reload
-	]);
+function watchTask() {<% if (appFramework === 'angular') { %>
+  let views = [];
+  views = views.concat(gulpConfig.templates.src);
+  views = views.concat(gulpConfig.views.src);
 
-	gulp.watch('./client/styles/**/*.<%= extPreprocessor %>', ['styles']);
+  gulp.watch(views, [<% } else { %>
+  gulp.watch(gulpConfig.views.src, [<% } %>
+    'views',
+    gulpConfig.browserSync.reload
+  ]);
 
-	gulp.watch(gulpConfig.scripts.src, [
-		'scripts',
-		gulpConfig.browserSync.reload
-	]);
-	gulp.watch(gulpConfig.lint, ['lint']);
+  gulp.watch('./client/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
-	gulp.watch('./bower.json', [
-		'dependencies',
-		'styles'
-	]);
-});
+  gulp.watch(gulpConfig.scripts.src, [
+    'scripts',
+    gulpConfig.browserSync.reload
+  ]);
+  gulp.watch(gulpConfig.lint, ['lint']);
+
+  gulp.watch('./bower.json', [
+    'vendorCSS',
+    'vendorJS',
+    'styles'
+  ]);
+}

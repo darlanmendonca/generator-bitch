@@ -1,10 +1,10 @@
 'use strict';
 
 let gulp = require('gulp');
-let gutil = require('gulp-util');
 
 let tasks = [
-	'dependencies',
+	'vendorCSS',
+  'vendorJS',
 	'views',
 	'browser-sync',
 	'sprites',

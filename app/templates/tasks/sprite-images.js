@@ -16,11 +16,13 @@ let options = {
 	}
 };
 
-gulp.task('sprites', function() {
-	let sprite = gulp.src(gulpConfig.sprites.src)
-		.pipe(plumber())
-		.pipe(spritesmith(options));
+gulp.task('sprites', spritesTask);
 
-	sprite.img.pipe(gulp.dest(gulpConfig.sprites.dest));
-	sprite.css.pipe(gulp.dest('./client/styles/components/'));
-});
+function spritesTask() {
+  let sprite = gulp.src(gulpConfig.sprites.src)
+    .pipe(plumber())
+    .pipe(spritesmith(options));
+
+  sprite.img.pipe(gulp.dest(gulpConfig.sprites.dest));
+  sprite.css.pipe(gulp.dest('./client/styles/components/'));
+}

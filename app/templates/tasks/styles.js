@@ -31,20 +31,22 @@ let configPreprocessor = {
 	compress: true
 };<% } %>
 
-gulp.task('styles', function() {
-	gulp
-		.src(gulpConfig.styles.src)
-		.pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))<% if (preprocessor === 'stylus') { %>
-		.pipe(plumber({ errorHandler: onError }))<% } %>
-		.pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
-		.pipe(sass(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
-		.pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
-		.pipe(stylus(configPreprocessor))<% } %>
-		.pipe(autoprefixer())
-		.pipe(sourcemaps.write({sourceRoot: '/client/styles'}))
-		.pipe(gulp.dest(gulpConfig.styles.dest))
-		.pipe(gulpConfig.browserSync.stream({match: '**/*.css'}));
-});
+gulp.task('styles', stylesTask);
+
+function stylesTask() {
+  gulp
+    .src(gulpConfig.styles.src)
+    .pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))<% if (preprocessor === 'stylus') { %>
+    .pipe(plumber({ errorHandler: onError }))<% } %>
+    .pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
+    .pipe(sass(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
+    .pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
+    .pipe(stylus(configPreprocessor))<% } %>
+    .pipe(autoprefixer())
+    .pipe(sourcemaps.write({sourceRoot: '/client/styles'}))
+    .pipe(gulp.dest(gulpConfig.styles.dest))
+    .pipe(gulpConfig.browserSync.stream({match: '**/*.css'}));
+}
 
 function onError(err) {
 	var message;

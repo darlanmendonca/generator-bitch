@@ -10,25 +10,23 @@ let plumber = require('gulp-plumber');
 let concat = require('gulp-concat');
 let uglify = require('gulp-uglify');
 
-gulp.task('scripts', function() {
-	gulp
-		.src(gulpConfig.scripts.src)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(sourcemaps.init())<% if (appFramework === 'angular') { %>
-		.pipe(ngAnnotate())<% } %><% if (scriptType === 'es6') { %>
-		.pipe(babel())<% } %>
-		.pipe(concat('app.js'))
-		.pipe(uglify({mangle: false}))
-		.pipe(sourcemaps.write({sourceRoot: '/client/angular'}))
-		.pipe(gulp.dest(gulpConfig.scripts.dest));
-});
+gulp.task('scripts', scriptsTask);
+
+function scriptsTask() {
+  return gulp
+    .src(gulpConfig.scripts.src)
+    .pipe(plumber({ errorHandler: onError }))
+    .pipe(sourcemaps.init())<% if (appFramework === 'angular') { %>
+    .pipe(ngAnnotate())<% } %><% if (scriptType === 'es6') { %>
+    .pipe(babel())<% } %>
+    .pipe(concat('app.js'))
+    .pipe(uglify({mangle: false}))
+    .pipe(sourcemaps.write({sourceRoot: '/client/angular'}))
+    .pipe(gulp.dest(gulpConfig.scripts.dest));
+}
 
 function onError(err) {
-	var message;
-	switch (err.plugin) {
-		default:
-			message = new gutil.PluginError(err.plugin, err.message).toString();
-			process.stderr.write(message + '\n');
-	}
+	let message = new gutil.PluginError(err.plugin, err.message).toString();
+	process.stderr.write(message + '\n');
 	gutil.beep();
 }

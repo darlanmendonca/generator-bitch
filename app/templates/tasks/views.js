@@ -7,20 +7,22 @@ let flatten = require('gulp-flatten');<% } %>
 let gulpConfig = require('./gulp.config.js');
 let plumber = require('gulp-plumber');
 
-gulp.task('views', function() {
-	gulp
-		.src(gulpConfig.views.src)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(<%= viewEngine %>())
-		.pipe(gulp.dest(gulpConfig.views.dest));<% if (appFramework === 'angular') { %>
+gulp.task('views', viewsTask);
 
-	gulp
-		.src(gulpConfig.templates.src)
-		.pipe(plumber({ errorHandler: onError }))
-		.pipe(<%= viewEngine %>())
-		.pipe(flatten())
-		.pipe(gulp.dest(gulpConfig.templates.dest));<% } %>
-});
+function viewsTask() {
+  gulp
+    .src(gulpConfig.views.src)
+    .pipe(plumber({ errorHandler: onError }))
+    .pipe(<%= viewEngine %>())
+    .pipe(gulp.dest(gulpConfig.views.dest));<% if (appFramework === 'angular') { %>
+
+  gulp
+    .src(gulpConfig.templates.src)
+    .pipe(plumber({ errorHandler: onError }))
+    .pipe(<%= viewEngine %>())
+    .pipe(flatten())
+    .pipe(gulp.dest(gulpConfig.templates.dest));<% } %>
+}
 
 function onError(err) {
 	var message;
