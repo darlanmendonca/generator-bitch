@@ -30,5 +30,14 @@ module.exports = {
 		src: './client/sprites/*.png',
 		dest: './public/imgs/sprites/'
 	},
-	browserSync: require('browser-sync').create()
+	browserSync: require('browser-sync').create(),
+  browserSyncOptions: {
+    server: {
+      baseDir: './public'
+    },
+    notify: false,<% if (appFramework === 'angular') { %>
+    middleware: [ require('connect-history-api-fallback')() ],<% } %>
+    reloadDelay: 100,
+    open: require('yargs').argv.open
+  }
 };

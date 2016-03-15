@@ -6,6 +6,7 @@ let tasks = [
 	'vendorCSS',
   'vendorJS',
 	'views',
+  'templates',
 	'browser-sync',
 	'sprites',
 	'styles',

@@ -19,6 +19,7 @@ module.exports = generators.Base.extend({
   bower,
   client,
   views,
+  templates,
   styles,
   angular,
 	scripts,
@@ -236,6 +237,12 @@ function client() {
 function views() {
   this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
   this.directory('.', 'client/views');
+}
+
+function templates() {
+  if (this.appFramework !== 'angular') {
+    this.fs.delete('./tasks/templates.js');
+  }
 }
 
 function styles() {

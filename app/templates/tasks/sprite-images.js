@@ -3,7 +3,7 @@
 let gulp = require('gulp');
 let spritesmith = require('gulp.spritesmith');
 let plumber = require('gulp-plumber');
-let gulpConfig = require('./gulp.config.js');
+let config = require('./gulp.config.js');
 
 let options = {
 	imgName: 'sprites.png',
@@ -19,10 +19,10 @@ let options = {
 gulp.task('sprites', spritesTask);
 
 function spritesTask() {
-  let sprite = gulp.src(gulpConfig.sprites.src)
+  let sprite = gulp.src(config.sprites.src)
     .pipe(plumber())
     .pipe(spritesmith(options));
 
-  sprite.img.pipe(gulp.dest(gulpConfig.sprites.dest));
+  sprite.img.pipe(gulp.dest(config.sprites.dest));
   sprite.css.pipe(gulp.dest('./client/styles/components/'));
 }

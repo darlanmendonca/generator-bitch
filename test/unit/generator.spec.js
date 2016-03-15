@@ -38,7 +38,7 @@ function ecma6Test() {
         'tasks/default.js',
         'tasks/gulp.config.js',
         'tasks/lint.js',
-        'tasks/livereload.js',
+        'tasks/browser-sync.js',
         'tasks/scripts.js',
         'tasks/sprite-images.js',
         'tasks/styles.js',
@@ -51,6 +51,13 @@ function ecma6Test() {
         // 'test'
         'client/scripts'
       ]);
+
+      assert.noFile([
+        'karma.js',
+        'client/angular',
+        'tasks/templates.js'
+      ]);
+
       done();
     }
   });
@@ -91,13 +98,14 @@ function ecma6Test() {
         'tasks/default.js',
         'tasks/gulp.config.js',
         'tasks/lint.js',
-        'tasks/livereload.js',
+        'tasks/browser-sync.js',
         'tasks/scripts.js',
         'tasks/sprite-images.js',
         'tasks/styles.js',
         'tasks/vendorCSS.js',
         'tasks/vendorJS.js',
         'tasks/views.js',
+        'tasks/templates.js',
         'tasks/watch.js',
         'package.json',
         'public',
@@ -145,13 +153,14 @@ function ecma6Test() {
         'tasks/default.js',
         'tasks/gulp.config.js',
         'tasks/lint.js',
-        'tasks/livereload.js',
+        'tasks/browser-sync.js',
         'tasks/scripts.js',
         'tasks/sprite-images.js',
         'tasks/styles.js',
         'tasks/vendorCSS.js',
         'tasks/vendorJS.js',
         'tasks/views.js',
+        'tasks/templates.js',
         'tasks/watch.js',
         'package.json',
         'public',
@@ -193,7 +202,7 @@ function ecma5Test() {
         'tasks/default.js',
         'tasks/gulp.config.js',
         'tasks/lint.js',
-        'tasks/livereload.js',
+        'tasks/browser-sync.js',
         'tasks/scripts.js',
         'tasks/sprite-images.js',
         'tasks/styles.js',
@@ -209,7 +218,8 @@ function ecma5Test() {
 
       assert.noFile([
         'karma.js',
-        'client/angular'
+        'client/angular',
+        'tasks/templates.js'
       ]);
 
       done();
@@ -252,13 +262,14 @@ function ecma5Test() {
         'tasks/default.js',
         'tasks/gulp.config.js',
         'tasks/lint.js',
-        'tasks/livereload.js',
+        'tasks/browser-sync.js',
         'tasks/scripts.js',
         'tasks/sprite-images.js',
         'tasks/styles.js',
         'tasks/vendorCSS.js',
         'tasks/vendorJS.js',
         'tasks/views.js',
+        'tasks/templates.js',
         'tasks/watch.js',
         'package.json',
         'public',
@@ -306,13 +317,14 @@ function ecma5Test() {
         'tasks/default.js',
         'tasks/gulp.config.js',
         'tasks/lint.js',
-        'tasks/livereload.js',
+        'tasks/browser-sync.js',
         'tasks/scripts.js',
         'tasks/sprite-images.js',
         'tasks/styles.js',
         'tasks/vendorCSS.js',
         'tasks/vendorJS.js',
         'tasks/views.js',
+        'tasks/templates.js',
         'tasks/watch.js',
         'package.json',
         'public',
