@@ -1,7 +1,8 @@
 'use strict';
 
-var helpers = require('yeoman-generator').test;
-var assert = require('yeoman-generator').assert;
+var _yeomanGenerator = require('yeoman-generator');
+
+console.log(require('yeoman-generator'));
 var generator = process.env.PWD + '/app/index.es5.js';
 
 describe('generate a scaffolding', function () {
@@ -19,14 +20,14 @@ function ecma6Test() {
       appFramework: 'none'
     };
 
-    helpers.run(generator).withPrompts(prompts).on('end', assertion);
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
 
     function assertion() {
-      assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test'
       'client/scripts']);
 
-      assert.noFile(['karma.js', 'client/angular', 'tasks/templates.js']);
+      _yeomanGenerator.assert.noFile(['karma.js', 'client/angular', 'tasks/templates.js']);
 
       done();
     }
@@ -43,10 +44,10 @@ function ecma6Test() {
       angularRoute: 'uiRouter'
     };
 
-    helpers.run(generator).withPrompts(prompts).on('end', assertion);
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
 
     function assertion() {
-      assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test',
       'client/angular', 'karma.js']);
       done();
@@ -64,10 +65,10 @@ function ecma6Test() {
       angularRoute: 'ngRoute'
     };
 
-    helpers.run(generator).withPrompts(prompts).on('end', assertion);
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
 
     function assertion() {
-      assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test',
       'client/angular', 'karma.js']);
       done();
@@ -85,14 +86,14 @@ function ecma5Test() {
       appFramework: 'none'
     };
 
-    helpers.run(generator).withPrompts(prompts).on('end', assertion);
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
 
     function assertion() {
-      assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test'
       'client/scripts']);
 
-      assert.noFile(['karma.js', 'client/angular', 'tasks/templates.js']);
+      _yeomanGenerator.assert.noFile(['karma.js', 'client/angular', 'tasks/templates.js']);
 
       done();
     }
@@ -109,10 +110,10 @@ function ecma5Test() {
       angularRoute: 'uiRouter'
     };
 
-    helpers.run(generator).withPrompts(prompts).on('end', assertion);
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
 
     function assertion() {
-      assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test'
       'client/angular', 'karma.js']);
       done();
@@ -130,10 +131,10 @@ function ecma5Test() {
       angularRoute: 'ngRoute'
     };
 
-    helpers.run(generator).withPrompts(prompts).on('end', assertion);
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
 
     function assertion() {
-      assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test'
       'client/angular', 'karma.js']);
       done();

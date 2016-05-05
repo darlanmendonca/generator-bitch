@@ -5,14 +5,14 @@ let path = require('path');
 let mkdirp = require('mkdirp');
 
 module.exports = generators.Base.extend({
-	constructor,
-	appNameParam,
+  constructor,
+  appNameParam,
   scriptTypeParam,
-	viewEngineParam,
-	preprocessorParam,
-	appFrameworkParam,
-	frameworkModulesParam,
-	angularRouteParam,
+  viewEngineParam,
+  preprocessorParam,
+  appFrameworkParam,
+  frameworkModulesParam,
+  angularRouteParam,
   angularTest,
   common,
   gulp,
@@ -22,9 +22,9 @@ module.exports = generators.Base.extend({
   templates,
   styles,
   angular,
-	scripts,
-	publicDir,
-	install,
+  scripts,
+  publicDir,
+  install,
 });
 
 function constructor() {
@@ -38,7 +38,7 @@ function appNameParam() {
     type: 'input',
     name: 'appName',
     message: 'application name',
-    default: path.basename(process.cwd())
+    default: path.basename(process.cwd()),
   };
 
   this.prompt(prompt, data => {
@@ -54,7 +54,7 @@ function scriptTypeParam() {
     name: 'scriptType',
     message: 'javascript is write in',
     default: 'es6',
-    choices: ['es6', 'es5']
+    choices: ['es6', 'es5'],
   };
 
   this.prompt(prompt, data => {
@@ -79,7 +79,7 @@ function viewEngineParam() {
     name: 'viewEngine',
     message: 'select template view you would like to use',
     default: 'jade',
-    choices: ['jade', 'ejs']
+    choices: ['jade', 'ejs'],
   };
 
   this
@@ -96,7 +96,7 @@ function preprocessorParam() {
     name: 'preprocessor',
     message: 'select css preprocessor you would like to use',
     default: 'sass',
-    choices: ['sass', 'less', 'stylus']
+    choices: ['sass', 'less', 'stylus'],
   };
 
   this.prompt(prompt, data => {
@@ -104,7 +104,7 @@ function preprocessorParam() {
     let extname = {
       sass: 'scss',
       less: 'less',
-      stylus: 'styl'
+      stylus: 'styl',
     };
 
     this.extPreprocessor = extname[data.preprocessor];
@@ -119,7 +119,7 @@ function appFrameworkParam() {
     name: 'appFramework',
     message: 'select the javascript framework you would like to use',
     default: 'angular',
-    choices: ['angular', 'none']
+    choices: ['angular', 'none'],
   };
 
   this.prompt(prompt, data => {
@@ -145,29 +145,29 @@ function frameworkModulesParam() {
         {
           value: 'ngAnimate',
           name: 'ngAnimate',
-          checked: true
+          checked: true,
         },
         {
           value: 'ngCookies',
           name: 'ngCookies',
-          checked: true
+          checked: true,
         },
         {
           value: 'ngResource',
           name: 'ngResource',
-          checked: true
+          checked: true,
         },
         {
           value: 'ngSanitize',
           name: 'ngSanitize',
-          checked: true
+          checked: true,
         },
         {
           value: 'ngTouch',
           name: 'ngTouch',
-          checked: true
-        }
-      ]
+          checked: true,
+        },
+      ],
     };
 
     this.prompt(prompt, data => {
@@ -188,7 +188,7 @@ function angularRouteParam() {
       name: 'angularRoute',
       message: 'select how you want route angular',
       default: 'uiRouter',
-      choices: ['uiRouter', 'ngRoute', 'none']
+      choices: ['uiRouter', 'ngRoute', 'none'],
     };
 
     this.prompt(prompt, data => {
@@ -203,7 +203,7 @@ function angularRouteParam() {
 function angularTest() {
   if (this.appFramework === 'angular') {
     this.sourceRoot(path.join(__dirname,  'templates/karma'), this);
-      this.directory('.', '.');
+    this.directory('.', '.');
   }
 }
 
@@ -230,12 +230,12 @@ function client() {
   mkdirp('client/styles/components');
   mkdirp('client/sprites');
   if (this.appFramework !== 'none') {
-    mkdirp('client/'+this.appFramework);
+    mkdirp(`client/${this.appFramework}`);
   }
 }
 
 function views() {
-  this.sourceRoot(path.join(__dirname,  'templates/views/'+this.viewEngine), this);
+  this.sourceRoot(path.join(__dirname,  `templates/views/${this.viewEngine}`), this);
   this.directory('.', 'client/views');
 }
 
@@ -246,7 +246,7 @@ function templates() {
 }
 
 function styles() {
-  this.sourceRoot(path.join(__dirname,  'templates/styles/'+this.preprocessor), this);
+  this.sourceRoot(path.join(__dirname,  `templates/styles/${this.preprocessor}`), this);
   this.directory('.', 'client/styles');
 }
 
@@ -255,7 +255,7 @@ function angular() {
     this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
     this.directory('.', 'client/angular');
 
-    this.sourceRoot(path.join(__dirname,  'templates/angular-templates/'+this.viewEngine), this);
+    this.sourceRoot(path.join(__dirname,  `templates/angular-templates/${this.viewEngine}`), this);
     this.directory('.', 'client/angular');
   }
 }
@@ -278,6 +278,6 @@ function install() {
   this.installDependencies({
     bower: true,
     npm: true,
-    skipInstall: true
+    skipInstall: true,
   });
 }

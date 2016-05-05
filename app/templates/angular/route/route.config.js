@@ -14,13 +14,13 @@ angular
       url: '/',
       templateUrl: 'templates/home.html',
       controller: 'HomeController',
-      controllerAs: 'home'
+      controllerAs: 'home',
     })
     .state('about', {
       url: '/about',
       templateUrl: 'templates/about.html',
       controller: 'AboutController',
-      controllerAs: 'about'
+      controllerAs: 'about',
     });
 }<% } %><% if (angularRoute === 'ngRoute') { %>function routeConfig($locationProvider, $routeProvider) {
   $locationProvider.html5Mode(true);
@@ -29,10 +29,10 @@ angular
   $routeProvider
     .when('/', {
       templateUrl: 'templates/home.html',
-      controller: 'HomeController'
+      controller: 'HomeController',
     })
     .when('/about', {
       templateUrl: 'templates/about.html',
-      controller: 'AboutController'
+      controller: 'AboutController',
     });
 }<% } %>

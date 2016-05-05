@@ -2,18 +2,18 @@
 'use strict';
 
 describe('HomeController', function() {
-	beforeEach(module('<%= slugify(appName) %>'));
+  beforeEach(module('<%= slugify(appName) %>'));
 
-	let $controller;
+  let $controller;
 
-	beforeEach(inject(function(_$controller_){
-		$controller = _$controller_;
-	}));
+  beforeEach(inject(function(_$controller_){
+    $controller = _$controller_;
+  }));
 
-	describe('test $scope properties', function() {
-		it('viewName should be "Home"', function() {
-			let controller = $controller('HomeController');
-			expect(controller.viewName).to.be.equal('Home');
-		});
-	});
+  describe('test $scope properties', function() {
+    it('viewName should be "Home"', function() {
+      let controller = $controller('HomeController');
+      expect(controller.viewName).to.be.equal('Home');
+    });
+  });
 });

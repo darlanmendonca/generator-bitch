@@ -2,18 +2,18 @@
 'use strict';
 
 describe('AboutController', function() {
-	beforeEach(module('<%= slugify(appName) %>'));
+  beforeEach(module('<%= slugify(appName) %>'));
 
-	let $controller;
+  let $controller;
 
-	beforeEach(inject(function(_$controller_){
-		$controller = _$controller_;
-	}));
+  beforeEach(inject(function(_$controller_){
+    $controller = _$controller_;
+  }));
 
-	describe('test $scope properties', function() {
-		it('viewName should be "About"', function() {
-			let controller = $controller('AboutController');
-			expect(controller.viewName).to.be.equal('About');
-		});
-	});
+  describe('test $scope properties', function() {
+    it('viewName should be "About"', function() {
+      let controller = $controller('AboutController');
+      expect(controller.viewName).to.be.equal('About');
+    });
+  });
 });

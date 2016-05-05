@@ -1,6 +1,6 @@
 'use strict';
 
-let helpers = require('yeoman-generator').test;
+let test = require('yeoman-generator').test;
 let assert = require('yeoman-generator').assert;
 let generator =  `${process.env.PWD}/app/index.es5.js`;
 
@@ -16,10 +16,10 @@ function ecma6Test() {
       scriptType: 'es6',
       viewEngine: 'jade',
       preprocessor: 'sass',
-      appFramework: 'none'
+      appFramework: 'none',
     };
 
-    helpers
+    test
       .run(generator)
       .withPrompts(prompts)
       .on('end', assertion);
@@ -49,13 +49,13 @@ function ecma6Test() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts'
+        'client/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
         'client/angular',
-        'tasks/templates.js'
+        'tasks/templates.js',
       ]);
 
       done();
@@ -74,12 +74,12 @@ function ecma6Test() {
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
       ],
-      angularRoute: 'uiRouter'
+      angularRoute: 'uiRouter',
     };
 
-    helpers
+    test
       .run(generator)
       .withPrompts(prompts)
       .on('end', assertion);
@@ -111,7 +111,7 @@ function ecma6Test() {
         'public',
         // 'test',
         'client/angular',
-        'karma.js'
+        'karma.js',
       ]);
       done();
     }
@@ -129,12 +129,12 @@ function ecma6Test() {
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
       ],
-      angularRoute: 'ngRoute'
+      angularRoute: 'ngRoute',
     };
 
-    helpers
+    test
       .run(generator)
       .withPrompts(prompts)
       .on('end', assertion);
@@ -166,7 +166,7 @@ function ecma6Test() {
         'public',
         // 'test',
         'client/angular',
-        'karma.js'
+        'karma.js',
       ]);
       done();
     }
@@ -180,10 +180,10 @@ function ecma5Test() {
       scriptType: 'es5',
       viewEngine: 'jade',
       preprocessor: 'sass',
-      appFramework: 'none'
+      appFramework: 'none',
     };
 
-    helpers
+    test
       .run(generator)
       .withPrompts(prompts)
       .on('end', assertion);
@@ -213,13 +213,13 @@ function ecma5Test() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts'
+        'client/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
         'client/angular',
-        'tasks/templates.js'
+        'tasks/templates.js',
       ]);
 
       done();
@@ -238,12 +238,12 @@ function ecma5Test() {
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
       ],
-      angularRoute: 'uiRouter'
+      angularRoute: 'uiRouter',
     };
 
-    helpers
+    test
       .run(generator)
       .withPrompts(prompts)
       .on('end', assertion);
@@ -275,7 +275,7 @@ function ecma5Test() {
         'public',
         // 'test'
         'client/angular',
-        'karma.js'
+        'karma.js',
       ]);
       done();
     }
@@ -293,12 +293,12 @@ function ecma5Test() {
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
       ],
-      angularRoute: 'ngRoute'
+      angularRoute: 'ngRoute',
     };
 
-    helpers
+    test
       .run(generator)
       .withPrompts(prompts)
       .on('end', assertion);
@@ -330,7 +330,7 @@ function ecma5Test() {
         'public',
         // 'test'
         'client/angular',
-        'karma.js'
+        'karma.js',
       ]);
       done();
     }

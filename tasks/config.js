@@ -2,8 +2,10 @@
 
 module.exports = {
   lint: [
-    './test/*.js',
+    './test/**/*.spec.js',
     './gulpfile.js',
-    'source/index.js'
-  ]
+    './tasks/*.js',
+    'app/index.js',
+    './eslintrc.js',
+  ],
 };

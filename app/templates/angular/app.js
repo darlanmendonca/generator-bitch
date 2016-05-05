@@ -6,6 +6,6 @@ angular.module('<%= slugify(appName) %>', [<% if (ngAnimate) { %>
   'ngResource',<% } %><% if (ngSanitize) { %>
   'ngSanitize',<% } %><% if (ngTouch) { %>
   'ngTouch',<% } %><% if (angularRoute === 'uiRouter') { %>
-  'ui.router'<% } %><% if (angularRoute === 'ngRoute') { %>
-  'ngRoute'<% } %>
+  'ui.router',<% } %><% if (angularRoute === 'ngRoute') { %>
+  'ngRoute',<% } %>
 ]);
