@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "A simple generator (for Yeoman) to scaffolding web applications, just frontend stack",
   "main": "app/index.es5.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "url": "git://github.com/darlanmendonca/generator-bitch.git"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=0.12.0",
     "npm": ">=1.2.10"
   },
   "dependencies": {
