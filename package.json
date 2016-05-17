@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.10.11",
+  "version": "0.11.0",
   "description": "A simple generator (for Yeoman) to scaffolding web applications, just frontend stack",
   "main": "app/index.es5.js",
   "scripts": {
@@ -40,8 +40,7 @@
     "mkdirp": "^0.5.1",
     "underscore.string": "^3.0.3",
     "yeoman-generator": "^0.20.1",
-    "gulp-babel": "^5.2.1",
-    "gulp-if": "^1.2.5"
+    "gulp-babel": "^5.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",

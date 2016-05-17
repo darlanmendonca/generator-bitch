@@ -7,7 +7,6 @@ var mkdirp = require('mkdirp');
 module.exports = generators.Base.extend({
   constructor: constructor,
   appNameParam: appNameParam,
-  scriptTypeParam: scriptTypeParam,
   viewEngineParam: viewEngineParam,
   preprocessorParam: preprocessorParam,
   appFrameworkParam: appFrameworkParam,
@@ -49,37 +48,8 @@ function appNameParam() {
   });
 }
 
-function scriptTypeParam() {
-  var _this2 = this;
-
-  var done = this.async();
-  var prompt = {
-    type: 'list',
-    name: 'scriptType',
-    message: 'javascript is write in',
-    default: 'es6',
-    choices: ['es6', 'es5']
-  };
-
-  this.prompt(prompt, function (data) {
-    _this2.scriptType = data.scriptType;
-    _this2.extScript = 'js';
-
-    if (_this2.scriptType === 'es5') {
-      var babel = require('gulp-babel');
-      var gulpif = require('gulp-if');
-      var condition = function condition(file) {
-        return path.extname(file.path) === '.js';
-      };
-      _this2.registerTransformStream(gulpif(condition, babel()));
-    }
-
-    done();
-  });
-}
-
 function viewEngineParam() {
-  var _this3 = this;
+  var _this2 = this;
 
   var done = this.async();
   var prompt = {
@@ -91,13 +61,13 @@ function viewEngineParam() {
   };
 
   this.prompt(prompt, function (data) {
-    _this3.viewEngine = data.viewEngine;
+    _this2.viewEngine = data.viewEngine;
     done();
   });
 }
 
 function preprocessorParam() {
-  var _this4 = this;
+  var _this3 = this;
 
   var done = this.async();
   var prompt = {
@@ -109,20 +79,20 @@ function preprocessorParam() {
   };
 
   this.prompt(prompt, function (data) {
-    _this4.preprocessor = data.preprocessor;
+    _this3.preprocessor = data.preprocessor;
     var extname = {
       sass: 'scss',
       less: 'less',
       stylus: 'styl'
     };
 
-    _this4.extPreprocessor = extname[data.preprocessor];
+    _this3.extPreprocessor = extname[data.preprocessor];
     done();
   });
 }
 
 function appFrameworkParam() {
-  var _this5 = this;
+  var _this4 = this;
 
   var done = this.async();
   var prompt = {
@@ -134,22 +104,22 @@ function appFrameworkParam() {
   };
 
   this.prompt(prompt, function (data) {
-    _this5.appFramework = data.appFramework;
+    _this4.appFramework = data.appFramework;
     done();
   });
 }
 
 function frameworkModulesParam() {
-  var _this6 = this;
+  var _this5 = this;
 
   if (this.appFramework === 'angular') {
     (function () {
-      var done = _this6.async();
-      _this6.ngAnimate = false;
-      _this6.ngCookies = false;
-      _this6.ngResource = false;
-      _this6.ngSanitize = false;
-      _this6.ngTouch = false;
+      var done = _this5.async();
+      _this5.ngAnimate = false;
+      _this5.ngCookies = false;
+      _this5.ngResource = false;
+      _this5.ngSanitize = false;
+      _this5.ngTouch = false;
 
       var prompt = {
         type: 'checkbox',
@@ -178,10 +148,10 @@ function frameworkModulesParam() {
         }]
       };
 
-      _this6.prompt(prompt, function (data) {
-        _this6.frameworkModules = data.frameworkModules;
-        for (var key in _this6.frameworkModules) {
-          _this6[_this6.frameworkModules[key]] = true;
+      _this5.prompt(prompt, function (data) {
+        _this5.frameworkModules = data.frameworkModules;
+        for (var key in _this5.frameworkModules) {
+          _this5[_this5.frameworkModules[key]] = true;
         }
         done();
       });
@@ -190,11 +160,11 @@ function frameworkModulesParam() {
 }
 
 function angularRouteParam() {
-  var _this7 = this;
+  var _this6 = this;
 
   if (this.appFramework === 'angular') {
     (function () {
-      var done = _this7.async();
+      var done = _this6.async();
       var prompt = {
         type: 'list',
         name: 'angularRoute',
@@ -203,9 +173,9 @@ function angularRouteParam() {
         choices: ['uiRouter', 'ngRoute', 'none']
       };
 
-      _this7.prompt(prompt, function (data) {
-        _this7.angularRoute = data.angularRoute;
-        _this7.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
+      _this6.prompt(prompt, function (data) {
+        _this6.angularRoute = data.angularRoute;
+        _this6.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
         done();
       });
     })();

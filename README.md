@@ -4,7 +4,7 @@
 
 A simple generator (for Yeoman) to scaffolding web applications, just frontend stack.
 
-Writed in Ecma Script 6 (but you choose how you want your application, in Ecma Scrit 6, or 5).
+Writed in Ecma Script 6!!
 
 If you use old versions of this module, maybe you want create an Node.js Api. This stack is migrated to a new module called [generator-nude](https://github.com/darlanmendonca/generator-nude).
 

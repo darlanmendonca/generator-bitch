@@ -1,8 +1,8 @@
 'use strict';
 
 let gulp = require('gulp');
-let gutil = require('gulp-util');<% if (scriptType === 'es6') { %>
-let babel = require('gulp-babel');<% } %><% if (appFramework === 'angular') { %>
+let gutil = require('gulp-util');
+let babel = require('gulp-babel');<% if (appFramework === 'angular') { %>
 let ngAnnotate = require('gulp-ng-annotate');<% } %>
 let sourcemaps = require('gulp-sourcemaps');
 let config = require('./gulp.config.js');
@@ -17,8 +17,8 @@ function scriptsTask() {
     .src(config.scripts.src)
     .pipe(plumber({ errorHandler: onError }))
     .pipe(sourcemaps.init())<% if (appFramework === 'angular') { %>
-    .pipe(ngAnnotate())<% } %><% if (scriptType === 'es6') { %>
-    .pipe(babel())<% } %>
+    .pipe(ngAnnotate())<% } %>
+    .pipe(babel())
     .pipe(concat('app.js'))
     .pipe(uglify({mangle: false}))
     .pipe(sourcemaps.write({sourceRoot: '/client/angular'}))

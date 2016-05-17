@@ -2,10 +2,10 @@
 
 module.exports = {
 	lint: [
-		'./gulpfile.<%= extScript %>',
+		'./gulpfile.js',
 		'./test/**/*.js',<% if (appFramework !== 'none') { %>
-		'./client/<%= appFramework %>/**/*.<%= extScript %>'<% } %><% if (appFramework === 'none') { %>
-		'./client/scripts/**/*.<%= extScript %>'<% } %>
+		'./client/<%= appFramework %>/**/*.js'<% } %><% if (appFramework === 'none') { %>
+		'./client/scripts/**/*.js'<% } %>
 	],
 	views: {
 		src: './client/views/*.<%= viewEngine %>',
@@ -21,9 +21,9 @@ module.exports = {
 	},
 	scripts: {
 		src: <% if (appFramework === 'angular') { %>[
-			'./client/angular/**/*.<%= extScript %>',
-			'!./client/angular/**/*.spec.<%= extScript %>'
-		]<% } %><% if (appFramework === 'none') { %>'./client/scripts/**/*.<%= extScript %>'<% } %>,
+			'./client/angular/**/*.js',
+			'!./client/angular/**/*.spec.js'
+		]<% } %><% if (appFramework === 'none') { %>'./client/scripts/**/*.js'<% } %>,
 		dest: './public/scripts/'
 	},
 	sprites: {

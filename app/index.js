@@ -7,7 +7,6 @@ let mkdirp = require('mkdirp');
 module.exports = generators.Base.extend({
   constructor,
   appNameParam,
-  scriptTypeParam,
   viewEngineParam,
   preprocessorParam,
   appFrameworkParam,
@@ -43,31 +42,6 @@ function appNameParam() {
 
   this.prompt(prompt, data => {
     this.appName = data.appName;
-    done();
-  });
-}
-
-function scriptTypeParam() {
-  let done = this.async();
-  let prompt = {
-    type: 'list',
-    name: 'scriptType',
-    message: 'javascript is write in',
-    default: 'es6',
-    choices: ['es6', 'es5'],
-  };
-
-  this.prompt(prompt, data => {
-    this.scriptType = data.scriptType;
-    this.extScript = 'js';
-
-    if (this.scriptType === 'es5') {
-      let babel = require('gulp-babel');
-      let gulpif = require('gulp-if');
-      let condition = file => path.extname(file.path) === '.js';
-      this.registerTransformStream(gulpif(condition, babel()));
-    }
-
     done();
   });
 }
