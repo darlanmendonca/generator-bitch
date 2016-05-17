@@ -1,5 +1,8 @@
-/* globals beforeEach, module, inject, expect, describe, it */
+/* globals beforeEach, expect, describe, it */
 'use strict';
+
+let module = angular.mock.module;
+let inject = angular.mock.inject;
 
 describe('HomeController', function() {
   beforeEach(module('<%= slugify(appName) %>'));
@@ -12,8 +15,8 @@ describe('HomeController', function() {
 
   describe('test $scope properties', function() {
     it('viewName should be "Home"', function() {
-      let controller = $controller('HomeController');
-      expect(controller.viewName).to.be.equal('Home');
+      let HomeController = $controller('HomeController');
+      expect(HomeController.viewName).to.be.equal('Home');
     });
   });
 });

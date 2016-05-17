@@ -1,75 +1,86 @@
-var bower = require('bower-files')();
+'use strict';
 
-// Karma configuration
+let bower = require('bower-files')();
+
 module.exports = function(config) {
   config.set({
+    basePath: '',
 
-	// base path that will be used to resolve all patterns (eg. files, exclude)
-	basePath: '',
+    frameworks: [
+      'browserify',
+      'mocha',
+      'chai-as-promised',
+      'chai',
+    ],
 
+    plugins: [
+      'karma-browserify',
+      'karma-mocha',
+      'karma-mocha-reporter',
+      'karma-chai-as-promised',
+      'karma-chai',
+      'karma-phantomjs-launcher',
+      'karma-coverage',
+    ],
 
-	// frameworks to use
-	// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-	frameworks: ['mocha', 'chai'],
+    files: bower.dev().relative(__dirname).ext('js').files.concat([
+      'client/angular/app.js',
+      'client/angular/**/*.js',
+    ]),
 
+    exclude: [],
 
-	// list of files / patterns to load in the browser
-	files: bower.dev().relative(__dirname).ext('js').files.concat([
-		'client/angular/app.js',
-		'client/angular/**/*.js'
-	]),
+    client: {
+      chai: {
+        includeStack: true
+      },
+      mocha: {
+        grep: require('shell-arguments').grep || '',
+      },
+    },
 
+    preprocessors: {
+      'client/**/*.js': [
+        'browserify',
+        'coverage',
+      ],
+    },
 
-	// list of files to exclude
-	exclude: [
-	],
+    browserify: {
+      debug: false,
+      transform: [
+        ['babelify', { presets: ['es2015'] }],
+      ],
+    },
 
+    reporters: [
+      'mocha',
+      'coverage',
+    ],
 
-	// preprocess matching files before serving them to the browser
-	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-	preprocessors: {
-	},
+    mochaReporter: {
+      output: 'autowatch',
+    },
 
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/',
+    },
 
-	// test results reporter to use
-	// possible values: 'dots', 'progress'
-	// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-	reporters: ['mocha'],
+    port: 9876,
 
-	mochaReporter: {
-    output: 'autowatch'
-  },
+    colors: true,
 
+    logLevel: config.LOG_INFO,
 
-	// web server port
-	port: 3005,
+    autoWatch: false,
 
+    browsers: ['PhantomJS'],
 
-	// enable / disable colors in the output (reporters and logs)
-	colors: true,
+    phantomjsLauncher: {
+      exitOnResourceError: true
+    },
 
-
-	// level of logging
-	// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-	logLevel: config.LOG_INFO,
-
-
-	// enable / disable watching file and executing tests whenever any file changes
-	autoWatch: false,
-
-
-	// start these browsers
-	// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-	browsers: ['PhantomJS'],
-
-	phantomjsLauncher: {
-	  // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
-	  exitOnResourceError: true
-	},
-
-
-	// Continuous Integration mode
-	// if true, Karma captures browsers, runs the tests and exits
-	singleRun: true
-  })
+    singleRun: true,
+  });
 }
