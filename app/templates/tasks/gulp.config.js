@@ -21,6 +21,7 @@ module.exports = {
 	},
 	scripts: {
 		src: <% if (appFramework === 'angular') { %>[
+      './client/angular/*.js',
 			'./client/angular/**/*.js',
 			'!./client/angular/**/*.spec.js'
 		]<% } %><% if (appFramework === 'none') { %>'./client/scripts/**/*.js'<% } %>,

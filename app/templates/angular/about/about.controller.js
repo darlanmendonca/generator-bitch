@@ -1,5 +1,7 @@
 'use strict';
 
+let angular = require('angular');
+
 angular
   .module('<%= slugify(appName) %>')
   .controller('AboutController', AboutController);

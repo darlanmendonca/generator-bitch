@@ -1,5 +1,6 @@
-/* globals angular */
 'use strict';
+
+let angular = require('angular');
 
 angular
   .module('<%= slugify(appName) %>')

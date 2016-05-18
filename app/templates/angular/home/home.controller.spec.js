@@ -1,6 +1,7 @@
 /* globals beforeEach, expect, describe, it */
 'use strict';
 
+let angular = require('angular');
 let module = angular.mock.module;
 let inject = angular.mock.inject;
 

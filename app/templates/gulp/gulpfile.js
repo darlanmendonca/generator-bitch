@@ -10,5 +10,6 @@ require('./tasks/templates.js');
 require('./tasks/templates.js');
 require('./tasks/vendorCSS.js');
 require('./tasks/vendorJS.js');
+require('./tasks/browserify.js');
 require('./tasks/watch.js');
 require('./tasks/default.js');

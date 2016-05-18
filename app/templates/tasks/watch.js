@@ -19,14 +19,15 @@ function watchTask() {<% if (appFramework === 'angular') { %>
   gulp.watch('./client/styles/**/*.<%= extPreprocessor %>', ['styles']);
 
   gulp.watch(gulpConfig.scripts.src, [
-    'scripts',
+    'browserify',
     gulpConfig.browserSync.reload
   ]);
+
   gulp.watch(gulpConfig.lint, ['lint']);
 
   gulp.watch('./bower.json', [
     'vendorCSS',
-    'vendorJS',
+    // 'vendorJS',
     'styles'
   ]);
 }
