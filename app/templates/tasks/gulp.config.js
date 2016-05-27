@@ -18,6 +18,7 @@ module.exports = {
 	},<% } %>
 	styles: {
 		src: './client/styles/*.<%= extPreprocessor %>',
+    watch: './client/styles/**/*.<%= extPreprocessor %>',
 		dest: './public/styles/'
 	},
 	scripts: {

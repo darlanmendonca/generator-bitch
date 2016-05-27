@@ -16,7 +16,7 @@ function watchTask() {<% if (appFramework === 'angular') { %>
     gulpConfig.browserSync.reload
   ]);
 
-  gulp.watch('./client/styles/**/*.<%= extPreprocessor %>', ['styles']);
+  gulp.watch(gulpConfig.styles.watch, ['styles']);
 
   gulp.watch(gulpConfig.scripts.src, [
     'scripts',

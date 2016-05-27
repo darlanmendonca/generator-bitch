@@ -1,4 +1,4 @@
-'use strict';
+strict'use strict';
 
 let gulp = require('gulp');
 let gutil = require('gulp-util');
@@ -32,7 +32,7 @@ let configPreprocessor = {
 gulp.task('styles', stylesTask);
 
 function stylesTask() {
-  gulp
+  return gulp
     .src(config.styles.src)
     .pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))<% if (preprocessor === 'stylus') { %>
     .pipe(plumber({ errorHandler: onError }))<% } %>
