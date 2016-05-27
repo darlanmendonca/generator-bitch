@@ -14,9 +14,7 @@ let config = require('./gulp.config.js');
 let injectTransform = {
 	starttag: '/* inject:imports */',
 	endtag: '/* endinject */',
-	transform: function (filepath) {
-		return util.format('@import \'../..%s\';', filepath);
-	}
+  transform: filepath => `@import '../..${filepath}';`,
 };
 
 let injectConfig = {
