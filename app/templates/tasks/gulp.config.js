@@ -9,6 +9,7 @@ module.exports = {
 	],
 	views: {
 		src: './client/views/*.<%= viewEngine %>',
+    watch: './client/views/**/*.<%= viewEngine %>',
 		dest: './public/'
 	},<% if (appFramework === 'angular') { %>
 	templates: {

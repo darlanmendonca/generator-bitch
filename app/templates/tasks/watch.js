@@ -6,12 +6,12 @@ let gulpConfig = require('./gulp.config.js');
 gulp.task('watch', watchTask);
 
 function watchTask() {<% if (appFramework === 'angular') { %>
-  let views = [];
-  views = views.concat(gulpConfig.templates.src);
-  views = views.concat(gulpConfig.views.src);
-
-  gulp.watch(views, [<% } else { %>
-  gulp.watch(gulpConfig.views.src, [<% } %>
+  gulp.watch(gulpConfig.templates.watch, [
+    'templates',
+    gulpConfig.browserSync.reload
+  ]);
+  <% } %>
+  gulp.watch(gulpConfig.views.watch, [
     'views',
     gulpConfig.browserSync.reload
   ]);
