@@ -1,4 +1,4 @@
-strict'use strict';
+'use strict';
 
 let gulp = require('gulp');
 let gutil = require('gulp-util');
