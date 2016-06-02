@@ -13,7 +13,7 @@ module.exports = {
 		dest: './public/'
 	},<% if (appFramework === 'angular') { %>
 	templates: {
-		src: './client/<%= appFramework %>/**/*.<%= viewEngine %>',
+		src: './client/<%= appFramework %>/**/*.template.<%= viewEngine %>',
 		dest: './public/templates/'
 	},<% } %>
 	styles: {

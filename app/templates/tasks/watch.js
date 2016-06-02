@@ -6,7 +6,7 @@ let gulpConfig = require('./gulp.config.js');
 gulp.task('watch', watchTask);
 
 function watchTask() {<% if (appFramework === 'angular') { %>
-  gulp.watch(gulpConfig.templates.watch, [
+  gulp.watch(gulpConfig.templates.src, [
     'templates',
     gulpConfig.browserSync.reload
   ]);
