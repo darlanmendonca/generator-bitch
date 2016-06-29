@@ -5,7 +5,7 @@ let module = angular.mock.module;
 let inject = angular.mock.inject;
 
 describe('HomeController', function() {
-  beforeEach(module('<%= slugify(appName) %>'));
+  beforeEach(module('<%= applicationSlug %>'));
 
   let $controller;
 

@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-  .module('<%= slugify(appName) %>')
+  .module('<%= applicationSlug %>')
   .config(homeConfig);
 
 <% if (angularRoute === 'uiRouter') { %>function homeConfig($stateProvider) {

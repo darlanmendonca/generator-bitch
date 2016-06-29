@@ -6,7 +6,7 @@ let mkdirp = require('mkdirp');
 
 module.exports = generators.Base.extend({
   constructor,
-  appNameParam,
+  applicationNameParam,
   viewEngineParam,
   preprocessorParam,
   appFrameworkParam,
@@ -28,20 +28,20 @@ module.exports = generators.Base.extend({
 
 function constructor() {
   generators.Base.apply(this, arguments);
-  this.slugify = require('underscore.string/slugify');
 }
 
-function appNameParam() {
+function applicationNameParam() {
   let done = this.async();
   let prompt = {
     type: 'input',
-    name: 'appName',
+    name: 'applicationName',
     message: 'application name',
     default: path.basename(process.cwd()),
   };
 
   this.prompt(prompt, data => {
-    this.appName = data.appName;
+    this.applicationName = data.applicationName;
+    this.applicationSlug = require('underscore.string/slugify')(this.applicationName);
     done();
   });
 }

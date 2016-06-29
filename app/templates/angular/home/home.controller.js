@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-  .module('<%= slugify(appName) %>')
+  .module('<%= applicationSlug %>')
   .controller('HomeController', HomeController);
 
 function HomeController () {
