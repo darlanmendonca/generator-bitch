@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "A simple generator (for Yeoman) to scaffolding web applications, just frontend stack",
   "main": "app/index.es5.js",
   "scripts": {
@@ -51,7 +51,6 @@
     "gulp-ejs": "^1.2.0",
     "gulp-eslint": "^2.0.0",
     "istanbul": "^0.4.0",
-    "mkdirp": "^0.5.1",
     "mocha": "^2.3.3"
   }
 }
