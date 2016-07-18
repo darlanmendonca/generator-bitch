@@ -56,11 +56,10 @@ function viewEngineParam() {
     choices: ['jade', 'ejs'],
   };
 
-  this
-    .prompt(prompt, data => {
-      this.viewEngine = data.viewEngine;
-      done();
-    });
+  this.prompt(prompt, data => {
+    this.viewEngine = data.viewEngine;
+    done();
+  });
 }
 
 function preprocessorParam() {
@@ -93,7 +92,11 @@ function appFrameworkParam() {
     name: 'appFramework',
     message: 'select the javascript framework you would like to use',
     default: 'angular',
-    choices: ['angular', 'none'],
+    choices: [
+      'angular',
+      'react',
+      'none',
+    ],
   };
 
   this.prompt(prompt, data => {
@@ -231,6 +234,14 @@ function angular() {
 
     this.sourceRoot(path.join(__dirname,  `templates/angular-templates/${this.viewEngine}`), this);
     this.directory('.', 'client/angular');
+  }
+}
+
+
+function react() {
+  if (this.appFramework === 'react') {
+    this.sourceRoot(path.join(__dirname,  'templates/react'), this);
+    this.directory('.', 'client/react');
   }
 }
 

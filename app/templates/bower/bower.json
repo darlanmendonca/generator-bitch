@@ -9,7 +9,8 @@
     "angular-sanitize": "^1.5.5",<% } %><% if (ngTouch) { %>
     "angular-touch": "^1.5.5"<% } %><% if (angularRoute === 'uiRouter') { %>,
     "angular-ui-router": "^0.2.15"<% } %><% if (angularRoute === 'ngRoute') { %>,
-    "angular-route": "^1.5.5"<% } %><% } %>
+    "angular-route": "^1.5.5"<% } %><% } %><% if (appFramework === 'react') { %>
+    "react": "^15.2.1"<% } %>
   }<% if (appFramework === 'angular') { %>,
   "devDependencies": {
     "angular-mocks": "^1.5.5"
