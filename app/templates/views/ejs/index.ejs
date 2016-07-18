@@ -2,12 +2,11 @@
 <html<% if (appFramework === 'angular') { %> ng-app='<%= applicationSlug %>'<% } %>>
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title><%= applicationName %></title>
   <base href="/">
-  <%%- include includes/meta %%>
+
+  <%%- include includes/metas %%>
   <%%- include includes/favicons %%>
-
-
   <%%- include includes/styles %%>
 </head>
 <body><% if (appFramework === 'angular') { %>
