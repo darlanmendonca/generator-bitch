@@ -7,7 +7,7 @@ var generator = process.env.PWD + '/app/index.es5.js';
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  it('without frameworks, jade, sass', function (done) {
+  it('no framework, jade, sass', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -28,7 +28,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, less', function (done) {
+  it('no framework, jade, less', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -49,7 +49,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, stylus', function (done) {
+  it('no framework, jade, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -70,7 +70,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, sass', function (done) {
+  it('no framework, ejs, sass', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -91,7 +91,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, less', function (done) {
+  it('no framework, ejs, less', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -112,7 +112,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, stylus', function (done) {
+  it('no framework, ejs, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -169,6 +169,26 @@ function scaffolding() {
       _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/templates.js', 'tasks/watch.js', 'package.json', 'public',
       // 'test',
       'client/angular', 'karma.js']);
+      done();
+    }
+  });
+
+  it('react', function (done) {
+    var prompts = {
+      appName: 'lorem',
+      viewEngine: 'jade',
+      preprocessor: 'sass',
+      appFramework: 'react'
+    };
+
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
+
+    function assertion() {
+      _yeomanGenerator.assert.file(['README.md', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'README.md', 'client', 'bower.json', 'gulpfile.js', 'tasks/default.js', 'tasks/gulp.config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
+      // 'test',
+      'client/react']);
+
+      _yeomanGenerator.assert.noFile(['karma.js', 'client/angular', 'tasks/templates.js']);
       done();
     }
   });

@@ -5,7 +5,7 @@ const generator =  `${process.env.PWD}/app/index.es5.js`;
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  it('without frameworks, jade, sass', done => {
+  it('no framework, jade, sass', done => {
     const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -56,7 +56,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, less', done => {
+  it('no framework, jade, less', done => {
     const prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -107,7 +107,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, stylus', done => {
+  it('no framework, jade, stylus', done => {
     const prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -158,7 +158,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, sass', done => {
+  it('no framework, ejs, sass', done => {
     const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -209,7 +209,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, less', done => {
+  it('no framework, ejs, less', done => {
     const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -260,7 +260,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, stylus', done => {
+  it('no framework, ejs, stylus', done => {
     const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -414,6 +414,56 @@ function scaffolding() {
         // 'test',
         'client/angular',
         'karma.js',
+      ]);
+      done();
+    }
+  });
+
+  it('react', done => {
+    const prompts = {
+      appName: 'lorem',
+      viewEngine: 'jade',
+      preprocessor: 'sass',
+      appFramework: 'react',
+    };
+
+    test
+      .run(generator)
+      .withPrompts(prompts)
+      .on('end', assertion);
+
+    function assertion() {
+      assert.file([
+        'README.md',
+        '.bowerrc',
+        '.editorconfig',
+        '.gitignore',
+        '.eslintrc.js',
+        'README.md',
+        'client',
+        'bower.json',
+        'gulpfile.js',
+        'tasks/default.js',
+        'tasks/gulp.config.js',
+        'tasks/lint.js',
+        'tasks/browser-sync.js',
+        'tasks/scripts.js',
+        'tasks/sprite-images.js',
+        'tasks/styles.js',
+        'tasks/vendorCSS.js',
+        'tasks/vendorJS.js',
+        'tasks/views.js',
+        'tasks/watch.js',
+        'package.json',
+        'public',
+        // 'test',
+        'client/react',
+      ]);
+
+      assert.noFile([
+        'karma.js',
+        'client/angular',
+        'tasks/templates.js',
       ]);
       done();
     }

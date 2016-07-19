@@ -14,6 +14,8 @@ var _mkdirp2 = _interopRequireDefault(_mkdirp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+console.log(__filename);
+
 var generator = {
   constructor: constructor,
   applicationNameParam: applicationNameParam,

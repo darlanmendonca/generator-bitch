@@ -1,6 +1,7 @@
-import yeoman from 'yeoman-generator';
+import generators from 'yeoman-generator';
 import path from 'path';
 import mkdirp from 'mkdirp';
+console.log(__filename);
 
 const generator = {
   constructor,
@@ -25,10 +26,10 @@ const generator = {
   install,
 };
 
-module.exports = yeoman.Base.extend(generator);
+module.exports = generators.Base.extend(generator);
 
 function constructor() {
-  yeoman.Base.apply(this, arguments);
+  generators.Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
