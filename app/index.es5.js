@@ -1,10 +1,20 @@
 'use strict';
 
-var generators = require('yeoman-generator');
-var path = require('path');
-var mkdirp = require('mkdirp');
+var _yeomanGenerator = require('yeoman-generator');
 
-module.exports = generators.Base.extend({
+var _yeomanGenerator2 = _interopRequireDefault(_yeomanGenerator);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _mkdirp = require('mkdirp');
+
+var _mkdirp2 = _interopRequireDefault(_mkdirp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var generator = {
   constructor: constructor,
   applicationNameParam: applicationNameParam,
   viewEngineParam: viewEngineParam,
@@ -21,13 +31,16 @@ module.exports = generators.Base.extend({
   templates: templates,
   styles: styles,
   angular: angular,
+  react: react,
   scripts: scripts,
   publicDir: publicDir,
   install: install
-});
+};
+
+module.exports = _yeomanGenerator2.default.Base.extend(generator);
 
 function constructor() {
-  generators.Base.apply(this, arguments);
+  _yeomanGenerator2.default.Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
@@ -38,7 +51,7 @@ function applicationNameParam() {
     type: 'input',
     name: 'applicationName',
     message: 'application name',
-    default: path.basename(process.cwd())
+    default: _path2.default.basename(process.cwd())
   };
 
   this.prompt(prompt, function (data) {
@@ -184,40 +197,40 @@ function angularRouteParam() {
 
 function angularTest() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(path.join(__dirname, 'templates/karma'), this);
+    this.sourceRoot(_path2.default.join(__dirname, 'templates/karma'), this);
     this.directory('.', '.');
   }
 }
 
 function common() {
-  this.sourceRoot(path.join(__dirname, 'templates/common'), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/common'), this);
   this.directory('.', '.');
 }
 
 function gulp() {
-  this.sourceRoot(path.join(__dirname, 'templates/gulp'), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/gulp'), this);
   this.directory('.', '.');
 
-  this.sourceRoot(path.join(__dirname, 'templates/tasks'), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/tasks'), this);
   this.directory('.', './tasks');
 }
 
 function bower() {
-  this.sourceRoot(path.join(__dirname, 'templates/bower'), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/bower'), this);
   this.directory('.', '.');
 }
 
 function client() {
-  mkdirp('client/imgs');
-  mkdirp('client/styles/components');
-  mkdirp('client/sprites');
+  (0, _mkdirp2.default)('client/imgs');
+  (0, _mkdirp2.default)('client/styles/components');
+  (0, _mkdirp2.default)('client/sprites');
   if (this.appFramework !== 'none') {
-    mkdirp('client/' + this.appFramework);
+    (0, _mkdirp2.default)('client/' + this.appFramework);
   }
 }
 
 function views() {
-  this.sourceRoot(path.join(__dirname, 'templates/views/' + this.viewEngine), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/views/' + this.viewEngine), this);
   this.directory('.', 'client/views');
 }
 
@@ -228,39 +241,39 @@ function templates() {
 }
 
 function styles() {
-  this.sourceRoot(path.join(__dirname, 'templates/styles/' + this.preprocessor), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/styles/' + this.preprocessor), this);
   this.directory('.', 'client/styles');
 }
 
 function angular() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(path.join(__dirname, 'templates/angular'), this);
+    this.sourceRoot(_path2.default.join(__dirname, 'templates/angular'), this);
     this.directory('.', 'client/angular');
 
-    this.sourceRoot(path.join(__dirname, 'templates/angular-templates/' + this.viewEngine), this);
+    this.sourceRoot(_path2.default.join(__dirname, 'templates/angular-templates/' + this.viewEngine), this);
     this.directory('.', 'client/angular');
   }
 }
 
 function react() {
   if (this.appFramework === 'react') {
-    this.sourceRoot(path.join(__dirname, 'templates/react'), this);
+    this.sourceRoot(_path2.default.join(__dirname, 'templates/react'), this);
     this.directory('.', 'client/react');
   }
 }
 
 function scripts() {
   if (this.appFramework === 'none') {
-    this.sourceRoot(path.join(__dirname, 'templates/scripts'), this);
+    this.sourceRoot(_path2.default.join(__dirname, 'templates/scripts'), this);
     this.directory('.', 'client/scripts');
   }
 }
 
 function publicDir() {
-  this.sourceRoot(path.join(__dirname, 'templates/public'), this);
+  this.sourceRoot(_path2.default.join(__dirname, 'templates/public'), this);
   this.directory('.', 'public');
-  mkdirp('public/imgs/sprites');
-  mkdirp('public/scripts');
+  (0, _mkdirp2.default)('public/imgs/sprites');
+  (0, _mkdirp2.default)('public/scripts');
 }
 
 function install() {

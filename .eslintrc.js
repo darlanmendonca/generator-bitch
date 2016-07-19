@@ -9,6 +9,12 @@ module.exports = {
     browser: true,
     es6: true
   },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
   globals: {
     angular: true,
     ENV: true,

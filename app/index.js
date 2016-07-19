@@ -1,10 +1,8 @@
-'use strict';
+import yeoman from 'yeoman-generator';
+import path from 'path';
+import mkdirp from 'mkdirp';
 
-let generators = require('yeoman-generator');
-let path = require('path');
-let mkdirp = require('mkdirp');
-
-module.exports = generators.Base.extend({
+const generator = {
   constructor,
   applicationNameParam,
   viewEngineParam,
@@ -21,13 +19,16 @@ module.exports = generators.Base.extend({
   templates,
   styles,
   angular,
+  react,
   scripts,
   publicDir,
   install,
-});
+};
+
+module.exports = yeoman.Base.extend(generator);
 
 function constructor() {
-  generators.Base.apply(this, arguments);
+  yeoman.Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
@@ -236,7 +237,6 @@ function angular() {
     this.directory('.', 'client/angular');
   }
 }
-
 
 function react() {
   if (this.appFramework === 'react') {

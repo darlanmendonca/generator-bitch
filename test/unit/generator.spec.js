@@ -1,13 +1,12 @@
-'use strict';
-let test = require('yeoman-generator').test;
-let assert = require('yeoman-generator').assert;
-let generator =  `${process.env.PWD}/app/index.es5.js`;
+import {test, assert} from 'yeoman-generator';
+
+const generator =  `${process.env.PWD}/app/index.es5.js`;
 
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
   it('without frameworks, jade, sass', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
       preprocessor: 'sass',
@@ -58,7 +57,7 @@ function scaffolding() {
   });
 
   it('without frameworks, jade, less', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
       preprocessor: 'less',
@@ -109,7 +108,7 @@ function scaffolding() {
   });
 
   it('without frameworks, jade, stylus', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
       preprocessor: 'stylus',
@@ -160,7 +159,7 @@ function scaffolding() {
   });
 
   it('without frameworks, ejs, sass', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
       preprocessor: 'sass',
@@ -211,7 +210,7 @@ function scaffolding() {
   });
 
   it('without frameworks, ejs, less', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
       preprocessor: 'less',
@@ -262,7 +261,7 @@ function scaffolding() {
   });
 
   it('without frameworks, ejs, stylus', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
       preprocessor: 'stylus',
@@ -313,7 +312,7 @@ function scaffolding() {
   });
 
   it('angular and uiRouter', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
       preprocessor: 'sass',
@@ -367,7 +366,7 @@ function scaffolding() {
   });
 
   it('angular and ngRoute', done => {
-    let prompts = {
+    const prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
       preprocessor: 'sass',

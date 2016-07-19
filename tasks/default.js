@@ -1,8 +1,5 @@
-'use strict';
-
-let gulp = require('gulp');
-
-let tasks = [
+const gulp = require('gulp');
+const tasks = [
   'lint',
   'watch',
 ];

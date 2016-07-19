@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   lint: [
     './test/**/*.spec.js',
