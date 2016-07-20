@@ -1,9 +1,7 @@
-import generators from 'yeoman-generator';
-import path from 'path';
+import {Base} from 'yeoman-generator';
 import mkdirp from 'mkdirp';
-console.log(__filename);
 
-const generator = {
+module.exports = Base.extend({
   constructor,
   applicationNameParam,
   viewEngineParam,
@@ -24,12 +22,10 @@ const generator = {
   scripts,
   publicDir,
   install,
-};
-
-module.exports = generators.Base.extend(generator);
+});
 
 function constructor() {
-  generators.Base.apply(this, arguments);
+  Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
@@ -38,7 +34,7 @@ function applicationNameParam() {
     type: 'input',
     name: 'applicationName',
     message: 'application name',
-    default: path.basename(process.cwd()),
+    default: require('path').basename(process.cwd()),
   };
 
   this.prompt(prompt, data => {
@@ -55,7 +51,10 @@ function viewEngineParam() {
     name: 'viewEngine',
     message: 'select template view you would like to use',
     default: 'jade',
-    choices: ['jade', 'ejs'],
+    choices: [
+      'jade',
+      'ejs',
+    ],
   };
 
   this.prompt(prompt, data => {
@@ -71,7 +70,11 @@ function preprocessorParam() {
     name: 'preprocessor',
     message: 'select css preprocessor you would like to use',
     default: 'sass',
-    choices: ['sass', 'less', 'stylus'],
+    choices: [
+      'sass',
+      'less',
+      'stylus',
+    ],
   };
 
   this.prompt(prompt, data => {
@@ -167,13 +170,18 @@ function angularRouteParam() {
       name: 'angularRoute',
       message: 'select how you want route angular',
       default: 'uiRouter',
-      choices: ['uiRouter', 'ngRoute', 'none'],
+      choices: [
+        'uiRouter',
+        'ngRoute',
+        'none',
+      ],
     };
 
     this.prompt(prompt, data => {
       this.angularRoute = data.angularRoute;
-      this.angularRouteDirective = data.angularRoute === 'uiRouter' ?
-        'ui-view' : 'ng-view';
+      this.angularRouteDirective = data.angularRoute === 'uiRouter'
+        ? 'ui-view'
+        : 'ng-view';
       done();
     });
   }
@@ -181,26 +189,26 @@ function angularRouteParam() {
 
 function angularTest() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(path.join(__dirname,  'templates/karma'), this);
+    this.sourceRoot(`${__dirname}/templates/karma`, this);
     this.directory('.', '.');
   }
 }
 
 function common() {
-  this.sourceRoot(path.join(__dirname,  'templates/common'), this);
+  this.sourceRoot(`${__dirname}/templates/common`, this);
   this.directory('.', '.');
 }
 
 function gulp() {
-  this.sourceRoot(path.join(__dirname,  'templates/gulp'), this);
+  this.sourceRoot(`${__dirname}/templates/gulp`, this);
   this.directory('.', '.');
 
-  this.sourceRoot(path.join(__dirname,  'templates/tasks'), this);
+  this.sourceRoot(`${__dirname}/templates/tasks`, this);
   this.directory('.', './tasks');
 }
 
 function bower() {
-  this.sourceRoot(path.join(__dirname,  'templates/bower'), this);
+  this.sourceRoot(`${__dirname}/templates/bower`, this);
   this.directory('.', '.');
 }
 
@@ -214,7 +222,7 @@ function client() {
 }
 
 function views() {
-  this.sourceRoot(path.join(__dirname,  `templates/views/${this.viewEngine}`), this);
+  this.sourceRoot(`${__dirname}/templates/views/${this.viewEngine}`, this);
   this.directory('.', 'client/views');
 }
 
@@ -225,36 +233,36 @@ function templates() {
 }
 
 function styles() {
-  this.sourceRoot(path.join(__dirname,  `templates/styles/${this.preprocessor}`), this);
+  this.sourceRoot(`${__dirname}/templates/styles/${this.preprocessor}`, this);
   this.directory('.', 'client/styles');
 }
 
 function angular() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(path.join(__dirname,  'templates/angular'), this);
+    this.sourceRoot(`${__dirname}/templates/angular`, this);
     this.directory('.', 'client/angular');
 
-    this.sourceRoot(path.join(__dirname,  `templates/angular-templates/${this.viewEngine}`), this);
+    this.sourceRoot(`${__dirname}/templates/angular-templates/${this.viewEngine}`, this);
     this.directory('.', 'client/angular');
   }
 }
 
 function react() {
   if (this.appFramework === 'react') {
-    this.sourceRoot(path.join(__dirname,  'templates/react'), this);
+    this.sourceRoot(`${__dirname}/templates/react`, this);
     this.directory('.', 'client/react');
   }
 }
 
 function scripts() {
   if (this.appFramework === 'none') {
-    this.sourceRoot(path.join(__dirname,  'templates/scripts'), this);
+    this.sourceRoot(`${__dirname}/templates/scripts`, this);
     this.directory('.', 'client/scripts');
   }
 }
 
 function publicDir() {
-  this.sourceRoot(path.join(__dirname,  'templates/public'), this);
+  this.sourceRoot(`${__dirname}/templates/public`, this);
   this.directory('.', 'public');
   mkdirp('public/imgs/sprites');
   mkdirp('public/scripts');

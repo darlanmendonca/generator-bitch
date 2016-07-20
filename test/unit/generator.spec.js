@@ -1,6 +1,5 @@
 import {test, assert} from 'yeoman-generator';
-
-const generator =  `${process.env.PWD}/app/index.es5.js`;
+const generator = require(`${process.env.PWD}/${process.env.npm_package_main}`);
 
 describe('generate a scaffolding', scaffolding);
 

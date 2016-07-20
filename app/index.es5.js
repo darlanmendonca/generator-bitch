@@ -2,21 +2,13 @@
 
 var _yeomanGenerator = require('yeoman-generator');
 
-var _yeomanGenerator2 = _interopRequireDefault(_yeomanGenerator);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
 var _mkdirp = require('mkdirp');
 
 var _mkdirp2 = _interopRequireDefault(_mkdirp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log(__filename);
-
-var generator = {
+module.exports = _yeomanGenerator.Base.extend({
   constructor: constructor,
   applicationNameParam: applicationNameParam,
   viewEngineParam: viewEngineParam,
@@ -37,12 +29,10 @@ var generator = {
   scripts: scripts,
   publicDir: publicDir,
   install: install
-};
-
-module.exports = _yeomanGenerator2.default.Base.extend(generator);
+});
 
 function constructor() {
-  _yeomanGenerator2.default.Base.apply(this, arguments);
+  _yeomanGenerator.Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
@@ -53,7 +43,7 @@ function applicationNameParam() {
     type: 'input',
     name: 'applicationName',
     message: 'application name',
-    default: _path2.default.basename(process.cwd())
+    default: require('path').basename(process.cwd())
   };
 
   this.prompt(prompt, function (data) {
@@ -199,26 +189,26 @@ function angularRouteParam() {
 
 function angularTest() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(_path2.default.join(__dirname, 'templates/karma'), this);
+    this.sourceRoot(__dirname + '/templates/karma', this);
     this.directory('.', '.');
   }
 }
 
 function common() {
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/common'), this);
+  this.sourceRoot(__dirname + '/templates/common', this);
   this.directory('.', '.');
 }
 
 function gulp() {
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/gulp'), this);
+  this.sourceRoot(__dirname + '/templates/gulp', this);
   this.directory('.', '.');
 
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/tasks'), this);
+  this.sourceRoot(__dirname + '/templates/tasks', this);
   this.directory('.', './tasks');
 }
 
 function bower() {
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/bower'), this);
+  this.sourceRoot(__dirname + '/templates/bower', this);
   this.directory('.', '.');
 }
 
@@ -232,7 +222,7 @@ function client() {
 }
 
 function views() {
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/views/' + this.viewEngine), this);
+  this.sourceRoot(__dirname + '/templates/views/' + this.viewEngine, this);
   this.directory('.', 'client/views');
 }
 
@@ -243,36 +233,36 @@ function templates() {
 }
 
 function styles() {
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/styles/' + this.preprocessor), this);
+  this.sourceRoot(__dirname + '/templates/styles/' + this.preprocessor, this);
   this.directory('.', 'client/styles');
 }
 
 function angular() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(_path2.default.join(__dirname, 'templates/angular'), this);
+    this.sourceRoot(__dirname + '/templates/angular', this);
     this.directory('.', 'client/angular');
 
-    this.sourceRoot(_path2.default.join(__dirname, 'templates/angular-templates/' + this.viewEngine), this);
+    this.sourceRoot(__dirname + '/templates/angular-templates/' + this.viewEngine, this);
     this.directory('.', 'client/angular');
   }
 }
 
 function react() {
   if (this.appFramework === 'react') {
-    this.sourceRoot(_path2.default.join(__dirname, 'templates/react'), this);
+    this.sourceRoot(__dirname + '/templates/react', this);
     this.directory('.', 'client/react');
   }
 }
 
 function scripts() {
   if (this.appFramework === 'none') {
-    this.sourceRoot(_path2.default.join(__dirname, 'templates/scripts'), this);
+    this.sourceRoot(__dirname + '/templates/scripts', this);
     this.directory('.', 'client/scripts');
   }
 }
 
 function publicDir() {
-  this.sourceRoot(_path2.default.join(__dirname, 'templates/public'), this);
+  this.sourceRoot(__dirname + '/templates/public', this);
   this.directory('.', 'public');
   (0, _mkdirp2.default)('public/imgs/sprites');
   (0, _mkdirp2.default)('public/scripts');

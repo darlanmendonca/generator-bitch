@@ -6,7 +6,8 @@
   "scripts": {
     "transpile": "scripts/transpile",
     "pretest": "npm run transpile",
-    "test": "scripts/test"
+    "test": "scripts/test",
+    "coverage": "open coverage/lcov-report/index.html"
   },
   "keywords": [
     "bitch",

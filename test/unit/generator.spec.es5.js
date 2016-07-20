@@ -2,7 +2,7 @@
 
 var _yeomanGenerator = require('yeoman-generator');
 
-var generator = process.env.PWD + '/app/index.es5.js';
+var generator = require(process.env.PWD + '/' + process.env.npm_package_main);
 
 describe('generate a scaffolding', scaffolding);
 
