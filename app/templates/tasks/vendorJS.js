@@ -8,18 +8,11 @@ let uglify = require('gulp-uglify');
 gulp.task('vendorJS', vendorJSTask);
 
 function vendorJSTask() {
-  let dependencies = bower
-    .ext('js')
-    .files
-    .map(minified);
+  let dependencies = bower.ext('js').files;
 
   return gulp
     .src(dependencies)
     .pipe(concat('vendor.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./public/scripts'));
-}
-
-function minified(file) {
-  return file.replace(/\.js$/, '.min.js');
 }

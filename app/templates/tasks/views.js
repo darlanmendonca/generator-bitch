@@ -20,6 +20,5 @@ function viewsTask() {
 function onError(err) {
 	let message = new gutil.PluginError(err.plugin, err.message).toString();
   process.stderr.write(message + '\n');
-
 	gutil.beep();
 }
