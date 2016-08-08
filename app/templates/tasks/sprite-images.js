@@ -13,7 +13,7 @@ let options = {
 	engine: 'pngsmith',
 	cssVarMap: sprite => {
 		sprite.name = `sprite-${sprite.name}`;
-	}
+	},
 };
 
 gulp.task('sprites', spritesTask);
