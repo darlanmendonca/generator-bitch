@@ -11,15 +11,16 @@ let options = {
 	imgPath: '../imgs/sprites/sprites.png',
 	algorithm: 'binary-tree',
 	engine: 'pngsmith',
-	cssVarMap: function (sprite) {
-		sprite.name = 'sprite-'+sprite.name;
+	cssVarMap: sprite => {
+		sprite.name = `sprite-${sprite.name}`;
 	}
 };
 
 gulp.task('sprites', spritesTask);
 
 function spritesTask() {
-  let sprite = gulp.src(config.sprites.src)
+  let sprite = gulp
+    .src(config.sprites.src)
     .pipe(plumber())
     .pipe(spritesmith(options));
 
