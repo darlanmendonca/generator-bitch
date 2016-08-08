@@ -6,7 +6,7 @@ let generator =  `${process.env.PWD}/app/index.es5.js`;
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  it('without frameworks, jade, sass', done => {
+  it('jade, sass', done => {
     let prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -57,7 +57,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, less', done => {
+  it('jade, less', done => {
     let prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -108,7 +108,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, stylus', done => {
+  it('jade, stylus', done => {
     let prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -159,7 +159,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, sass', done => {
+  it('ejs, sass', done => {
     let prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -210,7 +210,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, less', done => {
+  it('ejs, less', done => {
     let prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -261,7 +261,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, stylus', done => {
+  it('ejs, stylus', done => {
     let prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',

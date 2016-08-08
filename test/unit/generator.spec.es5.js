@@ -7,7 +7,7 @@ var generator = process.env.PWD + '/app/index.es5.js';
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  it('without frameworks, jade, sass', function (done) {
+  it('jade, sass', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -28,7 +28,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, less', function (done) {
+  it('jade, less', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -49,7 +49,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, jade, stylus', function (done) {
+  it('jade, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -70,7 +70,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, sass', function (done) {
+  it('ejs, sass', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -91,7 +91,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, less', function (done) {
+  it('ejs, less', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -112,7 +112,7 @@ function scaffolding() {
     }
   });
 
-  it('without frameworks, ejs, stylus', function (done) {
+  it('ejs, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
