@@ -15,7 +15,7 @@ gulp.task('scripts', scriptsTask);
 function scriptsTask() {
   return gulp
     .src(config.scripts.src)
-    .pipe(plumber({ errorHandler: onError }))
+    .pipe(plumber({errorHandler}))
     .pipe(sourcemaps.init())<% if (appFramework === 'angular') { %>
     .pipe(ngAnnotate())<% } %>
     .pipe(babel())
@@ -25,7 +25,7 @@ function scriptsTask() {
     .pipe(gulp.dest(config.scripts.dest));
 }
 
-function onError(err) {
+function errorHandler(err) {
 	let message = new gutil.PluginError(err.plugin, err.message).toString();
 	process.stderr.write(message + '\n');
 	gutil.beep();

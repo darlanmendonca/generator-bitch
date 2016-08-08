@@ -47,16 +47,7 @@ function stylesTask() {
 }
 
 function onError(err) {
-	var message;
-	switch (err.plugin) {
-		case 'gulp-<%= preprocessor %>':
-			let messageFormatted = err.messageFormatted;
-			message = new gutil.PluginError('gulp-<%= preprocessor %>', messageFormatted).toString();
-			process.stderr.write(message + '\n');
-			break;
-		default:
-			message = new gutil.PluginError(err.plugin, err.message).toString();
-			process.stderr.write(message + '\n');
-	}
+	let message = new gutil.PluginError(err.plugin, err.message).toString();
+	process.stderr.write(message + '\n');
 	gutil.beep();
 }
