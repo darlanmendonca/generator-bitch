@@ -7,13 +7,13 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es6: true
+    es6: true,
+    mocha: true,
+    protractor: true,
   },
   globals: {
     angular: true,
-    ENV: true,
-    describe: true,
-    it: true
+    expect: true,
   },
   rules: {
     semi: [required, 'always'],

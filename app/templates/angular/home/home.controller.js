@@ -1,4 +1,3 @@
-/* globals angular */
 'use strict';
 
 angular
