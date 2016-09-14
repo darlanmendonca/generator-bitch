@@ -5,14 +5,14 @@
   <title><%= applicationName %></title>
   <base href="/">
 
-  <%%- include includes/metas %%>
-  <%%- include includes/favicons %%>
-  <%%- include includes/styles %%>
+  <%%- include templates/metas %%>
+  <%%- include templates/favicons %%>
+  <%%- include templates/styles %%>
 </head>
 <body><% if (appFramework === 'angular') { %>
   <div ui-view></div><% } else { %>
   <p>hello</p><% } %>
 
-  <%%- include includes/scripts %%>
+  <%%- include templates/scripts %%>
 </body>
 </html>

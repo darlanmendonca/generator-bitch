@@ -1,5 +1,15 @@
-extends layouts/sample
+doctype html
+html<% if (appFramework === 'angular') { %>(ng-app='<%= applicationSlug %>')<% } %>
+  head
+    title <%= applicationName %>
+    base(href="/")
 
-block content<% if (appFramework === 'angular' && angularRoute !== 'none') { %>
-  div(<%= angularRouteDirective %>)<% } else { %>
-  p hello<% } %>
+    include templates/metas
+    include templates/favicons
+    include templates/links
+
+  body<% if (appFramework === 'angular' && angularRoute !== 'none') { %>
+    div(<%= angularRouteDirective %>)<% } else { %>
+    p hello<% } %>
+
+    include templates/scripts
