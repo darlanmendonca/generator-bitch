@@ -2,16 +2,16 @@
   "name": "<%= applicationSlug %>",
   "version": "0.0.0",
   "dependencies": {<% if (appFramework === 'angular') { %>
-    "angular": "^1.5.7",<% if (ngAnimate) { %>
-    "angular-animate": "^1.5.7",<% } %><% if (ngCookies) { %>
-    "angular-cookies": "^1.5.7",<% } %><% if (ngResource) { %>
-    "angular-resource": "^1.5.7",<% } %><% if (ngSanitize) { %>
-    "angular-sanitize": "^1.5.7",<% } %><% if (ngTouch) { %>
-    "angular-touch": "^1.5.7"<% } %><% if (angularRoute === 'uiRouter') { %>,
+    "angular": "^1.5.8"<% if (ngAnimate) { %>,
+    "angular-animate": "^1.5.8"<% } %><% if (ngCookies) { %>,
+    "angular-cookies": "^1.5.8"<% } %><% if (ngResource) { %>,
+    "angular-resource": "^1.5.8"<% } %><% if (ngSanitize) { %>,
+    "angular-sanitize": "^1.5.8"<% } %><% if (ngTouch) { %>,
+    "angular-touch": "^1.5.8"<% } %><% if (angularRoute === 'uiRouter') { %>,
     "angular-ui-router": "^0.2.15"<% } %><% if (angularRoute === 'ngRoute') { %>,
-    "angular-route": "^1.5.7"<% } %><% } %>
+    "angular-route": "^1.5.8"<% } %><% } %>
   }<% if (appFramework === 'angular') { %>,
   "devDependencies": {
-    "angular-mocks": "^1.5.7"
+    "angular-mocks": "^1.5.8"
   }<% } %>
 }
