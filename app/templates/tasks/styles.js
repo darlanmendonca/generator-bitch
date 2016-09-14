@@ -3,13 +3,15 @@
 let gulp = require('gulp');
 let gutil = require('gulp-util');
 let bower = require('bower-files')();
-let dependencies = bower.relative(__dirname).ext('<%= extPreprocessor %>').files;
+let path = require('path');
+let dependencies = bower.relative(path.join(__dirname, '..')).ext('scss').files;
 let inject = require('gulp-inject');
 let util = require('util');
 let <%= preprocessor %> = require('gulp-<%= preprocessor %>');
 let autoprefixer = require('gulp-autoprefixer');
 let sourcemaps = require('gulp-sourcemaps');
 let config = require('./gulp.config.js');
+let plumber = require('gulp-plumber');
 
 let injectTransform = {
   starttag: '/* inject:imports */',
@@ -22,31 +24,25 @@ let injectConfig = {
   relative: false
 };<% if (preprocessor === 'sass') { %>
 
-let configPreprocessor = {
-  outputStyle: 'compressed'
-};<% } %><% if (preprocessor === 'less' || preprocessor === 'stylus') { %>
-let configPreprocessor = {
-  compress: true
-};<% } %>
+let outputStyle = 'compressed';<% } %><% if (preprocessor === 'less' || preprocessor === 'stylus') { %>
+let compress = true<% } %>
 
 gulp.task('styles', stylesTask);
 
 function stylesTask() {
-  return gulp
+  gulp
     .src(config.styles.src)
-    .pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))<% if (preprocessor === 'stylus') { %>
-    .pipe(plumber({ errorHandler: onError }))<% } %>
-    .pipe(sourcemaps.init())<% if (preprocessor === 'sass') { %>
-    .pipe(sass(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'less') { %>
-    .pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
-    .pipe(stylus(configPreprocessor))<% } %>
+    .pipe(plumber({errorHandler}))
+    .pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))
+    .pipe(sourcemaps.init())
+    .pipe(sass({outputStyle}))
     .pipe(autoprefixer())
-    .pipe(sourcemaps.write({sourceRoot: '/sources/styles'}))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.styles.dest))
     .pipe(config.browserSync.stream({match: '**/*.css'}));
 }
 
-function onError(err) {
+function errorHandler(err) {
   let message = new gutil.PluginError(err.plugin, err.message).toString();
   process.stderr.write(message + '\n');
   gutil.beep();

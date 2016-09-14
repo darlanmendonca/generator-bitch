@@ -6,7 +6,6 @@ let required = 2;
 module.exports = {
   env: {
     node: true,
-    browser: true,
     es6: true,
     mocha: true,
     protractor: true,

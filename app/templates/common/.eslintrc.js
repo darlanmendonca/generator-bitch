@@ -6,18 +6,17 @@ let required = 2;
 module.exports = {
   env: {
     node: true,
-    browser: true,
     es6: true,
     mocha: true,
     protractor: true,
   },
   globals: {<% if (appFramework === 'angular') { %>
     angular: true,<% } %>
-    ENV: true,
-  },<% if (appFramework === 'angular') { %>
-  plugins: [
-    'angular'
-  ],<% } %>
+    expect: true,
+  },
+  plugins: [<% if (appFramework === 'angular') { %>
+    'angular',<% } %>
+  ],
   rules: {
     semi: [required, 'always'],
     'comma-dangle': [required, 'always-multiline'],
