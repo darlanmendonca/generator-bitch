@@ -12,21 +12,21 @@ let sourcemaps = require('gulp-sourcemaps');
 let config = require('./gulp.config.js');
 
 let injectTransform = {
-	starttag: '/* inject:imports */',
-	endtag: '/* endinject */',
+  starttag: '/* inject:imports */',
+  endtag: '/* endinject */',
   transform: filepath => `@import '../..${filepath}';`,
 };
 
 let injectConfig = {
-	read: false,
-	relative: false
+  read: false,
+  relative: false
 };<% if (preprocessor === 'sass') { %>
 
 let configPreprocessor = {
-	outputStyle: 'compressed'
+  outputStyle: 'compressed'
 };<% } %><% if (preprocessor === 'less' || preprocessor === 'stylus') { %>
 let configPreprocessor = {
-	compress: true
+  compress: true
 };<% } %>
 
 gulp.task('styles', stylesTask);
@@ -41,13 +41,13 @@ function stylesTask() {
     .pipe(less(configPreprocessor).on('error', onError))<% } %><% if (preprocessor === 'stylus') { %>
     .pipe(stylus(configPreprocessor))<% } %>
     .pipe(autoprefixer())
-    .pipe(sourcemaps.write({sourceRoot: '/client/styles'}))
+    .pipe(sourcemaps.write({sourceRoot: '/sources/styles'}))
     .pipe(gulp.dest(config.styles.dest))
     .pipe(config.browserSync.stream({match: '**/*.css'}));
 }
 
 function onError(err) {
-	let message = new gutil.PluginError(err.plugin, err.message).toString();
-	process.stderr.write(message + '\n');
-	gutil.beep();
+  let message = new gutil.PluginError(err.plugin, err.message).toString();
+  process.stderr.write(message + '\n');
+  gutil.beep();
 }

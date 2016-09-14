@@ -1,38 +1,38 @@
 'use strict';
 
 module.exports = {
-	lint: [
-		'./gulpfile.js',
-		'./test/**/*.js',<% if (appFramework !== 'none') { %>
-		'./client/<%= appFramework %>/**/*.js'<% } %><% if (appFramework === 'none') { %>
-		'./client/scripts/**/*.js'<% } %>
-	],
-	views: {
-		src: './client/views/*.<%= viewEngine %>',
-    watch: './client/views/**/*.<%= viewEngine %>',
-		dest: './public/'
-	},<% if (appFramework === 'angular') { %>
-	templates: {
-		src: './client/<%= appFramework %>/**/*.template.<%= viewEngine %>',
-		dest: './public/templates/'
-	},<% } %>
-	styles: {
-		src: './client/styles/*.<%= extPreprocessor %>',
-    watch: './client/styles/**/*.<%= extPreprocessor %>',
-		dest: './public/styles/'
-	},
-	scripts: {
-		src: <% if (appFramework === 'angular') { %>[
-			'./client/angular/**/*.js',
-			'!./client/angular/**/*.spec.js'
-		]<% } %><% if (appFramework === 'none') { %>'./client/scripts/**/*.js'<% } %>,
-		dest: './public/scripts/'
-	},
-	sprites: {
-		src: './client/sprites/*.png',
-		dest: './public/imgs/sprites/'
-	},
-	browserSync: require('browser-sync').create(),
+  lint: [
+    './gulpfile.js',
+    './test/**/*.js',<% if (appFramework !== 'none') { %>
+    './sources/<%= appFramework %>/**/*.js'<% } %><% if (appFramework === 'none') { %>
+    './sources/scripts/**/*.js'<% } %>
+  ],
+  views: {
+    src: './sources/views/*.<%= viewEngine %>',
+    watch: './sources/views/**/*.<%= viewEngine %>',
+    dest: './public/'
+  },<% if (appFramework === 'angular') { %>
+  templates: {
+    src: './sources/<%= appFramework %>/**/*.template.<%= viewEngine %>',
+    dest: './public/templates/'
+  },<% } %>
+  styles: {
+    src: './sources/styles/*.<%= extPreprocessor %>',
+    watch: './sources/styles/**/*.<%= extPreprocessor %>',
+    dest: './public/styles/'
+  },
+  scripts: {
+    src: <% if (appFramework === 'angular') { %>[
+      './sources/angular/**/*.js',
+      '!./sources/angular/**/*.spec.js'
+    ]<% } %><% if (appFramework === 'none') { %>'./sources/scripts/**/*.js'<% } %>,
+    dest: './public/scripts/'
+  },
+  sprites: {
+    src: './sources/sprites/*.png',
+    dest: './public/imgs/sprites/'
+  },
+  browserSync: require('browser-sync').create(),
   browserSyncOptions: {
     server: {
       baseDir: './public'

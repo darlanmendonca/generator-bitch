@@ -24,8 +24,8 @@ module.exports = function(config) {
     ],
 
     files: bower.dev().relative(__dirname).ext('js').files.concat([
-      'client/angular/app.js',
-      'client/angular/**/*.js',
+      'sources/angular/app.js',
+      'sources/angular/**/*.js',
     ]),
 
     exclude: [],
@@ -40,7 +40,7 @@ module.exports = function(config) {
     },
 
     preprocessors: {
-      'client/**/*.js': [
+      'sources/**/*.js': [
         'browserify',
         'coverage',
       ],

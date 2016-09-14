@@ -21,12 +21,12 @@ function scriptsTask() {
     .pipe(babel())
     .pipe(concat('app.js'))
     .pipe(uglify({mangle: false}))
-    .pipe(sourcemaps.write({sourceRoot: '/client/angular'}))
+    .pipe(sourcemaps.write({sourceRoot: '/sources/angular'}))
     .pipe(gulp.dest(config.scripts.dest));
 }
 
 function errorHandler(err) {
-	let message = new gutil.PluginError(err.plugin, err.message).toString();
-	process.stderr.write(message + '\n');
-	gutil.beep();
+  let message = new gutil.PluginError(err.plugin, err.message).toString();
+  process.stderr.write(message + '\n');
+  gutil.beep();
 }

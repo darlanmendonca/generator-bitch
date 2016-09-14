@@ -16,7 +16,7 @@ module.exports = generators.Base.extend({
   common,
   gulp,
   bower,
-  client,
+  sources,
   views,
   templates,
   styles,
@@ -215,18 +215,18 @@ function bower() {
   this.directory('.', '.');
 }
 
-function client() {
-  mkdirp('client/imgs');
-  mkdirp('client/styles/components');
-  mkdirp('client/sprites');
+function sources() {
+  mkdirp('sources/imgs');
+  mkdirp('sources/styles/components');
+  mkdirp('sources/sprites');
   if (this.appFramework !== 'none') {
-    mkdirp(`client/${this.appFramework}`);
+    mkdirp(`sources/${this.appFramework}`);
   }
 }
 
 function views() {
   this.sourceRoot(`${__dirname}/templates/views/${this.viewEngine}`, this);
-  this.directory('.', 'client/views');
+  this.directory('.', 'sources/views');
 }
 
 function templates() {
@@ -237,23 +237,23 @@ function templates() {
 
 function styles() {
   this.sourceRoot(`${__dirname}/templates/styles/${this.preprocessor}`, this);
-  this.directory('.', 'client/styles');
+  this.directory('.', 'sources/styles');
 }
 
 function angular() {
   if (this.appFramework === 'angular') {
     this.sourceRoot(`${__dirname}/templates/angular`, this);
-    this.directory('.', 'client/angular');
+    this.directory('.', 'sources/angular');
 
     this.sourceRoot(`${__dirname}/templates/angular-templates/${this.viewEngine}`, this);
-    this.directory('.', 'client/angular');
+    this.directory('.', 'sources/angular');
   }
 }
 
 function scripts() {
   if (this.appFramework === 'none') {
     this.sourceRoot(`${__dirname}/templates/scripts`, this);
-    this.directory('.', 'client/scripts');
+    this.directory('.', 'sources/scripts');
   }
 }
 

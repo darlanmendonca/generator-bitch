@@ -27,7 +27,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -44,12 +44,12 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts',
+        'sources/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
-        'client/angular',
+        'sources/angular',
         'tasks/templates.js',
       ]);
 
@@ -78,7 +78,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -95,12 +95,12 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts',
+        'sources/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
-        'client/angular',
+        'sources/angular',
         'tasks/templates.js',
       ]);
 
@@ -129,7 +129,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -146,12 +146,12 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts',
+        'sources/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
-        'client/angular',
+        'sources/angular',
         'tasks/templates.js',
       ]);
 
@@ -180,7 +180,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -197,12 +197,12 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts',
+        'sources/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
-        'client/angular',
+        'sources/angular',
         'tasks/templates.js',
       ]);
 
@@ -231,7 +231,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -248,12 +248,12 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts',
+        'sources/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
-        'client/angular',
+        'sources/angular',
         'tasks/templates.js',
       ]);
 
@@ -282,7 +282,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -299,12 +299,12 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test'
-        'client/scripts',
+        'sources/scripts',
       ]);
 
       assert.noFile([
         'karma.js',
-        'client/angular',
+        'sources/angular',
         'tasks/templates.js',
       ]);
 
@@ -341,7 +341,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -359,7 +359,7 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test',
-        'client/angular',
+        'sources/angular',
         'karma.js',
       ]);
       done();
@@ -395,7 +395,7 @@ function scaffolding() {
         '.gitignore',
         '.eslintrc.js',
         'README.md',
-        'client',
+        'sources',
         'bower.json',
         'gulpfile.js',
         'tasks/default.js',
@@ -413,7 +413,7 @@ function scaffolding() {
         'package.json',
         'public',
         // 'test',
-        'client/angular',
+        'sources/angular',
         'karma.js',
       ]);
       done();
