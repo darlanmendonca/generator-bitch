@@ -1,5 +1,3 @@
 'use strict';
 
-require('./tasks/lint.js');
-require('./tasks/watch.js');
-require('./tasks/default.js');
+require('require-all')(`${__dirname}/tasks/`);

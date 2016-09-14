@@ -51,6 +51,7 @@
     "gulp-ejs": "^1.2.0",
     "gulp-eslint": "^2.0.0",
     "istanbul": "^0.4.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "require-all": "^2.0.0"
   }
 }
