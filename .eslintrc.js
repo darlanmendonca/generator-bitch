@@ -11,7 +11,6 @@ module.exports = {
     protractor: true,
   },
   globals: {
-    angular: true,
     expect: true,
   },
   rules: {
