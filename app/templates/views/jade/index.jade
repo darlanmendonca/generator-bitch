@@ -6,7 +6,7 @@ html<% if (appFramework === 'angular') { %>(ng-app='<%= applicationSlug %>')<% }
 
     include templates/metas
     include templates/favicons
-    include templates/links
+    include templates/styles
 
   body<% if (appFramework === 'angular' && angularRoute !== 'none') { %>
     div(<%= angularRouteDirective %>)<% } else { %>
