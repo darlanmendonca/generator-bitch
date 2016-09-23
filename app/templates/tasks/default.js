@@ -1,8 +1,6 @@
-'use strict';
+import gulp from 'gulp';
 
-let gulp = require('gulp');
-
-let tasks = [
+gulp.task('default', [
   'views',
   'templates',
   'browser-sync',
@@ -10,7 +8,5 @@ let tasks = [
   'styles',
   'scripts',
   'lint',
-  'watch'
-];
-
-gulp.task('default', tasks);
+  'watch',
+]);

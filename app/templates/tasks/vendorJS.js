@@ -1,14 +1,14 @@
-'use strict';
-
-let gulp = require('gulp');
-let bower = require('bower-files')();
-let concat = require('gulp-concat');
-let uglify = require('gulp-uglify');
+import gulp from 'gulp';
+import bowerFiles from 'bower-files';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
 
 gulp.task('vendorJS', vendorJSTask);
 
 function vendorJSTask() {
-  let dependencies = bower.ext('js').files;
+  let dependencies = bowerFiles()
+    .ext('js')
+    .files;
 
   return gulp
     .src(dependencies)

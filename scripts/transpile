@@ -2,5 +2,5 @@
 
 set -e
 
-babel app/index.js --out-file app/index.es5.js;
-babel test/unit/generator.spec.js --out-file test/unit/generator.spec.es5.js;
+babel app/generator.js --out-file app/index.js;
+babel app/generator.spec.js --out-file app/generator.spec.es5.js;

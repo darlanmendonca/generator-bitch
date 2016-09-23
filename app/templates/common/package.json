@@ -26,7 +26,7 @@
     "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
     "gulp-stylus": "^2.0.6",<% } %>
-    "gulp-babel": "^5.2.1",<% if (appFramework === 'angular') { %>
+    "gulp-babel": "^6.1.2",<% if (appFramework === 'angular') { %>
     "gulp-ng-annotate": "^1.1.0",
     "connect-history-api-fallback": "^1.1.0",
     "jasmine": "^2.3.2",

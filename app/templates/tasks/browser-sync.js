@@ -1,11 +1,8 @@
-'use strict';
-
-let gulp = require('gulp');
-let config = require('./gulp.config.js');
-let options = config.browserSyncOptions;
+import gulp from 'gulp';
+import config from './gulp.config.js';
 
 gulp.task('browser-sync', browserSyncTask);
 
 function browserSyncTask() {
-  config.browserSync.init(options);
+  config.browserSync.init(config.browserSyncOptions);
 }

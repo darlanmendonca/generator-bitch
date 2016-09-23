@@ -1,11 +1,9 @@
-'use strict';
-
-let gulp = require('gulp');
-let gutil = require('gulp-util');
-let <%= viewEngine %> = require('gulp-<%= viewEngine %>');<% if (appFramework === 'angular') { %>
-let flatten = require('gulp-flatten');<% } %>
-let config = require('./gulp.config.js');
-let plumber = require('gulp-plumber');
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import <%= viewEngine %> from 'gulp-<%= viewEngine %>';<% if (appFramework === 'angular') { %>
+import flatten from 'gulp-flatten';<% } %>
+import config from './gulp.config.js';
+import plumber from 'gulp-plumber';
 
 gulp.task('views', viewsTask);
 
