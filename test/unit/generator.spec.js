@@ -21,6 +21,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -72,6 +73,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -123,6 +125,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -174,6 +177,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -225,6 +229,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -276,6 +281,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -335,6 +341,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
@@ -389,6 +396,7 @@ function scaffolding() {
     function assertion() {
       assert.file([
         'README.md',
+        '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
