@@ -1,10 +1,8 @@
-'use strict';
+import {Base} from 'yeoman-generator';
+import path from 'path';
+import mkdirp from 'mkdirp';
 
-let generators = require('yeoman-generator');
-let path = require('path');
-let mkdirp = require('mkdirp');
-
-module.exports = generators.Base.extend({
+module.exports = Base.extend({
   constructor,
   applicationNameParam,
   viewEngineParam,
@@ -27,7 +25,7 @@ module.exports = generators.Base.extend({
 });
 
 function constructor() {
-  generators.Base.apply(this, arguments);
+  Base.apply(this, arguments);
 }
 
 function applicationNameParam() {

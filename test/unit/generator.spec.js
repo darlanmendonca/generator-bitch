@@ -1,11 +1,10 @@
-'use strict';
-let test = require('yeoman-generator').test;
-let assert = require('yeoman-generator').assert;
-let generator =  `${process.env.PWD}/app/index.es5.js`;
+import {test, assert} from 'yeoman-generator';
 
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
+  const generator =  `${process.env.PWD}/app/index.es5.js`;
+
   it('jade, sass', done => {
     let prompts = {
       appName: 'lorem',

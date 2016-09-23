@@ -1,10 +1,18 @@
 'use strict';
 
-var generators = require('yeoman-generator');
-var path = require('path');
-var mkdirp = require('mkdirp');
+var _yeomanGenerator = require('yeoman-generator');
 
-module.exports = generators.Base.extend({
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _mkdirp = require('mkdirp');
+
+var _mkdirp2 = _interopRequireDefault(_mkdirp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _yeomanGenerator.Base.extend({
   constructor: constructor,
   applicationNameParam: applicationNameParam,
   viewEngineParam: viewEngineParam,
@@ -27,7 +35,7 @@ module.exports = generators.Base.extend({
 });
 
 function constructor() {
-  generators.Base.apply(this, arguments);
+  _yeomanGenerator.Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
@@ -38,7 +46,7 @@ function applicationNameParam() {
     type: 'input',
     name: 'applicationName',
     message: 'application name',
-    default: path.basename(process.cwd())
+    default: _path2.default.basename(process.cwd())
   };
 
   this.prompt(prompt, function (data) {
@@ -209,11 +217,11 @@ function bower() {
 }
 
 function sources() {
-  mkdirp('sources/imgs');
-  mkdirp('sources/styles/components');
-  mkdirp('sources/sprites');
+  (0, _mkdirp2.default)('sources/imgs');
+  (0, _mkdirp2.default)('sources/styles/components');
+  (0, _mkdirp2.default)('sources/sprites');
   if (this.appFramework !== 'none') {
-    mkdirp('sources/' + this.appFramework);
+    (0, _mkdirp2.default)('sources/' + this.appFramework);
   }
 }
 
@@ -253,8 +261,8 @@ function scripts() {
 function publicDir() {
   this.sourceRoot(__dirname + '/templates/public', this);
   this.directory('.', 'public');
-  mkdirp('public/imgs/sprites');
-  mkdirp('public/scripts');
+  (0, _mkdirp2.default)('public/imgs/sprites');
+  (0, _mkdirp2.default)('public/scripts');
 }
 
 function install() {

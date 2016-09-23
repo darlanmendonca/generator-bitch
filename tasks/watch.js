@@ -1,7 +1,5 @@
-'use strict';
-
-let gulp = require('gulp');
-let config = require('./config.js');
+import gulp from 'gulp';
+import config from './config.js';
 
 gulp.task('watch', watchTask);
 

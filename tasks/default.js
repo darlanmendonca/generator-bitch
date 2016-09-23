@@ -1,6 +1,4 @@
-'use strict';
-
-let gulp = require('gulp');
+import gulp from 'gulp';
 
 let tasks = [
   'lint',

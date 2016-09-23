@@ -1,8 +1,6 @@
-'use strict';
-
-let gulp = require('gulp');
-let config = require('./config.js');
-let eslint = require('gulp-eslint');
+import gulp from 'gulp';
+import config from './config.js';
+import eslint from 'gulp-eslint';
 
 gulp.task('lint', lintTask);
 
