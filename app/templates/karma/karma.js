@@ -1,6 +1,5 @@
-'use strict';
-
-let bower = require('bower-files')();
+import bowerFiles from 'bower-files';
+import shellArugments from 'shell-arguments';
 
 module.exports = function(config) {
   config.set({
@@ -23,7 +22,7 @@ module.exports = function(config) {
       'karma-coverage',
     ],
 
-    files: bower.dev().relative(__dirname).ext('js').files.concat([
+    files: bowerFiles().dev().relative(__dirname).ext('js').files.concat([
       'sources/angular/app.js',
       'sources/angular/**/*.js',
     ]),
@@ -35,7 +34,7 @@ module.exports = function(config) {
         includeStack: true
       },
       mocha: {
-        grep: require('shell-arguments').grep || '',
+        grep: shellArguments.grep || '',
       },
     },
 

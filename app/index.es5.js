@@ -10,6 +10,8 @@ var _mkdirp = require('mkdirp');
 
 var _mkdirp2 = _interopRequireDefault(_mkdirp);
 
+var _underscore = require('underscore.string');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = _yeomanGenerator.Base.extend({
@@ -51,7 +53,7 @@ function applicationNameParam() {
 
   this.prompt(prompt, function (data) {
     _this.applicationName = data.applicationName;
-    _this.applicationSlug = require('underscore.string/slugify')(_this.applicationName);
+    _this.applicationSlug = (0, _underscore.slugify)(_this.applicationName);
     done();
   });
 }

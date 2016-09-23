@@ -1,9 +1,7 @@
-'use strict';
-
-let gulp = require('gulp');
-let spritesmith = require('gulp.spritesmith');
-let plumber = require('gulp-plumber');
-let config = require('./gulp.config.js');
+import gulp from 'gulp';
+import spritesmith from 'gulp.spritesmith';
+import plumber from 'gulp-plumber';
+import config from './gulp.config.js';
 
 let options = {
   imgName: 'sprites.png',
@@ -11,9 +9,7 @@ let options = {
   imgPath: '../imgs/sprites/sprites.png',
   algorithm: 'binary-tree',
   engine: 'pngsmith',
-  cssVarMap: sprite => {
-    sprite.name = `sprite-${sprite.name}`;
-  },
+  cssVarMap: sprite => sprite.name = `sprite-${sprite.name}`,
 };
 
 gulp.task('sprites', spritesTask);

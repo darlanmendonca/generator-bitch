@@ -1,4 +1,4 @@
-'use strict';
+import shell from 'shell-arguments';
 
 let config = {
   development: {
@@ -21,7 +21,9 @@ let config = {
   }
 };
 
-let shell = require('shell-arguments');
-let env = shell.env || process.env.NODE_ENV || 'production';
+
+let env = shell.env
+  || process.env.NODE_ENV
+  || 'production';
 
 module.exports = config[env];

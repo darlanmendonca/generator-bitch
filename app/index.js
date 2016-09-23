@@ -1,6 +1,7 @@
 import {Base} from 'yeoman-generator';
 import path from 'path';
 import mkdirp from 'mkdirp';
+import {slugify} from 'underscore.string';
 
 module.exports = Base.extend({
   constructor,
@@ -39,7 +40,7 @@ function applicationNameParam() {
 
   this.prompt(prompt, data => {
     this.applicationName = data.applicationName;
-    this.applicationSlug = require('underscore.string/slugify')(this.applicationName);
+    this.applicationSlug = slugify(this.applicationName);
     done();
   });
 }

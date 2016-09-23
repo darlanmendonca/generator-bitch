@@ -1,7 +1,5 @@
-'use strict';
-
-let faker = require('faker');
-let config = require('../config');
+import faker from 'faker';
+import config from '../config';
 
 module.exports = {
 	API: `http://localhost:${config.server.port}/api`,

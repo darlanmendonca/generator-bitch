@@ -1,14 +1,12 @@
-'use strict';
-
-let gulp = require('gulp');
-let gutil = require('gulp-util');
-let babel = require('gulp-babel');<% if (appFramework === 'angular') { %>
-let ngAnnotate = require('gulp-ng-annotate');<% } %>
-let sourcemaps = require('gulp-sourcemaps');
-let config = require('./gulp.config.js');
-let plumber = require('gulp-plumber');
-let concat = require('gulp-concat');
-let uglify = require('gulp-uglify');
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import babel from 'gulp-babel';
+import sourcemaps from 'gulp-sourcemaps';
+import config from './gulp.config.js';
+import plumber from 'gulp-plumber';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';<% if (appFramework === 'angular') { %>
+import ngAnnotate from 'gulp-ng-annotate';<% } %>
 
 gulp.task('scripts', scriptsTask);
 

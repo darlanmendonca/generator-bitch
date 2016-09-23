@@ -1,4 +1,6 @@
-'use strict';
+import browserSync from 'browser-sync';
+import historyFallback from 'connect-history-api-fallback';
+import yargs from 'yargs';
 
 module.exports = {
   lint: [
@@ -32,14 +34,14 @@ module.exports = {
     src: './sources/sprites/*.png',
     dest: './public/imgs/sprites/'
   },
-  browserSync: require('browser-sync').create(),
+  browserSync: browserSync.create(),
   browserSyncOptions: {
     server: {
       baseDir: './public'
     },
     notify: false,<% if (appFramework === 'angular') { %>
-    middleware: [ require('connect-history-api-fallback')() ],<% } %>
+    middleware: [ historyFallback() ],<% } %>
     reloadDelay: 100,
-    open: require('yargs').argv.open
+    open: yargs.argv.open
   }
 };

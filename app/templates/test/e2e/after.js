@@ -1,7 +1,4 @@
-/* globals after */
-'use strict';
-
-let Users = require('../../server/users/users.model.js');
+import Users from '../../server/users/users.model.js';
 
 after(function(done) {
 	Users

@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import config from './config.js';
 import eslint from 'gulp-eslint';
+import gutil from 'gulp-util';
 
 gulp.task('lint', lintTask);
 
@@ -14,6 +15,5 @@ function lintTask() {
 }
 
 function beep() {
-  let gutil = require('gulp-util');
   gutil.beep();
 }

@@ -1,13 +1,15 @@
-'use strict';
-
-let gulp = require('gulp');
-let bower = require('bower-files')();
-let minifyCss = require('gulp-minify-css');
-let concat = require('gulp-concat');
+import gulp from 'gulp');
+import bowerFiles from 'bower-files';
+import minifyCss from 'gulp-minify-css';
+import concat from 'gulp-concat';
 
 gulp.task('vendorCSS', vendorCSSTask);
 
 function vendorCSSTask() {
+  let dependencies = bowerFiles()
+    .ext('css')
+    .files;
+
   return gulp
     .src(bower.ext('css').files)
     .pipe(concat('vendor.css'))

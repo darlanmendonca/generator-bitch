@@ -1,11 +1,8 @@
-/* globals before */
-'use strict';
-
-let mongoose = require('mongoose');
-let config = require('../../config');
-let Users = require('../../server/users/users.model.js');
-let helper = require('../helper.js');
-let jwt = require('jsonwebtoken');
+import mongoose from 'mongoose';
+import config from '../../config';
+import Users from '../../server/users/users.model.js';
+import helper from '../helper.js';
+import jwt from 'jsonwebtoken';
 
 before(function(done){
   mongoose.connect(config.database.url, () => done());

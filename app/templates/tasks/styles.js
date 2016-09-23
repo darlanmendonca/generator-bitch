@@ -1,17 +1,19 @@
-'use strict';
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import bowerFiles from 'bower-files';
+import path from 'path';
+import inject from 'gulp-inject';
+import util from 'util';
+import <%= preprocessor %> from 'gulp-<%= preprocessor %>';
+import autoprefixer from 'gulp-autoprefixer';
+import sourcemaps from 'gulp-sourcemaps';
+import config from './gulp.config.js';
+import plumber from 'gulp-plumber';
 
-let gulp = require('gulp');
-let gutil = require('gulp-util');
-let bower = require('bower-files')();
-let path = require('path');
-let dependencies = bower.relative(path.join(__dirname, '..')).ext('scss').files;
-let inject = require('gulp-inject');
-let util = require('util');
-let <%= preprocessor %> = require('gulp-<%= preprocessor %>');
-let autoprefixer = require('gulp-autoprefixer');
-let sourcemaps = require('gulp-sourcemaps');
-let config = require('./gulp.config.js');
-let plumber = require('gulp-plumber');
+let dependencies = bowerFiles()
+  .relative(path.join(__dirname, '..'))
+  .ext('scss')
+  .files;
 
 let injectTransform = {
   starttag: '/* inject:imports */',

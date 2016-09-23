@@ -1,8 +1,7 @@
-'use strict';
-
-let gulp = require('gulp');
-let config = require('./gulp.config.js');
-let eslint = require('gulp-eslint');
+import gulp from 'gulp';
+import config from './gulp.config.js';
+import eslint from 'gulp-eslint';
+import gutil from 'gulp-util';
 
 gulp.task('lint', lintTask);
 
@@ -16,6 +15,6 @@ function lintTask() {
 }
 
 function beep() {
-  let gutil = require('gulp-util');
   gutil.beep();
 }
+
