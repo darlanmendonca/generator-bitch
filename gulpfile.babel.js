@@ -1,1 +1,3 @@
-require('require-all')(`${__dirname}/tasks/`);
+import requireAll from 'require-all';
+
+requireAll(`${__dirname}/tasks/`);
