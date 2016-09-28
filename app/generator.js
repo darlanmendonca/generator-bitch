@@ -243,7 +243,7 @@ function angular() {
     this.sourceRoot(`${__dirname}/templates/angular`, this);
     this.directory('.', 'sources/angular');
 
-    this.sourceRoot(`${__dirname}/templates/angular-templates/${this.viewEngine}`, this);
+    this.sourceRoot(`${__dirname}/templates/templates/${this.viewEngine}`, this);
     this.directory('.', 'sources/angular');
   }
 }
