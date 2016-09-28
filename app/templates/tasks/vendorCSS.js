@@ -1,4 +1,4 @@
-import gulp from 'gulp');
+import gulp from 'gulp';
 import bowerFiles from 'bower-files';
 import minifyCss from 'gulp-minify-css';
 import concat from 'gulp-concat';
