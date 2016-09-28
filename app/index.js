@@ -1,230 +1,232 @@
-import {Base} from 'yeoman-generator';
-import path from 'path';
-import mkdirp from 'mkdirp';
-import {slugify} from 'underscore.string';
+'use strict';
 
-module.exports = Base.extend({
-  constructor,
-  applicationNameParam,
-  viewEngineParam,
-  preprocessorParam,
-  appFrameworkParam,
-  frameworkModulesParam,
-  angularRouteParam,
-  angularTest,
-  common,
-  gulp,
-  bower,
-  sources,
-  views,
-  templates,
-  styles,
-  angular,
-  scripts,
-  publicDir,
-  install,
+var _yeomanGenerator = require('yeoman-generator');
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _mkdirp = require('mkdirp');
+
+var _mkdirp2 = _interopRequireDefault(_mkdirp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _yeomanGenerator.Base.extend({
+  constructor: constructor,
+  applicationNameParam: applicationNameParam,
+  viewEngineParam: viewEngineParam,
+  preprocessorParam: preprocessorParam,
+  appFrameworkParam: appFrameworkParam,
+  frameworkModulesParam: frameworkModulesParam,
+  angularRouteParam: angularRouteParam,
+  angularTest: angularTest,
+  common: common,
+  gulp: gulp,
+  bower: bower,
+  sources: sources,
+  views: views,
+  templates: templates,
+  styles: styles,
+  angular: angular,
+  scripts: scripts,
+  publicDir: publicDir,
+  install: install
 });
 
 function constructor() {
-  Base.apply(this, arguments);
+  _yeomanGenerator.Base.apply(this, arguments);
 }
 
 function applicationNameParam() {
-  let done = this.async();
-  let prompt = {
+  var _this = this;
+
+  var done = this.async();
+  var prompt = {
     type: 'input',
     name: 'applicationName',
     message: 'application name',
-    default: path.basename(process.cwd()),
+    default: _path2.default.basename(process.cwd())
   };
 
-  this.prompt(prompt, data => {
-    this.applicationName = data.applicationName;
-    this.applicationSlug = slugify(this.applicationName);
+  this.prompt(prompt, function (data) {
+    _this.applicationName = data.applicationName;
+    _this.applicationSlug = require('underscore.string/slugify')(_this.applicationName);
     done();
   });
 }
 
 function viewEngineParam() {
-  let done = this.async();
-  let prompt = {
+  var _this2 = this;
+
+  var done = this.async();
+  var prompt = {
     type: 'list',
     name: 'viewEngine',
     message: 'select template view you would like to use',
     default: 'jade',
-    choices: [
-      'jade',
-      'ejs',
-    ],
+    choices: ['jade', 'ejs']
   };
 
-  this
-    .prompt(prompt, data => {
-      this.viewEngine = data.viewEngine;
-      done();
-    });
+  this.prompt(prompt, function (data) {
+    _this2.viewEngine = data.viewEngine;
+    done();
+  });
 }
 
 function preprocessorParam() {
-  let done = this.async();
-  let prompt = {
+  var _this3 = this;
+
+  var done = this.async();
+  var prompt = {
     type: 'list',
     name: 'preprocessor',
     message: 'select css preprocessor you would like to use',
     default: 'sass',
-    choices: [
-      'sass',
-      'less',
-      'stylus',
-    ],
+    choices: ['sass', 'less', 'stylus']
   };
 
-  this.prompt(prompt, data => {
-    this.preprocessor = data.preprocessor;
-    let extname = {
+  this.prompt(prompt, function (data) {
+    _this3.preprocessor = data.preprocessor;
+    var extname = {
       sass: 'scss',
       less: 'less',
-      stylus: 'styl',
+      stylus: 'styl'
     };
 
-    this.extPreprocessor = extname[data.preprocessor];
+    _this3.extPreprocessor = extname[data.preprocessor];
     done();
   });
 }
 
 function appFrameworkParam() {
-  let done = this.async();
-  let prompt = {
+  var _this4 = this;
+
+  var done = this.async();
+  var prompt = {
     type: 'list',
     name: 'appFramework',
     message: 'select the javascript framework you would like to use',
     default: 'angular',
-    choices: [
-      'angular',
-      'none',
-    ],
+    choices: ['angular', 'none']
   };
 
-  this.prompt(prompt, data => {
-    this.appFramework = data.appFramework;
+  this.prompt(prompt, function (data) {
+    _this4.appFramework = data.appFramework;
     done();
   });
 }
 
 function frameworkModulesParam() {
-  if (this.appFramework === 'angular') {
-    let done = this.async();
-    this.ngAnimate = false;
-    this.ngCookies = false;
-    this.ngResource = false;
-    this.ngSanitize = false;
-    this.ngTouch = false;
+  var _this5 = this;
 
-    let prompt = {
-      type: 'checkbox',
-      name: 'frameworkModules',
-      message: 'chich modules would you like to include',
-      choices: [
-        {
+  if (this.appFramework === 'angular') {
+    (function () {
+      var done = _this5.async();
+      _this5.ngAnimate = false;
+      _this5.ngCookies = false;
+      _this5.ngResource = false;
+      _this5.ngSanitize = false;
+      _this5.ngTouch = false;
+
+      var prompt = {
+        type: 'checkbox',
+        name: 'frameworkModules',
+        message: 'chich modules would you like to include',
+        choices: [{
           value: 'ngAnimate',
           name: 'ngAnimate',
-          checked: true,
-        },
-        {
+          checked: true
+        }, {
           value: 'ngCookies',
           name: 'ngCookies',
-          checked: true,
-        },
-        {
+          checked: true
+        }, {
           value: 'ngResource',
           name: 'ngResource',
-          checked: true,
-        },
-        {
+          checked: true
+        }, {
           value: 'ngSanitize',
           name: 'ngSanitize',
-          checked: true,
-        },
-        {
+          checked: true
+        }, {
           value: 'ngTouch',
           name: 'ngTouch',
-          checked: true,
-        },
-      ],
-    };
+          checked: true
+        }]
+      };
 
-    this.prompt(prompt, data => {
-      this.frameworkModules = data.frameworkModules;
-      for (let key in this.frameworkModules) {
-        this[this.frameworkModules[key]] = true;
-      }
-      done();
-    });
+      _this5.prompt(prompt, function (data) {
+        _this5.frameworkModules = data.frameworkModules;
+        for (var key in _this5.frameworkModules) {
+          _this5[_this5.frameworkModules[key]] = true;
+        }
+        done();
+      });
+    })();
   }
 }
 
 function angularRouteParam() {
+  var _this6 = this;
+
   if (this.appFramework === 'angular') {
-    let done = this.async();
-    let prompt = {
-      type: 'list',
-      name: 'angularRoute',
-      message: 'select how you want route angular',
-      default: 'uiRouter',
-      choices: [
-        'uiRouter',
-        'ngRoute',
-        'none',
-      ],
-    };
+    (function () {
+      var done = _this6.async();
+      var prompt = {
+        type: 'list',
+        name: 'angularRoute',
+        message: 'select how you want route angular',
+        default: 'uiRouter',
+        choices: ['uiRouter', 'ngRoute', 'none']
+      };
 
-    this.prompt(prompt, data => {
-      this.angularRoute = data.angularRoute;
-      this.angularRouteDirective = data.angularRoute === 'uiRouter'
-        ? 'ui-view'
-        : 'ng-view';
+      _this6.prompt(prompt, function (data) {
+        _this6.angularRoute = data.angularRoute;
+        _this6.angularRouteDirective = data.angularRoute === 'uiRouter' ? 'ui-view' : 'ng-view';
 
-      done();
-    });
+        done();
+      });
+    })();
   }
 }
 
 function angularTest() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(`${__dirname}/templates/karma`, this);
+    this.sourceRoot(__dirname + '/templates/karma', this);
     this.directory('.', '.');
   }
 }
 
 function common() {
-  this.sourceRoot(`${__dirname}/templates/common`, this);
+  this.sourceRoot(__dirname + '/templates/common', this);
   this.directory('.', '.');
 }
 
 function gulp() {
-  this.sourceRoot(`${__dirname}/templates/gulp`, this);
+  this.sourceRoot(__dirname + '/templates/gulp', this);
   this.directory('.', '.');
 
-  this.sourceRoot(`${__dirname}/templates/tasks`, this);
+  this.sourceRoot(__dirname + '/templates/tasks', this);
   this.directory('.', './tasks');
 }
 
 function bower() {
-  this.sourceRoot(`${__dirname}/templates/bower`, this);
+  this.sourceRoot(__dirname + '/templates/bower', this);
   this.directory('.', '.');
 }
 
 function sources() {
-  mkdirp('sources/imgs');
-  mkdirp('sources/styles/components');
-  mkdirp('sources/sprites');
+  (0, _mkdirp2.default)('sources/imgs');
+  (0, _mkdirp2.default)('sources/styles/components');
+  (0, _mkdirp2.default)('sources/sprites');
   if (this.appFramework !== 'none') {
-    mkdirp(`sources/${this.appFramework}`);
+    (0, _mkdirp2.default)('sources/' + this.appFramework);
   }
 }
 
 function views() {
-  this.sourceRoot(`${__dirname}/templates/views/${this.viewEngine}`, this);
+  this.sourceRoot(__dirname + '/templates/views/' + this.viewEngine, this);
   this.directory('.', 'sources/views');
 }
 
@@ -235,38 +237,38 @@ function templates() {
 }
 
 function styles() {
-  this.sourceRoot(`${__dirname}/templates/styles/${this.preprocessor}`, this);
+  this.sourceRoot(__dirname + '/templates/styles/' + this.preprocessor, this);
   this.directory('.', 'sources/styles');
 }
 
 function angular() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(`${__dirname}/templates/angular`, this);
+    this.sourceRoot(__dirname + '/templates/angular', this);
     this.directory('.', 'sources/angular');
 
-    this.sourceRoot(`${__dirname}/templates/angular-templates/${this.viewEngine}`, this);
+    this.sourceRoot(__dirname + '/templates/angular-templates/' + this.viewEngine, this);
     this.directory('.', 'sources/angular');
   }
 }
 
 function scripts() {
   if (this.appFramework === 'none') {
-    this.sourceRoot(`${__dirname}/templates/scripts`, this);
+    this.sourceRoot(__dirname + '/templates/scripts', this);
     this.directory('.', 'sources/scripts');
   }
 }
 
 function publicDir() {
-  this.sourceRoot(`${__dirname}/templates/public`, this);
+  this.sourceRoot(__dirname + '/templates/public', this);
   this.directory('.', 'public');
-  mkdirp('public/imgs/sprites');
-  mkdirp('public/scripts');
+  (0, _mkdirp2.default)('public/imgs/sprites');
+  (0, _mkdirp2.default)('public/scripts');
 }
 
 function install() {
   this.installDependencies({
     bower: true,
     npm: true,
-    skipInstall: true,
+    skipInstall: true
   });
 }

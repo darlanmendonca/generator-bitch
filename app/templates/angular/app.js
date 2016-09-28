@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('<%= applicationSlug %>', [<% if (ngAnimate) { %>
   'ngAnimate',<% } %><% if (ngCookies) { %>
   'ngCookies',<% } %><% if (ngResource) { %>

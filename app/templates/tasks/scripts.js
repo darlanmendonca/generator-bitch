@@ -1,12 +1,21 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
+<<<<<<< HEAD
 import babel from 'gulp-babel';
+=======
+import babel from 'gulp-babel';<% if (appFramework === 'angular') { %>
+import ngAnnotate from 'gulp-ng-annotate';<% } %>
+>>>>>>> 7bc1c27f482a357793c872b25f99939cf71f40c0
 import sourcemaps from 'gulp-sourcemaps';
 import config from './gulp.config.js';
 import plumber from 'gulp-plumber';
 import concat from 'gulp-concat';
+<<<<<<< HEAD
 import uglify from 'gulp-uglify';<% if (appFramework === 'angular') { %>
 import ngAnnotate from 'gulp-ng-annotate';<% } %>
+=======
+import uglify from 'gulp-uglify';
+>>>>>>> 7bc1c27f482a357793c872b25f99939cf71f40c0
 
 gulp.task('scripts', scriptsTask);
 

@@ -3,7 +3,8 @@ import {test, assert} from 'yeoman-generator';
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  const generator =  `${process.env.PWD}/app/index.es5.js`;
+  const packageJSON = require(`${process.env.PWD}/package.json`);
+  const generator = `${process.env.PWD}/${packageJSON.main}`;
 
   it('jade, sass', done => {
     let prompts = {

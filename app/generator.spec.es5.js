@@ -5,7 +5,8 @@ var _yeomanGenerator = require('yeoman-generator');
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  var generator = process.env.PWD + '/app/index.es5.js';
+  var packageJSON = require(process.env.PWD + '/package.json');
+  var generator = process.env.PWD + '/' + packageJSON.main;
 
   it('jade, sass', function (done) {
     var prompts = {
