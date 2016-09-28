@@ -9,14 +9,6 @@ import autoprefixer from 'gulp-autoprefixer';
 import sourcemaps from 'gulp-sourcemaps';
 import config from './gulp.config.js';
 import plumber from 'gulp-plumber';
-<<<<<<< HEAD
-
-let dependencies = bowerFiles()
-  .relative(path.join(__dirname, '..'))
-  .ext('scss')
-  .files;
-=======
->>>>>>> 7bc1c27f482a357793c872b25f99939cf71f40c0
 
 let injectTransform = {
   starttag: '/* inject:imports */',

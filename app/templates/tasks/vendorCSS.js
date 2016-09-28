@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import gulp from 'gulp');
-=======
-import gulp from 'gulp';
->>>>>>> 7bc1c27f482a357793c872b25f99939cf71f40c0
 import bowerFiles from 'bower-files';
 import minifyCss from 'gulp-minify-css';
 import concat from 'gulp-concat';
