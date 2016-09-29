@@ -21,6 +21,7 @@
     "gulp-jade": "^1.0.1",<% } %><% if (viewEngine === 'ejs') { %>
     "gulp-ejs": "^1.1.1",<% } %>
     "browser-sync": "^2.8.0",
+    "compression": "^1.6.2",
     "gulp-inject": "^1.5.0",
     "gulp-plumber": "^1.0.1",<% if (preprocessor === 'sass') { %>
     "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>

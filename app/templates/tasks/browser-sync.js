@@ -1,8 +1,14 @@
 import gulp from 'gulp';
-import config from './gulp.config.js';
+import historyApi from 'connect-history-api-fallback';
+import {browserSync, browserSyncOptions} from './gulp.config.js';
+import gzip from 'compression';
 
 gulp.task('browser-sync', browserSyncTask);
 
 function browserSyncTask() {
-  config.browserSync.init(config.browserSyncOptions);
+  browserSyncOptions.middleware = [<% if (appFramework === 'angular') { %>
+    middleware: [ historyApi() ],<% } %>
+    gzip();
+  ];
+  browserSync.init(browserSyncOptions);
 }

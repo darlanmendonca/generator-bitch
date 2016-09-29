@@ -39,8 +39,7 @@ module.exports = {
     server: {
       baseDir: './public',
     },
-    notify: false,<% if (appFramework === 'angular') { %>
-    middleware: [ historyApi() ],<% } %>
+    notify: false,
     reloadDelay: 100,
     open: yargs.argv.open,
   },
