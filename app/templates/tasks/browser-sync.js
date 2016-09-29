@@ -8,7 +8,7 @@ gulp.task('browser-sync', browserSyncTask);
 function browserSyncTask() {
   browserSyncOptions.middleware = [<% if (appFramework === 'angular') { %>
     historyApi(),<% } %>
-    gzip();
+    gzip(),
   ];
   browserSync.init(browserSyncOptions);
 }
