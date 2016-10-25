@@ -1,5 +1,4 @@
 import browserSync from 'browser-sync';
-import historyApi from 'connect-history-api-fallback';
 import yargs from 'yargs';
 
 module.exports = {
