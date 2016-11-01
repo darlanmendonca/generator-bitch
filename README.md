@@ -9,7 +9,7 @@ Writed in Ecma Script 6!! And follow JS patterns (John Papa case you scaffold a 
 
 If you use old versions of this module, maybe you want create an Node.js Api. This stack is migrated to a new module called [generator-nude](https://github.com/darlanmendonca/generator-nude).
 
-<img src="https://d13yacurqjgara.cloudfront.net/users/776185/screenshots/2344191/drib.gif" width='100%' alt="yo bitch">
+<img src="https://d13yacurqjgara.cloudfront.net/users/776185/screenshots/2344191/drib.gif" alt="yo bitch" style="width: 400px; display: block; margin: 0 auto;">
 
 ### This generator, offer as:
 
