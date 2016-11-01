@@ -33,8 +33,7 @@
     "url": "git://github.com/darlanmendonca/generator-bitch.git"
   },
   "engines": {
-    "node": ">=0.12.0",
-    "npm": ">=1.2.10"
+    "node": ">=0.4.0"
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
