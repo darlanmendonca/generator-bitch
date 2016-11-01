@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import spritesmith from 'gulp.spritesmith';
 import plumber from 'gulp-plumber';
-import config from './gulp.config.js';
+import {sprites} from './config.js';
 
 let options = {
   imgName: 'sprites.png',
@@ -16,10 +16,10 @@ gulp.task('sprites', spritesTask);
 
 function spritesTask() {
   let sprite = gulp
-    .src(config.sprites.src)
+    .src(sprites.src)
     .pipe(plumber())
     .pipe(spritesmith(options));
 
-  sprite.img.pipe(gulp.dest(config.sprites.dest));
+  sprite.img.pipe(gulp.dest(sprites.dest));
   sprite.css.pipe(gulp.dest('./sources/styles/components/'));
 }

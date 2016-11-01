@@ -1,26 +1,33 @@
 import gulp from 'gulp';
-import gulpConfig from './gulp.config.js';
+import {
+  templates,
+  browserSync,
+  views,
+  styles,
+  scripts,
+  lint,
+} from './config.js';
 
 gulp.task('watch', watchTask);
 
 function watchTask() {<% if (appFramework === 'angular') { %>
-  gulp.watch(gulpConfig.templates.src, [
+  gulp.watch(templates.src, [
     'templates',
-    gulpConfig.browserSync.reload
+    browserSync.reload
   ]);
   <% } %>
-  gulp.watch(gulpConfig.views.watch, [
+  gulp.watch(views.watch, [
     'views',
-    gulpConfig.browserSync.reload
+    browserSync.reload
   ]);
 
-  gulp.watch(gulpConfig.styles.watch, ['styles']);
+  gulp.watch(styles.watch, ['styles']);
 
-  gulp.watch(gulpConfig.scripts.src, [
+  gulp.watch(scripts.src, [
     'scripts',
-    gulpConfig.browserSync.reload
+    browserSync.reload
   ]);
-  gulp.watch(gulpConfig.lint, ['lint']);
+  gulp.watch(lint, ['lint']);
 
   gulp.watch('./bower.json', [
     'vendorCSS',

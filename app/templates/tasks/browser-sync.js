@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import {browserSync, browserSyncOptions} from './gulp.config.js';
+import {browserSync, browserSyncOptions} from './config.js';
 import historyApi from 'connect-history-api-fallback';
 import gzip from 'compression';
 

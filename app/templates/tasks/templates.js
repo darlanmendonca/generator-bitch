@@ -2,18 +2,18 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import <%= viewEngine %> from 'gulp-<%= viewEngine %>';<% if (appFramework === 'angular') { %>
 import flatten from 'gulp-flatten';<% } %>
-import config from './gulp.config.js';
+import {templates} from './config.js';
 import plumber from 'gulp-plumber';
 
 gulp.task('templates', templatesTask);
 
 function templatesTask() {
   return gulp
-    .src(config.templates.src)
+    .src(templates.src)
     .pipe(plumber({ errorHandler: onError }))
     .pipe(<%= viewEngine %>())
     .pipe(flatten())
-    .pipe(gulp.dest(config.templates.dest));
+    .pipe(gulp.dest(templates.dest));
 }
 
 function onError(err) {

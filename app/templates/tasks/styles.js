@@ -7,7 +7,7 @@ import util from 'util';
 import <%= preprocessor %> from 'gulp-<%= preprocessor %>';
 import autoprefixer from 'gulp-autoprefixer';
 import sourcemaps from 'gulp-sourcemaps';
-import config from './gulp.config.js';
+import {styles, browserSync} from './config.js';
 import plumber from 'gulp-plumber';
 
 let injectTransform = {
@@ -33,15 +33,15 @@ function stylesTask() {
     .files;
 
   gulp
-    .src(config.styles.src)
+    .src(styles.src)
     .pipe(plumber({errorHandler}))
     .pipe(inject(gulp.src(dependencies, injectConfig), injectTransform))
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle}))
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(config.styles.dest))
-    .pipe(config.browserSync.stream({match: '**/*.css'}));
+    .pipe(gulp.dest(styles.dest))
+    .pipe(browserSync.stream({match: '**/*.css'}));
 }
 
 function errorHandler(err) {

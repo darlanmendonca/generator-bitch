@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import config from './gulp.config.js';
+import {lint} from './config.js';
 import eslint from 'gulp-eslint';
 import gutil from 'gulp-util';
 
@@ -7,7 +7,7 @@ gulp.task('lint', lintTask);
 
 function lintTask() {
   return gulp
-    .src(config.lint)
+    .src(lint)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())

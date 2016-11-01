@@ -2,17 +2,17 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import <%= viewEngine %> from 'gulp-<%= viewEngine %>';<% if (appFramework === 'angular') { %>
 import flatten from 'gulp-flatten';<% } %>
-import config from './gulp.config.js';
+import {views} from './config.js';
 import plumber from 'gulp-plumber';
 
 gulp.task('views', viewsTask);
 
 function viewsTask() {
   return gulp
-    .src(config.views.src)
+    .src(views.src)
     .pipe(plumber({ errorHandler: onError }))
     .pipe(<%= viewEngine %>())
-    .pipe(gulp.dest(config.views.dest));
+    .pipe(gulp.dest(views.dest));
 }
 
 function onError(err) {
