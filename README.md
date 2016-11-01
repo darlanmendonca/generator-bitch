@@ -25,7 +25,7 @@ If you use old versions of this module, maybe you want create an Node.js Api. Th
 - sprite images from png's (with [spritesmith](https://github.com/Ensighten/spritesmith) and pngsmith)
 - concatenation and minification (styles and scripts)
 - watch files, to running all tasks automatically
-- compile es6 client scripts to es5  with [Babel](https://babeljs.io/) (if you choose es5 has script type)
+- compile es6 client scripts to es5  with [Babel](https://babeljs.io/)
 - [ngAnnotate](https://github.com/olov/ng-annotate) (to Angular)
 
 ### Check out wiki!!
