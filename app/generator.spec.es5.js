@@ -2,13 +2,18 @@
 
 var _yeomanGenerator = require('yeoman-generator');
 
+var packageJSON = require(process.env.PWD + '/package.json');
+var generator = process.env.PWD + '/' + packageJSON.main;
+
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  var packageJSON = require(process.env.PWD + '/package.json');
-  var generator = process.env.PWD + '/' + packageJSON.main;
+  describe('just javascript pure', noFrameworkJavascriptTests);
+  describe('angular', angularTests);
+}
 
-  it('jade, sass', function (done) {
+function noFrameworkJavascriptTests() {
+  it('with ejs, sass', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -29,10 +34,10 @@ function scaffolding() {
     }
   });
 
-  it('jade, less', function (done) {
+  it('with ejs, less', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'ejs',
       preprocessor: 'less',
       appFramework: 'none'
     };
@@ -50,10 +55,10 @@ function scaffolding() {
     }
   });
 
-  it('jade, stylus', function (done) {
+  it('with ejs, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'ejs',
       preprocessor: 'stylus',
       appFramework: 'none'
     };
@@ -71,10 +76,10 @@ function scaffolding() {
     }
   });
 
-  it('ejs, sass', function (done) {
+  it('with jade, sass', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'ejs',
+      viewEngine: 'jade',
       preprocessor: 'sass',
       appFramework: 'none'
     };
@@ -92,10 +97,10 @@ function scaffolding() {
     }
   });
 
-  it('ejs, less', function (done) {
+  it('with jade, less', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'ejs',
+      viewEngine: 'jade',
       preprocessor: 'less',
       appFramework: 'none'
     };
@@ -113,10 +118,10 @@ function scaffolding() {
     }
   });
 
-  it('ejs, stylus', function (done) {
+  it('with jade, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'ejs',
+      viewEngine: 'jade',
       preprocessor: 'stylus',
       appFramework: 'none'
     };
@@ -133,8 +138,10 @@ function scaffolding() {
       done();
     }
   });
+}
 
-  it('angular and uiRouter', function (done) {
+function angularTests() {
+  it('with uiRouter', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -154,7 +161,7 @@ function scaffolding() {
     }
   });
 
-  it('angular and ngRoute', function (done) {
+  it('with ngRoute', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
