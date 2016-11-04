@@ -10,6 +10,7 @@ module.exports = Base.extend({
   appFrameworkParam,
   frameworkModulesParam,
   angularRouteParam,
+  saveParams,
   angularTest,
   common,
   gulp,
@@ -186,6 +187,24 @@ function angularRouteParam() {
       done();
     });
   }
+}
+
+function saveParams() {
+  const applicationName = this.applicationName;
+  const viewEngine = this.viewEngine;
+  const preprocessor = this.preprocessor;
+  const appFramework = this.appFramework;
+  const frameworkModules = this.frameworkModules;
+  const angularRoute = this.angularRoute;
+
+  this.config.set({
+    applicationName,
+    viewEngine,
+    preprocessor,
+    appFramework,
+    frameworkModules,
+    angularRoute,
+  });
 }
 
 function angularTest() {

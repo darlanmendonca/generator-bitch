@@ -27,12 +27,12 @@ function noFrameworkJavascriptTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -79,12 +79,12 @@ function noFrameworkJavascriptTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -131,12 +131,12 @@ function noFrameworkJavascriptTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -183,12 +183,12 @@ function noFrameworkJavascriptTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -235,12 +235,12 @@ function noFrameworkJavascriptTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -287,12 +287,12 @@ function noFrameworkJavascriptTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -349,12 +349,12 @@ function angularTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',
@@ -404,12 +404,12 @@ function angularTests() {
     function assertion() {
       assert.file([
         'README.md',
+        '.yo-rc.json',
         '.babelrc',
         '.bowerrc',
         '.editorconfig',
         '.gitignore',
         '.eslintrc.js',
-        'README.md',
         'sources',
         'bower.json',
         'gulpfile.babel.js',

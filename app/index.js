@@ -20,6 +20,7 @@ module.exports = _yeomanGenerator.Base.extend({
   appFrameworkParam: appFrameworkParam,
   frameworkModulesParam: frameworkModulesParam,
   angularRouteParam: angularRouteParam,
+  saveParams: saveParams,
   angularTest: angularTest,
   common: common,
   gulp: gulp,
@@ -189,6 +190,24 @@ function angularRouteParam() {
       });
     })();
   }
+}
+
+function saveParams() {
+  var applicationName = this.applicationName;
+  var viewEngine = this.viewEngine;
+  var preprocessor = this.preprocessor;
+  var appFramework = this.appFramework;
+  var frameworkModules = this.frameworkModules;
+  var angularRoute = this.angularRoute;
+
+  this.config.set({
+    applicationName: applicationName,
+    viewEngine: viewEngine,
+    preprocessor: preprocessor,
+    appFramework: appFramework,
+    frameworkModules: frameworkModules,
+    angularRoute: angularRoute
+  });
 }
 
 function angularTest() {
