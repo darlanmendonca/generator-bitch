@@ -120,6 +120,7 @@ function frameworkModulesParam() {
     this.ngResource = false;
     this.ngSanitize = false;
     this.ngTouch = false;
+    let checked = false;
 
     let prompt = {
       type: 'checkbox',
@@ -129,27 +130,27 @@ function frameworkModulesParam() {
         {
           value: 'ngAnimate',
           name: 'ngAnimate',
-          checked: true,
+          checked,
         },
         {
           value: 'ngCookies',
           name: 'ngCookies',
-          checked: true,
+          checked,
         },
         {
           value: 'ngResource',
           name: 'ngResource',
-          checked: true,
+          checked,
         },
         {
           value: 'ngSanitize',
           name: 'ngSanitize',
-          checked: true,
+          checked,
         },
         {
           value: 'ngTouch',
           name: 'ngTouch',
-          checked: true,
+          checked,
         },
       ],
     };
