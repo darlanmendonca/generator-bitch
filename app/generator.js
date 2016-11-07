@@ -55,6 +55,7 @@ function viewEngineParam() {
     choices: [
       'jade',
       'ejs',
+      'html',
     ],
   };
 

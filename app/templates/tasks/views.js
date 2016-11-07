@@ -1,6 +1,7 @@
 import gulp from 'gulp';
-import gutil from 'gulp-util';
-import <%= viewEngine %> from 'gulp-<%= viewEngine %>';<% if (appFramework === 'angular') { %>
+import gutil from 'gulp-util';<% if (viewEngine !== 'html') { %>
+import <%= viewEngine %> from 'gulp-<%= viewEngine %>';<% } else { %>
+import html from 'gulp-html-lint';<% } %><% if (appFramework === 'angular') { %>
 import flatten from 'gulp-flatten';<% } %>
 import {views} from './config.js';
 import plumber from 'gulp-plumber';
@@ -11,7 +12,8 @@ function viewsTask() {
   return gulp
     .src(views.src)
     .pipe(plumber({ errorHandler: onError }))
-    .pipe(<%= viewEngine %>())
+    .pipe(<%= viewEngine %>())<% if (viewEngine === 'html') { %>
+    .pipe(html.format())<% } %>
     .pipe(gulp.dest(views.dest));
 }
 

@@ -66,7 +66,7 @@ function viewEngineParam() {
     name: 'viewEngine',
     message: 'select template view you would like to use',
     default: 'jade',
-    choices: ['jade', 'ejs']
+    choices: ['jade', 'ejs', 'html']
   };
 
   this.prompt(prompt, function (data) {

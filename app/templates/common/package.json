@@ -19,7 +19,8 @@
     "gulp-minify-css": "1.2.1",
     "gulp-concat": "^2.6.0",<% if (viewEngine === 'jade') { %>
     "gulp-jade": "^1.0.1",<% } %><% if (viewEngine === 'ejs') { %>
-    "gulp-ejs": "^1.1.1",<% } %>
+    "gulp-ejs": "^1.1.1",<% } %><% if (viewEngine === 'html') { %>
+    "gulp-html-lint": "^0.0.1",<% } %>
     "browser-sync": "^2.8.0",
     "compression": "^1.6.2",
     "gulp-inject": "^1.5.0",
