@@ -11,8 +11,15 @@ gulp.task('views', viewsTask);
 function viewsTask() {
   return gulp
     .src(views.src)
-    .pipe(plumber({ errorHandler: onError }))
-    .pipe(<%= viewEngine %>())<% if (viewEngine === 'html') { %>
+    .pipe(plumber({ errorHandler: onError }))<% if (viewEngine !== 'html') { %>
+    .pipe(<%= viewEngine %>())<% } else { %>
+    .pipe(<%= viewEngine %>({
+      rules: {
+        'indent-style': 'spaces',
+        'indent-width': 2,
+        'attr-name-style': false,
+      },
+    }))
     .pipe(html.format())<% } %>
     .pipe(gulp.dest(views.dest));
 }

@@ -8,12 +8,75 @@ var generator = process.env.PWD + '/' + packageJSON.main;
 describe('generate a scaffolding', scaffolding);
 
 function scaffolding() {
-  describe('just javascript pure', noFrameworkJavascriptTests);
+  describe('pure javascript', noFrameworkJavascriptTests);
   describe('angular', angularTests);
 }
 
 function noFrameworkJavascriptTests() {
-  it('with ejs, sass', function (done) {
+  it('jade, sass', function (done) {
+    var prompts = {
+      appName: 'lorem',
+      viewEngine: 'jade',
+      preprocessor: 'sass',
+      appFramework: 'none'
+    };
+
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
+
+    function assertion() {
+      _yeomanGenerator.assert.file(['README.md', '.yo-rc.json', '.babelrc', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'sources', 'bower.json', 'gulpfile.babel.js', 'tasks/default.js', 'tasks/config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
+      // 'test'
+      'sources/scripts']);
+
+      _yeomanGenerator.assert.noFile(['karma.js', 'sources/angular', 'tasks/templates.js']);
+
+      done();
+    }
+  });
+
+  it('jade, less', function (done) {
+    var prompts = {
+      appName: 'lorem',
+      viewEngine: 'jade',
+      preprocessor: 'less',
+      appFramework: 'none'
+    };
+
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
+
+    function assertion() {
+      _yeomanGenerator.assert.file(['README.md', '.yo-rc.json', '.babelrc', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'sources', 'bower.json', 'gulpfile.babel.js', 'tasks/default.js', 'tasks/config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
+      // 'test'
+      'sources/scripts']);
+
+      _yeomanGenerator.assert.noFile(['karma.js', 'sources/angular', 'tasks/templates.js']);
+
+      done();
+    }
+  });
+
+  it('jade, stylus', function (done) {
+    var prompts = {
+      appName: 'lorem',
+      viewEngine: 'jade',
+      preprocessor: 'stylus',
+      appFramework: 'none'
+    };
+
+    _yeomanGenerator.test.run(generator).withPrompts(prompts).on('end', assertion);
+
+    function assertion() {
+      _yeomanGenerator.assert.file(['README.md', '.yo-rc.json', '.babelrc', '.bowerrc', '.editorconfig', '.gitignore', '.eslintrc.js', 'sources', 'bower.json', 'gulpfile.babel.js', 'tasks/default.js', 'tasks/config.js', 'tasks/lint.js', 'tasks/browser-sync.js', 'tasks/scripts.js', 'tasks/sprite-images.js', 'tasks/styles.js', 'tasks/vendorCSS.js', 'tasks/vendorJS.js', 'tasks/views.js', 'tasks/watch.js', 'package.json', 'public',
+      // 'test'
+      'sources/scripts']);
+
+      _yeomanGenerator.assert.noFile(['karma.js', 'sources/angular', 'tasks/templates.js']);
+
+      done();
+    }
+  });
+
+  it('ejs, sass', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -34,7 +97,7 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('with ejs, less', function (done) {
+  it('ejs, less', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -55,7 +118,7 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('with ejs, stylus', function (done) {
+  it('ejs, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'ejs',
@@ -76,10 +139,10 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('with jade, sass', function (done) {
+  it('html, sass', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'html',
       preprocessor: 'sass',
       appFramework: 'none'
     };
@@ -97,10 +160,10 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('with jade, less', function (done) {
+  it('html, less', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'html',
       preprocessor: 'less',
       appFramework: 'none'
     };
@@ -118,10 +181,10 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('with jade, stylus', function (done) {
+  it('html, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'html',
       preprocessor: 'stylus',
       appFramework: 'none'
     };
@@ -141,7 +204,7 @@ function noFrameworkJavascriptTests() {
 }
 
 function angularTests() {
-  it('with uiRouter', function (done) {
+  it('uiRouter', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
@@ -161,7 +224,7 @@ function angularTests() {
     }
   });
 
-  it('with ngRoute', function (done) {
+  it('ngRoute', function (done) {
     var prompts = {
       appName: 'lorem',
       viewEngine: 'jade',
