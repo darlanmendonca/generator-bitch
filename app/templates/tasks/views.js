@@ -18,6 +18,7 @@ function viewsTask() {
         'indent-style': 'spaces',
         'indent-width': 2,
         'attr-name-style': false,
+        'attr-req-value': false,
       },
     }))
     .pipe(html.format())<% } %>

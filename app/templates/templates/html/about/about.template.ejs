@@ -1,0 +1,9 @@
+<ul>
+  <li>
+    <% if (angularRoute === 'uiRouter') { %><a ui-sref="home">home</a>
+    <a ui-sref="about">about</a><% } %><% if (angularRoute === 'ngRoute') { %><a href="/">home</a>
+    <a href="/about">about</a><% } %>
+  </li>
+</ul>
+
+<p>{{ aboutController.viewName }} view</p>
