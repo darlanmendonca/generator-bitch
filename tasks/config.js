@@ -3,7 +3,7 @@ module.exports = {
     './test/**/*.spec.js',
     './gulpfile.js',
     './tasks/*.js',
-    'app/index.js',
+    'app/generator.js',
     './eslintrc.js',
   ],
 };

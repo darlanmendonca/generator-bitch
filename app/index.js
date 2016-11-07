@@ -136,24 +136,19 @@ function frameworkModulesParam() {
         message: 'chich modules would you like to include',
         choices: [{
           value: 'ngAnimate',
-          name: 'ngAnimate',
-          checked: true
+          name: 'ngAnimate'
         }, {
           value: 'ngCookies',
-          name: 'ngCookies',
-          checked: true
+          name: 'ngCookies'
         }, {
           value: 'ngResource',
-          name: 'ngResource',
-          checked: true
+          name: 'ngResource'
         }, {
           value: 'ngSanitize',
-          name: 'ngSanitize',
-          checked: true
+          name: 'ngSanitize'
         }, {
           value: 'ngTouch',
-          name: 'ngTouch',
-          checked: true
+          name: 'ngTouch'
         }]
       };
 
