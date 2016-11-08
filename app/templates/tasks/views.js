@@ -5,12 +5,14 @@ import html from 'gulp-html-lint';<% } %><% if (appFramework === 'angular') { %>
 import flatten from 'gulp-flatten';<% } %>
 import {views} from './config.js';
 import plumber from 'gulp-plumber';
+import changed from 'gulp-changed';
 
 gulp.task('views', viewsTask);
 
 function viewsTask() {
   return gulp
     .src(views.src)
+    .pipe(changed(views.dest))
     .pipe(plumber({ errorHandler: onError }))<% if (viewEngine !== 'html') { %>
     .pipe(<%= viewEngine %>())<% } else { %>
     .pipe(<%= viewEngine %>({
