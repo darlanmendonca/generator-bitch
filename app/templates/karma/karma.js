@@ -1,5 +1,5 @@
-import bowerFiles from 'bower-files';
-import shellArugments from 'shell-arguments';
+import bowerFiles from 'bower-files'
+import shellArugments from 'shell-arguments'
 
 module.exports = function(config) {
   config.set({
@@ -81,5 +81,5 @@ module.exports = function(config) {
     },
 
     singleRun: true,
-  });
+  })
 }

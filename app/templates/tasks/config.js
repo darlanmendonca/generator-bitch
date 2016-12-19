@@ -1,5 +1,5 @@
-import browserSync from 'browser-sync';
-import yargs from 'yargs';
+import browserSync from 'browser-sync'
+import yargs from 'yargs'
 
 module.exports = {
   lint: [
@@ -42,4 +42,4 @@ module.exports = {
     reloadDelay: 100,
     open: yargs.argv.open,
   },
-};
+}

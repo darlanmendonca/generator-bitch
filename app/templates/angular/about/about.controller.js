@@ -1,7 +1,7 @@
 angular
   .module('<%= applicationSlug %>')
-  .controller('AboutController', AboutController);
+  .controller('AboutController', AboutController)
 
 function AboutController () {
-  this.viewName = 'About';
+  this.viewName = 'About'
 }

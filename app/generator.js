@@ -1,6 +1,6 @@
-import {Base} from 'yeoman-generator';
-import path from 'path';
-import mkdirp from 'mkdirp';
+import {Base} from 'yeoman-generator'
+import path from 'path'
+import mkdirp from 'mkdirp'
 
 module.exports = Base.extend({
   constructor,
@@ -23,30 +23,30 @@ module.exports = Base.extend({
   scripts,
   publicDir,
   install,
-});
+})
 
 function constructor() {
-  Base.apply(this, arguments);
+  Base.apply(this, arguments)
 }
 
 function applicationNameParam() {
-  let done = this.async();
+  let done = this.async()
   let prompt = {
     type: 'input',
     name: 'applicationName',
     message: 'application name',
     default: path.basename(process.cwd()),
-  };
+  }
 
   this.prompt(prompt, data => {
-    this.applicationName = data.applicationName;
-    this.applicationSlug = require('underscore.string/slugify')(this.applicationName);
-    done();
-  });
+    this.applicationName = data.applicationName
+    this.applicationSlug = require('underscore.string/slugify')(this.applicationName)
+    done()
+  })
 }
 
 function viewEngineParam() {
-  let done = this.async();
+  let done = this.async()
   let prompt = {
     type: 'list',
     name: 'viewEngine',
@@ -57,17 +57,17 @@ function viewEngineParam() {
       'ejs',
       'html',
     ],
-  };
+  }
 
   this
     .prompt(prompt, data => {
-      this.viewEngine = data.viewEngine;
-      done();
-    });
+      this.viewEngine = data.viewEngine
+      done()
+    })
 }
 
 function preprocessorParam() {
-  let done = this.async();
+  let done = this.async()
   let prompt = {
     type: 'list',
     name: 'preprocessor',
@@ -78,23 +78,23 @@ function preprocessorParam() {
       'less',
       'stylus',
     ],
-  };
+  }
 
   this.prompt(prompt, data => {
-    this.preprocessor = data.preprocessor;
+    this.preprocessor = data.preprocessor
     let extname = {
       sass: 'scss',
       less: 'less',
       stylus: 'styl',
-    };
+    }
 
-    this.extPreprocessor = extname[data.preprocessor];
-    done();
-  });
+    this.extPreprocessor = extname[data.preprocessor]
+    done()
+  })
 }
 
 function appFrameworkParam() {
-  let done = this.async();
+  let done = this.async()
   let prompt = {
     type: 'list',
     name: 'appFramework',
@@ -104,22 +104,22 @@ function appFrameworkParam() {
       'angular',
       'none',
     ],
-  };
+  }
 
   this.prompt(prompt, data => {
-    this.appFramework = data.appFramework;
-    done();
-  });
+    this.appFramework = data.appFramework
+    done()
+  })
 }
 
 function frameworkModulesParam() {
   if (this.appFramework === 'angular') {
-    let done = this.async();
-    this.ngAnimate = false;
-    this.ngCookies = false;
-    this.ngResource = false;
-    this.ngSanitize = false;
-    this.ngTouch = false;
+    let done = this.async()
+    this.ngAnimate = false
+    this.ngCookies = false
+    this.ngResource = false
+    this.ngSanitize = false
+    this.ngTouch = false
 
     let prompt = {
       type: 'checkbox',
@@ -147,21 +147,21 @@ function frameworkModulesParam() {
           name: 'ngTouch',
         },
       ],
-    };
+    }
 
     this.prompt(prompt, data => {
-      this.frameworkModules = data.frameworkModules;
+      this.frameworkModules = data.frameworkModules
       for (let key in this.frameworkModules) {
-        this[this.frameworkModules[key]] = true;
+        this[this.frameworkModules[key]] = true
       }
-      done();
-    });
+      done()
+    })
   }
 }
 
 function angularRouteParam() {
   if (this.appFramework === 'angular') {
-    let done = this.async();
+    let done = this.async()
     let prompt = {
       type: 'list',
       name: 'angularRoute',
@@ -172,26 +172,26 @@ function angularRouteParam() {
         'ngRoute',
         'none',
       ],
-    };
+    }
 
     this.prompt(prompt, data => {
-      this.angularRoute = data.angularRoute;
+      this.angularRoute = data.angularRoute
       this.angularRouteDirective = data.angularRoute === 'uiRouter'
         ? 'ui-view'
-        : 'ng-view';
+        : 'ng-view'
 
-      done();
-    });
+      done()
+    })
   }
 }
 
 function saveParams() {
-  const applicationName = this.applicationName;
-  const viewEngine = this.viewEngine;
-  const preprocessor = this.preprocessor;
-  const appFramework = this.appFramework;
-  const frameworkModules = this.frameworkModules;
-  const angularRoute = this.angularRoute;
+  const applicationName = this.applicationName
+  const viewEngine = this.viewEngine
+  const preprocessor = this.preprocessor
+  const appFramework = this.appFramework
+  const frameworkModules = this.frameworkModules
+  const angularRoute = this.angularRoute
 
   this.config.set({
     applicationName,
@@ -200,81 +200,81 @@ function saveParams() {
     appFramework,
     frameworkModules,
     angularRoute,
-  });
+  })
 }
 
 function angularTest() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(`${__dirname}/templates/karma`, this);
-    this.directory('.', '.');
+    this.sourceRoot(`${__dirname}/templates/karma`, this)
+    this.directory('.', '.')
   }
 }
 
 function common() {
-  this.sourceRoot(`${__dirname}/templates/common`, this);
-  this.directory('.', '.');
+  this.sourceRoot(`${__dirname}/templates/common`, this)
+  this.directory('.', '.')
 }
 
 function gulp() {
-  this.sourceRoot(`${__dirname}/templates/gulp`, this);
-  this.directory('.', '.');
+  this.sourceRoot(`${__dirname}/templates/gulp`, this)
+  this.directory('.', '.')
 
-  this.sourceRoot(`${__dirname}/templates/tasks`, this);
-  this.directory('.', './tasks');
+  this.sourceRoot(`${__dirname}/templates/tasks`, this)
+  this.directory('.', './tasks')
 }
 
 function bower() {
-  this.sourceRoot(`${__dirname}/templates/bower`, this);
-  this.directory('.', '.');
+  this.sourceRoot(`${__dirname}/templates/bower`, this)
+  this.directory('.', '.')
 }
 
 function sources() {
-  mkdirp('sources/imgs');
-  mkdirp('sources/styles/components');
-  mkdirp('sources/sprites');
+  mkdirp('sources/imgs')
+  mkdirp('sources/styles/components')
+  mkdirp('sources/sprites')
   if (this.appFramework !== 'none') {
-    mkdirp(`sources/${this.appFramework}`);
+    mkdirp(`sources/${this.appFramework}`)
   }
 }
 
 function views() {
-  this.sourceRoot(`${__dirname}/templates/views/${this.viewEngine}`, this);
-  this.directory('.', 'sources/views');
+  this.sourceRoot(`${__dirname}/templates/views/${this.viewEngine}`, this)
+  this.directory('.', 'sources/views')
 }
 
 function templates() {
   if (this.appFramework !== 'angular') {
-    this.fs.delete('./tasks/templates.js');
+    this.fs.delete('./tasks/templates.js')
   }
 }
 
 function styles() {
-  this.sourceRoot(`${__dirname}/templates/styles/${this.preprocessor}`, this);
-  this.directory('.', 'sources/styles');
+  this.sourceRoot(`${__dirname}/templates/styles/${this.preprocessor}`, this)
+  this.directory('.', 'sources/styles')
 }
 
 function angular() {
   if (this.appFramework === 'angular') {
-    this.sourceRoot(`${__dirname}/templates/angular`, this);
-    this.directory('.', 'sources/angular');
+    this.sourceRoot(`${__dirname}/templates/angular`, this)
+    this.directory('.', 'sources/angular')
 
-    this.sourceRoot(`${__dirname}/templates/templates/${this.viewEngine}`, this);
-    this.directory('.', 'sources/angular');
+    this.sourceRoot(`${__dirname}/templates/templates/${this.viewEngine}`, this)
+    this.directory('.', 'sources/angular')
   }
 }
 
 function scripts() {
   if (this.appFramework === 'none') {
-    this.sourceRoot(`${__dirname}/templates/scripts`, this);
-    this.directory('.', 'sources/scripts');
+    this.sourceRoot(`${__dirname}/templates/scripts`, this)
+    this.directory('.', 'sources/scripts')
   }
 }
 
 function publicDir() {
-  this.sourceRoot(`${__dirname}/templates/public`, this);
-  this.directory('.', 'public');
-  mkdirp('public/imgs/sprites');
-  mkdirp('public/scripts');
+  this.sourceRoot(`${__dirname}/templates/public`, this)
+  this.directory('.', 'public')
+  mkdirp('public/imgs/sprites')
+  mkdirp('public/scripts')
 }
 
 function install() {
@@ -282,5 +282,5 @@ function install() {
     bower: true,
     npm: true,
     skipInstall: true,
-  });
+  })
 }

@@ -1,13 +1,13 @@
-import {test, assert} from 'yeoman-generator';
+import {test, assert} from 'yeoman-generator'
 
-const packageJSON = require(`${process.env.PWD}/package.json`);
-const generator = `${process.env.PWD}/${packageJSON.main}`;
+const packageJSON = require(`${process.env.PWD}/package.json`)
+const generator = `${process.env.PWD}/${packageJSON.main}`
 
-describe('generate a scaffolding', scaffolding);
+describe('generate a scaffolding', scaffolding)
 
 function scaffolding() {
-  describe('pure javascript', noFrameworkJavascriptTests);
-  describe('angular', angularTests);
+  describe('pure javascript', noFrameworkJavascriptTests)
+  describe('angular', angularTests)
 }
 
 function noFrameworkJavascriptTests() {
@@ -17,12 +17,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'jade',
       preprocessor: 'sass',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -51,17 +51,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('jade, less', done => {
     const prompts = {
@@ -69,12 +69,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'jade',
       preprocessor: 'less',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -103,17 +103,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('jade, stylus', done => {
     const prompts = {
@@ -121,12 +121,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'jade',
       preprocessor: 'stylus',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -155,17 +155,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('ejs, sass', done => {
     const prompts = {
@@ -173,12 +173,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'ejs',
       preprocessor: 'sass',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -207,17 +207,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('ejs, less', done => {
     const prompts = {
@@ -225,12 +225,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'ejs',
       preprocessor: 'less',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -259,17 +259,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('ejs, stylus', done => {
     const prompts = {
@@ -277,12 +277,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'ejs',
       preprocessor: 'stylus',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -311,17 +311,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('html, sass', done => {
     const prompts = {
@@ -329,12 +329,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'html',
       preprocessor: 'sass',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -363,17 +363,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('html, less', done => {
     const prompts = {
@@ -381,12 +381,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'html',
       preprocessor: 'less',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -415,17 +415,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 
   it('html, stylus', done => {
     const prompts = {
@@ -433,12 +433,12 @@ function noFrameworkJavascriptTests() {
       viewEngine: 'html',
       preprocessor: 'stylus',
       appFramework: 'none',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -467,17 +467,17 @@ function noFrameworkJavascriptTests() {
         'public',
         // 'test'
         'sources/scripts',
-      ]);
+      ])
 
       assert.noFile([
         'karma.js',
         'sources/angular',
         'tasks/templates.js',
-      ]);
+      ])
 
-      done();
+      done()
     }
-  });
+  })
 }
 
 function angularTests() {
@@ -495,12 +495,12 @@ function angularTests() {
         'ngTouch',
       ],
       angularRoute: 'uiRouter',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -531,10 +531,10 @@ function angularTests() {
         // 'test',
         'sources/angular',
         'karma.js',
-      ]);
-      done();
+      ])
+      done()
     }
-  });
+  })
 
   it('ngRoute', done => {
     const prompts = {
@@ -550,12 +550,12 @@ function angularTests() {
         'ngTouch',
       ],
       angularRoute: 'ngRoute',
-    };
+    }
 
     test
       .run(generator)
       .withPrompts(prompts)
-      .on('end', assertion);
+      .on('end', assertion)
 
     function assertion() {
       assert.file([
@@ -586,8 +586,8 @@ function angularTests() {
         // 'test',
         'sources/angular',
         'karma.js',
-      ]);
-      done();
+      ])
+      done()
     }
-  });
+  })
 }

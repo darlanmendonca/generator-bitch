@@ -1,13 +1,13 @@
-import gulp from 'gulp';
-import gutil from 'gulp-util';<% if (viewEngine !== 'html') { %>
-import <%= viewEngine %> from 'gulp-<%= viewEngine %>';<% } else { %>
-import html from 'gulp-html-lint';<% } %><% if (appFramework === 'angular') { %>
-import flatten from 'gulp-flatten';<% } %>
-import {templates} from './config.js';
-import plumber from 'gulp-plumber';
-import changed from 'gulp-changed';
+import gulp from 'gulp'
+import gutil from 'gulp-util'<% if (viewEngine !== 'html') { %>
+import <%= viewEngine %> from 'gulp-<%= viewEngine %>'<% } else { %>
+import html from 'gulp-html-lint'<% } %><% if (appFramework === 'angular') { %>
+import flatten from 'gulp-flatten'<% } %>
+import {templates} from './config.js'
+import plumber from 'gulp-plumber'
+import changed from 'gulp-changed'
 
-gulp.task('templates', templatesTask);
+gulp.task('templates', templatesTask)
 
 function templatesTask() {
   return gulp
@@ -25,11 +25,11 @@ function templatesTask() {
     }))
     .pipe(html.format())<% } %>
     .pipe(flatten())
-    .pipe(gulp.dest(templates.dest));
+    .pipe(gulp.dest(templates.dest))
 }
 
 function onError(err) {
-  let message = new gutil.PluginError(err.plugin, err.message).toString();
-  process.stderr.write(message + '\n');
-  gutil.beep();
+  let message = new gutil.PluginError(err.plugin, err.message).toString()
+  process.stderr.write(message + '\n')
+  gutil.beep()
 }

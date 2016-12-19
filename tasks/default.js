@@ -1,8 +1,6 @@
-import gulp from 'gulp';
+import gulp from 'gulp'
 
-let tasks = [
+gulp.task('default', [
   'lint',
   'watch',
-];
-
-gulp.task('default', tasks);
+])

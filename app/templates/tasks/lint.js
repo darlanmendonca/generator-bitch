@@ -1,9 +1,9 @@
-import gulp from 'gulp';
-import {lint} from './config.js';
-import eslint from 'gulp-eslint';
-import gutil from 'gulp-util';
+import gulp from 'gulp'
+import {lint} from './config.js'
+import eslint from 'gulp-eslint'
+import gutil from 'gulp-util'
 
-gulp.task('lint', lintTask);
+gulp.task('lint', lintTask)
 
 function lintTask() {
   return gulp
@@ -11,10 +11,10 @@ function lintTask() {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-    .on('error', beep);
+    .on('error', beep)
 }
 
 function beep() {
-  gutil.beep();
+  gutil.beep()
 }
 

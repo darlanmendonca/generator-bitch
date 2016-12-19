@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-let optional = 1;
-let required = 2;
+let optional = 1
+let required = 2
 
 module.exports = {
   parserOptions: {
@@ -17,7 +17,7 @@ module.exports = {
     expect: true,
   },
   rules: {
-    semi: [required, 'always'],
+    semi: [required, 'never'],
     'comma-dangle': [required, 'always-multiline'],
     'comma-style': [required, 'last'],
     indent: [required, 2],
@@ -49,4 +49,4 @@ module.exports = {
     'key-spacing': [required, {afterColon: true}],
     'space-unary-ops': required,
   }
-};
+}

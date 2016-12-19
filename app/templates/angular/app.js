@@ -6,4 +6,4 @@ angular.module('<%= applicationSlug %>', [<% if (ngAnimate) { %>
   'ngTouch',<% } %><% if (angularRoute === 'uiRouter') { %>
   'ui.router',<% } %><% if (angularRoute === 'ngRoute') { %>
   'ngRoute',<% } %>
-]);
+])

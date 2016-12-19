@@ -1,4 +1,4 @@
-import gulp from 'gulp';
+import gulp from 'gulp'
 
 gulp.task('default', [
   'views',<% if (appFramework === 'angular') {%>
@@ -9,4 +9,4 @@ gulp.task('default', [
   'scripts',
   'lint',
   'watch',
-]);
+])

@@ -1,6 +1,6 @@
 angular
   .module('<%= applicationSlug %>')
-  .config(aboutConfig);
+  .config(aboutConfig)
 
 <% if (angularRoute === 'uiRouter') { %>function aboutConfig($stateProvider) {
   $stateProvider.state('about', {
@@ -8,11 +8,11 @@ angular
     templateUrl: 'templates/about.template.html',
     controller: 'AboutController',
     controllerAs: 'aboutController',
-  });
+  })
 }<% } %><% if (angularRoute === 'ngRoute') { %>function aboutConfig($routeProvider) {
   $routeProvider.when('/about', {
     templateUrl: 'templates/about.template.html',
     controller: 'AboutController',
     controllerAs: 'aboutController',
-  });
+  })
 }<% } %>
