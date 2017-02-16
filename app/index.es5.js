@@ -66,8 +66,8 @@ function viewEngineParam() {
     type: 'list',
     name: 'viewEngine',
     message: 'select template view you would like to use',
-    default: 'jade',
-    choices: ['jade', 'ejs']
+    default: 'pug',
+    choices: ['pug', 'ejs']
   }
 
   this.prompt(prompt, function (data) {

@@ -15,6 +15,7 @@
     "sass",
     "less",
     "jade",
+    "pug",
     "ejs",
     "node",
     "express",

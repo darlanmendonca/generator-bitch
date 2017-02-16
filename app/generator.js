@@ -51,9 +51,9 @@ function viewEngineParam() {
     type: 'list',
     name: 'viewEngine',
     message: 'select template view you would like to use',
-    default: 'jade',
+    default: 'pug',
     choices: [
-      'jade',
+      'pug',
       'ejs',
       'html',
     ],

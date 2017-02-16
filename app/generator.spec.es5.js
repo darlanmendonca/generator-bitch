@@ -13,10 +13,10 @@ function scaffolding() {
 }
 
 function noFrameworkJavascriptTests() {
-  it('jade, sass', function (done) {
+  it('pug, sass', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'sass',
       appFramework: 'none'
     };
@@ -34,10 +34,10 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('jade, less', function (done) {
+  it('pug, less', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'less',
       appFramework: 'none'
     };
@@ -55,10 +55,10 @@ function noFrameworkJavascriptTests() {
     }
   });
 
-  it('jade, stylus', function (done) {
+  it('pug, stylus', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'stylus',
       appFramework: 'none'
     };
@@ -207,7 +207,7 @@ function angularTests() {
   it('uiRouter', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'sass',
       appFramework: 'angular',
       frameworkModules: ['ngAnimate', 'ngCookies', 'ngResource', 'ngSanitize', 'ngTouch'],
@@ -227,7 +227,7 @@ function angularTests() {
   it('ngRoute', function (done) {
     var prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'sass',
       appFramework: 'angular',
       frameworkModules: ['ngAnimate', 'ngCookies', 'ngResource', 'ngSanitize', 'ngTouch'],

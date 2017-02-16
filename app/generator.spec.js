@@ -11,10 +11,10 @@ function scaffolding() {
 }
 
 function noFrameworkJavascriptTests() {
-  it('jade, sass', done => {
+  it('pug, sass', done => {
     const prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'sass',
       appFramework: 'none',
     }
@@ -61,10 +61,10 @@ function noFrameworkJavascriptTests() {
     }
   })
 
-  it('jade, less', done => {
+  it('pug, less', done => {
     const prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'less',
       appFramework: 'none',
     }
@@ -111,10 +111,10 @@ function noFrameworkJavascriptTests() {
     }
   })
 
-  it('jade, stylus', done => {
+  it('pug, stylus', done => {
     const prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'stylus',
       appFramework: 'none',
     }
@@ -466,7 +466,7 @@ function angularTests() {
   it('uiRouter', done => {
     const prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'sass',
       appFramework: 'angular',
       frameworkModules: [
@@ -519,7 +519,7 @@ function angularTests() {
   it('ngRoute', done => {
     const prompts = {
       appName: 'lorem',
-      viewEngine: 'jade',
+      viewEngine: 'pug',
       preprocessor: 'sass',
       appFramework: 'angular',
       frameworkModules: [
