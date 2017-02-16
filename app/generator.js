@@ -279,7 +279,7 @@ function publicDir() {
 
 function install() {
   this.installDependencies({
-    bower: true,
+    bower: false,
     npm: true,
     skipInstall: true,
   })
