@@ -3,10 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "scripts/start.sh",
+    "postinstall": "scripts/bundle.sh",
+    "bundle": "scripts/bundle.sh",
     "test": "scripts/test.sh"
   },
-  "dependencies": {},
+  "dependencies": {<% if (appFramework === 'angular') { %>
+    "angular": "~1.6.2"<% if (ngAnimate) { %>,
+    "angular-animate": "~1.6.2"<% } %><% if (ngCookies) { %>,
+    "angular-cookies": "~1.6.2"<% } %><% if (ngResource) { %>,
+    "angular-resource": "~1.6.2"<% } %><% if (ngSanitize) { %>,
+    "angular-sanitize": "~1.6.2"<% } %><% if (ngTouch) { %>,
+    "angular-touch": "~1.6.2"<% } %><% if (angularRoute === 'uiRouter') { %>,
+    "angular-ui-router": "^0.2.15"<% } %><% if (angularRoute === 'ngRoute') { %>,
+    "angular-route": "~1.6.2"<% } %><% } %>
+  }<% if (appFramework === 'angular') { %>,
   "devDependencies": {
+    "angular-mocks": "~1.6.2",<% } %>
     "babel-preset-es2015": "^6.6.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.0",
@@ -16,7 +29,7 @@
     "chai-as-promised": "^5.3.0",
     "bower-files": "^3.7.2",
     "gulp-autoprefixer": "^2.3.1",
-    "gulp-minify-css": "1.2.1",
+    "gulp-clean-css": "~3.0.2",
     "gulp-changed": "^1.3.2",
     "gulp-concat": "^2.6.0",<% if (viewEngine === 'jade') { %>
     "gulp-jade": "^1.0.1",<% } %><% if (viewEngine === 'ejs') { %>
@@ -47,10 +60,13 @@
     "gulp-uglify": "^1.2.0",
     "gulp-sourcemaps": "^1.5.2",
     "pngsmith": "^0.1.3",
+    "package-files": "~0.0.2",
     "gulp.spritesmith": "^3.8.2",
     "spritesmith": "^1.3.2",
     "gulp": "^3.9.0",
     "require-all": "^2.0.0",
+    "webpack": "^2.2.1",
+    "webpack-stream": "^3.2.0",
     "gulp-util": "^3.0.6",
     "yargs": "^3.15.0",
     "shell-arguments": "^1.1.9"
