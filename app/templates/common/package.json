@@ -38,7 +38,7 @@
     "browser-sync": "^2.8.0",
     "compression": "^1.6.2",
     "gulp-plumber": "^1.0.1",<% if (preprocessor === 'sass') { %>
-    "gulp-sass": "^2.0.4",<% } %><% if (preprocessor === 'less') { %>
+    "gulp-sass": "^3.1.0",<% } %><% if (preprocessor === 'less') { %>
     "gulp-less": "^3.0.3",<% } %><% if (preprocessor === 'stylus') { %>
     "gulp-stylus": "^2.0.6",<% } %>
     "gulp-babel": "^6.1.2",<% if (appFramework === 'angular') { %>
@@ -56,9 +56,9 @@
     "karma-chai-as-promised": "^0.1.2",
     "gulp-flatten": "^0.2.0",
     "eslint-plugin-angular": "^1.0.0",<% } %>
-    "gulp-eslint": "^2.0.0",
+    "gulp-eslint": "^3.1.0",
     "gulp-uglify": "^1.2.0",
-    "gulp-sourcemaps": "^1.5.2",
+    "gulp-sourcemaps": "^2.4.1",
     "pngsmith": "^0.1.3",
     "package-files": "~0.0.2",
     "gulp.spritesmith": "^3.8.2",
