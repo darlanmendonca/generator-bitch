@@ -1,6 +1,6 @@
 {
   "name": "generator-bitch",
-  "version": "0.14.2",
+  "version": "0.14.3",
   "description": "A simple generator (for Yeoman) to scaffolding web applications, just frontend stack",
   "main": "app/index.js",
   "scripts": {
