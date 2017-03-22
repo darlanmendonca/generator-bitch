@@ -1,7 +1,7 @@
 'use strict'
 
-let optional = 1
-let required = 2
+const optional = 1
+const required = 2
 
 module.exports = {
   parserOptions: {
