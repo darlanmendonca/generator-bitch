@@ -1,4 +1,3 @@
-import bowerFiles from 'bower-files'
 import shellArugments from 'shell-arguments'
 
 module.exports = function(config) {
@@ -22,7 +21,7 @@ module.exports = function(config) {
       'karma-coverage',
     ],
 
-    files: bowerFiles().dev().relative(__dirname).ext('js').files.concat([
+    files: [
       'sources/angular/app.js',
       'sources/angular/**/*.js',
     ]),
